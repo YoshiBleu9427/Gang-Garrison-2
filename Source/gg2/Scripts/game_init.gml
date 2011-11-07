@@ -360,6 +360,8 @@ global.launchMap = "";
     
     calculateMonthAndDay();
 
+    SMOKE_init();
+    
     if(global.dedicatedMode == 1) {
         AudioControlToggleMute();
         room_goto_fix(Menu);
