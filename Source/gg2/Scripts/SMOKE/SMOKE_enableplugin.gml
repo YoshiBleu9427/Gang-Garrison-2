@@ -15,5 +15,5 @@ if (restart==1) {
         game_end();
     }
 }else{
-    SMOKE_runplugin(pluginid, true);
+    SMOKE_runplugin(argument0, true);
 }

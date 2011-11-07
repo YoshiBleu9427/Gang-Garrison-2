@@ -16,9 +16,10 @@ if (string_copy(num, 0, 6) == "plugin") {
         show_message("Disabled plugin");
     }else if (string_copy(num, 7, 3) == "dl_") {
         if (show_message_ext("Are you sure you want to download the Plugin with the ID " + pluginid + "?", "Yes", "", "No") == 1) {
-            SMOKE_downloadplugin(num, false);
+            SMOKE_downloadplugin(pluginid, false);
         }
     }else if (string_copy(num, 7, 3) == "rm_") {
+        SMOKE_removeplugin(pluginid);
         show_message("Removed plugin");
     }
     kill = true;

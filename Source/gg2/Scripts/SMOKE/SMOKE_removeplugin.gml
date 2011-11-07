@@ -7,6 +7,8 @@ while (1) {
     file = file_find_next();
     if (file != "") {
         file_delete(file);
+    }else{
+        break;
     }
 }
 if (ds_list_find_index(global.SMOKE_pluginlist, argument0) != -1) {
