@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="scout_fight" type="RESOURCE"/>
+  <resource name="pyro_fight" type="RESOURCE"/>
+  <resource name="soldier_fight" type="RESOURCE"/>
+  <resource name="heavy_fight" type="RESOURCE"/>
+  <resource name="demoman_fight" type="RESOURCE"/>
+  <resource name="medic_fight" type="RESOURCE"/>
+  <resource name="engie_fight" type="RESOURCE"/>
+  <resource name="spy_fight" type="RESOURCE"/>
+  <resource name="sniper_fight" type="RESOURCE"/>
+  <resource name="quote_fight" type="RESOURCE"/>
+</resources>

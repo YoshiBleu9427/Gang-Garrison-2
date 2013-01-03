@@ -13,8 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if (intel)
-{
+        <argument kind="STRING">if intel == true {
     sound_play(IntelDropSnd);
     intel=false;
     canGrabIntel=false;
@@ -29,7 +28,7 @@
     } else if (team == TEAM_BLUE){
         newIntel = instance_create(x,y,IntelligenceRed);
     }
-    newIntel.alarm[0] = intelRecharge;
+    newIntel.alarm[0] = 900;     
 }
 </argument>
       </arguments>

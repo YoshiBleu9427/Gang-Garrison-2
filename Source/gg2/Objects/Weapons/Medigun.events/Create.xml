@@ -19,7 +19,7 @@
     refireTime = 3;
     healTarget = noone;
     healedThisStep = false;
-    healAmount = 2/3;
+    healAmount = 0.5;
     hphealed = 0;
     maxHealDistance = 300;
     ubering = false;

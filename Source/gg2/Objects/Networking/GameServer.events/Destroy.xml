@@ -25,14 +25,14 @@ buffer_destroy(serverId);
 with(Player)
     instance_destroy();
 
+with(BotPlayer)
+    instance_destroy();
+
 with(JoiningPlayer)
     instance_destroy();
     
 with(PlayerControl)
     instance_destroy();
-    
-if (global.attemptPortForward and portForwarded)
-    upnp_release_port(string(global.hostingPort), "TCP")
 
 room_goto_fix(Menu);
 </argument>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AI" type="GROUP"/>
+  <resource name="bot_init" type="RESOURCE"/>
+  <resource name="bot_input_converter" type="RESOURCE"/>
+  <resource name="bot_get_team" type="RESOURCE"/>
+  <resource name="bot_get_class" type="RESOURCE"/>
+  <resource name="bot_setup" type="RESOURCE"/>
+  <resource name="create_bot" type="RESOURCE"/>
+</resources>

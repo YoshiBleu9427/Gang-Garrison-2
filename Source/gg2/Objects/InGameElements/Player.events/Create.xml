@@ -21,7 +21,7 @@
     name = "";
     kicked = false;
     
-    //stat tracking array
+    //fuck your shit I'm making statistic arrays
     stats[KILLS] = 0;
     stats[DEATHS] = 0;
     stats[CAPS] = 0;

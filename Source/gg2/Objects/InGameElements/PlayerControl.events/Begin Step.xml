@@ -16,13 +16,7 @@
         <argument kind="STRING">if(instance_exists(InGameMenuController) || instance_exists(OptionsController) || instance_exists(ControlsController) || instance_exists(HUDOptionsController))
     exit;
     
-var kickOpen;
-kickOpen = false
-if instance_exists(ScoreTableController)
-    if ScoreTableController.showadmin
-        kickOpen = true;
-    
-if(instance_exists(TeamSelectController) || instance_exists(ClassSelectController) || kickOpen)
+if(instance_exists(TeamSelectController) || instance_exists(ClassSelectController))
     menuOpen = true;
 else
     menuOpen = false;
@@ -56,6 +50,15 @@ if(global.myself.object != -1)
         if(keyboard_check_pressed(global.chat3)) inputChat3();
         if(keyboard_check_pressed(global.drop)) inputDrop();
         
+        if keyboard_check_pressed(global.superburst) {
+            write_ubyte(global.serverSocket, CHAT_BUBBLE);
+            write_ubyte(global.serverSocket, 46);
+        }
+        if keyboard_check_pressed(global.sentrydown) {
+            write_ubyte(global.serverSocket, CHAT_BUBBLE);
+            write_ubyte(global.serverSocket, 60);
+        }
+        
         if(!global.myself.humiliated)
         {
             if(keyboard_check(global.attack)) keybyte |= $10;
@@ -86,13 +89,6 @@ if(global.myself.object != -1)
     
     ClientInputstate(global.serverSocket, keybyte);
     socket_send(global.serverSocket);
-    
-// spectator controls
-} else if (instance_exists(Spectator)) {
-    if(mouse_check_button_pressed(mb_left))
-        with (Spectator) event_user(7);
-    if(mouse_check_button_pressed(mb_right))
-        with (Spectator) event_user(8);
 }
 
 if(keybyte != 0

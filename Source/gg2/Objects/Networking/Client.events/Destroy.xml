@@ -21,6 +21,9 @@
     
     with(Player)
         instance_destroy();
+
+    with(BotPlayer)
+        instance_destroy();
         
     with(PlayerControl)
         instance_destroy();

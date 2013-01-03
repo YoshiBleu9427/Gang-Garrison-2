@@ -31,13 +31,13 @@ if(instance_exists(healTarget))
         else
             color = c_blue;
             
-        draw_set_alpha(0.3);
+        draw_set_alpha(0.6);
         draw_line_width_color(xdrawpos+lengthdir_x(24,owner.aimDirection),ydrawpos+lengthdir_y(24,owner.aimDirection),healTarget.object.x, healTarget.object.y, 5, color, color);
+        draw_triangle_color(healTarget.object.x,healTarget.object.y-40,healTarget.object.x-8,healTarget.object.y-50,healTarget.object.x+8,healTarget.object.y-50,color,color,color,0);
         offset = 2;
     }
 }
 if !owner.player.humiliated draw_sprite_ext(sprite_index, owner.team+offset, xdrawpos, ydrawpos, image_xscale, image_yscale, image_angle, c_white, 1);
-
 </argument>
       </arguments>
     </action>

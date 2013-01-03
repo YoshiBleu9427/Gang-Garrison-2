@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="Gibbage" type="GROUP"/>
+  <resource name="Bot" type="GROUP"/>
   <resource name="Player" type="RESOURCE"/>
   <resource name="Character" type="RESOURCE"/>
   <resource name="Weapon" type="RESOURCE"/>

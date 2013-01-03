@@ -4,6 +4,7 @@
   <resource name="TeamSelectController" type="RESOURCE"/>
   <resource name="ClassSelectController" type="RESOURCE"/>
   <resource name="ScoreTableController" type="RESOURCE"/>
+  <resource name="StatsBoard" type="RESOURCE"/>
   <resource name="HUD" type="RESOURCE"/>
   <resource name="ScorePanel" type="RESOURCE"/>
   <resource name="ControlPointHUD" type="RESOURCE"/>
@@ -18,7 +19,6 @@
   <resource name="BubbleMenuC" type="RESOURCE"/>
   <resource name="SentryHealthHud" type="RESOURCE"/>
   <resource name="NutsNBoltsHud" type="RESOURCE"/>
-  <resource name="SandwichHud" type="RESOURCE"/>
   <resource name="UberHud" type="RESOURCE"/>
   <resource name="StickyCounter" type="RESOURCE"/>
   <resource name="AmmoCounter" type="RESOURCE"/>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="KEYPRESS" id="38">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">lastln += 1;
+if lastln &gt;= ds_list_size(global.lastline) lastln = ds_list_size(global.lastline);
+keyboard_string = ds_list_find_value(global.lastline,ds_list_size(global.lastline) - lastln);
+playsound(xoffset + 400,yoffset + 300,RecieveSnd);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

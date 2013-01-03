@@ -13,15 +13,13 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if (!global.mapchanging)
-{
+        <argument kind="STRING">{
     var imp;
     move_contact_solid(direction, speed);
     imp = instance_create(x,y,Impact);
     imp.image_angle=direction;
     instance_destroy();
-}
-</argument>
+}</argument>
       </arguments>
     </action>
   </actions>

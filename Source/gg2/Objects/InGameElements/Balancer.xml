@@ -3,7 +3,7 @@
   <sprite/>
   <solid>false</solid>
   <visible>true</visible>
-  <depth>-110001</depth>
+  <depth>-6</depth>
   <persistent>false</persistent>
   <parent/>
   <mask/>

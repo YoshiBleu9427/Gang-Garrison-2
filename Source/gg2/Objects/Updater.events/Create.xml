@@ -52,15 +52,16 @@ while(DM_DownloadStatus(downloadHandle) != 3)
         exit;
     }
      
-    if(counter == 0 || counter mod 60 == 0)
-        timer = random(359)+1;
+    if(counter == 0 or counter mod 60 == 0)
+        timer = random(99)+1;
     draw_sprite(UpdaterBackgroundS,0,0,0);
     draw_set_color(c_white);
     draw_set_halign(fa_left);
     draw_set_valign(fa_center);
-    minutes=floor(timer/60);
-    seconds=floor(timer-minutes*60);
-    draw_text(x,y-20,string(minutes) + " minutes " + string(seconds) + " seconds Remaining...");
+    //minutes=floor(timer/60);
+    //seconds=floor(timer-minutes*60);
+    percent=floor(timer/100)
+    draw_text(x,y-20,string(minutes) + "% done...");
     counter+=1;
     progressBar = floor(DM_GetCompleted(downloadHandle)/5);
     offset = 3;
