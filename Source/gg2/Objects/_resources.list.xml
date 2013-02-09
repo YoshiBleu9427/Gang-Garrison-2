@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="DSM" type="GROUP"/>
   <resource name="Networking" type="GROUP"/>
   <resource name="Characters" type="GROUP"/>
   <resource name="Menus" type="GROUP"/>

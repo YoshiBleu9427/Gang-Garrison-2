@@ -15,14 +15,11 @@
       <arguments>
         <argument kind="STRING">{
     game_init();
-    dsm_init()
-    bot_init()
     alarm[0] = 30;
     alarm[1] = 240;
     AudioControlPlaySong(global.FaucetMusic);
     image_speed=0;
-}
-</argument>
+}</argument>
       </arguments>
     </action>
   </actions>

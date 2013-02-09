@@ -24,9 +24,10 @@
     global.map_rotation = ds_list_create();
     
     global.CustomMapCollisionSprite = -1;
-    global.changedNodeMap = 0
     
     window_set_region_scale(-1, false);
+    
+    DSM_init()
     
     ini_open("gg2.ini");
     global.playerName = ini_read_string("Settings", "PlayerName", "Player");
@@ -59,7 +60,7 @@
     global.mapRotationFile = customMapRotationFile;
     global.dedicatedMode = ini_read_real("Server", "Dedicated", 0);
     global.serverName = ini_read_string("Server", "ServerName", "My Server");
-    global.welcomeMessage = ini_read_string("Server", "WelcomeMessage", "Welcome! This server is running on DSM V1.");
+    global.welcomeMessage = ini_read_string("Server", "WelcomeMessage", "Welcome! This server is running on DSM.");
     global.caplimit = max(1, min(255, ini_read_real("Server", "CapLimit", 5)));
     global.caplimitBkup = global.caplimit;
     global.autobalance = ini_read_real("Server", "AutoBalance",1);
@@ -67,6 +68,7 @@
     global.haxxyKey = ini_read_string("Haxxy", "SecretHaxxyKey", "");
     global.mapdownloadLimitBps = ini_read_real("Server", "Total bandwidth limit for map downloads in bytes per second", 50000);
     global.updaterBetaChannel = ini_read_real("General", "UpdaterBetaChannel", isBetaVersion());
+    global.attemptPortForward = ini_read_real("Server", "Attempt UPnP Forwarding", 0); 
     
     global.currentMapArea=1;
     global.totalMapAreas=1;
@@ -102,6 +104,7 @@
     ini_write_string("Server", "Password", global.serverPassword);
     ini_write_string("Haxxy", "SecretHaxxyKey", global.haxxyKey);
     ini_write_real("General", "UpdaterBetaChannel", global.updaterBetaChannel);
+    ini_write_real("Server", "Attempt UPnP Forwarding", global.attemptPortForward); 
     
     //screw the 0 index we will start with 1
     //map_truefort 
@@ -354,10 +357,6 @@ global.launchMap = "";
     global.changeClass = ini_read_real("Controls", "changeClass", ord("M"));
     global.showScores = ini_read_real("Controls", "showScores", vk_shift);
     global.superburst = ini_read_real("Controls", "superburst", ord("R"));
-    global.sentrydown = ini_read_real("Controls", "sentrydown", ord("Q"));
-    
-    ini_write_real("Controls", "superburst", global.superburst);
-    ini_write_real("Controls", "sentrydown", global.sentrydown);
     ini_close();
     
     calculateMonthAndDay();

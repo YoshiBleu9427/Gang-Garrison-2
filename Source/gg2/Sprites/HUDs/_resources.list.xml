@@ -11,7 +11,6 @@
   <resource name="Timer" type="GROUP"/>
   <resource name="Lobby" type="GROUP"/>
   <resource name="CharacterHUD" type="RESOURCE"/>
-  <resource name="CharacterHUDSFX" type="RESOURCE"/>
   <resource name="GameNoticeS" type="RESOURCE"/>
   <resource name="NemesisS" type="RESOURCE"/>
   <resource name="FullChargeS" type="RESOURCE"/>

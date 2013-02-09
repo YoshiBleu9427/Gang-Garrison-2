@@ -14,8 +14,8 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">if instance_exists(ScoreTableController){
-    alpha = ScoreTableController.alpha;
-}else instance_destroy();
+    alpha = ScoreTableController.alpha
+}else instance_destroy()
 </argument>
       </arguments>
     </action>

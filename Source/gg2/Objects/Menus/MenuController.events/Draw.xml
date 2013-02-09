@@ -30,10 +30,10 @@
     
     for(i=0; i&lt;items; i+=1) {
         if editing == i {
-            draw_set_color(c_aqua);
+            draw_set_color(c_orange);
         }
         else if(i == virtualitem) {
-            draw_set_color(c_blue);    
+            draw_set_color(c_red);    
         } else {
             draw_set_color(c_white);    
         }

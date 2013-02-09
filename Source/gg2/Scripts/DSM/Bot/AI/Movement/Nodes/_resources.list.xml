@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="load_bot_nodes" type="RESOURCE"/>
-  <resource name="write_nodes_to_file" type="RESOURCE"/>
-  <resource name="generate_nodes" type="RESOURCE"/>
-  <resource name="find_node_path" type="RESOURCE"/>
-  <resource name="find_nearest_node" type="RESOURCE"/>
-  <resource name="get_node_list" type="RESOURCE"/>
-</resources>

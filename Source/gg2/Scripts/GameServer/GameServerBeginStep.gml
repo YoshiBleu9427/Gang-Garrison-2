@@ -25,30 +25,15 @@ for(i=0; i<ds_list_size(global.players); i+=1)
     var player;
     player = ds_list_find_value(global.players, i);
     
-        if player.object_index == BotPlayer{
-            if player.destroy{
-                removePlayer(player);
-                ServerPlayerLeave(i);        
-                i-=1;
-            }else if player.object != -1{
-                with player{
-                    bot_input_converter()
-                    with object{
-                        event_user(1)
-                    }
-                }
-            }
-            continue
-        }    
     if(socket_has_error(player.socket) or player.kicked)
     {
         removePlayer(player);
         ServerPlayerLeave(i);
         i-=1;
-    }else
-        processClientCommands(player, i);
     }
-
+    else
+        processClientCommands(player, i);
+}
 
 if(syncTimer == 1 || ((frame mod 3600)==0) || global.setupTimer == 180)
 {
@@ -94,11 +79,8 @@ if(global.winners != -1 and !global.mapchanging)
 }
 
 // if map change timer hits 0, do a map change
-if(impendingMapChange == 0){
-    if global.changedNodeMap{
-        write_nodes_to_file()
-        global.changedNodeMap = 0
-    }
+if(impendingMapChange == 0)
+{
     global.mapchanging = false;
     global.currentMap = global.nextMap;
     if(file_exists("Maps/" + global.currentMap + ".png"))
@@ -153,59 +135,14 @@ if(impendingMapChange == 0){
         timesChangedCapLimit = 0;
         alarm[5]=1;
     }
-    global.botChosenTeam = choose(TEAM_RED, TEAM_BLUE)
-    with(BotPlayer){
-        if(global.currentMapArea == 1){
-            //if global.botMode == 2{
-                //removePlayer(id)
-            //}else{
-                stats[KILLS] = 0;
-                stats[DEATHS] = 0;
-                stats[CAPS] = 0;
-                stats[ASSISTS] = 0;
-                stats[DESTRUCTION] = 0;
-                stats[STABS] = 0;
-                stats[HEALING] = 0;
-                stats[DEFENSES] = 0;
-                stats[INVULNS] = 0;
-                stats[BONUS] = 0;
-                stats[DOMINATIONS] = 0;
-                stats[REVENGE] = 0;
-                stats[POINTS] = 0;
-                roundStats[KILLS] = 0;
-                roundStats[DEATHS] = 0;
-                roundStats[CAPS] = 0;
-                roundStats[ASSISTS] = 0;
-                roundStats[DESTRUCTION] = 0;
-                roundStats[STABS] = 0;
-                roundStats[HEALING] = 0;
-                roundStats[DEFENSES] = 0;
-                roundStats[INVULNS] = 0;
-                roundStats[BONUS] = 0;
-                roundStats[DOMINATIONS] = 0;
-                roundStats[REVENGE] = 0;
-                roundStats[POINTS] = 0;
-                team = bot_get_team()
-                ServerPlayerChangeteam(ds_list_find_index(global.players, id), team, global.eventBuffer)
-                bot_setup()
-            }
-        }
-        timesChangedCapLimit = 0;
-        alarm[5]=1;
-    }
-//}
+}
 
 var i;
 for(i=1; i<ds_list_size(global.players); i+=1)
 {
     var player;
     player = ds_list_find_value(global.players, i);
-    
-    if player.object_index == BotPlayer{
-        continue;
-    }
     write_buffer(player.socket, global.eventBuffer);
     write_buffer(player.socket, global.sendBuffer);
-    socket_send(player.socket);
 }
 buffer_clear(global.eventBuffer);
