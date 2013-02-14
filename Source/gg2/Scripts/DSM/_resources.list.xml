@@ -2,5 +2,8 @@
 <resources>
   <resource name="DSM_Change_Log" type="RESOURCE"/>
   <resource name="DSM_init" type="RESOURCE"/>
+  <resource name="statsTracker" type="RESOURCE"/>
+  <resource name="addStats" type="RESOURCE"/>
+  <resource name="writeStats" type="RESOURCE"/>
   <resource name="randomiseRotation" type="RESOURCE"/>
 </resources>

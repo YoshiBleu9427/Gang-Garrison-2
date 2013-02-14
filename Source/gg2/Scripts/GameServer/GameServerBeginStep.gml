@@ -78,6 +78,8 @@ if(global.winners != -1 and !global.mapchanging)
     instance_create(0,0,WinBanner);
 }
 
+addStats()
+
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
 {

@@ -24,8 +24,10 @@
 if(global.myself.team != global.winners) {
     sound=FailureSnd;
     global.myself.humiliated = 1;
+    global.statsLosses+=1
 } else {
     sound = VictorySnd;
+    global.statsWins+=1
 }
 
 with (Player) {

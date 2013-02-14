@@ -66,4 +66,7 @@
     Added: DSMOptionsController.
 -Made generator be unable to be stabbed by Spies (toggle).
     Changed: StabMask (Collision with generator), DSM_init.
+-Added Stats Tracker.
+    Changed: GameServerBeginStep, WinBanner (Create), MenuController (Step, Draw).
+    Added: statsTracker, addStats, writeStats, StatsDisplayController, menu_addtext.
 */

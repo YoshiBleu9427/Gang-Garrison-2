@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(40, 140, 300, 200, 30);
+
+    if room != StatsR {
+        menu_setdimmed();
+    }
+    
+    statsTracker()
+    
+    menu_addtext("Games:",'global.statsGames
+    ')
+    menu_addtext("Wins:",'global.statsWins
+    ')
+    menu_addtext("Losses:",'global.statsLosses
+    ')
+    menu_addtext("Kills:",'global.statsKills
+    ')
+    menu_addtext("Deaths:",'global.statsDeaths
+    ')
+    menu_addtext("Assists:",'global.statsAssists
+    ')
+    menu_addtext("Destruction:",'global.statsDestruction
+    ')
+    menu_addtext("Caps:",'global.statsCaps
+    ')
+    menu_addtext("Defences:",'global.statsDefences
+    ')
+    menu_addtext("Ubers:",'global.statsInvulns
+    ')
+    menu_addtext("Healing:",'global.statsHealing
+    ')
+    menu_addtext("Stabs:",'global.statsStabs
+    ')
+    
+    menu_addback("Back", '
+        instance_destroy();
+        if(room == StatsR)
+            room_goto_fix(Menu);
+        else
+            instance_create(0,0,InGameMenuController);
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

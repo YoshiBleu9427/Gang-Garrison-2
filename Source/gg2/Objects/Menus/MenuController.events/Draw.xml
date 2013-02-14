@@ -43,6 +43,9 @@
             case "script":
                 val = "";
                 break;
+            case "text":
+                val = argument1;
+                break;
             case "edittext2":
             case "edittext":
             case "editnum":

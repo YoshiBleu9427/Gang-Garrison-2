@@ -11,3 +11,5 @@ ini_write_real("Settings","HPBarText",global.hpBarText)
 ini_write_real("Settings","AmmoBar",global.ammoBar)
 ini_write_real("Settings","GeneratorStab",global.generatorStab)
 ini_close()
+
+statsTracker()
