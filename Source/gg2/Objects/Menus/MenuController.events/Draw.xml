@@ -30,10 +30,22 @@
     
     for(i=0; i&lt;items; i+=1) {
         if editing == i {
-            draw_set_color(c_orange);
+            if global.textHighlightColour==0{
+                draw_set_color(c_orange);
+            }else if global.textHighlightColour==1{
+                draw_set_color(c_aqua);
+            }else if global.textHighlightColour==2{
+                draw_set_color(c_lime);
+            }
         }
         else if(i == virtualitem) {
-            draw_set_color(c_red);    
+            if global.textHighlightColour==0{
+                draw_set_color(c_red);
+            }else if global.textHighlightColour==1{
+                draw_set_color(c_blue);
+            }else if global.textHighlightColour==2{
+                draw_set_color(c_green);
+            }    
         } else {
             draw_set_color(c_white);    
         }

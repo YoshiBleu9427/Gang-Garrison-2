@@ -29,4 +29,5 @@
   <resource name="WinBanner" type="RESOURCE"/>
   <resource name="HealedHud" type="RESOURCE"/>
   <resource name="HealingHud" type="RESOURCE"/>
+  <resource name="ReplayGUI" type="RESOURCE"/>
 </resources>

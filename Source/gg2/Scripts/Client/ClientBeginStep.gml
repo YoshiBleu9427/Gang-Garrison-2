@@ -10,6 +10,19 @@ if(tcp_eof(global.serverSocket)) {
     exit;
 }
 
+if global.isPlayingReplay{
+    var length;
+    
+    for(a=0; a<global.replaySpeed; a+=1){
+        length = read_ushort(global.replayBuffer)
+        for(i=0; i<length; i+=1){
+            write_ubyte(global.replaySocket, read_ubyte(global.replayBuffer))
+        }
+        global.replayTime += 1
+    }
+    socket_send(global.replaySocket)
+}
+
 if(room == DownloadRoom and keyboard_check(vk_escape))
 {
     instance_destroy();
@@ -117,6 +130,10 @@ do {
             if(ds_list_size(global.players)-1 == global.playerID) {
                 global.myself = player;
                 instance_create(0,0,PlayerControl);
+            }else if global.isPlayingReplay and global.myself != -1{
+                ds_list_delete(global.players, ds_list_find_index(global.players, global.myself));
+                ds_list_add(global.players, global.myself);
+                global.playerID = ds_list_size(global.players)-1
             }
             break;
             
@@ -459,6 +476,12 @@ do {
             receiveCompleteMessage(global.serverSocket,3,global.tempBuffer);
             player = ds_list_find_value(global.players, read_ubyte(global.tempBuffer));
             doEventUpdateRewards(player, read_ushort(global.tempBuffer));
+            break;
+            
+        case REPLAY_END:
+            show_message("This replay is finished.#Exiting to menu.")
+            global.isPlayingReplay = 0;
+            instance_destroy();
             break;
             
         case MESSAGE_STRING:

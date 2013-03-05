@@ -63,7 +63,7 @@ if(tcp_eof(socket)) {
             changes=string_copy(versioncheck,versionend+1,changeslength);
             if(real(version) &gt; VERSION)
             {
-                update = show_message_ext("Updates have been made to Gang Garrison 2!##"+changes,"Update","Cancel","");
+                update = show_message_ext("Updates have been made to DSM!##"+changes,"Update","Cancel","");
                 if (update == 1){
                     room_goto(UpdaterRoom);
                     exit;

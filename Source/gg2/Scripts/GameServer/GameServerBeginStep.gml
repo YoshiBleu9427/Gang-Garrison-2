@@ -18,6 +18,10 @@ acceptJoiningPlayer();
 with(JoiningPlayer)
     serviceJoiningPlayer();
 
+if global.recordingEnabled and global.justEnabledRecording{
+    beginRecording();
+}
+
 // Service all players
 var i;
 for(i=0; i<ds_list_size(global.players); i+=1)
@@ -77,8 +81,6 @@ if(global.winners != -1 and !global.mapchanging)
         instance_create(0,0,ScoreTableController);
     instance_create(0,0,WinBanner);
 }
-
-addStats()
 
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
@@ -147,4 +149,10 @@ for(i=1; i<ds_list_size(global.players); i+=1)
     write_buffer(player.socket, global.eventBuffer);
     write_buffer(player.socket, global.sendBuffer);
 }
+if global.recordingEnabled{
+    write_ushort(global.replayBuffer, buffer_size(global.eventBuffer)+buffer_size(global.sendBuffer));
+    write_buffer(global.replayBuffer, global.eventBuffer);
+    write_buffer(global.replayBuffer, global.sendBuffer);
+}
+
 buffer_clear(global.eventBuffer);

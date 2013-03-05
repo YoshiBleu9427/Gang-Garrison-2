@@ -37,7 +37,7 @@ if(stabbing)
     image_alpha -= power(currentWeapon.stab.alpha, 2);
 
     
-if team == global.myself.team &amp;&amp; (id != global.myself.object.id || global.showHealthBar == 1){
+if (team == global.myself.team or global.isPlayingReplay) &amp;&amp; (id != global.myself.object.id || global.showHealthBar == 1){
     draw_set_alpha(1);
     draw_healthbar(xr-10, yr-30, xr+10, yr-25,hp*100/maxHp,c_black,c_red,c_green,0,true,true);
     if global.ammoBar==1{
@@ -49,8 +49,19 @@ if team == global.myself.team &amp;&amp; (id != global.myself.object.id || globa
             if player.class != CLASS_SNIPER draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.ammoCount*100/currentWeapon.maxAmmo,c_black,c_white,c_white,0,true,true);
             else draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.readyToShoot*100,c_black,c_white,c_white,0,true,true);
         }
+        if(distance_to_point(mouse_x, mouse_y)&lt;25) &amp;&amp; player.class == CLASS_MEDIC &amp;&amp; player.team == global.myself.team{
+            draw_set_alpha(1);
+            draw_set_halign(fa_center);
+            draw_set_valign(fa_bottom);
+            if(team==TEAM_RED){
+                draw_set_color(c_red);
+            }else{
+                draw_set_color(c_blue);
+            }
+        draw_text(xr, yr-45, 'UberCharge: '+string(floor(currentWeapon.uberCharge/20))+'%');
+        }
     }
-}    
+}   
 if(distance_to_point(mouse_x, mouse_y)&lt;25) {
     if cloak &amp;&amp; team!=global.myself.team exit;
     draw_set_alpha(1);
@@ -113,7 +124,7 @@ if (burnDuration &gt; 0 or burnIntensity &gt; 0) {
         }
     }  
 }
-if team == global.myself.team &amp;&amp; (id != global.myself.object.id || global.showHealthBar == 1){
+if team == global.myself.team &amp;&amp; (id != global.myself.object.id or global.showHealthBar == 1){
     if global.hpBarText==1{
         draw_text_color(xr+13,yr-19,ceil(hp),c_black,c_black,c_black,c_black,1)
         draw_text_color(xr+12,yr-20,ceil(hp),c_white,c_white,c_white,c_white,1)

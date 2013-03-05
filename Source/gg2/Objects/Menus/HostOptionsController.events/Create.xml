@@ -25,7 +25,7 @@ if (global.Server_RespawntimeSec == 0)
 else
     global.Server_Respawntime = global.Server_RespawntimeSec * 30;
 
-menu_create(40, 200, 300, 200, 30);
+menu_create(40, 150, 300, 200, 30);
 menu_addedit_text2("Server Name:", "global.serverName", '
     var newName;
     newName = string_copy(argument0, 0, 25);
@@ -63,6 +63,9 @@ menu_addedit_num("Respawn Time (secs):", "global.Server_RespawntimeSec", '
 ');
 menu_addedit_boolean("Auto Balance:", "global.autobalance", '
     gg2_write_ini("Server", "AutoBalance", argument0);
+');
+menu_addedit_boolean("Recording:", "global.recordingEnabled", '
+    DSM_write_ini("Settings", "RecordingEnabled", argument0)
 ');
 menu_addedit_boolean("Announce to Lobby:", "global.useLobbyServer", '
     gg2_write_ini("Settings", "UseLobby", argument0);

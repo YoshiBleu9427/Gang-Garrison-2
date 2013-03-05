@@ -25,6 +25,7 @@
     with(PlayerControl)
         instance_destroy();
     
+    global.isPlayingReplay=0
     room_goto_fix(returnRoom);
 }
 

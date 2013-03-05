@@ -4,7 +4,7 @@
   <size height="600" width="600"/>
   <grid>
     <isometric>false</isometric>
-    <snap x="16" y="16"/>
+    <snap x="1" y="1"/>
   </grid>
   <speed>30</speed>
   <persistent>false</persistent>
@@ -96,8 +96,14 @@
   <enableViews>false</enableViews>
   <instances>
     <instance>
-      <object>OptionsController</object>
+      <object>AchievementMenuController</object>
       <position x="96" y="208"/>
+      <creationCode/>
+      <locked>false</locked>
+    </instance>
+    <instance>
+      <object>AchievementStatus</object>
+      <position x="505" y="94"/>
       <creationCode/>
       <locked>false</locked>
     </instance>

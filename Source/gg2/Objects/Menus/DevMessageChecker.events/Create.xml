@@ -14,11 +14,8 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">var host, path;
-host = "www.ganggarrison.com";
-if(global.updaterBetaChannel)
-    path = "/devmessages_beta.txt";
-else
-    path = "/devmessages.txt";
+host = "dl.dropbox.com";
+path = "/devmessages.txt"; //My dropbox/dsmdevmessage.txt
 
 socket = noone;
 

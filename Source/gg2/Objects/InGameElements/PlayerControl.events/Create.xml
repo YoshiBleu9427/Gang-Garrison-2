@@ -16,6 +16,7 @@
         <argument kind="STRING">afktimeout=60*30;
 afktimer=afktimeout;
 oldScoreKeyDown=false;
+if global.isPlayingReplay instance_create(0,0,ReplayGUI)
 </argument>
       </arguments>
     </action>

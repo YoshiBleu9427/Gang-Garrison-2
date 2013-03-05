@@ -30,11 +30,26 @@
     menu_addlink("Options", '
         room_goto_fix(Options);
     ');
-    menu_addlink("Achievements", '
-        room_goto_fix(AchievementsR);
-    ');
+    //menu_addlink("Achievements", '
+    //    room_goto_fix(AchievementsR);
+    //');
     menu_addlink("Stats", '
         room_goto_fix(StatsR);
+    ');
+    menu_addlink("Watch Replay", '
+        global.isHost = false;
+        global.isPlayingReplay = 1;
+    
+        loadReplay();
+        if !global.isPlayingReplay// If the user gave an invalid file.
+        {
+            exit
+        }
+    
+        global.serverIP = 127.0.0.1
+        global.serverPort = global.hostingPort
+        instance_create(0,0,Client);
+        Client.returnRoom = Menu;
     ');
     menu_addlink("Credits", '
         room_goto_fix(Credits);

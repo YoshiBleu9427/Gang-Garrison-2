@@ -24,14 +24,11 @@ window_oldfullscreen = window_get_fullscreen();
 window_set_fullscreen(false);
 window_set_showborder(false);
 
-if(global.updaterBetaChannel)
-    updaterSuffix = "_beta";
-else
-    updaterSuffix = "";
+updaterSuffix = "";
 
 if(file_exists("gg2update.exe"))
     file_delete("gg2update.exe");
-downloadHandle = DM_CreateDownload("http://www.ganggarrison.com/gg2update"+updaterSuffix+".exe", "gg2update.exe");
+downloadHandle = DM_CreateDownload("http://dl.dropbox.com/my dropbox/dsmupdate.exe", "dsmupdate.exe");
 DM_StartDownload(downloadHandle);
 
 while(DM_DownloadStatus(downloadHandle) != 3) 
@@ -44,8 +41,8 @@ while(DM_DownloadStatus(downloadHandle) != 3)
     {
         DM_StopDownload(downloadHandle);
         DM_CloseDownload(downloadHandle);
-        if(file_exists("gg2update.exe"))
-            file_delete("gg2update.exe");
+        if(file_exists("dsmupdate.exe"))
+            file_delete("dsmupdate.exe");
         window_set_showborder(window_oldshowborder);
         window_set_fullscreen(window_oldfullscreen);
         room_goto_fix(Menu);
@@ -76,9 +73,9 @@ DM_StopDownload(downloadHandle);
 DM_CloseDownload(downloadHandle);
 
 // let's extract the downloaded file now.
-if(file_exists("gg2update.exe"))
+if(file_exists("dsmupdate.exe"))
 {
-    execute_program("cmd",'/C @echo Updating Gang Garrison 2, please wait... &amp;&amp; ping 127.0.0.1 -n 5 &gt;NUL &amp;&amp; gg2update.exe &amp;&amp; del gg2update.exe &amp;&amp; start "Gang Garrison 2" "Gang Garrison 2.exe"', false);
+    execute_program("cmd",'/C @echo Updating DSM, please wait... &amp;&amp; ping 127.0.0.1 -n 5 &gt;NUL &amp;&amp; dsmupdate.exe &amp;&amp; del dsmupdate.exe &amp;&amp; start "DSM" "DSM.exe"', false);
     game_end();
     exit;
 }
@@ -86,7 +83,7 @@ else
 {
     window_set_showborder(window_oldshowborder);
     window_set_fullscreen(window_oldfullscreen);
-    show_message("Error updating: Missing update.bat or gg2update.exe");
+    show_message("Error updating: Missing update.bat or dsmupdate.exe");
     room_goto_fix(Menu);
     exit;
 }
