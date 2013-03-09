@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="StatsDisplayController" type="RESOURCE"/>
+  <resource name="StatsDisplayValue" type="RESOURCE"/>
+  <resource name="StatsDisplayMore" type="RESOURCE"/>
+  <resource name="StatsDisplayKillsController" type="RESOURCE"/>
+  <resource name="StatsDisplayKillsValue" type="RESOURCE"/>
+</resources>

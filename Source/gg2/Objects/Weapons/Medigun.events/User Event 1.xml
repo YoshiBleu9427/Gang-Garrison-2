@@ -67,7 +67,7 @@
                         if(healTarget.object.hp &lt; healTarget.object.maxHp/2 or setup) uberCharge += 1;
                         if(uberCharge &gt;= 2000) {
                             uberCharge = 2000;
-                            if(global.isHost) {
+                            if(global.isHost or global.isPlayingReplay) {
                                 sendEventUberReady(ownerPlayer);
                                 doEventUberReady(ownerPlayer);
                             }

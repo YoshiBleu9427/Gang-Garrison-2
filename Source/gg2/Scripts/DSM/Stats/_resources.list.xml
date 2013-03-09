@@ -3,4 +3,5 @@
   <resource name="statsTracker" type="RESOURCE"/>
   <resource name="addStats" type="RESOURCE"/>
   <resource name="writeStats" type="RESOURCE"/>
+  <resource name="calcAccuracy" type="RESOURCE"/>
 </resources>

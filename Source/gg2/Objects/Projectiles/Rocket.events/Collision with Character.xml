@@ -24,6 +24,7 @@
             alarm[7] = 3;
         }
         characterHit=other;
+        shotHit=true
         event_user(5);
     }
     else

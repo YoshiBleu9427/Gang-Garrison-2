@@ -14,13 +14,15 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(240, 140, -300, -400, 30);
+    menu_create(240, 100, -300, -400, 30);
     
     statsTracker()
+    calcAccuracy()
     
     menu_addtext(string(floor(global.statsGames)))
     menu_addtext(string(floor(global.statsWins)))
     menu_addtext(string(floor(global.statsLosses)))
+    menu_addtext(string(floor(global.statsPoints)))
     menu_addtext(string(floor(global.statsKills)))
     menu_addtext(string(floor(global.statsDeaths)))
     menu_addtext(string(floor(global.statsAssists)))
@@ -30,6 +32,9 @@
     menu_addtext(string(floor(global.statsInvulns)))
     menu_addtext(string(floor(global.statsHealing)))
     menu_addtext(string(floor(global.statsStabs)))
+    menu_addtext(string(floor(global.statsShotsHit)))
+    menu_addtext(string(floor(global.statsShotsMissed)))
+    menu_addtext(string(floor(global.accuracy))+"%")
 }
 </argument>
       </arguments>

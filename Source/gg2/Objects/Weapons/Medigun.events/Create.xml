@@ -33,6 +33,7 @@
     reloadBuffer = 0;
     idle=true;
     
+    
     if(golden)
     {
         normalSprite = MedigunGoldS;

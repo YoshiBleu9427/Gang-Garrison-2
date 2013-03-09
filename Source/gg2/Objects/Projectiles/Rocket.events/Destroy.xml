@@ -15,7 +15,14 @@
       <arguments>
         <argument kind="STRING">if(variable_local_exists("rocketblurParticleType")) {
     part_type_destroy(rocketblurParticleType);
-}</argument>
+}
+
+if shotHit=false{
+    global.statsShotsMissed+=1
+}else{
+    global.statsShotsHit+=1
+}
+</argument>
       </arguments>
     </action>
   </actions>

@@ -38,6 +38,7 @@
                 if id == other.ownerPlayer.object// self damage resistance
                     dmg *= 5/9;
                 hp -= dmg;
+                shotHit=true
                 timeUnscathed = 0;
                 if (id == other.ownerPlayer.object and lastDamageDealer != -1 and lastDamageDealer != other.ownerPlayer and other.reflector == noone)
                     lastDamageSource = FINISHED_OFF_GIB;
@@ -93,6 +94,7 @@
     with (Sentry){
         if (distance_to_object(other) &lt; other.blastRadius) &amp;&amp; (team != other.team) { 
         hp -= other.explosionDamage*sqr((1-(distance_to_object(other)/other.blastRadius)));
+        shotHit=true
         lastDamageDealer = other.ownerPlayer;
         lastDamageSource = WEAPON_MINEGUN;
         }   
@@ -105,6 +107,7 @@
             //allow overkill to be applied directly to the target
             var hitDamage;
             hitDamage = other.explosionDamage*sqr((1-(distance_to_object(other)/other.blastRadius)));
+            shotHit=true
             if (hitDamage &gt; shieldHp) {
                 hp -= hitDamage - shieldHp;
                 hp -= shieldHp * shieldResistance;

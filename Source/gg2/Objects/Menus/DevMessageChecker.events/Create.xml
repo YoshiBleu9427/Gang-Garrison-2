@@ -15,7 +15,7 @@
       <arguments>
         <argument kind="STRING">var host, path;
 host = "dl.dropbox.com";
-path = "/devmessages.txt"; //My dropbox/dsmdevmessage.txt
+path = "/s/1de17gj3qvj6hgk/dsmdevmsg.txt?";
 
 socket = noone;
 

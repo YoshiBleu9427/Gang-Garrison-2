@@ -21,6 +21,7 @@
                 else hitDamage = (((maxdist - distance_to_point(originx,originy))/(maxdist/2))*(0.75*baseDamage))+(0.25*baseDamage);
                 */
     other.hp -= hitDamage;
+    shotHit=true
     other.lastDamageDealer = ownerPlayer;
     other.lastDamageSource = weapon;
     instance_destroy();

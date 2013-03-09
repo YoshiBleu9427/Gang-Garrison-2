@@ -99,8 +99,8 @@ All options are in DSMOptionsController.
     Changed: StabMask (Collision with generator), DSM_init.
     
 -Added Stats Tracker.
-    Changed: WinBanner (Create), InGameMenuController (Create).
-    Added: statsTracker, addStats, writeStats, StatsDisplayController, menu_addtext, StatsDisplayValue.
+    Changed: WinBanner (Create), InGameMenuController (Create), Various projectile collision events.
+    Added: statsTracker, addStats, writeStats, StatsDisplayController, menu_addtext, StatsDisplayValue, StatsDisplayMore, StatsDisplayKillsController, StatsDisplayKillsValue, calcAccuracy.
     
 -Ubercharage % shown next to name and on superburst HUD.
     Changed: Character (Draw), UberHud (Draw).
@@ -108,7 +108,7 @@ All options are in DSMOptionsController.
 -Added option to change text highlight colour.
     Changed: MenuController (Draw).
     
--Added auto-updating. -NEED TO FIND OUT DROPBOX URL-
+-Added auto-updating.
     Changed: DevMessageChecker (Create, Step), Updater (Create).
     
 -Recoil animations are toggleable.
@@ -121,6 +121,10 @@ All options are in DSMOptionsController.
     Changed: ClientBeginStep GameServerBeginStep GameServerCreate ClientCreate MainMenucontroller (Create),HostOptionsController (Create), GameServer (Destroy), ServerJoinUpdate,
     deserializeState, Character (Draw), PlayerControl (Create), TeamSelectController (Create), and some other things.
     Added: beginRecording, endRecording, loadReplay, ReplayButtonS, ReplayGUI.
+    
 -Arrow drawn above healing target.
     Changed: Medigun (Draw).
+    
+-Full time until unlock shown on arena and KoTH.
+    Changed: ArenaHUD (Draw), KothHUD (Draw).
 */

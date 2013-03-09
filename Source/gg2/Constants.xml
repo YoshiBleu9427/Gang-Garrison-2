@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="24500"/>
+  <constant name="VERSION" value="10000"/>
   <constant name="GAME_VERSION_STRING" value="&quot;v2.4.5&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Gang Garrison 2&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/&quot;"/>

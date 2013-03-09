@@ -1,4 +1,5 @@
-//Games, wins and losses changed in create event of win banner.
+//Games, wins and losses changed in create event of win banner. Accuracy done in projectiles.
+global.statsPoints+=global.myself.stats[POINTS]
 global.statsKills+=global.myself.stats[KILLS]
 global.statsDeaths+=global.myself.stats[DEATHS]
 global.statsAssists+=global.myself.stats[ASSISTS]

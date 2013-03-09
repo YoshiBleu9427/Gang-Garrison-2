@@ -29,60 +29,79 @@
             switch(argument3) {
                 case WEAPON_NEEDLEGUN:
                     ds_map_add(map, "weapon", NeedleKL);
+                    global.statsKillsAsMedic+=1
                     break;
                 case WEAPON_RIFLE:
                     ds_map_add(map, "weapon", RifleKL);
+                    global.statsKillsAsSniper+=1
                     break;
                 case WEAPON_RIFLE_CHARGED:
                     ds_map_add(map, "weapon", RifleChargedKL);
+                    global.statsKillsAsSniper+=1
                     break;
                 case WEAPON_MINEGUN:
                     ds_map_add(map, "weapon", MineKL);
+                    global.statsKillsAsDemoman+=1
                     break;
                 case WEAPON_MINIGUN:
                     ds_map_add(map, "weapon", MinigunKL);
+                    global.statsKillsAsHeavy+=1
                     break;
                 case WEAPON_FLAMETHROWER:
                     ds_map_add(map, "weapon", FlameKL);
+                    global.statsKillsAsPyro+=1
                     break;
                 case WEAPON_SCATTERGUN:
                     ds_map_add(map, "weapon", ScatterKL);
+                    global.statsKillsAsScout+=1
                     break;
                 case WEAPON_SHOTGUN:
                     ds_map_add(map, "weapon", ShotgunKL);
+                    global.statsKillsAsEngie+=1
                     break;
                 case WEAPON_ROCKETLAUNCHER:
                     ds_map_add(map, "weapon", RocketKL);
+                    global.statsKillsAsSoldier+=1
                     break;
                 case WEAPON_REVOLVER:
                     ds_map_add(map, "weapon", RevolverKL);
+                    global.statsKillsAsSpy+=1
                     break;
                 case WEAPON_SENTRYTURRET:
                     ds_map_add(map, "weapon", TurretKL);
+                    global.statsKillsAsEngie+=1
                     break;
                 case WEAPON_BLADE:
                     ds_map_add(map, "weapon", BladeKL);
+                    global.statsKillsAsQuote+=1
                     break;
                 case WEAPON_BUBBLE:
                     ds_map_add(map, "weapon", BubbleKL);
+                    global.statsKillsAsQuote+=1
                     break;
                 case WEAPON_REFLECTED_ROCKET:
                     ds_map_add(map, "weapon", RocketReflectKL);
+                    global.statsKillsAsPyro+=1
                     break;
                 case WEAPON_REFLECTED_STICKY:
                     ds_map_add(map, "weapon", MineReflectKL);
+                    global.statsKillsAsPyro+=1
                     break;                    
                 case WEAPON_KNIFE:
                     ds_map_add(map, "weapon", KnifeKL);
+                    global.statsKillsAsSpy+=1
                     break;
                 case WEAPON_BACKSTAB:
                     ds_map_add(map, "weapon", BackstabKL);
+                    global.statsKillsAsSpy+=1
                     break;
                 case WEAPON_FLARE:
                     ds_map_add(map, "weapon", FlareKL);
+                    global.statsKillsAsPyro+=1
                     break;
                 case WEAPON_REFLECTED_FLARE:
                     ds_map_add(map, "weapon", FlareReflectKL);
+                    global.statsKillsAsPyro+=1
                     break;
                 case KILL_BOX:
                 case FRAG_BOX:

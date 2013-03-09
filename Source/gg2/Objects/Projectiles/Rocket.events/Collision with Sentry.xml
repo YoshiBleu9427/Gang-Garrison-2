@@ -16,6 +16,7 @@
         <argument kind="STRING">if fade==false {
 if(team != other.team) {
     characterHit=other;
+    shotHit=true
     event_user(5);
 }
 } else instance_destroy();

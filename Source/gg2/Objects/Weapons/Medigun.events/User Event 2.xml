@@ -34,7 +34,7 @@
         alarm[5] = reloadBuffer + reloadTime;
     }
     else if (uberReady &amp;&amp; (owner.keyState &amp; $10)) {
-        if(global.isHost) {
+        if(global.isHost or global.isPlayingReplay) {
             sendEventUber(ownerPlayer);
             doEventUber(ownerPlayer);
         }
