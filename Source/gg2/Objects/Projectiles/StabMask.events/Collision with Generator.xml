@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if global.generatorStab==1{
+        <argument kind="STRING">if (global.generatorStab==1 and global.isHost) or global.serverGenStab==1 /*To avoid desync for servers with different gen stab settings to the client.*/{
     if (other.team != team) {
         other.alarm[0] = other.regenerationBuffer;
         other.isShieldRegenerating = false;

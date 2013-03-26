@@ -26,6 +26,8 @@
         stats[INVULNS] = read_ubyte(global.deserializeBuffer);
         stats[BONUS] = read_ubyte(global.deserializeBuffer);
         stats[POINTS] = read_ubyte(global.deserializeBuffer);
+        stats[HIT] = read_ubyte(global.deserializeBuffer);
+        stats[MISSED] = read_ubyte(global.deserializeBuffer);
         rewards = read_ushort(global.deserializeBuffer);
     }
  

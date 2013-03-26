@@ -4,4 +4,5 @@
   <resource name="addStats" type="RESOURCE"/>
   <resource name="writeStats" type="RESOURCE"/>
   <resource name="calcAccuracy" type="RESOURCE"/>
+  <resource name="handleHitOrMiss" type="RESOURCE"/>
 </resources>

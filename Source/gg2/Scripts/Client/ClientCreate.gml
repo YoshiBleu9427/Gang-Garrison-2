@@ -17,6 +17,7 @@
     returnRoom = Menu;
     downloadingMap = false;
     downloadMapBuffer = -1;
+    global.serverGenStab=read_ubyte(global.serverGenStab)
     
     var acceptor;
     if global.isPlayingReplay{

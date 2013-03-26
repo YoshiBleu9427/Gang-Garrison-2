@@ -30,9 +30,6 @@
     menu_addlink("Options", '
         room_goto_fix(Options);
     ');
-    //menu_addlink("Achievements", '
-    //    room_goto_fix(AchievementsR);
-    //');
     menu_addlink("Stats", '
         room_goto_fix(StatsR);
     ');

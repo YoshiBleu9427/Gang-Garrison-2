@@ -96,7 +96,7 @@ All options are in DSMOptionsController.
     Added: DSMOptionsController.
     
 -Made generator be unable to be stabbed by Spies (toggle).
-    Changed: StabMask (Collision with generator), DSM_init.
+    Changed: StabMask (Collision with generator), ClientCreate, LobbyController, GameServerCreate, serviceJoiningPlayer.
     
 -Added Stats Tracker.
     Changed: WinBanner (Create), InGameMenuController (Create), Various projectile collision events.
@@ -127,4 +127,7 @@ All options are in DSMOptionsController.
     
 -Full time until unlock shown on arena and KoTH.
     Changed: ArenaHUD (Draw), KothHUD (Draw).
+    
+-Added mappable screenshot key, F6 and F9 can still be used.
+    Changed: SSControl, game_init.
 */

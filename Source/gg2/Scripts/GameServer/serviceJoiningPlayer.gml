@@ -99,6 +99,10 @@ case STATE_EXPECT_COMMAND:
         messageState = STATE_EXPECT_NAME;
         expectedBytes = 1;
         break;
+
+case SERVER_GEN_STAB:
+    write_ubyte(socket, global.serverGenStab);
+    break
         
     case DOWNLOAD_MAP:
         if(advertisedMapMd5 != "" and file_exists("Maps/" + advertisedMap + ".png"))

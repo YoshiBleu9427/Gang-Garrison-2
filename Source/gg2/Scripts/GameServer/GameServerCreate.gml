@@ -22,6 +22,12 @@
     global.tcpListener = -1;
     global.serverSocket = -1;
     
+    if global.generatorStab==1{
+        global.serverGenStab=1
+    }else{
+        global.serverGenStab=0
+    }
+    
     global.currentMapIndex = 0;
     global.currentMapArea = 1;
     

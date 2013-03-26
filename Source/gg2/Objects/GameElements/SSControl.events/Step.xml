@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="CREATE" id="0">
+<event category="STEP" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,20 +13,8 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">{
-    menu_create(40, 140, 300, 200, 30);
-
-    if room != AchievementsR {
-        menu_setdimmed();
-    }
-    
-    menu_addback("Back", '
-        instance_destroy();
-        if(room == AchievementsR)
-            room_goto_fix(Menu);
-        else
-            instance_create(0,0,InGameMenuController);
-    ');
+        <argument kind="STRING">if keyboard_check_pressed(global.screenshotButton){
+    takeScreenshot()
 }
 </argument>
       </arguments>

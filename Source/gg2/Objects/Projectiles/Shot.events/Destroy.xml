@@ -14,9 +14,9 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">if shotHit=false{
-    global.statsShotsMissed+=1
+    handleHitOrMiss(player,0)
 }else{
-    global.statsShotsHit+=1
+    handleHitOrMiss(player,1)
 }
 </argument>
       </arguments>

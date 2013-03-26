@@ -14,7 +14,7 @@ ini_write_real("Stats","Healing",global.statsHealing)
 ini_write_real("Stats","Stabs",global.statsStabs)
 ini_write_real("Stats","ShotsHit",global.statsShotsHit)
 ini_write_real("Stats","ShotsMissed",global.statsShotsMissed)
-//The next ones are for more specfic kill stats.
+/*The next ones are for more specfic kill stats.
 ini_write_real("Stats","ScoutKills",global.statsKillsAsScout)
 ini_write_real("Stats","PyroKills",global.statsKillsAsPyro)
 ini_write_real("Stats","SoldierKills",global.statsKillsAsSoldier)
@@ -24,5 +24,5 @@ ini_write_real("Stats","MedicKills",global.statsKillsAsMedic)
 ini_write_real("Stats","EngieKills",global.statsKillsAsEngie)
 ini_write_real("Stats","SpyKills",global.statsKillsAsSpy)
 ini_write_real("Stats","SniperKills",global.statsKillsAsSniper)
-ini_write_real("Stats","QuoteKills",global.statsKillsAsQuote)
+ini_write_real("Stats","QuoteKills",global.statsKillsAsQuote)*/
 ini_close()

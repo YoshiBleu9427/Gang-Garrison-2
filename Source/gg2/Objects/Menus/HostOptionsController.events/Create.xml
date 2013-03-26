@@ -17,6 +17,7 @@
 global.timeLimitMins = ini_read_real("Server", "Time Limit", 15);
 global.caplimit = ini_read_real("Server", "CapLimit", 5);
 global.Server_RespawntimeSec = ini_read_real("Server", "Respawn Time", 5);
+customMapRotationFile=ini_read_string("Server", "MapRotation", "");
 ini_close();
 
 //Server respawn time calculator. Converts each second to a frame. (read: multiply by 30 :hehe:)

@@ -127,6 +127,8 @@ if roundStart == 1 {
             roundStats[DOMINATIONS] = 0;
             roundStats[REVENGE] = 0;
             roundStats[POINTS] = 0;
+            roundStats[HIT]=0
+            roundStats[MISSED]=0
         }
         with Sentry instance_destroy();
         with SentryGibs instance_destroy();

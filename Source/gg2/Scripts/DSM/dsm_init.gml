@@ -11,6 +11,7 @@ global.recordingEnabled=ini_read_real("Settings","RecordingEnabled",0)
 global.healingArrow=ini_read_real("Settings","HealingArrow",1)
 
 global.alreadyWroteStats=0
+global.serverGenStab=0
 
 ini_write_real("Settings","RandomiseMapRotation",global.randomiseMapRotation)
 ini_write_real("Settings","DrawIntelArrows",global.drawIntelArrows)

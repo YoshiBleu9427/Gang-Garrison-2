@@ -121,6 +121,8 @@ if(impendingMapChange == 0)
             stats[DOMINATIONS] = 0;
             stats[REVENGE] = 0;
             stats[POINTS] = 0;
+            //stats[HIT] = 0;
+            //stats[MISSED] = 0;
             roundStats[KILLS] = 0;
             roundStats[DEATHS] = 0;
             roundStats[CAPS] = 0;
@@ -134,6 +136,8 @@ if(impendingMapChange == 0)
             roundStats[DOMINATIONS] = 0;
             roundStats[REVENGE] = 0;
             roundStats[POINTS] = 0;
+            //roundStats[HIT] = 0;
+            //roundStats[MISSED] = 0;
             team = TEAM_SPECTATOR;
         }
         timesChangedCapLimit = 0;

@@ -57,6 +57,7 @@
   <constant name="MESSAGE_STRING" value="53"/>
   <constant name="WEAPON_FIRE" value="54"/>
   <constant name="REPLAY_END" value="55"/>
+  <constant name="SERVER_GEN_STAB" value="56"/>
   <constant name="TEAM_RED" value="0"/>
   <constant name="TEAM_BLUE" value="1"/>
   <constant name="TEAM_SPECTATOR" value="2"/>
@@ -103,6 +104,8 @@
   <constant name="DOMINATIONS" value="10"/>
   <constant name="REVENGE" value="11"/>
   <constant name="POINTS" value="12"/>
+  <constant name="HIT" value="13"/>
+  <constant name="MISSED" value="14"/>
   <constant name="WEAPON_SCATTERGUN" value="1"/>
   <constant name="WEAPON_ROCKETLAUNCHER" value="2"/>
   <constant name="WEAPON_SHOTGUN" value="3"/>

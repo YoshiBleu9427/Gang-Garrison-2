@@ -438,6 +438,8 @@ do {
                     player.stats[DOMINATIONS] = 0;
                     player.stats[REVENGE] = 0;
                     player.stats[POINTS] = 0;
+                    //player.stats[HIT] = 0;
+                    //player.stats[MISSED] = 0;
                     player.roundStats[KILLS] = 0;
                     player.roundStats[DEATHS] = 0;
                     player.roundStats[CAPS] = 0;
@@ -451,6 +453,8 @@ do {
                     player.roundStats[DOMINATIONS] = 0;
                     player.roundStats[REVENGE] = 0;
                     player.roundStats[POINTS] = 0;
+                    //player.roundStats[HIT] = 0;
+                    //player.roundStats[MISSED] = 0;
                     player.team = TEAM_SPECTATOR;
                 }
             }

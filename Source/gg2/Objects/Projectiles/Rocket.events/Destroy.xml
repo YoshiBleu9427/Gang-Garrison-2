@@ -18,9 +18,9 @@
 }
 
 if shotHit=false{
-    global.statsShotsMissed+=1
+    handleHitOrMiss(ownerPlayer,0)
 }else{
-    global.statsShotsHit+=1
+    handleHitOrMiss(ownerPlayer,1)
 }
 </argument>
       </arguments>

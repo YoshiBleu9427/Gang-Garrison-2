@@ -16,7 +16,7 @@
         <argument kind="STRING">{
     menu_create(40, 100, 300, -200, 30);
     instance_create(1,1,StatsDisplayValue)
-    instance_create(2,2,StatsDisplayMore)
+    //instance_create(2,2,StatsDisplayMore)
 
     if room != StatsR {
         menu_setdimmed();
