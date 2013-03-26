@@ -22,6 +22,7 @@ if global.recordingEnabled and global.justEnabledRecording{
     beginRecording();
 }
 
+
 // Service all players
 var i;
 for(i=0; i<ds_list_size(global.players); i+=1)
@@ -32,8 +33,9 @@ for(i=0; i<ds_list_size(global.players); i+=1)
     if(socket_has_error(player.socket) or player.kicked)
     {
         removePlayer(player);
-        ServerPlayerLeave(i);
-        i-=1;
+        ServerPlayerLeave(i, global.sendBuffer);
+        ServerBalanceTeams();
+	i-=1;
     }
     else
         processClientCommands(player, i);
