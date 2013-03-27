@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="DESTROY" id="0">
+<event category="KEYPRESS" id="67">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,10 +13,10 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if shotHit=false{
-    handleHitOrMiss(ownerPlayer,0)
+        <argument kind="STRING">if alpha==1{
+    alpha=0
 }else{
-    handleHitOrMiss(ownerPlayer,1)
+    alpha=1
 }
 </argument>
       </arguments>

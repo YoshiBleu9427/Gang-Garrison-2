@@ -35,7 +35,7 @@ for(i=0; i<ds_list_size(global.players); i+=1)
         removePlayer(player);
         ServerPlayerLeave(i, global.sendBuffer);
         ServerBalanceTeams();
-	i-=1;
+i-=1;
     }
     else
         processClientCommands(player, i);
@@ -160,5 +160,4 @@ if global.recordingEnabled{
     write_buffer(global.replayBuffer, global.eventBuffer);
     write_buffer(global.replayBuffer, global.sendBuffer);
 }
-
 buffer_clear(global.eventBuffer);

@@ -132,6 +132,12 @@ with(Generator) {
         }
     }
 }
+
+if shotHit=false{
+    handleHitOrMiss(ownerPlayer,0)
+}else{
+    handleHitOrMiss(ownerPlayer,1)
+}
 </argument>
       </arguments>
     </action>
