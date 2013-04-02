@@ -1,5 +1,5 @@
 // receive and interpret the server's message(s)
-var i, playerObject, playerID, player, otherPlayerID, otherPlayer, sameVersion, buffer;
+var i, playerObject, playerID, player, otherPlayerID, otherPlayer, sameVersion, buffer, plugins, pluginsRequired, usePlugins;
 
 if(tcp_eof(global.serverSocket)) {
     if(gotServerHello)
@@ -55,11 +55,45 @@ do {
             global.joinedServerName = receivestring(global.serverSocket, 1);
             downloadMapName = receivestring(global.serverSocket, 1);
             advertisedMapMd5 = receivestring(global.serverSocket, 1);
+            receiveCompleteMessage(global.serverSocket, 1, global.tempBuffer);
+            pluginsRequired = read_ubyte(global.tempBuffer);
+            plugins = receivestring(global.serverSocket, 1);
             if(string_pos("/", downloadMapName) != 0 or string_pos("\", downloadMapName) != 0)
             {
                 show_message("Server sent illegal map name: "+downloadMapName);
                 instance_destroy();
                 exit;
+            }
+
+            if (string_length(plugins))
+            {
+                usePlugins = pluginsRequired || !global.serverPluginsPrompt;
+                if (global.serverPluginsPrompt)
+                {
+                    if (pluginsRequired)
+                    {
+                        if (!show_question("This server requires the following plugins to play on it: " + plugins + '#They are downloaded from the source: "' + PLUGIN_SOURCE + '"#The source states: "' + PLUGIN_SOURCE_NOTICE + '"#Do you wish to download them and continue connecting?'))
+                        {
+                            instance_destroy();
+                            exit;
+                        }
+                    }
+                    else
+                    {
+                        if (show_question("This server suggests the following optional plugins to play on it: " + plugins + '#They are downloaded from the source: "' + PLUGIN_SOURCE + '"#The source states: "' + PLUGIN_SOURCE_NOTICE + '"#Do you wish to download them and use them?'))
+                            usePlugins = true;
+                    }
+                }
+                if (usePlugins)
+                {
+                    if (!loadserverplugins(plugins))
+                    {
+                        show_message("Error ocurred loading server plugins.");
+                        instance_destroy();
+                        exit;
+                    }
+                    global.serverPluginsInUse = true;
+                }
             }
             
             if(advertisedMapMd5 != "")
@@ -363,6 +397,7 @@ do {
             receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
             reason = read_ubyte(global.tempBuffer);
             if reason == KICK_NAME kickReason = "Name Exploit";
+            else if reason == KICK_BAD_PLUGIN_PACKET kickReason = "Invalid plugin packet ID";
             else kickReason = "";
             show_message("You have been kicked from the server. "+kickReason+".");
             instance_destroy();
@@ -533,7 +568,34 @@ do {
                 doEventFireWeapon(player, read_ushort(global.tempBuffer));
             }
             break;
-        
+
+        case PLUGIN_PACKET:
+            var packetID, packetLen, buf, success;
+
+            // fetch full packet
+            receiveCompleteMessage(global.serverSocket, 2, global.tempBuffer);
+            packetLen = read_ushort(global.tempBuffer);
+            receiveCompleteMessage(global.serverSocket, packetLen, global.tempBuffer);
+
+            packetID = read_ubyte(global.tempBuffer);
+
+            // get packet data
+            buf = buffer_create();
+            write_buffer_part(buf, global.tempBuffer, packetLen - 1);
+
+            // try to enqueue
+            // give "noone" value for client since received from server
+            success = _PluginPacketPush(packetID, buf, noone);
+            
+            // if it returned false, packetID was invalid
+            if (!success)
+            {
+                // clear up buffer
+                buffer_destroy(buf);
+                show_error("ERROR when reading plugin packet: no such plugin packet ID " + string(packetID), true);
+            }
+            break;
+
         default:
             show_message("The Server sent unexpected data");
             game_end();

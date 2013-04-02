@@ -114,7 +114,17 @@
     
     GameServerDefineCommands();
     
+    // load server-sent plugins, if any
+    if (string_length(global.serverPluginList))
+    {
+        if (!loadserverplugins(global.serverPluginList))
+        {
+            show_message("Error ocurred loading server plugins.");
+            game_end();
+            exit;
+        }
+        global.serverPluginsInUse = true;
     if global.randomiseMapRotation==1{
-        randomiseRotation()
+	randomiseRotation()
     }
 }
