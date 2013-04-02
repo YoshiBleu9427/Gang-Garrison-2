@@ -5,6 +5,10 @@ write_ubyte(global.replayBuffer, REPLAY_END)
 
 name = get_save_filename(".rp",working_directory+"\Replays\Replay.rp")
 
+if name != filename_name("*.rp"){
+    name = "*.rp"
+}
+
 if name != ""
 {
     text = file_bin_open(name, 1)
