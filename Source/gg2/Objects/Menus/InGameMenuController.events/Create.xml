@@ -24,10 +24,7 @@
         instance_destroy();
         instance_create(0,0,OptionsController);
     ');
-    //menu_addlink("Stats", '
-    //    instance_destroy()
-    //    instance_create(0,0,StatsDisplayController)
-    //');
+    
     menu_addback("Return to Game", '
         instance_destroy();
     ');

@@ -124,7 +124,8 @@
             exit;
         }
         global.serverPluginsInUse = true;
-    if global.randomiseMapRotation==1{
-	randomiseRotation()
+        if global.randomiseMapRotation==1{
+            randomiseRotation()
+        }
     }
 }

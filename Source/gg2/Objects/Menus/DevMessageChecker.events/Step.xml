@@ -63,7 +63,7 @@ if(tcp_eof(socket)) {
             version = string_copy(versioncheck,1,versionend-1);
             changeslength = string_length(versioncheck)-versionend;
             changes=string_copy(versioncheck,versionend+1,changeslength);
-            if(real(version) &gt; VERSION)
+            if(real(version) &gt; DSM_VERSION)
             {
                 var popup;
                 popup = instance_create(250, 471, DevMessagePopup);

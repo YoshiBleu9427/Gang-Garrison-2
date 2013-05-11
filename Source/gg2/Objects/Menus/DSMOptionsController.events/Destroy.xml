@@ -15,6 +15,7 @@
       <arguments>
         <argument kind="STRING">ini_open("controls.gg2");
 ini_write_real("Controls", "superburst", global.superburst);
+ini_write_real("Controls", "screenshotButton", global.screenshotButton);
 ini_close()
 </argument>
       </arguments>

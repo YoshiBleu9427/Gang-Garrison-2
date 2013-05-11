@@ -31,6 +31,7 @@ draw_text(xoffset+230+50, yoffset+42, "Defences: " + string(floor(global.myself.
 draw_text(xoffset+450+50, yoffset+8, "Invulns: " + string(floor(global.myself.stats[INVULNS])))
 draw_text(xoffset+450+50, yoffset+25, "Healing: " + string(floor(global.myself.stats[HEALING])))
 draw_text(xoffset+450+50, yoffset+42, "Stabs: " + string(floor(global.myself.stats[STABS])))
+//draw_text(xoffset+670+50, yoffset+25, "Accuracy: " + string(floor(global.accuracy))+"%")
 </argument>
       </arguments>
     </action>

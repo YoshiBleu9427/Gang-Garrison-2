@@ -65,7 +65,7 @@ do {
                 exit;
             }
 
-            if (string_length(plugins))
+            if (string_length(plugins)) and !global.isPlayingReplay
             {
                 usePlugins = pluginsRequired || !global.serverPluginsPrompt;
                 if (global.serverPluginsPrompt)

@@ -36,7 +36,13 @@ draw_text(xbegin, ybegin-2*spacing, "Servers ("+string(serversRead)+"/"+string(n
 for(i=offset; i&lt;ds_list_size(servers) and i&lt;offset+items; i+=1) {
     server = ds_list_find_value(servers, i);
     if(i==virtualitem) {
-        draw_set_color(c_red);
+        if global.textHighlightColour==0{
+            draw_set_color(c_red);
+        }else if global.textHighlightColour==1{
+            draw_set_color(c_blue);
+        }else if global.textHighlightColour==2{
+            draw_set_color(c_green);
+        }
     } else if(server.compatible) {
         draw_set_color(c_white);
     } else {

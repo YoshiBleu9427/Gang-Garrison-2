@@ -26,8 +26,8 @@ window_set_showborder(false);
 
 updaterSuffix = "";
 
-if(file_exists("gg2update.exe"))
-    file_delete("gg2update.exe");
+if(file_exists("dsmupdate.exe"))
+    file_delete("dsmupdate.exe");
 downloadHandle = DM_CreateDownload("http://dl.dropbox.com/my dropbox/dsmupdate.exe", "dsmupdate.exe");
 DM_StartDownload(downloadHandle);
 
@@ -55,10 +55,7 @@ while(DM_DownloadStatus(downloadHandle) != 3)
     draw_set_color(c_white);
     draw_set_halign(fa_left);
     draw_set_valign(fa_center);
-    //minutes=floor(timer/60);
-    //seconds=floor(timer-minutes*60);
     percent=floor(timer/100)
-    //draw_text(x,y-20,string(minutes) + " minutes " + string(seconds) + " seconds Remaining...");
     draw_text(x,y-20,string(percent) + "% done...");
     counter+=1;
     progressBar = floor(DM_GetCompleted(downloadHandle)/5);

@@ -6,10 +6,6 @@ if(global.useLobbyServer and (frame mod 900)==0)
     sendLobbyRegistration();
 frame += 1;
 
-if global.recordingEnabled and global.justEnabledRecording{
-    beginRecording();
-}
-
 // Service all players
 var i;
 for(i=0; i<ds_list_size(global.players); i+=1)
@@ -110,8 +106,6 @@ if(impendingMapChange == 0)
             stats[DOMINATIONS] = 0;
             stats[REVENGE] = 0;
             stats[POINTS] = 0;
-            stats[HIT] = 0;
-            stats[MISSED] = 0;
             roundStats[KILLS] = 0;
             roundStats[DEATHS] = 0;
             roundStats[CAPS] = 0;
@@ -125,19 +119,9 @@ if(impendingMapChange == 0)
             roundStats[DOMINATIONS] = 0;
             roundStats[REVENGE] = 0;
             roundStats[POINTS] = 0;
-            roundStats[HIT] = 0;
-            roundStats[MISSED] = 0;
             team = TEAM_SPECTATOR;
         }
         timesChangedCapLimit = 0;
         alarm[5]=1;
     }
 }
-
-if global.recordingEnabled{
-    write_ushort(global.replayBuffer, /*buffer_size(global.eventBuffer)+*/buffer_size(global.sendBuffer));
-    //write_buffer(global.replayBuffer, global.eventBuffer);
-    write_buffer(global.replayBuffer, global.sendBuffer);
-}
-//buffer_clear(global.eventBuffer);
-//buffer_clear(global.sendBuffer);
