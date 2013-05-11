@@ -65,7 +65,8 @@ do {
                 exit;
             }
 
-            if (string_length(plugins)) and !global.isPlayingReplay
+            if (!noReloadPlugins && string_length(plugins) and and !global.isPlayingReplay)
+
             {
                 usePlugins = pluginsRequired || !global.serverPluginsPrompt;
                 if (global.serverPluginsPrompt)
@@ -95,6 +96,7 @@ do {
                     global.serverPluginsInUse = true;
                 }
             }
+            noReloadPlugins = false;
             
             if(advertisedMapMd5 != "")
             {
@@ -452,8 +454,12 @@ do {
                     var oldReturnRoom;
                     oldReturnRoom = returnRoom;
                     returnRoom = DownloadRoom;
+                    if (global.serverPluginsInUse)
+                        noUnloadPlugins = true;
                     event_perform(ev_destroy,0);
                     ClientCreate();
+                    if (global.serverPluginsInUse)
+                        noReloadPlugins = true;
                     returnRoom = oldReturnRoom;
                     usePreviousPwd = true;
                     exit;

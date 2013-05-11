@@ -28,7 +28,8 @@
     global.isPlayingReplay=0
 
     room_goto_fix(returnRoom);
-    pluginscleanup();
+    if (global.serverPluginsInUse &amp;&amp; !noUnloadPlugins)
+        pluginscleanup();
 }
 
 </argument>
