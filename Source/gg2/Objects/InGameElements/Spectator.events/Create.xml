@@ -38,6 +38,11 @@ numpadKeys[8] = vk_numpad8;
 numpadKeys[9] = vk_numpad9;
 
 event_user(7);
+
+if (global.chuWarSpecHud){
+    advSpec=instance_create(0,0,AdvSpecHUD)
+    advSpec.parent=self
+}
 </argument>
       </arguments>
     </action>

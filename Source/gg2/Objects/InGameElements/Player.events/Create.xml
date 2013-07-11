@@ -73,6 +73,8 @@
     
     // Haxxy rewards
     rewards = 0;
+    
+    alarm[6]=60
 }
 </argument>
       </arguments>

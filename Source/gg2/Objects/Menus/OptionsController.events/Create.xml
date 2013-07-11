@@ -39,6 +39,14 @@
         oldPlayerName = newName;
         return newName;
     ');
+/*if global.textHighlightColour==0{
+draw_set_color(c_orange);
+}else if global.textHighlightColour==1{
+draw_set_color(c_aqua);
+}else if global.textHighlightColour==2{
+draw_set_color(c_lime);
+}
+draw_text(440,100,string((MAX_PLAYERNAME_LENGTH)-string_length(value[0])));*/
     menu_addedit_boolean("Fullscreen:", "global.fullscreen", '
         gg2_write_ini("Settings", "Fullscreen", argument0);
         window_set_fullscreen(argument0);

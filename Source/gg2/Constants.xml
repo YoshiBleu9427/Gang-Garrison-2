@@ -4,7 +4,8 @@
   <constant name="GAME_VERSION_STRING" value="&quot;v2.5.2&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Gang Garrison 2&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/&quot;"/>
-  <constant name="DSM_VERSION" value="100"/>
+  <constant name="DSM_VERSION" value="090"/>
+  <constant name="DSM_VERSION_STRING" value="&quot;v0.9&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
   <constant name="PLUGIN_SOURCE_NOTICE" value="&quot;While these plugins have been screened by the Gang Garrison 2 community, they cannot guarantee they are safe.&quot;"/>
   <constant name="PROTOCOL_UUID" value="&quot;bd13fa66-4bd3-b916-2559-7139fd6f9b7c&quot;"/>
@@ -155,4 +156,16 @@
   <constant name="MOUSE_RIGHT" value="9002"/>
   <constant name="HP_PER_POINT" value="400"/>
   <constant name="INTEL_MAX_TIMER" value="900"/>
+  <constant name="COLOR_WHITE" value="&quot;255-255-255&quot;"/>
+  <constant name="COLOR_RED" value="&quot;250-034-034&quot;"/>
+  <constant name="COLOR_ORANGE" value="&quot;255-102-000&quot;"/>
+  <constant name="COLOR_YELLOW" value="&quot;255-255-000&quot;"/>
+  <constant name="COLOR_BROWN" value="&quot;167-114-029&quot;"/>
+  <constant name="COLOR_GREEN" value="&quot;060-200-070&quot;"/>
+  <constant name="COLOR_LIGHTBLUE" value="&quot;000-204-255&quot;"/>
+  <constant name="COLOR_BLUE" value="&quot;000-000-255&quot;"/>
+  <constant name="COLOR_PURPLE" value="&quot;255-000-255&quot;"/>
+  <constant name="COLOR_GOLD" value="&quot;252-217-023&quot;"/>
+  <constant name="COLOR_RGB_LENGTH" value="11"/>
+  <constant name="MAX_COMMAND_LOG_SIZE" value="100"/>
 </constants>

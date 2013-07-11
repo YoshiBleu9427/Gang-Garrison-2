@@ -31,6 +31,8 @@ if instance_exists(GeneratorRed) {
     draw_healthbar(xoffset+xsize/2-77, yoffset+525, xoffset+xsize/2-25, yoffset+532,GeneratorRed.hp*100/GeneratorRed.maxHp,c_black,barcolor,barcolor,0,true,true);
     draw_healthbar(xoffset+xsize/2-77, yoffset+570, xoffset+xsize/2-25, yoffset+577,GeneratorRed.shieldHp*100/GeneratorRed.maxShieldHp,c_black,barcolor,barcolor,0,true,true);
     //HP and Shield
+    draw_set_halign(fa_center)
+    draw_set_valign(fa_middle)
     draw_rectangle_color(xoffset+xsize/2-77, yoffset+534, xoffset+xsize/2-25, yoffset+548, c_black, c_black, c_black, c_black, false);
     draw_text_transformed_color(xoffset+xsize/2-51,yoffset+542,string(ceil(GeneratorRed.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
     if GeneratorRed.shieldHp &gt; 1{
@@ -44,6 +46,8 @@ if instance_exists(GeneratorBlue) {
     draw_healthbar(xoffset+xsize/2+23, yoffset+525, xoffset+xsize/2+75, yoffset+532,GeneratorBlue.hp*100/GeneratorBlue.maxHp,c_black,barcolor,barcolor,0,true,true);
     draw_healthbar(xoffset+xsize/2+23, yoffset+570, xoffset+xsize/2+75, yoffset+577,GeneratorBlue.shieldHp*100/GeneratorBlue.maxShieldHp,c_black,barcolor,barcolor,0,true,true);
     //HP and Shield
+    draw_set_halign(fa_center)
+    draw_set_valign(fa_middle)
     draw_rectangle_color(xoffset+xsize/2+23, yoffset+534, xoffset+xsize/2+75, yoffset+548, c_black, c_black, c_black, c_black, false);
     draw_text_transformed_color(xoffset+xsize/2+49,yoffset+542,string(ceil(GeneratorBlue.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
     if GeneratorBlue.shieldHp &gt; 1{

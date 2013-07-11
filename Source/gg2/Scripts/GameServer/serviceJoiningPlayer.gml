@@ -46,6 +46,12 @@ case STATE_EXPECT_HELLO:
         if(read_uint(socket) != read_uint(global.protocolUuid))
             sameProtocol = false;
             
+    if ds_list_find_index(global.banned_ips, socket_remote_ip(socket)) >= 0{
+        // This person is banned, kill the socket (->kick them)
+        socket_destroy_abortive(socket)
+        exit;
+    }
+            
     if(!sameProtocol)
         write_ubyte(socket, INCOMPATIBLE_PROTOCOL);
     else if(global.serverPassword == "")
@@ -111,9 +117,9 @@ case STATE_EXPECT_COMMAND:
         expectedBytes = 1;
         break;
 
-case SERVER_GEN_STAB:
-    write_ubyte(socket, global.serverGenStab);
-    break
+//case SERVER_GEN_STAB:
+//    write_ubyte(socket, global.serverGenStab);
+//    break;
         
     case DOWNLOAD_MAP:
         if(advertisedMapMd5 != "" and file_exists("Maps/" + advertisedMap + ".png"))
@@ -130,6 +136,11 @@ case SERVER_GEN_STAB:
         }
         break;
     // Other stuff like RCON_LOGIN can branch off here.
+    
+        //if ds_list_find_index(global.reconList, socket_remote_ip(socket)) >= 0{
+            // This person is a recon, give them recon status
+            //write_ubyte(socket, global.isRecon)
+        //}
     }
     break;
 
@@ -154,6 +165,11 @@ case STATE_EXPECT_NAME:
     player.name = read_string(player.socket, expectedBytes);
     player.name = string_copy(player.name, 0, MAX_PLAYERNAME_LENGTH);
     player.name = string_replace_all(player.name, "#", " ");
+    
+    //player.dsm=read_ubyte(player.socket)
+    //if player.dsm=1{
+        //ds_list_add(global.dsmPlayers,player)
+    //}
     
     ds_list_add(global.players, player);
     ServerPlayerJoin(player.name, global.sendBuffer);

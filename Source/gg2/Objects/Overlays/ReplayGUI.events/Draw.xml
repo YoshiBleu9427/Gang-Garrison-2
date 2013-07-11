@@ -16,7 +16,6 @@
         <argument kind="STRING">draw_sprite_ext(sprite_index,image_index,x,y,1,1,0,c_white,alpha)
 if instructTimer&gt;0{
     draw_text_color(x+200,y-10,"Press 'H' to hide the GUI.",c_white,c_white,c_white,c_white,alpha)
-    draw_text_color(x+200,y-20,"Press 'C' to toggle Chu's Spectator HUD.",c_white,c_white,c_white,c_white,alpha)
 }
 </argument>
       </arguments>

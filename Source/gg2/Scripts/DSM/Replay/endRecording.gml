@@ -5,11 +5,9 @@ write_ubyte(global.replayBuffer, REPLAY_END)
 
 name = get_save_filename(".rp",working_directory+"\Replays\Replay.rp")
 
-if name != ""
-{
+if name != ""{
     text = file_bin_open(name, 1)
-    while buffer_bytes_left(global.replayBuffer) > 0
-    {
+    while buffer_bytes_left(global.replayBuffer) > 0{
         file_bin_write_byte(text, read_ubyte(global.replayBuffer));
     }
     file_bin_close(text);

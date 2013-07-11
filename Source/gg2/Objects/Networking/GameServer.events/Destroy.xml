@@ -17,6 +17,7 @@
     sendLobbyUnreg();
 }
 
+ds_list_destroy(global.banned_ips);
 ds_list_destroy(global.players);
 socket_destroy(global.tcpListener);
 socket_destroy(global.serverSocket);
@@ -34,14 +35,16 @@ with(JoiningPlayer)
     
 with(PlayerControl)
     instance_destroy();
+
+with(Console)
+    instance_destroy();
     
 if (global.attemptPortForward and portForwarded)
     upnp_release_port(string(global.hostingPort), "TCP")
 
 room_goto_fix(Menu);
 
-if (global.serverPluginsInUse)
-    pluginscleanup();
+pluginscleanup();
 </argument>
       </arguments>
     </action>

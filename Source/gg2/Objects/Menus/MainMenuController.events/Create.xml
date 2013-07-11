@@ -33,6 +33,7 @@
     menu_addlink("Stats", '
         room_goto_fix(StatsR);
     ');
+    /* Broken, for now.
     menu_addlink("Watch Replay", '
         global.isHost = false;
         global.isPlayingReplay = 1;
@@ -48,6 +49,7 @@
         instance_create(0,0,Client);
         Client.returnRoom = Menu;
     ');
+    */
     menu_addlink("Credits", '
         room_goto_fix(Credits);
     ');

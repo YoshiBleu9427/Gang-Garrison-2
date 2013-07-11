@@ -6,6 +6,7 @@
   <resource name="ScoreTableController" type="RESOURCE"/>
   <resource name="StatsBoard" type="RESOURCE"/>
   <resource name="HUD" type="RESOURCE"/>
+  <resource name="AdvSpecHUD" type="RESOURCE"/>
   <resource name="ScorePanel" type="RESOURCE"/>
   <resource name="ControlPointHUD" type="RESOURCE"/>
   <resource name="ArenaHUD" type="RESOURCE"/>

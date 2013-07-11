@@ -27,8 +27,8 @@
         write_ubyte(global.serializeBuffer, stats[INVULNS]);
         write_ubyte(global.serializeBuffer, stats[BONUS]);
         write_ubyte(global.serializeBuffer, stats[POINTS]);
-        write_ubyte(global.serializeBuffer, stats[HIT])
-        write_ubyte(global.serializeBuffer, stats[MISSED])
+        //write_ubyte(global.serializeBuffer, stats[HIT])
+        //write_ubyte(global.serializeBuffer, stats[MISSED])
         write_ushort(global.serializeBuffer, rewards);
     } 
     

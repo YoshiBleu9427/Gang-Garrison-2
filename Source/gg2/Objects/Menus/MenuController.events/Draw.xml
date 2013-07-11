@@ -107,6 +107,42 @@
                     case vk_shift:
                         val = "Shift";
                         break;
+                    case vk_f1:
+                        val = "F1"
+                        break;
+                    case vk_f2:
+                        val = "F2"
+                        break;
+                    case vk_f3:
+                        val = "F3"
+                        break;
+                    case vk_f4:
+                        val = "F4"
+                        break;
+                    case vk_f5:
+                        val = "F5"
+                        break;
+                    case vk_f6:
+                        val = "F6"
+                        break;
+                    case vk_f7:
+                        val = "F7"
+                        break;
+                    case vk_f8:
+                        val = "F8"
+                        break;
+                    case vk_f9:
+                        val = "F9"
+                        break;
+                    case vk_f10:
+                        val = "F10"
+                        break;
+                    case vk_f11:
+                        val = "F11"
+                        break;
+                    case vk_f12:
+                        val = "F12"
+                        break;
                     case MOUSE_LEFT:
                         val = "Left Mouse Button";
                         break;

@@ -13,13 +13,15 @@
     global.players = ds_list_create();
     global.deserializeBuffer = buffer_create();
     global.isHost = false;
+    //global.isRecon=false
+    //global.isDSMUser=1
 
     global.myself = -1;
     gotServerHello = false;  
     returnRoom = Menu;
     downloadingMap = false;
     downloadMapBuffer = -1;
-    global.serverGenStab=read_ubyte(global.serverGenStab)
+    //global.serverGenStab=read_ubyte(global.serverGenStab)
     
     var acceptor;
     if global.isPlayingReplay{
@@ -39,6 +41,7 @@
     }
     
     write_ubyte(global.serverSocket, HELLO);
+    //write_ubyte(global.serverSocket, global.isDSMUser)
     write_buffer(global.serverSocket, global.protocolUuid);
     socket_send(global.serverSocket);
     

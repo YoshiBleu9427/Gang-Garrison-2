@@ -302,7 +302,6 @@ if(zone &gt;= 0 and !cloak)
     cappingPoint = zone.cp;
 else
     cappingPoint = noone;
-
 </argument>
       </arguments>
     </action>

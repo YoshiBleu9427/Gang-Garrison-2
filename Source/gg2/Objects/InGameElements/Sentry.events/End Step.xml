@@ -34,6 +34,61 @@ if (built == 1) {
     }    
     idleTimer = false;
 }
+
+if global.damageIndicatorT==2{
+if (!variable_local_exists('lasthp')) lasthp = hp;
+    if (!variable_local_exists('dmg')) dmg = 123;
+    if hp &lt; lasthp {
+        if floor(lasthp-hp) &gt; 1 {
+            if lastDamageDealer != -1 &amp;&amp; instance_exists(lastDamageDealer) {
+                if lastDamageDealer.object != -1 &amp;&amp; instance_exists(lastDamageDealer.object) {
+                    if (lastDamageDealer == global.myself or lastDamageDealer.object.healer == global.myself) {
+                        if instance_exists(dmg) {
+                            if dmg.alpha &gt; 0.8 &amp;&amp; dmg.owner = id {
+                                dmg.dmg+=floor(lasthp-hp);
+                                global.totalDamage += floor(lasthp - hp);
+                                global.RollDmg.alarm[0] = 60;
+                                dmg.x = x;
+                                dmg.y = y;
+                            } else {
+                                dmg = instance_create(x,y,global.indicator);
+                                dmg.dmg = floor(lasthp - hp);
+                                dmg.owner = id;
+                                global.totalDamage += floor(lasthp - hp);
+                                global.RollDmg.alarm[0] = 60;
+                                if global.indicator_playding
+                                {
+                                    if !global.indicator_stereo
+                                        sound_play(global.indicator_ding);
+                                    else
+                                        playsound(max(view_xview, min(view_xview+view_wview, x))
+                                                 ,view_yview+(view_hview/2)
+                                                 ,global.indicator_ding);
+                                }
+                            }
+                        } else {
+                            dmg = instance_create(x,y,global.indicator);
+                            dmg.dmg = floor(lasthp - hp);
+                            dmg.owner = id;
+                            global.totalDamage += floor(lasthp - hp);
+                            global.RollDmg.alarm[0] = 60;
+                            if global.indicator_playding
+                            {
+                                if !global.indicator_stereo
+                                    sound_play(global.indicator_ding);
+                                else
+                                    playsound(max(view_xview, min(view_xview+view_wview, x))
+                                             ,view_yview+(view_hview/2)
+                                             ,global.indicator_ding);
+                            }
+                        }
+                    }
+                }
+            }
+            lasthp = hp;
+        }
+    } else lasthp = hp;
+}
 </argument>
       </arguments>
     </action>

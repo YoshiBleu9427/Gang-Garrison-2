@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(40, 100, 300, -200, 30);
+    menu_create(40, 70, 300, -200, 30);
     instance_create(1,1,StatsDisplayKillsValue)
 
     if room != StatsR {

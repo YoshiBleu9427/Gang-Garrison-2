@@ -13,7 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(instance_exists(InGameMenuController) || instance_exists(OptionsController) || instance_exists(ControlsController) || instance_exists(HUDOptionsController)) or instance_exists(DSMOptionsController) or instance_exists(StatsDisplayController)
+        <argument kind="STRING">if(instance_exists(InGameMenuController) or instance_exists(OptionsController) or instance_exists(ControlsController)
+or instance_exists(HUDOptionsController) or instance_exists(DSMOptionsController) or instance_exists(StatsDisplayController)
+or instance_exists(Console))
     exit;
     
 var kickOpen;

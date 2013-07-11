@@ -44,7 +44,7 @@ if (team == global.myself.team or global.isPlayingReplay) &amp;&amp; (id != glob
         var xr, yr;
         xr = round(x);
         yr = round(y);
-        if team == global.myself.team &amp;&amp; (id != global.myself.object.id or global.showHealthBar == 1){
+        if (team == global.myself.team or global.isPlayingReplay) &amp;&amp; (id != global.myself.object.id or global.showHealthBar == 1){
             draw_set_alpha(1);
             if player.class != CLASS_SNIPER draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.ammoCount*100/currentWeapon.maxAmmo,c_black,c_white,c_white,0,true,true);
             else draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.readyToShoot*100,c_black,c_white,c_white,0,true,true);
@@ -126,11 +126,15 @@ if (burnDuration &gt; 0 or burnIntensity &gt; 0) {
 }
 if team == global.myself.team &amp;&amp; (id != global.myself.object.id or global.showHealthBar == 1){
     if global.hpBarText==1{
+        draw_set_halign(fa_right)
+        draw_set_valign(fa_middle)
         draw_text_color(xr+13,yr-19,ceil(hp),c_black,c_black,c_black,c_black,1)
         draw_text_color(xr+12,yr-20,ceil(hp),c_white,c_white,c_white,c_white,1)
     }else if global.hpBarText==2{
-        draw_text_color(xr+21,yr-29,ceil(hp),c_black,c_black,c_black,c_black,1)
-        draw_text_color(xr+22,yr-30,ceil(hp),c_white,c_white,c_white,c_white,1)
+        draw_set_halign(fa_right)
+        draw_set_valign(fa_middle)
+        draw_text_color(xr-10,yr-29,ceil(hp),c_black,c_black,c_black,c_black,1)
+        draw_text_color(xr-11,yr-30,ceil(hp),c_white,c_white,c_white,c_white,1)
     }
 }
 </argument>

@@ -3,26 +3,35 @@ global.randomiseMapRotation=ini_read_real("Settings","RandomiseMapRotation",0)
 global.drawIntelArrows=ini_read_real("Settings","DrawIntelArrows",1)
 global.hpBarText=ini_read_real("Settings","HPBarText",1)
 global.ammoBar=ini_read_real("Settings","AmmoBar",1)
-global.generatorStab=ini_read_real("Settings","GeneratorStab",1)
+//global.generatorStab=ini_read_real("Settings","GeneratorStab",1)
 global.textHighlightColour=ini_read_real("Settings","TextHighlightColour",0)
 global.recoilAnimations=ini_read_real("Settings","RecoilAnimations",1)
 global.showKillLog=ini_read_real("Settings","ShowKillLog",1)
 global.recordingEnabled=ini_read_real("Settings","RecordingEnabled",0)
 global.healingArrow=ini_read_real("Settings","HealingArrow",1)
+global.recordStats=ini_read_real("Settings","RecordStats",1)
+global.chuWarSpecHud=ini_read_real("Settings","ChuWarSpecHud",0)
+global.respawnTimer=ini_read_real("Settings","RespawnTimer",1)
 
 global.alreadyWroteStats=0
 global.serverGenStab=0
+global.displayingFPS=0
+global.displayingPing=0
+global.chatFixRun=0
 
 ini_write_real("Settings","RandomiseMapRotation",global.randomiseMapRotation)
 ini_write_real("Settings","DrawIntelArrows",global.drawIntelArrows)
 ini_write_real("Settings","HPBarText",global.hpBarText)
 ini_write_real("Settings","AmmoBar",global.ammoBar)
-ini_write_real("Settings","GeneratorStab",global.generatorStab)
+//ini_write_real("Settings","GeneratorStab",global.generatorStab)
 ini_write_real("Settings","TextHighlightColour",global.textHighlightColour)
 ini_write_real("Settings","RecoilAnimations",global.recoilAnimations)
 ini_write_real("Settings","ShowKillLog",global.showKillLog)
 ini_write_real("Settings","RecordingEnabled",global.recordingEnabled)
 ini_write_real("Settings","HealingArrow",global.healingArrow)
+ini_write_real("Settings","RecordStats",global.recordStats)
+ini_write_real("Settings","ChuWarSpecHud",global.chuWarSpecHud)
+ini_write_real("Settings","RespawnTimer",global.respawnTimer)
 ini_close()
 
 statsTracker()

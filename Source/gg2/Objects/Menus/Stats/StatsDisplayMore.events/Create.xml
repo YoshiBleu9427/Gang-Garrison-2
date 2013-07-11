@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(340, 100, 300, 340, 30);
+    menu_create(340, 70, 300, 340, 30);
 
     if room != StatsR {
         menu_setdimmed();

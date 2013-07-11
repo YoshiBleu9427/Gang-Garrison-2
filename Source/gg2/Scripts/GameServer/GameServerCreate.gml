@@ -19,14 +19,42 @@
     }
     hostSeenMOTD = false;
     global.players = ds_list_create();
+    //global.dsmPlayers=ds_list_create()
     global.tcpListener = -1;
     global.serverSocket = -1;
     
-    if global.generatorStab==1{
-        global.serverGenStab=1
-    }else{
-        global.serverGenStab=0
+    global.banned_ips = ds_list_create();
+    var text, str;
+    if (file_exists("Banned ips.txt")){
+        // If a list of banned ips exists, load them into the list
+        text = file_text_open_read("Banned ips.txt")
+        while not file_text_eof(text){
+            str = file_text_read_string(text)
+            file_text_readln(text)
+            ds_list_add(global.banned_ips, str)
+        }
+        file_text_close(text);
     }
+    
+    //Recons
+    //global.reconList = ds_list_create()
+    //var text, str;
+    //if (file_exists("ReconList.txt")){
+        //If a list of recons exists, load them into the list
+        //text = file_text_open_read("ReconList.txt")
+        //while not file_text_eof(text){
+            //str = file_text_read_string(text)
+            //file_text_readln(text)
+            //ds_list_add(global.reconList, str)
+        //}
+        //file_text_close(text);
+    //}
+    
+//    if global.generatorStab==1{
+//        global.serverGenStab=1
+//    }else{
+//        global.serverGenStab=0
+//    }
     
     global.currentMapIndex = 0;
     global.currentMapArea = 1;
@@ -124,8 +152,9 @@
             exit;
         }
         global.serverPluginsInUse = true;
-        if global.randomiseMapRotation==1{
-            randomiseRotation()
-        }
+    }
+    
+    if global.randomiseMapRotation==1{
+        randomiseRotation()
     }
 }

@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(240, 100, -300, -400, 30);
+    menu_create(240, 70, -300, -400, 30);
     
     statsTracker()
     

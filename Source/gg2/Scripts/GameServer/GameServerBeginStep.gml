@@ -67,6 +67,10 @@ if(global.winners != -1 and !global.mapchanging)
     instance_create(0,0,WinBanner);
 }
 
+if global.recordingEnabled and global.justEnabledRecording{
+    beginRecording();
+}
+
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
 {
@@ -124,4 +128,9 @@ if(impendingMapChange == 0)
         timesChangedCapLimit = 0;
         alarm[5]=1;
     }
+}
+
+if global.recordingEnabled{
+    write_ushort(global.replayBuffer, buffer_size(global.sendBuffer));
+    write_buffer(global.replayBuffer, global.sendBuffer);
 }

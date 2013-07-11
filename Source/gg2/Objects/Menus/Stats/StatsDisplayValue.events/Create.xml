@@ -14,10 +14,11 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(240, 100, -300, -400, 30);
+    menu_create(240, 70, -300, -400, 30);
     
     statsTracker()
     calcAccuracy()
+    calcKD()
     
     menu_addtext(string(floor(global.statsGames)))
     menu_addtext(string(floor(global.statsWins)))
@@ -25,6 +26,7 @@
     menu_addtext(string(floor(global.statsPoints)))
     menu_addtext(string(floor(global.statsKills)))
     menu_addtext(string(floor(global.statsDeaths)))
+    //menu_addtext(global.kdRatioString)
     menu_addtext(string(floor(global.statsAssists)))
     menu_addtext(string(floor(global.statsDestruction)))
     menu_addtext(string(floor(global.statsCaps)))

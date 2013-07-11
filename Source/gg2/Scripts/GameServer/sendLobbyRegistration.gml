@@ -23,7 +23,7 @@ else
 write_ushort(lobbyBuffer, 7); // Number of Key/Value pairs that follow
 writeKeyValue(lobbyBuffer, "name", global.serverName);
 writeKeyValue(lobbyBuffer, "game", "Derpduck's Server Mod");
-writeKeyValue(lobbyBuffer, "game_short", "DSM");
+writeKeyValue(lobbyBuffer, "game_short", "DSM "+DSM_VERSION_STRING);
 writeKeyValue(lobbyBuffer, "game_ver", GAME_VERSION_STRING);
 writeKeyValue(lobbyBuffer, "game_url", GAME_URL_STRING);
 writeKeyValue(lobbyBuffer, "map", global.currentMap);

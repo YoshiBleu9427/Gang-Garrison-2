@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+  <resource name="DamageIndicatorSounds" type="GROUP"/>
   <resource name="ChaingunSnd" type="RESOURCE"/>
   <resource name="DeathSnd1" type="RESOURCE"/>
   <resource name="DeathSnd2" type="RESOURCE"/>
@@ -42,5 +43,4 @@
   <resource name="SentryFloorSnd" type="RESOURCE"/>
   <resource name="SentryBuildSnd" type="RESOURCE"/>
   <resource name="PickupSnd" type="RESOURCE"/>
-  <resource name="DingSnd" type="RESOURCE"/>
 </resources>

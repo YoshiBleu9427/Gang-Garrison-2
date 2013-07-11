@@ -32,6 +32,8 @@ lastDamageSource = -1;
 secondToLastDamageDealer = -1;
 
 idleTimer = true;
+//Damage Indicators
+lasthp=hp
 </argument>
       </arguments>
     </action>

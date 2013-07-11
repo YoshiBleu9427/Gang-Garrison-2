@@ -125,6 +125,61 @@ if (player == global.myself)
         view_yview[0] = y-view_hview[0]/2;
     }
 }
+
+if global.damageIndicatorT==2{
+if (!variable_local_exists('lasthp')) lasthp = hp;
+    if (!variable_local_exists('dmg')) dmg = 123;
+    if hp &lt; lasthp &amp;&amp; !cloak{
+        if floor(lasthp-hp) &gt; 1 {
+            if lastDamageDealer != -1 &amp;&amp; instance_exists(lastDamageDealer) {
+                if lastDamageDealer.object != -1 &amp;&amp; instance_exists(lastDamageDealer.object) &amp;&amp; lastDamageDealer != player {
+                    if (lastDamageDealer == global.myself or lastDamageDealer.object.healer == global.myself) {
+                        if instance_exists(dmg) {
+                            if dmg.alpha &gt; 0.8 &amp;&amp; dmg.owner == id {
+                                dmg.dmg+=floor(lasthp-hp);
+                                global.totalDamage += floor(lasthp - hp);
+                                LorganRollDmg.alarm[0] = 60;
+                                dmg.x = x;
+                                dmg.y = y;
+                            } else {
+                                dmg = instance_create(x,y,LorganIndicator);
+                                dmg.dmg = floor(lasthp - hp);
+                                dmg.owner = id;
+                                LorganRollDmg.alarm[0] = 60;
+                                global.totalDamage += floor(lasthp - hp);
+                                if global.indicator_playding
+                                {
+                                    if !global.indicator_stereo
+                                        sound_play(global.indicator_ding);
+                                    else
+                                        playsound(max(view_xview, min(view_xview+view_wview, x))
+                                                 ,view_yview+(view_hview/2)
+                                                 ,global.indicator_ding);
+                                }
+                            }
+                        } else {
+                            dmg = instance_create(x,y,LorganIndicator);
+                            dmg.dmg = floor(lasthp - hp);
+                            dmg.owner = id;
+                            LorganRollDmg.alarm[0] = 60;
+                            global.totalDamage += floor(lasthp - hp);
+                            if global.indicator_playding
+                            {
+                                if !global.indicator_stereo
+                                    sound_play(global.indicator_ding);
+                                else
+                                    playsound(max(view_xview, min(view_xview+view_wview, x))
+                                             ,view_yview+(view_hview/2)
+                                             ,global.indicator_ding);
+                            }
+                        }
+                    }
+                }
+            }
+            lasthp = hp;
+        }
+    } else lasthp = hp;
+}
 </argument>
       </arguments>
     </action>

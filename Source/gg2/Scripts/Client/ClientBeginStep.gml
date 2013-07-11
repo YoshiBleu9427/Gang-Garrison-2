@@ -65,7 +65,7 @@ do {
                 exit;
             }
 
-            if (!noReloadPlugins && string_length(plugins) and and !global.isPlayingReplay)
+            if (!noReloadPlugins and string_length(plugins) and !global.isPlayingReplay)
 
             {
                 usePlugins = pluginsRequired || !global.serverPluginsPrompt;
