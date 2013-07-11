@@ -30,19 +30,18 @@ if !(global.chuWarSpecHud){
     draw_set_halign(fa_left);
     draw_set_color(c_white);
 
-    if (tracking) {
-        draw_text(xoffset+50, yoffset+590, player.name);
-        if player.object != -1 {
-            if player.object.maxHp != 0 {
-                sprite_xpos = -2;
-                sprite_ypos = 538;
-                icon_xpos = sprite_xpos;
-                icon_ypos = sprite_ypos + 20;
-                draw_sprite_ext(SpectatorHealthCross, 0, xoffset+sprite_xpos, yoffset+sprite_ypos, 2, 2, 0, c_white, 1);
-                hppixels = player.object.hp/player.object.maxHp*17;
-                draw_sprite_part_ext(SpectatorHealthFill,0,0,(17-hppixels)+10,43,hppixels+1,xoffset+icon_xpos, yoffset+icon_ypos+(17-hppixels)*2,2,2,c_red,1);
-                draw_sprite_part_ext(SpectatorHealthFill,0,0,(17-hppixels)+10,43,hppixels+1,xoffset+icon_xpos, yoffset+icon_ypos+(17-hppixels)*2,2,2,c_green,player.object.hp/player.object.maxHp);
-            }
+if (tracking) {
+    draw_text(xoffset+50, yoffset+590, player.name);
+    if (player.object != -1 &amp;&amp; global.myself.team == TEAM_SPECTATOR) {
+        if player.object.maxHp != 0 {
+            sprite_xpos = -2;
+            sprite_ypos = 538;
+            icon_xpos = sprite_xpos;
+            icon_ypos = sprite_ypos + 20;
+            draw_sprite_ext(SpectatorHealthCross, 0, xoffset+sprite_xpos, yoffset+sprite_ypos, 2, 2, 0, c_white, 1);
+            hppixels = player.object.hp/player.object.maxHp*17;
+            draw_sprite_part_ext(SpectatorHealthFill,0,0,(17-hppixels)+10,43,hppixels+1,xoffset+icon_xpos, yoffset+icon_ypos+(17-hppixels)*2,2,2,c_red,1);
+            draw_sprite_part_ext(SpectatorHealthFill,0,0,(17-hppixels)+10,43,hppixels+1,xoffset+icon_xpos, yoffset+icon_ypos+(17-hppixels)*2,2,2,c_green,player.object.hp/player.object.maxHp);
         }
     }
 }

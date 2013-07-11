@@ -71,9 +71,19 @@ do {
                 usePlugins = pluginsRequired || !global.serverPluginsPrompt;
                 if (global.serverPluginsPrompt)
                 {
+                    var prompt;
                     if (pluginsRequired)
                     {
-                        if (!show_question("This server requires the following plugins to play on it: " + plugins + '#They are downloaded from the source: "' + PLUGIN_SOURCE + '"#The source states: "' + PLUGIN_SOURCE_NOTICE + '"#Do you wish to download them and continue connecting?'))
+                        prompt = show_question(
+                            "This server requires the following plugins to play on it: "
+                            + string_replace_all(plugins, ",", "#")
+                            + '#They are downloaded from the source: "'
+                            + PLUGIN_SOURCE
+                            + '"#The source states: "'
+                            + PLUGIN_SOURCE_NOTICE
+                            + '"#Do you wish to download them and continue connecting?'
+                        );
+                        if (!prompt)
                         {
                             instance_destroy();
                             exit;
@@ -81,15 +91,26 @@ do {
                     }
                     else
                     {
-                        if (show_question("This server suggests the following optional plugins to play on it: " + plugins + '#They are downloaded from the source: "' + PLUGIN_SOURCE + '"#The source states: "' + PLUGIN_SOURCE_NOTICE + '"#Do you wish to download them and use them?'))
+                        prompt = show_question(
+                            "This server suggests the following optional plugins to play on it: "
+                            + string_replace_all(plugins, ",", "#")
+                            + '#They are downloaded from the source: "'
+                            + PLUGIN_SOURCE
+                            + '"#The source states: "'
+                            + PLUGIN_SOURCE_NOTICE
+                            + '"#Do you wish to download them and use them?'
+                        );
+                        if (prompt)
+                        {
                             usePlugins = true;
+                        }
                     }
                 }
                 if (usePlugins)
                 {
                     if (!loadserverplugins(plugins))
                     {
-                        show_message("Error ocurred loading server plugins.");
+                        show_message("Error ocurred loading server-sent plugins.");
                         instance_destroy();
                         exit;
                     }
@@ -291,11 +312,11 @@ do {
             
             player = ds_list_find_value(global.players, playerID);
             if(otherPlayerID == 255) {
-                doEventDestruction(player, -1, -1, causeOfDeath);
+                doEventDestruction(player, noone, noone, causeOfDeath);
             } else {
                 otherPlayer = ds_list_find_value(global.players, otherPlayerID);
                 if (assistantPlayerID == 255) {
-                    doEventDestruction(player, otherPlayer, -1, causeOfDeath);
+                    doEventDestruction(player, otherPlayer, noone, causeOfDeath);
                 } else {
                     assistantPlayer = ds_list_find_value(global.players, assistantPlayerID);
                     doEventDestruction(player, otherPlayer, assistantPlayer, causeOfDeath);
@@ -318,9 +339,7 @@ do {
         case DROP_INTEL:
             receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
             player = ds_list_find_value(global.players, read_ubyte(global.tempBuffer));
-            if player.object != -1 {
-                with player.object event_user(5); 
-            }
+            doEventDropIntel(player); 
             break;
             
         case RETURN_INTEL:

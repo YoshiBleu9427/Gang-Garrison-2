@@ -22,6 +22,8 @@ if shotHit=false{
 }else{
     handleHitOrMiss(ownerPlayer,1)
 }
+
+ds_list_destroy(playersPassed);
 </argument>
       </arguments>
     </action>

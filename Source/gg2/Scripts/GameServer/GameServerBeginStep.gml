@@ -18,7 +18,8 @@ for(i=0; i<ds_list_size(global.players); i+=1)
         removePlayer(player);
         ServerPlayerLeave(i, global.sendBuffer);
         ServerBalanceTeams();
-i-=1;
+        i-=1;
+
     }
     else
         processClientCommands(player, i);
@@ -128,6 +129,8 @@ if(impendingMapChange == 0)
         timesChangedCapLimit = 0;
         alarm[5]=1;
     }
+    // message lobby to update map name
+    sendLobbyRegistration();
 }
 
 if global.recordingEnabled{

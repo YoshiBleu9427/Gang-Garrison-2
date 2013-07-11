@@ -15,7 +15,7 @@
       <arguments>
         <argument kind="STRING">// Downloading code. 
 
-var downloadHandle, updaterSuffix, window_oldshowborder, window_oldfullscreen;
+var downloadHandle, url, tmpfile, window_oldshowborder, window_oldfullscreen;
 timeLeft = 0;
 counter = 0;
 AudioControlPlaySong(-1, false);
@@ -24,11 +24,14 @@ window_oldfullscreen = window_get_fullscreen();
 window_set_fullscreen(false);
 window_set_showborder(false);
 
-updaterSuffix = "";
+if(global.updaterBetaChannel)
+    url = UPDATE_SOURCE_BETA;
+else
+    url = UPDATE_SOURCE;
 
-if(file_exists("dsmupdate.exe"))
-    file_delete("dsmupdate.exe");
-downloadHandle = DM_CreateDownload("http://dl.dropbox.com/my dropbox/dsmupdate.exe", "dsmupdate.exe");
+tmpfile = temp_directory + "\gg2update.zip";
+    
+downloadHandle = DM_CreateDownload(url, tmpfile);
 DM_StartDownload(downloadHandle);
 
 while(DM_DownloadStatus(downloadHandle) != 3) 
@@ -41,8 +44,8 @@ while(DM_DownloadStatus(downloadHandle) != 3)
     {
         DM_StopDownload(downloadHandle);
         DM_CloseDownload(downloadHandle);
-        if(file_exists("dsmupdate.exe"))
-            file_delete("dsmupdate.exe");
+        if(file_exists(tmpfile))
+            file_delete(tmpfile);
         window_set_showborder(window_oldshowborder);
         window_set_fullscreen(window_oldfullscreen);
         room_goto_fix(Menu);
@@ -69,21 +72,42 @@ while(DM_DownloadStatus(downloadHandle) != 3)
 DM_StopDownload(downloadHandle);
 DM_CloseDownload(downloadHandle);
 
-// let's extract the downloaded file now.
-if(file_exists("dsmupdate.exe"))
-{
-    execute_program("cmd",'/C @echo Updating DSM, please wait... &amp;&amp; ping 127.0.0.1 -n 5 &gt;NUL &amp;&amp; dsmupdate.exe &amp;&amp; del dsmupdate.exe &amp;&amp; start "DSM" "DSM.exe"', false);
-    game_end();
-    exit;
-}
-else
+if(!file_exists(tmpfile))
 {
     window_set_showborder(window_oldshowborder);
     window_set_fullscreen(window_oldfullscreen);
-    show_message("Error updating: Missing update.bat or dsmupdate.exe");
+    show_message("Error updating: Missing gg2update.zip in temp directory, download failed(?)");
     room_goto_fix(Menu);
     exit;
 }
+
+// rename existing "Gang Garrison 2.exe" to avoid conflict when extracting
+if (file_exists("Gang Garrison 2.exe"))
+{
+    var newName, n;
+    n = 1;
+    
+    // increment until unused name found
+    do
+    {
+        newName = "gg2-old.delete.me." + string(n);
+        n += 1;
+    }
+    until(!file_exists(newName));
+
+    file_rename("Gang Garrison 2.exe", newName);
+}
+
+
+
+// let's extract the downloaded file now.
+extractzip(tmpfile, working_directory);
+
+// run new version    
+execute_program("Gang Garrison 2.exe", "", false);
+
+// exit
+game_end();
 </argument>
       </arguments>
     </action>
