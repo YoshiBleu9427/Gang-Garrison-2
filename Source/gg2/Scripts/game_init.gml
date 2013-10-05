@@ -52,6 +52,15 @@
     global.hostingPort = ini_read_real("Settings", "HostingPort", 8190);
     global.music = ini_read_real("Settings", "Music", ini_read_real("Settings", "IngameMusic", MUSIC_BOTH));
     global.playerLimit = ini_read_real("Settings", "PlayerLimit", 10);
+    //thy playerlimit shalt not exceed 48!
+    if (global.playerLimit > 48)
+    {
+        if (global.dedicatedMode != 1)
+            show_message("Warning: Player Limit cannot exceed 48. It has been set to 48");
+        global.playerLimit = 48;
+        ini_write_real("Settings", "PlayerLimit", 48);
+    }
+    global.multiClientLimit = ini_read_real("Settings", "MultiClientLimit", 3);
     global.particles =  ini_read_real("Settings", "Particles", PARTICLES_NORMAL);
     global.gibLevel = ini_read_real("Settings", "Gib Level", 3);
     global.killCam = ini_read_real("Settings", "Kill Cam", 1);
@@ -97,6 +106,7 @@
     var CrosshairFilename, CrosshairRemoveBG;
     CrosshairFilename = ini_read_string("Settings", "CrosshairFilename", "");
     CrosshairRemoveBG = ini_read_real("Settings", "CrosshairRemoveBG", 1);
+    global.queueJumping = ini_read_real("Settings", "Queued Jumping", 0);
 
     global.backgroundHash = ini_read_string("Background", "BackgroundHash", "default");
     global.backgroundTitle = ini_read_string("Background", "BackgroundTitle", "");
@@ -121,6 +131,7 @@
     ini_key_delete("Settings", "IngameMusic");
     ini_write_real("Settings", "Music", global.music);
     ini_write_real("Settings", "PlayerLimit", global.playerLimit);
+    ini_write_real("Settings", "MultiClientLimit", global.multiClientLimit);
     ini_write_real("Settings", "Particles", global.particles);
     ini_write_real("Settings", "Gib Level", global.gibLevel);
     ini_write_real("Settings", "Kill Cam", global.killCam);
@@ -152,6 +163,7 @@
     ini_write_real("Server", "ServerPluginsRequired", global.serverPluginsRequired); 
     ini_write_string("Settings", "CrosshairFilename", CrosshairFilename);
     ini_write_real("Settings", "CrosshairRemoveBG", CrosshairRemoveBG);
+    ini_write_real("Settings", "Queued Jumping", global.queueJumping);
 
     ini_write_string("Background", "BackgroundHash", global.backgroundHash);
     ini_write_string("Background", "BackgroundTitle", global.backgroundTitle);
@@ -238,9 +250,12 @@
     // parse the protocol version UUID for later use
     global.protocolUuid = buffer_create();
     parseUuid(PROTOCOL_UUID, global.protocolUuid);
-    
+
     global.gg2lobbyId = buffer_create();
     parseUuid(GG2_LOBBY_UUID, global.gg2lobbyId);
+
+    // Create abbreviations array for rewards use
+    initRewards()
     
 var a, IPRaw, portRaw;
 doubleCheck=0;

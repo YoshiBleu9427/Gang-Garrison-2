@@ -35,27 +35,6 @@
         }
         file_text_close(text);
     }
-    
-    //Recons
-    //global.reconList = ds_list_create()
-    //var text, str;
-    //if (file_exists("ReconList.txt")){
-        //If a list of recons exists, load them into the list
-        //text = file_text_open_read("ReconList.txt")
-        //while not file_text_eof(text){
-            //str = file_text_read_string(text)
-            //file_text_readln(text)
-            //ds_list_add(global.reconList, str)
-        //}
-        //file_text_close(text);
-    //}
-    
-//    if global.generatorStab==1{
-//        global.serverGenStab=1
-//    }else{
-//        global.serverGenStab=0
-//    }
-    
     global.currentMapIndex = 0;
     global.currentMapArea = 1;
     
@@ -66,7 +45,7 @@
     
     var i;
     serverId = buffer_create();
-    for(i=0;i<16;i+=1)
+    for (i = 0; i < 16; i += 1)
         write_ubyte(serverId, irandom(255));
     
     serverbalance=0;
@@ -123,6 +102,9 @@
         challenge = rewardCreateChallenge();
         rewardAuthStart(serverPlayer, hmac_md5_bin(global.rewardKey, challenge), challenge, false, global.rewardId);
     }
+    if(global.queueJumping)
+        serverPlayer.queueJump = global.queueJumping;
+    
     instance_create(0,0,PlayerControl);
 
     var map, i;
@@ -149,18 +131,11 @@
             }
         }
     }
-    global.currentMap = ds_list_find_value(global.map_rotation, global.currentMapIndex);
-    if(file_exists("Maps/" + global.currentMap + ".png")) { // if this is an external map
-        // get the md5 and url for the map
-        global.currentMapMD5 = CustomMapGetMapMD5(global.currentMap);
-        room_goto_fix(CustomMapRoom);
-    } else { // internal map, so at the very least, MD5 must be blank
-        global.currentMapMD5 = "";
-        if(gotoInternalMapRoom(global.currentMap) != 0) {
-            show_message("Error:#Map " + global.currentMap + " is not in maps folder, and it is not a valid internal map.#Exiting.");
-            game_end();
-        }
-    }
+
+    currentMapIndex = -1;
+    global.currentMapArea = 1;
+
+    serverGotoMap(nextMapInRotation());
     
     global.joinedServerName = global.serverName; // so no errors of unknown variable occur when you create a server
     global.mapchanging = false; 

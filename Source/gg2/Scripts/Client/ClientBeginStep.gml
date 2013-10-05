@@ -167,6 +167,11 @@ do {
                 write_ubyte(global.serverSocket, string_length(rewardId));
                 write_string(global.serverSocket, rewardId);
             }
+            if(global.queueJumping == true)
+            {
+                write_ubyte(global.serverSocket, CLIENT_SETTINGS);
+                write_ubyte(global.serverSocket, global.queueJumping);
+            }
             socket_send(global.serverSocket);
             break;
             
@@ -432,6 +437,7 @@ do {
             reason = read_ubyte(global.tempBuffer);
             if reason == KICK_NAME kickReason = "Name Exploit";
             else if reason == KICK_BAD_PLUGIN_PACKET kickReason = "Invalid plugin packet ID";
+            else if reason == KICK_MULTI_CLIENT kickReason = "There are too many connections from your IP";
             else kickReason = "";
             show_message("You have been kicked from the server. "+kickReason+".");
             instance_destroy();
@@ -469,7 +475,10 @@ do {
             global.currentMap = receivestring(global.serverSocket, 1);
             global.currentMapMD5 = receivestring(global.serverSocket, 1);
             if(global.currentMapMD5 == "") { // if this is an internal map (signified by the lack of an md5)
-                if(gotoInternalMapRoom(global.currentMap) != 0) {
+                if(findInternalMapRoom(global.currentMap))
+                    room_goto_fix(findInternalMapRoom(global.currentMap));
+                else
+                {
                     show_message("Error:#Server went to invalid internal map: " + global.currentMap + "#Exiting.");
                     instance_destroy();
                     exit;
@@ -554,9 +563,11 @@ do {
             break;
 
         case REWARD_UPDATE:
-            receiveCompleteMessage(global.serverSocket,3,global.tempBuffer);
+            receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
             player = ds_list_find_value(global.players, read_ubyte(global.tempBuffer));
-            doEventUpdateRewards(player, read_ushort(global.tempBuffer));
+            var rewardString;
+            rewardString = receivestring(global.serverSocket, 2);
+            doEventUpdateRewards(player, rewardString);
             break;
             
         case REPLAY_END:
@@ -632,10 +643,15 @@ do {
                 buffer_destroy(buf);
                 show_error("ERROR when reading plugin packet: no such plugin packet ID " + string(packetID), true);
             }
+            break; 
+        case CLIENT_SETTINGS:
+            receiveCompleteMessage(global.serverSocket,2,global.tempBuffer);
+            player = ds_list_find_value(global.players, read_ubyte(global.tempBuffer));
+            player.queueJump = read_ubyte(global.tempBuffer);
             break;
+
         default:
-            show_message("The Server sent unexpected data");
-            game_end();
+            promptRestartOrQuit("The Server sent unexpected data.");
             exit;
         }
     } else {
