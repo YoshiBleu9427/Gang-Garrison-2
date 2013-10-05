@@ -6,6 +6,10 @@ if(global.useLobbyServer and (frame mod 900)==0)
     sendLobbyRegistration();
 frame += 1;
 
+if global.recordingEnabled and global.justEnabledRecording{
+    beginRecording();
+}
+
 // Service all players
 var i;
 for(i=0; i<ds_list_size(global.players); i+=1)
@@ -66,10 +70,6 @@ if(global.winners != -1 and !global.mapchanging)
     if(!instance_exists(ScoreTableController))
         instance_create(0,0,ScoreTableController);
     instance_create(0,0,WinBanner);
-}
-
-if global.recordingEnabled and global.justEnabledRecording{
-    beginRecording();
 }
 
 // if map change timer hits 0, do a map change

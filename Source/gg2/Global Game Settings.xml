@@ -33,7 +33,7 @@
     <treatCloseAsEscape>false</treatCloseAsEscape>
   </keys>
   <errors>
-    <displayErrors>false</displayErrors>
+    <displayErrors>true</displayErrors>
     <writeToLog>true</writeToLog>
     <abortOnError>false</abortOnError>
     <treatUninitializedAsZero>false</treatUninitializedAsZero>

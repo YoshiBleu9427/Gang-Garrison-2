@@ -20,10 +20,13 @@
         menu_setdimmed();
     }
     
+    alarm[0]=1
+    
     oldPlayerName = global.playerName;
     menu_addedit_text2("Player name:", "global.playerName", '
         var newName;
         newName = string_copy(argument0, 0, min(string_length(argument0), MAX_PLAYERNAME_LENGTH));
+        draw_text(440,80,string((MAX_PLAYERNAME_LENGTH)-string_length(newName)))
         if string_count("#",newName) &gt; 0 {
             show_message("Invalid character ' + "'\#'" + ' in name");
             newName = "Player";
@@ -39,14 +42,6 @@
         oldPlayerName = newName;
         return newName;
     ');
-/*if global.textHighlightColour==0{
-draw_set_color(c_orange);
-}else if global.textHighlightColour==1{
-draw_set_color(c_aqua);
-}else if global.textHighlightColour==2{
-draw_set_color(c_lime);
-}
-draw_text(440,100,string((MAX_PLAYERNAME_LENGTH)-string_length(value[0])));*/
     menu_addedit_boolean("Fullscreen:", "global.fullscreen", '
         gg2_write_ini("Settings", "Fullscreen", argument0);
         window_set_fullscreen(argument0);
@@ -145,6 +140,9 @@ draw_text(440,100,string((MAX_PLAYERNAME_LENGTH)-string_length(value[0])));*/
         else
             instance_create(0,0,InGameMenuController);
     ');
+    
+    colour1=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+    colour2=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
 }
 </argument>
       </arguments>

@@ -40,6 +40,7 @@ draw_sprite(sprite_index, image_index, x_left, y_top)
 
 // Draw the console Title
 draw_set_font(global.gg2Font); //we want the title to stand out
+draw_set_halign(fa_left)
 draw_text(x_left+15, y_top+10, "Console - DSM "+string(DSM_VERSION_STRING));
 
 draw_set_halign(fa_left);

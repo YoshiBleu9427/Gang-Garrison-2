@@ -38,9 +38,17 @@ with (Player) {
     }
 }
 
+//DSM stuff
+//Stats
 global.statsGames+=1
 addStats()
 global.alreadyWroteStats=1
+
+//Replays
+if global.recordingType==1 and global.recordingEnabled and global.justEnabledRecording==0{
+    endRecording()
+    global.recordingEnabled=1
+}
 
 if(!instance_exists(ArenaHUD)) {
     AudioControlPlaySong(sound, false);

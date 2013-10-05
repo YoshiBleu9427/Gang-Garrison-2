@@ -44,7 +44,18 @@ if (global.attemptPortForward and portForwarded)
 
 room_goto_fix(Menu);
 
-pluginscleanup();
+if global.pluginCleanup==1{
+    if show_message_ext("Clean up server plugins?","Yes","","No")==1{
+        pluginscleanup()
+    }
+}
+
+//Fuck you, errors
+if (global.chatCheck){
+    with(global.chatWindow){
+        instance_destroy()
+    }
+}
 </argument>
       </arguments>
     </action>

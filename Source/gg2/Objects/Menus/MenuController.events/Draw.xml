@@ -36,6 +36,8 @@
                 draw_set_color(c_aqua);
             }else if global.textHighlightColour==2{
                 draw_set_color(c_lime);
+            }else if global.textHighlightColour==3{
+                draw_set_color(colour2)
             }
         }
         else if(i == virtualitem) {
@@ -45,7 +47,9 @@
                 draw_set_color(c_blue);
             }else if global.textHighlightColour==2{
                 draw_set_color(c_green);
-            }    
+            }else if global.textHighlightColour==3{
+                draw_set_color(colour1);
+            } 
         } else {
             draw_set_color(c_white);    
         }

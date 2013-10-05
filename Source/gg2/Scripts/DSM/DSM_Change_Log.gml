@@ -1,6 +1,7 @@
 /*
 All options are in DSMOptionsController.
 Chat will not be added because of the chat serverside plugin.
+This list may become outdated because new updates add these features in.
 
 -Rockets are more brightly coloured to their team.
     Changed: RocketS, RedRocketS, BlueRocketS.
@@ -136,8 +137,6 @@ Chat will not be added because of the chat serverside plugin.
 
 -Laser fade occurs regardless of particle settings, because I want my fancy lasers :P
     Changed: Rifle (Draw).
-
--Number of characters left shown when editing name.
     
 -Added console.
     Too lazy to list things.
@@ -148,6 +147,6 @@ Chat will not be added because of the chat serverside plugin.
     
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Since most of the features are covered in here, ill stop updating this.
+Since most of the features are covered in here, I'll stop updating this.
 Most of the new things that will be added will be pretty minor or extras for already existing things.
 */

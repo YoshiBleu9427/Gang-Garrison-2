@@ -26,7 +26,7 @@ if (global.Server_RespawntimeSec == 0)
 else
     global.Server_Respawntime = global.Server_RespawntimeSec * 30;
 
-menu_create(40, 130, 500, 200, 30);
+menu_create(40, 110, 500, 200, 30);
 
 menu_addedit_text2("Server Name:", "global.serverName", '
     var newName;
@@ -82,10 +82,14 @@ menu_addedit_boolean("Announce to Lobby:", "global.useLobbyServer", '
 ');
 
 menu_addedit_boolean("Attempt UPnP Forwarding:", "global.attemptPortForward", '
-        if (argument0 == 1)
-            show_message("Warning: UPNP support is currently experimental and enabling it may cause freezing while starting a server, but should cause no freezing ingame")
-        gg2_write_ini("Server", "Attempt UPnP Forwarding", argument0);
-    ');
+    if (argument0 == 1)
+        show_message("Warning: UPNP support is currently experimental and enabling it may cause freezing while starting a server, but should cause no freezing ingame")
+    gg2_write_ini("Server", "Attempt UPnP Forwarding", argument0);
+');
+
+menu_addedit_text("Map Rotation:", "global.mapRotationFile", '
+    gg2_write_ini("Server", "MapRotation", argument0);
+');
     
 menu_addlink("Classlimits", '
     instance_create(x,y,ClasslimitsMenuController);
@@ -105,6 +109,9 @@ menu_addback("Back", '
     instance_create(x,y,MainMenuController);
     instance_destroy();
 ');
+
+colour1=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+colour2=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
 </argument>
       </arguments>
     </action>

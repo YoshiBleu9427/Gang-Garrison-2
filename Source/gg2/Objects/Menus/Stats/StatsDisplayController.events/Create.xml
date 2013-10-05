@@ -15,12 +15,14 @@
       <arguments>
         <argument kind="STRING">{
     menu_create(40, 70, 300, -200, 30);
+    //This object doesn't work with the menu thing for some reason
     instance_create(1,1,StatsDisplayValue)
-    //instance_create(2,2,StatsDisplayMore)
 
     if room != StatsR {
         menu_setdimmed();
     }
+    
+    alarm[0]=1
     
     global.statsMainM=1
     global.statsKillsM=0
@@ -53,6 +55,9 @@
         else
             instance_create(0,0,InGameMenuController);
     ');
+
+    colour1=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+    colour2=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
 }
 </argument>
       </arguments>

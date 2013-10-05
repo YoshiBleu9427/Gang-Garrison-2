@@ -120,7 +120,7 @@ case STATE_EXPECT_COMMAND:
 //case SERVER_GEN_STAB:
 //    write_ubyte(socket, global.serverGenStab);
 //    break;
-        
+    
     case DOWNLOAD_MAP:
         if(advertisedMapMd5 != "" and file_exists("Maps/" + advertisedMap + ".png"))
         {   // If the md5 was empty, we advertised an internal map, which obviously can't be downloaded.
@@ -165,15 +165,11 @@ case STATE_EXPECT_NAME:
     player.name = read_string(player.socket, expectedBytes);
     player.name = string_copy(player.name, 0, MAX_PLAYERNAME_LENGTH);
     player.name = string_replace_all(player.name, "#", " ");
-    
-    //player.dsm=read_ubyte(player.socket)
-    //if player.dsm=1{
-        //ds_list_add(global.dsmPlayers,player)
-    //}
-    
+
     ds_list_add(global.players, player);
     ServerPlayerJoin(player.name, global.sendBuffer);
     
+    console_print(player.name+" has joined the server.")
     // message lobby to update playercount if we became full
     if(noOfPlayers+1 == global.playerLimit)
         sendLobbyRegistration();
@@ -182,6 +178,7 @@ case STATE_EXPECT_NAME:
         ServerMessageString(global.welcomeMessage, player.socket);
     
     break;
+    
 }
 
 socket_send(socket);

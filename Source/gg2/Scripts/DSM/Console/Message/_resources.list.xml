@@ -2,4 +2,5 @@
 <resources>
   <resource name="kickMessage" type="RESOURCE"/>
   <resource name="banMessage" type="RESOURCE"/>
+  <resource name="tempBanMessage" type="RESOURCE"/>
 </resources>

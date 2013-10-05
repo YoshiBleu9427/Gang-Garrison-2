@@ -35,9 +35,7 @@
     stabbing = 0;
     onCabinet = 0;
     timeUnscathed = 0;
-    //Damage Indicators
-    lasthp=hp
-    
+
     //afterburn stuff
     burnIntensity = 0;
     maxIntensity = 9; //maximum afterburn intensity in DPS

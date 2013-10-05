@@ -48,7 +48,7 @@ if (team == global.myself.team or global.isPlayingReplay) &amp;&amp; (player != 
             if player.class != CLASS_SNIPER draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.ammoCount*100/currentWeapon.maxAmmo,c_black,c_white,c_white,0,true,true);
             else draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.readyToShoot*100,c_black,c_white,c_white,0,true,true);
         }
-        if(distance_to_point(mouse_x, mouse_y)&lt;25) &amp;&amp; player.class == CLASS_MEDIC &amp;&amp; player.team == global.myself.team{
+        /*if(distance_to_point(mouse_x, mouse_y)&lt;25) &amp;&amp; player.class == CLASS_MEDIC &amp;&amp; player.team == global.myself.team{
             draw_set_alpha(1);
             draw_set_halign(fa_center);
             draw_set_valign(fa_bottom);
@@ -58,7 +58,7 @@ if (team == global.myself.team or global.isPlayingReplay) &amp;&amp; (player != 
                 draw_set_color(c_blue);
             }
         draw_text(xr, yr-45, 'UberCharge: '+string(floor(currentWeapon.uberCharge/20))+'%');
-        }
+        }*/
     }
 }   
 if(distance_to_point(mouse_x, mouse_y)&lt;25) {
@@ -73,7 +73,7 @@ if(distance_to_point(mouse_x, mouse_y)&lt;25) {
     }
     draw_text(xr, yr-35, player.name);
     
-    if(team == global.myself.team &amp;&amp; global.showTeammateStats)
+    if((team == global.myself.team or global.isPlayingReplay) &amp;&amp; global.showTeammateStats)
     {
         if(weapons[0] == Medigun)
             draw_text(xr,yr+50, "Superburst: " + string(currentWeapon.uberCharge/20) + "%");

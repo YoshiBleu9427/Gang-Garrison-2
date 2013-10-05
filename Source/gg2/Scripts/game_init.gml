@@ -393,8 +393,6 @@ global.launchMap = "";
     global.gg2Font = font_add_sprite(gg2FontS,ord("!"),false,0);
     global.DSMConsoleFont = font_add_sprite(consoleFontS,ord("!"),false,0);
     global.countFont = font_add_sprite(countFontS, ord("0"),false,2);
-
-    global.DSMConsoleFont = font_add_sprite(consoleFontS,ord("!"),false,0);
     draw_set_font(global.gg2Font);
     cursor_sprite = CrosshairS;
     
@@ -428,7 +426,7 @@ global.launchMap = "";
     global.changeClass = ini_read_real("Controls", "changeClass", ord("M"));
     global.showScores = ini_read_real("Controls", "showScores", vk_shift);
     global.superburst = ini_read_real("Controls", "superburst", ord("R"));
-    global.screenshotButton = ini_read_real("Controls", "screenshotButton", vk_f3);
+    global.screenshotButton = ini_read_real("Controls", "screenshotButton", vk_f10);
     ini_close();
     
     calculateMonthAndDay();

@@ -58,6 +58,19 @@ do {
             receiveCompleteMessage(global.serverSocket, 1, global.tempBuffer);
             pluginsRequired = read_ubyte(global.tempBuffer);
             plugins = receivestring(global.serverSocket, 1);
+            if global.myCurrentPlugins!=''{
+                var pluginQuestion;
+                pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string(plugins)+
+                "##If your plugins do not match the server's plugins or if you have plugins the server does not please select restart or quit.","Continue","Restart","Quit")
+                if (pluginQuestion==2){
+                    execute_program(parameter_string(0), "-restart", false)
+                    game_end()
+                    exit;
+                }else if (pluginQuestion==3){
+                    game_end()
+                    exit;
+                }
+            }
             if(string_pos("/", downloadMapName) != 0 or string_pos("\", downloadMapName) != 0)
             {
                 show_message("Server sent illegal map name: "+downloadMapName);
@@ -620,7 +633,6 @@ do {
                 show_error("ERROR when reading plugin packet: no such plugin packet ID " + string(packetID), true);
             }
             break;
-
         default:
             show_message("The Server sent unexpected data");
             game_end();

@@ -14,7 +14,7 @@
     global.deserializeBuffer = buffer_create();
     global.isHost = false;
     //global.isRecon=false
-    //global.isDSMUser=1
+    global.isDSMUser=1
 
     global.myself = -1;
     gotServerHello = false;  
@@ -41,7 +41,6 @@
     }
     
     write_ubyte(global.serverSocket, HELLO);
-    //write_ubyte(global.serverSocket, global.isDSMUser)
     write_buffer(global.serverSocket, global.protocolUuid);
     socket_send(global.serverSocket);
     

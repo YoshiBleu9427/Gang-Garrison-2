@@ -69,6 +69,7 @@ if (DM_DownloadStatus(handle) == 3)
                 popup.updating = true;
             }
             break;
+        if global.dsmBackground==0{
         case "Background":
             var text, list, hash, title, url, showVersion;
             text = (messageArray[c+1]);
@@ -145,6 +146,7 @@ if (DM_DownloadStatus(handle) == 3)
                 ini_close();
             }
             break;
+            }
         }
     }
     

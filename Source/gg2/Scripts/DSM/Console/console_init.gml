@@ -7,7 +7,7 @@ global.commandLog = ds_list_create()//All commands the user gave in are logged h
 global.commandMap = ds_map_create()//All console commands are here, with the name being the key to the to-be executed string.
 global.documentationMap = ds_map_create()//See above, only this gets called when a user enters "help something".
 global.consoleMaxLines = 32
-//global.console_recordingEnabled=0
+global.playerNameC=""
 
 for(i=0; i<global.consoleMaxLines; i+=1){
     ds_list_add(global.consoleLog, "")
