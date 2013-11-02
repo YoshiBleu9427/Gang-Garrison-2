@@ -14,7 +14,6 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">if(team != other.team)
-    shotHit=true
     instance_destroy();
 </argument>
       </arguments>

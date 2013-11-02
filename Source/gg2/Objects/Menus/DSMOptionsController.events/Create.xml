@@ -55,9 +55,12 @@
         DSM_write_ini("Settings", "ChuWarSpecHud", argument0)
     ');
     
-    menu_addedit_boolean("Respawn Timer:", "global.respawnTimer", '
+    menu_addedit_select("Respawn Timer:", "global.respawnTimer", '
         DSM_write_ini("Settings", "RespawnTimer", argument0)
     ');
+    menu_add_option(0, "Disabled");
+    menu_add_option(1, "DSM");
+    menu_add_option(2, "Vanilla");
     
     menu_addedit_boolean("Sound Panning:", "global.soundPanning", '
         DSM_write_ini("Settings", "SoundPanning", argument0)

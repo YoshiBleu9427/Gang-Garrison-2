@@ -47,7 +47,7 @@
     
     }
 
-    if (!(global.backgroundHash != "default" &amp;&amp; !global.backgroundShowVersion) or global.dsmBackground==3)
+    if (!(global.backgroundHash != "default" &amp;&amp; !global.backgroundShowVersion) and (global.dsmBackground==0 or global.dsmBackground==3))
     {
         draw_sprite(MenuBackgroundVersionS,0,300,300);
     }

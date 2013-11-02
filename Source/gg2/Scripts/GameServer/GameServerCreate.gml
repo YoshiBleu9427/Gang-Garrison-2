@@ -19,9 +19,11 @@
     }
     hostSeenMOTD = false;
     global.players = ds_list_create();
-    global.dsmPlayers=ds_list_create()
     global.tcpListener = -1;
     global.serverSocket = -1;
+    
+    //DSM
+    //global.dsmPlayers=ds_list_create()
     
     global.banned_ips = ds_list_create();
     var text, str;
@@ -42,6 +44,7 @@
     {
         global.justEnabledRecording = 1
     }
+    
     
     var i;
     serverId = buffer_create();
@@ -158,10 +161,9 @@
         if global.myCurrentPlugins!=''{
             var pluginQuestion;
             pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string(pluginList)+
-            "##If your plugins do not match the server's plugins (could cause client desync) please select restart or quit.","Continue","Restart","Quit")
+            "##If your plugins do not match the server's plugins (could cause clients to desync) please select restart or quit.","Continue","Restart","Quit")
             if (pluginQuestion==2){
-                execute_program(parameter_string(0), "-restart", false)
-                game_end()
+                restartGG2()
                 exit;
             }else if (pluginQuestion==3){
                 game_end()
@@ -185,4 +187,3 @@
         global.justEnabledRecording = 1
     }
 }
-

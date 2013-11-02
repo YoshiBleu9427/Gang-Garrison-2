@@ -37,9 +37,6 @@
     }
     
     menu_addlink("Lobby", '
-        //instance_destroy()
-        //instance_create(112,224,LobbyControllerInGame)
-        //instance_create(176,160,LobbySideControllerInGame)
         splash_set_main(false)
         splash_set_border(false)
         splash_set_interrupt(false)

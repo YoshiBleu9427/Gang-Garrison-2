@@ -232,6 +232,26 @@ console_print('         Also, attempting to ban the host will have no effect.')
 console_print('The player will be banned from the server until it is restarted as their ip is not written to the ban list.')
 ");
 
+console_addCommand("kill", "
+if not global.isHost{
+    console_print('Only the host can use this command.');
+    exit;
+}
+
+var player;
+player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
+with(player.object){
+    hp-=999
+}
+", "
+console_print('Syntax: kill playerName')
+console_print('Use: Bans the designed player from the game, disconnecting him and preventing him from joining until the server is restarted.')
+console_print('Warning: IDs will be considered before names, so if a name of player x is equal to')
+console_print('         the ID of player y, player y will get banned.')
+console_print('         Also, attempting to ban the host will have no effect.')
+console_print('The player will be banned from the server until it is restarted as their ip is not written to the ban list.')
+")
+
 console_addCommand("listBans", "
 var text,textips;
 text=file_text_open_read('Banned ips.txt')
@@ -436,6 +456,7 @@ console_print('Use: Sets the next map to the desired map.')
 console_print('Warning: An incorrect map name may lead to the server crashing; check your maps first.')
 ")
 
+/* I don't really need this, I may fix it later
 console_addCommand("timeLimit", "
 if not global.isHost{
     console_print('Only the host can use this command.')
@@ -445,12 +466,28 @@ var newTimeLimit;
 newTimeLimit=input[1]
 
 global.timeLimitMins=real(max(1, min(255, newTimeLimit)))
+
+if instance_exists(ScorePanel){
+    ScorePanel.timer=newTimeLimit
+    GameServer.syncTimer=1
+}
+if instance_exists(ControlPointHUD){
+    ControlPointHUD.timer=newTimeLimit
+    GameServer.syncTimer=1
+}
+if instance_exists(GeneratorHUD){
+    GeneratorHUD.timer=newTimeLimit
+    GameServer.syncTimer=1
+}
+if instance_exists(ArenaHUD){
+    ArenaHUD.timer=newTimeLimit
+    GameServer.syncTimer=1
+}
 console_print('Time limit set to '+newTimeLimit)
 ", "
 console_print('Syntax: timeLimit '+chr(34)+'<time>'+chr(34))
-console_print('Use: Change the time limit for the current round, and all rounds after. Setting is not saved.')
+console_print('Use: Change the time limit for the current round, and all rounds after. Does not affect D/KOTH. Setting is not saved.')
 ")
-
 console_addCommand("respawnTime", "
 if not global.isHost{
     console_print('Only the host can use this command.')
@@ -465,86 +502,4 @@ console_print('Respawn time set to '+newRespawnTime)
 console_print('Syntax: respawnTime '+chr(34)+'<time>'+chr(34))
 console_print('Use: Change the respawn time. Setting is not saved.')
 ")
-
-/*console_addCommand("recon", "
-var player;
-// Check whether a name or a ID was given
-if string_letters(input[1]) == ''{
-    // No letters were given
-    // First check whether that ID is even valid
-    if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
-        // Valid ID, recon that player
-        player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
-        //dsmPlayer=ds_list_find_value(global.dsmPlayers,i)
-        //if dsmPlayer==false{
-            //console_print('This client is not a DSM user.')
-            //exit
-        //}
-        ds_list_add(global.reconList, socket_remote_ip(player.socket));
-        with player{
-            global.isRecon=true
-            write_ubyte(socket, global.isRecon)
-        }
-        // Write it now in a file
-        var text, str, i;
-        str = ''
-        for (i=0; i<ds_list_size(global.reconList); i+=1){
-            // chr(10) == newline
-            str += ds_list_find_value(global.reconList, i) + chr(10);
-        }
-        text = file_text_open_write('ReconList.txt');
-        file_text_write_string(text, str);
-        file_text_close(text);
-        
-        console_print(string_replace_all(player.name, '/:/', '/;/')+' has been made a recon successfully.');
-        reconMessage()
-        exit;
-    }else if floor(real(string_digits(input[1]))) == 0{
-        // Can't recon yourself
-        console_print('The host cannot be made a recon.');
-    }
-}
-// If that system above did not work, try checking names
-with Player{
-    if name == other.input[1]{
-        // Don't recon the host
-        if id == global.myself{
-            console_print('The host cannot be made a recon.');
-            continue;
-        }
-        // Found the name, recon that player
-        ds_list_add(global.reconList, socket_remote_ip(socket));
-        //dsmPlayer=ds_list_find_value(global.dsmPlayers,i)
-        //if dsmPlayer==false{
-            //console_print('This client is not a DSM user.')
-            //exit
-        //}
-        with player{
-            global.isRecon=true
-        }        
-        // Write it now in a file
-        var text, str, i;
-        str = ''
-        for (i=0; i<ds_list_size(global.reconList); i+=1){
-            // chr(10) == newline
-            str += ds_list_find_value(global.reconList, i) + chr(10);
-        }
-        text = file_text_open_write('ReconList.txt');
-        file_text_write_string(text, str);
-        file_text_close(text);
-        
-        console_print(string_replace_all(name, '/:/', '/;/')+' has been made a recon successfully.');
-        reconMessage()
-        exit;
-    }
-}
-// We failed
-console_print('Could not find a player with that ID or name.');
-
-
-", "
-console_print('Syntax: recon playerID/playerName')
-console_print('Use: Sets a user as a recon. This allows them to use commands that the host can use.')
-console_print('Warning: Recons must be removed manually from ReconList.txt.')
-conosle_print('         this means recons cannot be removed without closing the server.')
-")*/
+*/

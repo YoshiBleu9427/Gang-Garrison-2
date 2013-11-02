@@ -28,6 +28,7 @@
     // menu_addedit_boolean("Generator Stab:", "global.generatorStab", '
     //    DSM_write_ini("Settings", "GeneratorStab", argument0);
     //');
+    
     menu_addedit_select("Recording Type:", "global.recordingType", '
         DSM_write_ini("Settings", "RecordingType", argument0);
     ');

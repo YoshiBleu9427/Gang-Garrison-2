@@ -39,13 +39,6 @@
             }
         }
     }
-    
-    //Fuck you, errors
-    if (global.chatCheck){
-        with(global.chatWindow){
-            instance_destroy()
-        }
-    }
 }
 
 </argument>

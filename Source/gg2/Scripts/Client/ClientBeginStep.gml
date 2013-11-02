@@ -63,8 +63,7 @@ do {
                 pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string(plugins)+
                 "##If your plugins do not match the server's plugins or if you have plugins the server does not please select restart or quit.","Continue","Restart","Quit")
                 if (pluginQuestion==2){
-                    execute_program(parameter_string(0), "-restart", false)
-                    game_end()
+                    restartGG2()
                     exit;
                 }else if (pluginQuestion==3){
                     game_end()
@@ -180,7 +179,7 @@ do {
             global.playerID = read_ubyte(global.tempBuffer);
             global.currentMapArea = read_ubyte(global.tempBuffer);
             break;
-        
+            
         case FULL_UPDATE:
             deserializeState(FULL_UPDATE);
             break;
@@ -195,7 +194,7 @@ do {
                   
         case INPUTSTATE:
             deserializeState(INPUTSTATE);
-            break;             
+            break;
         
         case PLAYER_JOIN:
             player = instance_create(0,0,Player);

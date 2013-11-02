@@ -13,10 +13,9 @@ global.respawnTimer=ini_read_real("Settings","RespawnTimer",1)
 global.recordingType=ini_read_real("Settings","RecordingType",0)
 global.soundPanning=ini_read_real("Settings","SoundPanning",1)
 global.pluginCleanup=ini_read_real("Settings","PluginCleanup",1)
-global.hostUseServerPlugins=ini_read_real("Settings","HostUseServerPlugins",1)
 
 global.alreadyWroteStats=0
-global.serverGenStab=0
+//global.serverGenStab=0
 global.displayingFPS=0
 global.displayingPing=0
 global.myCurrentPlugins=''
@@ -36,7 +35,6 @@ ini_write_real("Settings","RespawnTimer",global.respawnTimer)
 ini_write_real("Settings","RecordingType",global.recordingType)
 ini_write_real("Settings","SoundPanning",global.soundPanning)
 ini_write_real("Settings","PluginCleanup",global.pluginCleanup)
-ini_write_real("Settings","HostUseServerPlugins",global.hostUseServerPlugins)
 ini_close()
 
 statsTracker()

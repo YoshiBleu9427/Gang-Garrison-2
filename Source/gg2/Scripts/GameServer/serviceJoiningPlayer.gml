@@ -117,10 +117,6 @@ case STATE_EXPECT_COMMAND:
         expectedBytes = 1;
         break;
 
-//case SERVER_GEN_STAB:
-//    write_ubyte(socket, global.serverGenStab);
-//    break;
-    
     case DOWNLOAD_MAP:
         if(advertisedMapMd5 != "" and file_exists("Maps/" + advertisedMap + ".png"))
         {   // If the md5 was empty, we advertised an internal map, which obviously can't be downloaded.
@@ -136,11 +132,6 @@ case STATE_EXPECT_COMMAND:
         }
         break;
     // Other stuff like RCON_LOGIN can branch off here.
-    
-        //if ds_list_find_index(global.reconList, socket_remote_ip(socket)) >= 0{
-            // This person is a recon, give them recon status
-            //write_ubyte(socket, global.isRecon)
-        //}
     }
     break;
 

@@ -13,22 +13,23 @@
     global.players = ds_list_create();
     global.deserializeBuffer = buffer_create();
     global.isHost = false;
-    //global.isRecon=false
+    
+    //DSM
     global.isDSMUser=1
-
     global.myself = -1;
     gotServerHello = false;  
     returnRoom = Menu;
     downloadingMap = false;
     downloadMapBuffer = -1;
-    //global.serverGenStab=read_ubyte(global.serverGenStab)
     
+    //DSM
     var acceptor;
     if global.isPlayingReplay{
         acceptor = tcp_listen(global.serverPort);
     }
 
     global.serverSocket = tcp_connect(global.serverIP, global.serverPort);
+    
     
     if global.isPlayingReplay{ // Create loopback connection for the replay
         do{
