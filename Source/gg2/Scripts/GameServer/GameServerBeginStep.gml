@@ -19,7 +19,7 @@ for(i=0; i<ds_list_size(global.players); i+=1)
     
     if(socket_has_error(player.socket) or player.kicked)
     {
-        console_print(player.name+" has left the server. GameServerBeginStep()")
+        console_print(player.name+" has left the server.")
         removePlayer(player);
         ServerPlayerLeave(i, global.sendBuffer);
         ServerBalanceTeams();
@@ -54,7 +54,9 @@ if(global.winners != -1 and !global.mapchanging)
     else
     {
         global.currentMapArea = 1;
-        global.nextMap = nextMapInRotation();
+        if global.dsmMapChange==0{
+            global.nextMap = nextMapInRotation();
+        }
     }
     
     global.mapchanging = true;
@@ -78,6 +80,7 @@ if(impendingMapChange == 0)
     serverGotoMap(global.nextMap);
     ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
     impendingMapChange = -1;
+    global.dsmMapChange=0
     
     with(Player)
     {

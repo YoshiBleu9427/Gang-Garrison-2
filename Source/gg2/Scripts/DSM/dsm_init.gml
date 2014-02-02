@@ -14,13 +14,15 @@ global.recordingType=ini_read_real("Settings","RecordingType",0)
 global.soundPanning=ini_read_real("Settings","SoundPanning",1)
 global.pluginCleanup=ini_read_real("Settings","PluginCleanup",1)
 global.oldAutobalance=ini_read_real("Settings","OldAutobalance",0)
-global.replayNamePropmt=ini_read_real("Settings","ReplayNamePrompt",1)
+global.replayNamePrompt=ini_read_real("Settings","ReplayNamePrompt",1)
 global.deadScoreboard=ini_read_real("Settings","DeadScoreboard",0)
+global.skipFaucet=ini_read_real("Settings","SkipFaucet",0)
 
 global.displayingFPS=0
 global.displayingPing=0
 global.myCurrentPlugins=''
 global.chatCheck=false
+global.dsmMapChange=0
 
 ini_write_real("Settings","DrawIntelArrows",global.drawIntelArrows)
 ini_write_real("Settings","HPBarText",global.hpBarText)
@@ -37,12 +39,14 @@ ini_write_real("Settings","RecordingType",global.recordingType)
 ini_write_real("Settings","SoundPanning",global.soundPanning)
 ini_write_real("Settings","PluginCleanup",global.pluginCleanup)
 ini_write_real("Settings","OldAutobalance",global.oldAutobalance)
-ini_write_real("Settings","ReplayNamePrompt",global.replayNamePropmt)
+ini_write_real("Settings","ReplayNamePrompt",global.replayNamePrompt)
 ini_write_real("Settings","DeadScoreboard",global.deadScoreboard)
+ini_write_real("Settings","SkipFaucet",global.skipFaucet)
 ini_close()
 
 statsTracker()
 custom_init()
+ChatFix_miku()
 
 if(!directory_exists(working_directory + "\Replays")) directory_create(working_directory + "\Replays")
 global.replayBuffer = buffer_create() //Used by the server to save the replay and by the client to load it.

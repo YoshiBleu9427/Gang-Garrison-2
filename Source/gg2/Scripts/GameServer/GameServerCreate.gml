@@ -27,9 +27,9 @@
     
     global.banned_ips = ds_list_create();
     var text, str;
-    if (file_exists("Banned ips.txt")){
+    if (file_exists("Banned_IPs.txt")){
         // If a list of banned ips exists, load them into the list
-        text = file_text_open_read("Banned ips.txt")
+        text = file_text_open_read("Banned_IPs.txt")
         while not file_text_eof(text){
             str = file_text_read_string(text)
             file_text_readln(text)
@@ -139,14 +139,18 @@
     global.currentMapArea = 1;
 
     //This is pretty hacky, but it works for now.
-    var desiredMapName, i, numberOfMaps;
+    var desiredMapName, desiredMapIndex, i, numberOfMaps, message;
     numberOfMaps = ds_list_size(global.map_rotation);
 
     for(i = 1; i <= numberOfMaps; i += 1){
-        desiredMapName = ds_list_find_value(global.map_rotation, i);
+        desiredMapIndex = (GameServer.currentMapIndex + i) mod numberOfMaps;
+        desiredMapName = ds_list_find_value(global.map_rotation, desiredMapIndex);
         if!(findInternalMapRoom(desiredMapName) or file_exists('Maps/' + string(desiredMapName) + '.png')){
-            ds_list_delete(global.map_rotation,i)
-            show_message(string(desiredMapName)+' is not a valid map name; this map will be skipped. Ensure you have the map in your maps folder and have spelt it correctly.')
+            //ds_list_delete(global.map_rotation,i)
+            numberOfMaps = ds_list_size(global.map_rotation);
+            desiredMapIndex-=1
+            message=string(desiredMapName)+' is not a valid map name; this map will be skipped. Ensure you have the map in your maps folder and have spelt it correctly.'
+            show_message(message)
         }
     }
 

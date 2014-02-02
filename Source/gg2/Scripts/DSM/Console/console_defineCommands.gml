@@ -2,7 +2,10 @@
 //input[1] = first argument, input[2] = second, etc...
 
 console_addCommand("help", "
-if input[1] == ''{
+var command;
+command=Console.input[1]
+
+if command == ''{
     var key;
     // User didn't ask any specific command, just give the general command list and infos.
     console_print('DSM '+string(DSM_VERSION_STRING)+' console;');
@@ -14,18 +17,18 @@ if input[1] == ''{
     console_print('Some commands require Player IDs, the command '+chr(34)+'listPlayers'+chr(34)+' can show them to you.');
     console_print('');
     console_print('The current command list:');
-    key = ds_map_find_first(global.commandMap);
+    key = ds_map_find_first(global.commandMap_DSM);
     console_print(key);
-    for (i=0; i<ds_map_size(global.commandMap)-1; i+=1){
-        key = ds_map_find_next(global.commandMap, key);
+    for (i=0; i<ds_map_size(global.commandMap_DSM)-1; i+=1){
+        key = ds_map_find_next(global.commandMap_DSM, key);
         console_print(key);
     }
     console_print('')
     console_print('For more details on each command, enter '+chr(34)+'help commandName'+chr(34)+'.')
     console_print('----------------------------------------------------------------------------------');
 }else{
-    if ds_map_exists(global.documentationMap, input[1]){
-        execute_string(ds_map_find_value(global.documentationMap, input[1]));
+    if ds_map_exists(global.documentationMap, command){
+        execute_string(ds_map_find_value(global.documentationMap, command));
     }else{
         console_print('No documentation could be found for that command.');
     }
@@ -116,7 +119,7 @@ if string_letters(input[1]) == ''{
             // chr(10) == newline
             str += ds_list_find_value(global.banned_ips, i) + chr(10);
         }
-        text = file_text_open_write('Banned ips.txt');
+        text = file_text_open_write('Banned_IPs.txt');
         file_text_write_string(text, str);
         file_text_close(text);
         
@@ -149,7 +152,7 @@ with Player{
             // chr(10) == newline
             str += ds_list_find_value(global.banned_ips, i) + chr(10);
         }
-        text = file_text_open_write('Banned ips.txt');
+        text = file_text_open_write('Banned_IPs.txt');
         file_text_write_string(text, str);
         file_text_close(text);
         
@@ -232,29 +235,9 @@ console_print('         Also, attempting to ban the host will have no effect.')
 console_print('The player will be banned from the server until it is restarted as their ip is not written to the ban list.')
 ");
 
-console_addCommand("kill", "
-if not global.isHost{
-    console_print('Only the host can use this command.');
-    exit;
-}
-
-var player;
-player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
-with(player.object){
-    hp-=999
-}
-", "
-console_print('Syntax: kill playerName')
-console_print('Use: Bans the designed player from the game, disconnecting him and preventing him from joining until the server is restarted.')
-console_print('Warning: IDs will be considered before names, so if a name of player x is equal to')
-console_print('         the ID of player y, player y will get banned.')
-console_print('         Also, attempting to ban the host will have no effect.')
-console_print('The player will be banned from the server until it is restarted as their ip is not written to the ban list.')
-")
-
 console_addCommand("listBans", "
 var text,textips;
-text=file_text_open_read('Banned ips.txt')
+text=file_text_open_read('Banned_IPs.txt')
 textips=file_text_read_string(text)
 console_print(string(textips))
 file_text_close(text);
@@ -453,58 +436,13 @@ if!(findInternalMapRoom(nextMap) or file_exists('Maps/' + nextMap + '.png')){
     exit;
 }
 
-ds_list_insert(global.map_rotation,global.currentMapIndex+1,nextMap)
-console_print('The next map is '+nextMap+'.')
+ds_list_insert(global.map_rotation,GameServer.currentMapIndex,nextMap)
+global.nextMap=nextMap
+global.dsmMapChange=1
+GameServer.currentMapIndex+=1
+console_print('The next map is: '+nextMap)
 ", "
 console_print('Syntax: nextMap '+chr(34)+'<map name>'+chr(34))
 console_print('Use: Sets the next map to the desired map.')
 console_print('Warning: An incorrect map name may lead to the server crashing; check your maps first.')
 ")
-
-/* I don't really need this, I may fix it later
-console_addCommand("timeLimit", "
-if not global.isHost{
-    console_print('Only the host can use this command.')
-    exit
-}
-var newTimeLimit;
-newTimeLimit=input[1]
-
-global.timeLimitMins=real(max(1, min(255, newTimeLimit)))
-
-if instance_exists(ScorePanel){
-    ScorePanel.timer=newTimeLimit
-    GameServer.syncTimer=1
-}
-if instance_exists(ControlPointHUD){
-    ControlPointHUD.timer=newTimeLimit
-    GameServer.syncTimer=1
-}
-if instance_exists(GeneratorHUD){
-    GeneratorHUD.timer=newTimeLimit
-    GameServer.syncTimer=1
-}
-if instance_exists(ArenaHUD){
-    ArenaHUD.timer=newTimeLimit
-    GameServer.syncTimer=1
-}
-console_print('Time limit set to '+newTimeLimit)
-", "
-console_print('Syntax: timeLimit '+chr(34)+'<time>'+chr(34))
-console_print('Use: Change the time limit for the current round, and all rounds after. Does not affect D/KOTH. Setting is not saved.')
-")
-console_addCommand("respawnTime", "
-if not global.isHost{
-    console_print('Only the host can use this command.')
-    exit
-}
-var newRespawnTime;
-newRespawnTime=input[1]
-
-global.Server_Respawntime=real(newRespawnTime)*30
-console_print('Respawn time set to '+newRespawnTime)
-", "
-console_print('Syntax: respawnTime '+chr(34)+'<time>'+chr(34))
-console_print('Use: Change the respawn time. Setting is not saved.')
-")
-*/
