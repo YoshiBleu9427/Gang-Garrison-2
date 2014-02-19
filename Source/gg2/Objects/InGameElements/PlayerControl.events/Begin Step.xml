@@ -52,7 +52,16 @@ if global.chuWarSpecHud==0{
 
 var keybyte;
 keybyte = 0;
-    
+
+//DSM
+if keyboard_check_released(global.toggleSPD)==1 and global.showingSPD==0{
+    global.showingSPD=1
+}else if keyboard_check_released(global.toggleSPD)==1 and global.showingSPD==1{
+    global.showingSPD=0
+}
+
+if(keyboard_check_pressed(global.quickx4)) inputChat2();
+
 //character object exists
 if(global.myself.object != -1)
 {

@@ -60,7 +60,7 @@ do {
             plugins = receivestring(global.serverSocket, 1);
             if global.myCurrentPlugins!=''{
                 var pluginQuestion;
-                pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string(plugins)+
+                pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string_replace_all(plugins, ",", "#")+
                 "##If your plugins do not match the server's plugins or if you have plugins the server does not please select restart or quit.","Continue","Restart","Quit")
                 if (pluginQuestion==2){
                     restartGG2()

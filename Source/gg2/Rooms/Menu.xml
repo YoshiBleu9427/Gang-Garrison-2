@@ -93,7 +93,57 @@
       <stretch>false</stretch>
     </backgroundDef>
   </backgrounds>
-  <enableViews>false</enableViews>
+  <enableViews>true</enableViews>
+  <views>
+    <view>
+      <visibleOnRoomStart>true</visibleOnRoomStart>
+      <viewInRoom height="600" width="600" x="0" y="0"/>
+      <portOnScreen height="600" width="600" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+    <view>
+      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <viewInRoom height="480" width="640" x="0" y="0"/>
+      <portOnScreen height="480" width="640" x="0" y="0"/>
+      <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
+    </view>
+  </views>
   <instances>
     <instance>
       <object>MainMenuController</object>
@@ -104,6 +154,12 @@
     <instance>
       <object>DevMessageChecker</object>
       <position x="32" y="560"/>
+      <creationCode/>
+      <locked>false</locked>
+    </instance>
+    <instance>
+      <object>currentPlugins</object>
+      <position x="576" y="80"/>
       <creationCode/>
       <locked>false</locked>
     </instance>

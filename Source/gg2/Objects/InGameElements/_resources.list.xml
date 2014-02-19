@@ -21,4 +21,6 @@
   <resource name="fpsDisplay" type="RESOURCE"/>
   <resource name="pingDisplay" type="RESOURCE"/>
   <resource name="respawnTimerO" type="RESOURCE"/>
+  <resource name="dsmKillerInfo" type="RESOURCE"/>
+  <resource name="currentPlugins" type="RESOURCE"/>
 </resources>

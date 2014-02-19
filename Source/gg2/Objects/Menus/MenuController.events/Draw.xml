@@ -37,7 +37,14 @@
             }else if global.textHighlightColour==2{
                 draw_set_color(c_lime);
             }else if global.textHighlightColour==3{
-                draw_set_color(colour2)
+                if (instance_exists(StatsDisplayController) or instance_exists(StatsDisplayController) or instance_exists(LobbySideController)
+                or instance_exists(OptionsController) or instance_exists(DSMOptionsController) or instance_exists(DSMHostOptionsController)
+                or instance_exists(CustomiseOptionsController) or instance_exists(HUDOptionsController) or instance_exists(HostOptionsController)
+                or instance_exists(ControlsController) or instance_exists(MainMenuController) or instance_exists(InGameMenuController)){
+                    draw_set_color(colour2)
+                }else{
+                    draw_set_color(c_orange);
+                }
             }
         }
         else if(i == virtualitem) {
@@ -48,7 +55,14 @@
             }else if global.textHighlightColour==2{
                 draw_set_color(c_green);
             }else if global.textHighlightColour==3{
-                draw_set_color(colour1);
+                if (instance_exists(StatsDisplayController) or instance_exists(StatsDisplayController) or instance_exists(LobbySideController)
+                or instance_exists(OptionsController) or instance_exists(DSMOptionsController) or instance_exists(DSMHostOptionsController)
+                or instance_exists(CustomiseOptionsController) or instance_exists(HUDOptionsController) or instance_exists(HostOptionsController)
+                or instance_exists(ControlsController) or instance_exists(MainMenuController) or instance_exists(InGameMenuController)){
+                    draw_set_color(colour1)
+                }else{
+                    draw_set_color(c_red);
+                }
             } 
         } else {
             draw_set_color(c_white);    

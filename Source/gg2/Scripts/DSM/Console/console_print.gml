@@ -46,4 +46,3 @@
     while ds_list_size(global.consoleLog) > global.consoleMaxLines{
         ds_list_delete(global.consoleLog, 0)
     }
-

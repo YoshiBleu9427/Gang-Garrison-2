@@ -35,7 +35,7 @@ handle = http_new_get(url);
 
 image_speed = 5/room_speed;
 
-alarm[0]=900
+alarm[0]=300
 </argument>
       </arguments>
     </action>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="KEYPRESS" id="27">
+<event category="DRAW" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,11 +13,19 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(!instance_exists(InGameMenuController) and !instance_exists(OptionsController) and !instance_exists(ControlsController)
-&amp;&amp; !instance_exists(HUDOptionsController) and !instance_exists(DSMOptionsController) and !instance_exists(StatsDisplayController)
-and !instance_exists(Console) and !instance_exists(CustomiseOptionsController)){
-    instance_create(x,y,InGameMenuController);
-}
+        <argument kind="STRING">var xoffset, yoffset, xsize, ysize;
+xoffset = view_xview[0];
+yoffset = view_yview[0];
+xsize = view_wview[0];
+ysize = view_hview[0];
+
+draw_set_alpha(0.8)
+draw_rectangle_color(xoffset,(yoffset+ysize)-110,(xoffset+xsize),(yoffset+ysize)-92,c_black,c_black,c_black,c_black,false);
+draw_set_alpha(1)
+draw_set_halign(fa_center)
+draw_set_valign(fa_middle)
+draw_set_color(c_white)
+draw_text(xoffset+(xsize/2),(yoffset+ysize)-100,killMessage)
 </argument>
       </arguments>
     </action>

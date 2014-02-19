@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="KEYPRESS" id="27">
+<event category="DRAW" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,11 +13,15 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(!instance_exists(InGameMenuController) and !instance_exists(OptionsController) and !instance_exists(ControlsController)
-&amp;&amp; !instance_exists(HUDOptionsController) and !instance_exists(DSMOptionsController) and !instance_exists(StatsDisplayController)
-and !instance_exists(Console) and !instance_exists(CustomiseOptionsController)){
-    instance_create(x,y,InGameMenuController);
-}
+        <argument kind="STRING">draw_set_valign(fa_top)
+
+draw_set_alpha(0.8)
+draw_rectangle_color(x,y,x-(8*25),y+12+(string_count('#',global.totalCurrentPlugins)*11),c_black,c_black,c_black,c_black,false)
+
+draw_set_alpha(1)
+draw_set_halign(fa_right)
+draw_set_color(c_white)
+draw_text(x,y,"Currently Loaded Plugins:#"+string(global.totalCurrentPlugins))
 </argument>
       </arguments>
     </action>

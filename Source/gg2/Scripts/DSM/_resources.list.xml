@@ -6,7 +6,6 @@
   <resource name="Customise" type="GROUP"/>
   <resource name="ChatFixes" type="GROUP"/>
   <resource name="DSM_Change_Log" type="RESOURCE"/>
-  <resource name="DSM_BugsList" type="RESOURCE"/>
   <resource name="DSM_init" type="RESOURCE"/>
   <resource name="randomiseRotation" type="RESOURCE"/>
 </resources>

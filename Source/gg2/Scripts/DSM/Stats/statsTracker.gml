@@ -35,6 +35,7 @@ ini_write_real("Stats","ShotsMissed",global.statsShotsMissed)
 ini_close()
 
 global.accuracy=0
+global.kdr=0
 global.alreadyWroteStats=0
 global.inGameTime=0 //Recorded in frames
 global.displayTime=""

@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(240, 70, -300, -400, 30);
+    menu_create(240, 40, -300, -400, 30);
     
     if room==StatsR{
         statsTracker()
@@ -30,6 +30,8 @@
         menu_addtext(string(floor(global.statsPoints)))
         menu_addtext(string(floor(global.statsKills)))
         menu_addtext(string(floor(global.statsDeaths)))
+        calcKDR()
+        menu_addtext(string(global.kdr))
         menu_addtext(string(floor(global.statsAssists)))
         menu_addtext(string(floor(global.statsDestruction)))
         menu_addtext(string(floor(global.statsCaps)))
@@ -44,6 +46,8 @@
         menu_addtext(string(floor(global.statsPoints)+global.myself.stats[POINTS])) //Stats from current round
         menu_addtext(string(floor(global.statsKills)+global.myself.stats[KILLS]))
         menu_addtext(string(floor(global.statsDeaths)+global.myself.stats[DEATHS]))
+        calcKDR2()
+        menu_addtext(string(global.kdr))
         menu_addtext(string(floor(global.statsAssists)+global.myself.stats[ASSISTS]))
         menu_addtext(string(floor(global.statsDestruction)+global.myself.stats[DESTRUCTION]))
         menu_addtext(string(floor(global.statsCaps)+global.myself.stats[CAPS]))

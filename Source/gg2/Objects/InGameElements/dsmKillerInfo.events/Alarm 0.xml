@@ -13,7 +13,20 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">instance_destroy();
+        <argument kind="STRING">if(killedby.object != -1){
+    hp=killedby.object.hp;
+    maxHp=killedby.object.maxHp;
+    killMessage="Your killer had "+string(hp)+"/"+string(maxHp)+"HP."
+}else if(lastDamageSource == WEAPON_SENTRYTURRET and killedby.sentry){
+    hp=killedby.sentry.hp;
+    maxHp=killedby.sentry.maxHp;
+    killMessage="Your killer had "+string(hp)+"/"+string(maxHp)+"HP."
+}else{
+    //yourself or they died before you
+    hp=0
+    maxHp=0
+    killMessage="Your killer is dead."
+}
 </argument>
       </arguments>
     </action>

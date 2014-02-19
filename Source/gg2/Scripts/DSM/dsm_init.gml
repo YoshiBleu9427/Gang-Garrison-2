@@ -2,7 +2,6 @@ ini_open("DSM.ini")
 global.drawIntelArrows=ini_read_real("Settings","DrawIntelArrows",1)
 global.hpBarText=ini_read_real("Settings","HPBarText",1)
 global.ammoBar=ini_read_real("Settings","AmmoBar",1)
-//global.generatorStab=ini_read_real("Settings","GeneratorStab",1)
 global.recoilAnimations=ini_read_real("Settings","RecoilAnimations",1)
 global.showKillLog=ini_read_real("Settings","ShowKillLog",1)
 global.recordingEnabled=ini_read_real("Settings","RecordingEnabled",0)
@@ -17,17 +16,23 @@ global.oldAutobalance=ini_read_real("Settings","OldAutobalance",0)
 global.replayNamePrompt=ini_read_real("Settings","ReplayNamePrompt",1)
 global.deadScoreboard=ini_read_real("Settings","DeadScoreboard",0)
 global.skipFaucet=ini_read_real("Settings","SkipFaucet",0)
+global.roundScores=ini_read_real("Settings","RoundScores",1)
+global.killerInfo=ini_read_real("Settings","KillerInfo",0)
 
 global.displayingFPS=0
 global.displayingPing=0
 global.myCurrentPlugins=''
 global.chatCheck=false
 global.dsmMapChange=0
+global.showingSPD=0
+global.totalCurrentPlugins=""
+
+//Notes
+//-use size 40 bold gg2 font for dsm menu bg version
 
 ini_write_real("Settings","DrawIntelArrows",global.drawIntelArrows)
 ini_write_real("Settings","HPBarText",global.hpBarText)
 ini_write_real("Settings","AmmoBar",global.ammoBar)
-//ini_write_real("Settings","GeneratorStab",global.generatorStab)
 ini_write_real("Settings","RecoilAnimations",global.recoilAnimations)
 ini_write_real("Settings","ShowKillLog",global.showKillLog)
 ini_write_real("Settings","RecordingEnabled",global.recordingEnabled)
@@ -42,6 +47,8 @@ ini_write_real("Settings","OldAutobalance",global.oldAutobalance)
 ini_write_real("Settings","ReplayNamePrompt",global.replayNamePrompt)
 ini_write_real("Settings","DeadScoreboard",global.deadScoreboard)
 ini_write_real("Settings","SkipFaucet",global.skipFaucet)
+ini_write_real("Settings","RoundScores",global.roundScores)
+ini_write_real("Settings","KillerInfo",global.killerInfo)
 ini_close()
 
 statsTracker()

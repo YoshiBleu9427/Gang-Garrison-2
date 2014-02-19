@@ -233,3 +233,10 @@ if( global.killCam and victim == global.myself and killer and killer != victim a
     DeathCam.lastDamageSource=damageSource;
     DeathCam.team = global.myself.team;
 }
+if global.killerInfo==1 and !global.killCam and (victim==global.myself and killer and !(damageSource == KILL_BOX || damageSource == FRAG_BOX || damageSource == FINISHED_OFF || damageSource == FINISHED_OFF_GIB || damageSource == GENERATOR_EXPLOSION)){
+    instance_create(view_xview[0]/2,view_yview[0]+500,dsmKillerInfo)
+    dsmKillerInfo.killedby=killer
+    dsmKillerInfo.name=killer.name
+    dsmKillerInfo.lastDamageSource=damageSource
+    dsmKillerInfo.team=global.myself.team
+}

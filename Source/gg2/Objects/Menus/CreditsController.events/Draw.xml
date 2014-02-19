@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="KEYPRESS" id="27">
+<event category="DRAW" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,11 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(!instance_exists(InGameMenuController) and !instance_exists(OptionsController) and !instance_exists(ControlsController)
-&amp;&amp; !instance_exists(HUDOptionsController) and !instance_exists(DSMOptionsController) and !instance_exists(StatsDisplayController)
-and !instance_exists(Console) and !instance_exists(CustomiseOptionsController)){
-    instance_create(x,y,InGameMenuController);
-}
+        <argument kind="STRING">draw_sprite_ext(sprite_index,image_index,x,y,1,1,0,c_white,alpha)
 </argument>
       </arguments>
     </action>

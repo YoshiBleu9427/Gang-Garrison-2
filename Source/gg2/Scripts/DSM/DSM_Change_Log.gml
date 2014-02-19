@@ -1,5 +1,7 @@
 /*
-All options are in DSMOptionsController.
+Look in github for new updates, since I'm too lazy to add to this.
+
+All options are in DSMOptionsController or paths of that.
 Chat will not be added because of the chat serverside plugin.
 This list may become outdated because new updates add these features in.
 

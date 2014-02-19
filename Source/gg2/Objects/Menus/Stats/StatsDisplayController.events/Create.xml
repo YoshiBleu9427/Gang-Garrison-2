@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(40, 70, 300, -200, 30);
+    menu_create(40, 40, 300, -200, 30);
     //This object doesn't work with the menu thing for some reason
     instance_create(1,1,StatsDisplayValue)
 
@@ -31,6 +31,7 @@
     menu_addtext("Points:")
     menu_addtext("Kills:")
     menu_addtext("Deaths:")
+    menu_addtext("Kills/Deaths:")
     menu_addtext("Assists:")
     menu_addtext("Destruction:")
     menu_addtext("Caps:")

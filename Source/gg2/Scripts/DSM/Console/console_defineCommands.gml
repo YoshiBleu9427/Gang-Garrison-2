@@ -1,6 +1,8 @@
 //This defines all the built-in commands
 //input[1] = first argument, input[2] = second, etc...
 
+//it seems sticking a bracket in console_print will fuck it up, great parsing game maker as always
+
 console_addCommand("help", "
 var command;
 command=Console.input[1]
@@ -15,6 +17,7 @@ if command == ''{
     console_print('');
     console_print('If an argument contains spaces, please surround it with '+chr(34)+' '+chr(34)+'.');
     console_print('Some commands require Player IDs, the command '+chr(34)+'listPlayers'+chr(34)+' can show them to you.');
+    console_print('All commands are camel case, beginning with a lower case letter.');
     console_print('');
     console_print('The current command list:');
     key = ds_map_find_first(global.commandMap_DSM);
@@ -446,3 +449,90 @@ console_print('Syntax: nextMap '+chr(34)+'<map name>'+chr(34))
 console_print('Use: Sets the next map to the desired map.')
 console_print('Warning: An incorrect map name may lead to the server crashing; check your maps first.')
 ")
+
+console_addCommand("classlimits", "
+if not global.isHost{
+    console_print('Only the host can use this command.')
+    exit
+}
+
+var class, number;
+//In case they don't get set
+class=''
+number=1
+
+//What we want
+class=input[1]
+number=input[2]
+
+//To make sure it works fine
+class=string(class)
+number=real(number)
+
+
+//Get the class name
+if class=='Scout' or class=='scout' or class=='Runner' or class=='runner' or class=='Jello' or class=='jello' or class=='Sc' or class=='sc'  or class=='Ru'  or class=='ru'{ //Scout
+    global.classlimits[CLASS_SCOUT]=number
+    console_print('Scout limit changed to '+string(number)+'.')
+}else if class=='Pyro' or class=='pyro' or class=='Firebug' or class=='firebug' or class=='Fire' or class=='fire' or class=='F' or class=='f'  or class=='P'  or class=='p'{ //Pyro
+    global.classlimits[CLASS_PYRO]=number
+    console_print('Pyro limit changed to '+string(number)+'.')
+}else if class=='Soldier' or class=='soldier' or class=='Rocketman' or class=='rocketman' or class=='Solly' or class=='solly' or class=='So' or class=='so'  or class=='Ro'  or class=='ro'{ //Soldier
+    global.classlimits[CLASS_SOLDIER]=number
+    console_print('Soldier limit changed to '+string(number)+'.')
+}else if class=='Heavy' or class=='heavy' or class=='Overweight' or class=='overweight' or class=='Fat' or class=='fat' or class=='H' or class=='h'  or class=='O'  or class=='o'{ //Heavy
+    global.classlimits[CLASS_HEAVY]=number
+    console_print('Heavy limit changed to '+string(number)+'.')
+}else if class=='Demoman' or class=='demoman' or class=='Detonator' or class=='detonator' or class=='Demo' or class=='demo' or class=='Deto' or class=='deto' or class=='D' or class=='d'{ //Demoman
+    global.classlimits[CLASS_DEMOMAN]=number
+    console_print('Demoman limit changed to '+string(number)+'.')
+}else if class=='Medic' or class=='medic' or class=='Healer' or class=='healer' or class=='Med' or class=='med' or class=='M' or class=='m'  or class=='He'  or class=='he'{ //Medic
+    global.classlimits[CLASS_MEDIC]=number
+    console_print('Medic limit changed to '+string(number)+'.')
+}else if class=='Engineer' or class=='engineer' or class=='Constructor' or class=='constructor' or class=='Engie' or class=='engie' or class=='E' or class=='e'  or class=='C'  or class=='c'{ //Engie
+    global.classlimits[CLASS_ENGINEER]=number
+     console_print('Engineer limit changed to '+string(number)+'.')
+}else if class=='Spy' or class=='spy' or class=='Infiltrator' or class=='infiltrator' or class=='Sp' or class=='sp' or class=='I'  or class=='i'{ //Spy
+    global.classlimits[CLASS_SPY]=number
+    console_print('Spy limit changed to '+string(number)+'.')
+}else if class=='Sniper' or class=='sniper' or class=='Rifleman' or class=='rifleman' or class=='Sn' or class=='sn'  or class=='R'  or class=='r'{ //Sniper
+    global.classlimits[CLASS_SNIPER]=number
+    console_print('Sniper limit changed to '+string(number)+'.')
+}else if class=='Quote' or class=='quote' or class=='Curly' or class=='curly' or class=='QC' or class=='qc' or class=='Q/C' or class=='q/c' or class=='Q'  or class=='Cu'  or class=='q'  or class=='cu'{ //Q/C
+    global.classlimits[CLASS_QUOTE]=number
+    console_print('Quote/Curly limit changed to '+string(number)+'.')
+}else if class=='All' or class=='all' or class=='A' or class=='a' or class=='Every' or class=='every' or class=='Ev' or class=='ev'{
+    global.classlimits[CLASS_SCOUT]=number
+    global.classlimits[CLASS_PYRO]=number
+    global.classlimits[CLASS_SOLDIER]=number
+    global.classlimits[CLASS_HEAVY]=number
+    global.classlimits[CLASS_DEMOMAN]=number
+    global.classlimits[CLASS_MEDIC]=number
+    global.classlimits[CLASS_ENGINEER]=number
+    global.classlimits[CLASS_SPY]=number
+    global.classlimits[CLASS_SNIPER]=number
+    global.classlimits[CLASS_QUOTE]=number
+    console_print('All limits changed to '+string(number)+'.')
+}else{
+    console_print(class+' is not a valid class. For a list of possible class names type '+chr(34)+'help classlimits'+chr(34)+'.')
+}
+
+","
+console_print('Syntax: classlimit '+chr(34)+'<class name> <number>'+chr(34)+')
+console_print('Use: Set classlimits in-game.')
+console_print('Warning: Might not sync with clients properly. The settings will not be saved to the gg2.ini file, meaning they will not carry over between startups.')
+//So extensive :P
+console_print('List of possible names:')
+console_print('Scout/Runner: Scout, scout, Runner, runner, Jello, jello, Sc, sc, Ru, ru')
+console_print('Pyro/Firebug: Pyro, pyro, Firebug, firebug, Fire, fire, F, f, P, p')
+console_print('Soldier/Rocketman: Soldier, soldier, Rocketman, rocketman, Solly, solly, So, so, Ro, ro')
+console_print('Heavy/Overweight: Heavy, heavy, Overweight, overweight, Fat, fat, H, h, O, o')
+console_print('Demoman/Detonator: Demoman, demoman, Detonator, detonator, Demo, demo, Deto, deto, D, d')
+console_print('Medic/Healer: Medic, medic, Healer, healer, Med, med, M, m, He, he')
+console_print('Engineer/Constructor: Engineer, engineer, Constructor, constructor, Engie, engie, E, e, C, c')
+console_print('Spy/Infiltrator: Spy, spy, Infiltrator, infiltrator, Sp, sp, I, i')
+console_print('Sniper/Rifleman: Sniper, sniper, Rifleman, rifleman, Sn, sn, R, r')
+console_print('Quote/Curly: Quote, quote, Curly, curly, QC, qc, Q/C, q/c, Q, Cu, q, cu')
+console_print('All/Every: All, all, A, a, Every, every, Ev, ev')
+")
+

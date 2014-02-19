@@ -87,7 +87,7 @@
     global.mapRotationFile = customMapRotationFile;
     global.dedicatedMode = ini_read_real("Server", "Dedicated", 0);
     global.serverName = ini_read_string("Server", "ServerName", "My Server");
-    global.welcomeMessage = ini_read_string("Server", "WelcomeMessage", "Welcome! This server is running on DSM.");
+    global.welcomeMessage = ini_read_string("Server", "WelcomeMessage", "Welcome! This server is running on DSM: ganggarrison.com/forums/index.php?topic=34847");
     global.caplimit = max(1, min(255, ini_read_real("Server", "CapLimit", 5)));
     global.caplimitBkup = global.caplimit;
     global.autobalance = ini_read_real("Server", "AutoBalance",1);
@@ -440,9 +440,12 @@ global.launchMap = "";
     global.changeTeam = ini_read_real("Controls", "changeTeam", ord("N"));
     global.changeClass = ini_read_real("Controls", "changeClass", ord("M"));
     global.showScores = ini_read_real("Controls", "showScores", vk_shift);
+    //DSM
     global.superburst = ini_read_real("Controls", "superburst", ord("R"));
     global.screenshotButton = ini_read_real("Controls", "screenshotButton", vk_f10);
-    global.showWMButt=ini_read_real("Controls","ShowWMButt",ord("O"))
+    global.showWMButt=ini_read_real("Controls","ShowWMButt",vk_f7)
+    global.toggleSPD=ini_read_real("Controls","ToggleScorePerDeath",vk_f11)
+    global.quickx4=ini_read_real("Controls","Quickx4",vk_control)
     ini_close();
     
     calculateMonthAndDay();

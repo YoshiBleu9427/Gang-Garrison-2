@@ -12,6 +12,7 @@ list = ds_list_create();
 for (file = file_find_first(pattern, 0); file != ""; file = file_find_next())
 {
     ds_list_add(list, file);
+    global.totalCurrentPlugins+=string(string_delete(file,string_length(file)-3,4)+'#')
 }
 
 // Execute plugins

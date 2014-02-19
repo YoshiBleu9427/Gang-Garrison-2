@@ -1,5 +1,5 @@
 {
-    var currentDate, timestamp, serverMap, uniqueSuffix, nextUniqueSuffixNr, filename;
+    var currentDate, timestamp, serverMap, uniqueSuffix, nextUniqueSuffixNr, filename, serverName;
     currentDate = date_current_datetime();
     timestamp = string(date_get_year(currentDate)) + "-";
     if (date_get_month(currentDate) < 10) { timestamp = timestamp + "0"; }
@@ -13,8 +13,20 @@
     if (date_get_second(currentDate) < 10) { timestamp = timestamp + "0"; }
     timestamp += string(date_get_second(currentDate));
     
+    serverName=global.joinedServerName
+    //Characters reserved for file paths (http://msdn.microsoft.com/en-us/library/aa365247%28VS.85%29.aspx)
+    serverName=string_replace_all(serverName,"<"," ")
+    serverName=string_replace_all(serverName,">"," ")
+    serverName=string_replace_all(serverName,":"," ")
+    serverName=string_replace_all(serverName,'"'," ")
+    serverName=string_replace_all(serverName,"/"," ")
+    serverName=string_replace_all(serverName,"\"," ")
+    serverName=string_replace_all(serverName,"|"," ")
+    serverName=string_replace_all(serverName,"?"," ")
+    serverName=string_replace_all(serverName,"*"," ")
+    
     if instance_exists(PlayerControl)
-        serverMap = " " + global.joinedServerName + " " + global.currentMap;
+        serverMap = " " + serverName + " " + global.currentMap;
     else
         serverMap = "";
     

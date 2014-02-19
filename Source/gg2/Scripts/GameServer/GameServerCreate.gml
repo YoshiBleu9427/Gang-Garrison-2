@@ -176,7 +176,7 @@
         // Load plugins
         if global.myCurrentPlugins!=''{
             var pluginQuestion;
-            pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string(pluginList)+
+            pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string_replace_all(pluginList, ",", "#")+
             "##If your plugins do not match the server's plugins (could cause clients to desync) please select restart or quit.","Continue","Restart","Quit")
             if (pluginQuestion==2){
                 restartGG2()
