@@ -14,6 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">if(other.team != team) {
+<<<<<<< HEAD
     other.alarm[0] = other.regenerationBuffer;
     other.isShieldRegenerating = false;
     shotHit=true
@@ -26,6 +27,9 @@
         other.hp -= hitDamage * other.shieldResistance;
         other.shieldHp -= hitDamage;
     }
+=======
+    damageGenerator(ownerPlayer, other.id, hitDamage);
+>>>>>>> upstream/master
     instance_destroy();
 }
 </argument>

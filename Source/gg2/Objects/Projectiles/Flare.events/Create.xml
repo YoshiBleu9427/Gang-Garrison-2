@@ -13,12 +13,11 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">hitDamage=15
-durationIncrease=35
+        <argument kind="STRING">hitDamage = 20;
 flameLife = 40;
 burnIncrease = 8;
 afterburnFalloff = false;
-event_inherited()
+event_inherited() //remember this
 </argument>
       </arguments>
     </action>

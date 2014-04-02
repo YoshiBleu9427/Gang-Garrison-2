@@ -12,8 +12,12 @@
   <resource name="MineS" type="RESOURCE"/>
   <resource name="NeedleS" type="RESOURCE"/>
   <resource name="BladeProjectileS" type="RESOURCE"/>
+<<<<<<< HEAD
   <resource name="BladeProjectileRedS" type="RESOURCE"/>
   <resource name="BladeProjectileBlueS" type="RESOURCE"/>
+=======
+  <resource name="MineTrailS" type="RESOURCE"/>
+>>>>>>> upstream/master
   <resource name="BladeMask" type="RESOURCE"/>
   <resource name="PopS" type="RESOURCE"/>
   <resource name="StabMaskS" type="RESOURCE"/>

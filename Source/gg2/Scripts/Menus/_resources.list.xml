@@ -2,9 +2,15 @@
 <resources>
   <resource name="menu_create" type="RESOURCE"/>
   <resource name="menu_addlink" type="RESOURCE"/>
+<<<<<<< HEAD
   <resource name="menu_addtext" type="RESOURCE"/>
   <resource name="menu_addback" type="RESOURCE"/>
   <resource name="menu_change_option" type="RESOURCE"/>
+=======
+  <resource name="menu_addtablink" type="RESOURCE"/>
+  <resource name="menu_addback" type="RESOURCE"/>
+  <resource name="menu_background" type="RESOURCE"/>
+>>>>>>> upstream/master
   <resource name="menu_addedit_num" type="RESOURCE"/>
   <resource name="menu_addedit_text" type="RESOURCE"/>
   <resource name="menu_addedit_text2" type="RESOURCE"/>
@@ -17,6 +23,11 @@
   <resource name="menu_get_var" type="RESOURCE"/>
   <resource name="menu_set_var" type="RESOURCE"/>
   <resource name="gg2_write_ini" type="RESOURCE"/>
+<<<<<<< HEAD
   <resource name="DSM_write_ini" type="RESOURCE"/>
   <resource name="stats_read_ini" type="RESOURCE"/>
+=======
+  <resource name="menu_get_itemcount" type="RESOURCE"/>
+  <resource name="menu_hack_backbutton" type="RESOURCE"/>
+>>>>>>> upstream/master
 </resources>

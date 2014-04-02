@@ -12,5 +12,9 @@
   <resource name="Alternative Sprites" type="GROUP"/>
   <resource name="Updater" type="GROUP"/>
   <resource name="DevMessagesCheckerS" type="RESOURCE"/>
+<<<<<<< HEAD
   <resource name="DSM_IconS" type="RESOURCE"/>
+=======
+  <resource name="pointS" type="RESOURCE"/>
+>>>>>>> upstream/master
 </resources>

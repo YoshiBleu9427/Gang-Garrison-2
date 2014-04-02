@@ -49,6 +49,9 @@ if global.pluginCleanup==1{
         pluginscleanup()
     }
 }
+
+set_synchronization(global.monitorSync);
+>>>>>>> upstream/master
 </argument>
       </arguments>
     </action>

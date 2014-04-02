@@ -33,6 +33,12 @@
     reloadBuffer = 0;
     idle=true;
     
+<<<<<<< HEAD
+=======
+    // Threshhold system numbers
+    healTierHealth = 125; // HP above which healing is slowed
+    healTierAmount = 0.75; // Factor to which healing is slowed (stacks with healing ramp)
+>>>>>>> upstream/master
     
     if(golden)
     {
