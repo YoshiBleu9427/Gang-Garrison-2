@@ -137,7 +137,6 @@
 
     currentMapIndex = -1;
     global.currentMapArea = 1;
-<<<<<<< HEAD
 
     //This is pretty hacky, but it works for now.
     var desiredMapName, desiredMapIndex, i, numberOfMaps, message;
@@ -156,13 +155,6 @@
     }
 
     serverGotoMap(nextMapInRotation());
-=======
-    
-    if(global.launchMap == "")
-        serverGotoMap(nextMapInRotation());
-    else
-        serverGotoMap(global.launchMap);
->>>>>>> upstream/master
     
     global.joinedServerName = global.serverName; // so no errors of unknown variable occur when you create a server
     global.mapchanging = false; 
@@ -207,7 +199,6 @@
         pluginList = '';
     }
     
-<<<<<<< HEAD
     if global.recordingEnabled{
         global.justEnabledRecording = 1
     }
@@ -217,9 +208,4 @@
         global.monitorSync = 0;
         set_synchronization(0)
     }
-=======
-    // Disable vsync to minimize framerate drops which would be noticed as lag issues by all players.
-    // "vsync makes the server desync" --Arctic
-    set_synchronization(false);
->>>>>>> upstream/master
 }

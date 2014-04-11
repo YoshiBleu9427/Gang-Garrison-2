@@ -19,7 +19,9 @@ packetPlayerQueue = ds_map_find_value(global.pluginPacketPlayers, packetID);
 
 // check we have any packet to pop
 if (ds_queue_empty(packetBufferQueue))
+{
     return false;
+}
 
 // dequeue from both queues
 // (the queues are synchronised, two are used because GML has no tuples)

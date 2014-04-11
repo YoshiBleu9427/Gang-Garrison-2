@@ -18,6 +18,8 @@ packetPlayerQueue = ds_map_find_value(global.pluginPacketPlayers, packetID);
 
 // check we have any Player to return
 if (ds_queue_empty(packetPlayerQueue))
+{
     return -1;
+}
 
 return ds_queue_head(packetPlayerQueue);

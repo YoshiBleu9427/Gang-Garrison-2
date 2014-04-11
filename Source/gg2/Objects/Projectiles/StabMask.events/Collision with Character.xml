@@ -17,7 +17,8 @@
 {
     if(!collision_line(x,y-12,other.x,other.y,Obstacle,true,true)) and (!collision_line(x,y-12,other.x,other.y,TeamGate,true,true) and (!collision_line(x,y-12,other.x,other.y,BulletWall,true,true)))
     {
-        damageCharacter(ownerPlayer, other.id, hitDamage);
+        other.hp -= hitDamage;
+        other.timeUnscathed = 0;
         if (other.lastDamageDealer != ownerPlayer &amp;&amp; other.lastDamageDealer != other.player)
         {
             other.secondToLastDamageDealer = other.lastDamageDealer;
@@ -40,7 +41,7 @@
         }
         
         numKills += 1;
-        if (numKills &gt;= maxKills)
+        if numKills &gt;= maxKills
             instance_destroy();
     }
     else

@@ -48,7 +48,6 @@ haxxyStatue = SpyHaxxyStatueS;
       <arguments>
         <argument kind="STRING">// Override defaults
 canCloak = 1;
-numFlames = 4;
 </argument>
       </arguments>
     </action>

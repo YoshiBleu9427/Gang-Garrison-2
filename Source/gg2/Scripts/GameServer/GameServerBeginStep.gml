@@ -1,12 +1,10 @@
 if(serverbalance != 0)
-    balancecounter += 1;
+    balancecounter+=1;
 
 // Register with Lobby Server every 30 seconds
-if((frame mod 900) == 0 and global.run_virtual_ticks)
+if(global.useLobbyServer and (frame mod 900)==0)
     sendLobbyRegistration();
-    
-if(global.run_virtual_ticks)
-    frame += 1;
+frame += 1;
 
 if global.recordingEnabled and global.justEnabledRecording{
     beginRecording();
@@ -14,7 +12,7 @@ if global.recordingEnabled and global.justEnabledRecording{
 
 // Service all players
 var i;
-for(i=0; i < ds_list_size(global.players); i+=1)
+for(i=0; i<ds_list_size(global.players); i+=1)
 {
     var player;
     player = ds_list_find_value(global.players, i);
@@ -25,32 +23,25 @@ for(i=0; i < ds_list_size(global.players); i+=1)
         removePlayer(player);
         ServerPlayerLeave(i, global.sendBuffer);
         ServerBalanceTeams();
-<<<<<<< HEAD
         i-=1;
 
-=======
-        i -= 1;
->>>>>>> upstream/master
     }
     else
         processClientCommands(player, i);
 }
 
-if(syncTimer == 1 || ((frame mod 3600)==0) || global.setupTimer == 180 and global.run_virtual_ticks)
+if(syncTimer == 1 || ((frame mod 3600)==0) || global.setupTimer == 180)
 {
     serializeState(CAPS_UPDATE, global.sendBuffer);
     syncTimer = 0;
 }
 
-if(global.run_virtual_ticks)
-{
-    if((frame mod 7) == 0)
-        serializeState(QUICK_UPDATE, global.sendBuffer);
-    else
-        serializeState(INPUTSTATE, global.sendBuffer);
-}
+if((frame mod 7) == 0)
+    serializeState(QUICK_UPDATE, global.sendBuffer);
+else
+    serializeState(INPUTSTATE, global.sendBuffer);
 
-if(impendingMapChange > 0 and global.run_virtual_ticks)
+if(impendingMapChange > 0)
     impendingMapChange -= 1; // countdown until a map change
 
 if(global.winners != -1 and !global.mapchanging)
@@ -69,7 +60,7 @@ if(global.winners != -1 and !global.mapchanging)
     }
     
     global.mapchanging = true;
-    impendingMapChange = 300; // in 300 ticks (ten seconds), we'll do a map change
+    impendingMapChange = 300; // in 300 frames (ten seconds), we'll do a map change
     
     write_ubyte(global.sendBuffer, MAP_END);
     write_ubyte(global.sendBuffer, string_length(global.nextMap));
@@ -124,7 +115,7 @@ if(impendingMapChange == 0)
             team = TEAM_SPECTATOR;
         }
         timesChangedCapLimit = 0;
-        alarm[5] = 1;
+        alarm[5]=1;
     }
     // message lobby to update map name
     sendLobbyRegistration();

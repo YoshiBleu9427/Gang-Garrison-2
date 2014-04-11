@@ -10,8 +10,7 @@ var _sprite,
     _yscale,
     _rot,
     _color,
-    _alpha,
-    _voffset;
+    _alpha;
 _sprite = argument0;
 overlay = argument1;
 _subimg = argument2;
@@ -22,8 +21,7 @@ _yscale = argument6;
 _rot = argument7;
 _color = argument8;
 _alpha = argument9;
-_voffset = argument10;
 
 draw_sprite_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _rot, _color, _alpha);
 if (overlay != -1)
-    draw_sprite_ext(overlay, _subimg, _x, _y+_voffset, _xscale, _yscale, _rot, _color, _alpha);
+    draw_sprite_ext(overlay, _subimg, _x, _y, _xscale, _yscale, _rot, _color, _alpha);

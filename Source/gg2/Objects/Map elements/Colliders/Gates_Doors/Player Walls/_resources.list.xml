@@ -2,5 +2,4 @@
 <resources>
   <resource name="PlayerWall" type="RESOURCE"/>
   <resource name="PlayerWallHorizontal" type="RESOURCE"/>
-  <resource name="DropdownPlatform" type="RESOURCE"/>
 </resources>

@@ -17,7 +17,6 @@
     cursor_sprite = CrosshairS;
     global.levelchoice = 1
 
-<<<<<<< HEAD
     instance_create(576,80,currentPlugins)
     
     menu_create(40, 300, 200, 200, 30);
@@ -53,16 +52,9 @@
     ');
     
     menu_addlink("Options", '
-=======
-    menu_create(40, 300, 200, 200, 32);
-    menu_background(212, 24, 8, 12, 4);
-    menu_setdimmed();
-    
-    menu_addlink("Return to Game", '
->>>>>>> upstream/master
         instance_destroy();
+        instance_create(0,0,OptionsController);
     ');
-<<<<<<< HEAD
     
     menu_addback("Return to Game", '
         instance_destroy();
@@ -75,22 +67,6 @@
         //');
     //}
     menu_addlink("", '');
-=======
-    menu_addback("", '
-        instance_destroy();
-    ');
-    if (global.isHost) {
-        menu_addlink("Kick players", '
-            if(!instance_exists(ScoreTableController)) instance_create(0,0,ScoreTableController);
-            ScoreTableController.showadmin = true;
-            instance_destroy();
-        ');
-    }
-    menu_addlink("Options", '
-        instance_destroy();
-        instance_create(0,0,OptionsController);
-    ');
->>>>>>> upstream/master
     menu_addlink("Disconnect", '
         // Force dedicated mode to off so you can go to main menu instead of just restarting server
         global.dedicatedMode = 0;

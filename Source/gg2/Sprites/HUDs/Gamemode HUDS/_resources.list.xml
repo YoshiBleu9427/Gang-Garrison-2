@@ -4,5 +4,4 @@
   <resource name="Generator" type="GROUP"/>
   <resource name="Arena" type="GROUP"/>
   <resource name="Capture Points" type="GROUP"/>
-  <resource name="Team Deathmatch" type="GROUP"/>
 </resources>

@@ -54,7 +54,6 @@ else
         <argument kind="STRING">// Override defaults
 capStrength = 2;
 canDoublejump = 1;
-numFlames = 3;
 </argument>
       </arguments>
     </action>

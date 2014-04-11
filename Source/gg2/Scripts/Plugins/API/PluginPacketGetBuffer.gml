@@ -18,6 +18,8 @@ packetBufferQueue = ds_map_find_value(global.pluginPacketBuffers, packetID);
 
 // check we have any buffer to return
 if (ds_queue_empty(packetBufferQueue))
+{
     return -1;
+}
 
 return ds_queue_head(packetBufferQueue);

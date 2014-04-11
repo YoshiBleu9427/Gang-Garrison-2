@@ -15,12 +15,8 @@
       <arguments>
         <argument kind="STRING">if(other.team != team)
 {
-<<<<<<< HEAD
     other.hp -= hitDamage;
     shotHit=true
-=======
-    damageSentry(ownerPlayer, other.id, hitDamage);
->>>>>>> upstream/master
     other.lastDamageDealer = ownerPlayer;
     other.lastDamageSource = weapon;
     instance_destroy();

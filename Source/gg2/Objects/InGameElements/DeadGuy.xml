@@ -6,5 +6,5 @@
   <depth>0</depth>
   <persistent>false</persistent>
   <parent/>
-  <mask>CorpseCollisionMask</mask>
+  <mask/>
 </object>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="27200"/>
-  <constant name="GAME_VERSION_STRING" value="&quot;v2.7.2&quot;"/>
+  <constant name="VERSION" value="26900"/>
+  <constant name="GAME_VERSION_STRING" value="&quot;v2.6.9&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Derpduck's Server Mod&quot;"/>
-  <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com&quot;"/>
+  <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/&quot;"/>
   <constant name="DSM_VERSION" value="130"/>
   <constant name="DSM_VERSION_STRING" value="&quot;v1.3.0&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
@@ -17,7 +17,7 @@
   <constant name="LOBBY_SERVER_PORT" value="29944"/>
   <constant name="AUTH_SERVER_HOST" value="&quot;ganggarrison.com&quot;"/>
   <constant name="AUTH_SERVER_PORT" value="45022"/>
-  <constant name="PROTOCOL_UUID" value="&quot;40606687-4a6a-bb9a-b2f9-11b8ea8b95ed&quot;"/>
+  <constant name="PROTOCOL_UUID" value="&quot;7b548b6c-4eac-ad06-685f-a418ff0e8d55&quot;"/>
   <constant name="GG2_LOBBY_UUID" value="&quot;1ccf16b1-436d-856f-504d-cc1af306aaa7&quot;"/>
   <constant name="HELLO" value="0"/>
   <constant name="PLAYER_JOIN" value="1"/>
@@ -91,7 +91,7 @@
   <constant name="CLASS_QUOTE" value="9"/>
   <constant name="CHARACTER_ANIMATION_NORMAL" value="0"/>
   <constant name="CHARACTER_ANIMATION_INTEL" value="2"/>
-  <constant name="CHARACTER_ANIMATION_LEN" value="4"/>
+  <constant name="CHARACTER_ANIMATION_LEN" value="2"/>
   <constant name="CHARACTER_ANIMATION_DEAD" value="5"/>
   <constant name="WSAEWOULDBLOCK" value="-10035"/>
   <constant name="WSAENETDOWN" value="-10050"/>
@@ -161,7 +161,7 @@
   <constant name="PARTICLES_ALTERNATIVE" value="2"/>
   <constant name="MOUSE_LEFT" value="9001"/>
   <constant name="MOUSE_RIGHT" value="9002"/>
-  <constant name="HP_PER_POINT" value="800"/>
+  <constant name="HP_PER_POINT" value="400"/>
   <constant name="INTEL_MAX_TIMER" value="900"/>
   <constant name="COLOR_WHITE" value="&quot;255-255-255&quot;"/>
   <constant name="COLOR_RED" value="&quot;250-034-034&quot;"/>
@@ -179,6 +179,7 @@
   <constant name="MUSIC_BOTH" value="1"/>
   <constant name="MUSIC_INGAME_ONLY" value="2"/>
   <constant name="MUSIC_NONE" value="3"/>
+  <constant name="DSM_USER" value="1"/>
   <constant name="BOOT_BEHAVIOUR" value="0"/>
   <constant name="BOOT_STANDARD" value="0"/>
   <constant name="BOOT_DEBUG" value="1"/>

@@ -62,8 +62,6 @@ if(hasClassReward(global.paramPlayer, 'GW'))
 {
     omnomnomnomSprite = OmnomnomnomGoldS;
 }
-
-numFlames = 5;
 </argument>
       </arguments>
     </action>

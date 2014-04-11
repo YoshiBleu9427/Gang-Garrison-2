@@ -14,8 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">fadeout=true;
-alarm[1]=30/global.delta_factor;
-</argument>
+alarm[1]=30;</argument>
       </arguments>
     </action>
   </actions>

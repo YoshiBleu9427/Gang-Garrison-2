@@ -14,11 +14,8 @@
     exit;
 }
 
-<<<<<<< HEAD:Source/gg2/Rooms/Gang_Garrison_2.xml
 if global.skipFaucet==1 SplashController.alarm[1]=1
 
-=======
->>>>>>> upstream/master:Source/gg2/Rooms/Gang Garrison 2.xml
 if(BOOT_BEHAVIOUR == BOOT_DEBUG)
 {
     ini_open("gg2.ini");

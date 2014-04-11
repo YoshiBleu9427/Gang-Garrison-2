@@ -56,8 +56,6 @@ if(hasClassReward(global.paramPlayer, 'BH'))
 {
     sniperCrouchOverlay = HatBobbleSniperCrouchS;
 }
-
-numFlames = 4;
 </argument>
       </arguments>
     </action>

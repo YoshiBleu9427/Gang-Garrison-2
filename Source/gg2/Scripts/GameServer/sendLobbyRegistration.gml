@@ -1,6 +1,3 @@
-if(!global.useLobbyServer)
-    exit;
-
 var noOfPlayers;
 noOfPlayers = ds_list_size(global.players);
 if(global.dedicatedMode)

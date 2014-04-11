@@ -12,10 +12,5 @@
   <resource name="Collision maps" type="GROUP"/>
   <resource name="Alternative Objects" type="GROUP"/>
   <resource name="RoomChangeObserver" type="RESOURCE"/>
-<<<<<<< HEAD
   <resource filename="Updater" name=" Updater" type="RESOURCE"/>
-=======
-  <resource name="Updater" type="RESOURCE"/>
-  <resource name="RateController" type="RESOURCE"/>
->>>>>>> upstream/master
 </resources>

@@ -15,14 +15,9 @@
       <arguments>
         <argument kind="STRING">if (ammoCount &lt; 0){
     ammoCount = 0;
-<<<<<<< HEAD
 }else if (ammoCount &lt;= maxAmmo and isRefilling){
     ammoCount += 1.8;
 }
-=======
-else if (ammoCount &lt;= maxAmmo and isRefilling)
-    ammoCount += 1.8 * global.delta_factor;
->>>>>>> upstream/master
 </argument>
       </arguments>
     </action>
