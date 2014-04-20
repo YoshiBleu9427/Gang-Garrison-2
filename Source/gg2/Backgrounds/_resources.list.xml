@@ -3,4 +3,5 @@
   <resource name="GameElements" type="GROUP"/>
   <resource name="Maps" type="GROUP"/>
   <resource name="Updater" type="GROUP"/>
+  <resource name="DSM" type="GROUP"/>
 </resources>

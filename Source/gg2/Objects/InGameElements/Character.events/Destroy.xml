@@ -49,18 +49,20 @@
     }
     
     player.object=-1;
-    if (collision_point(x,y,SpawnRoom,0,0) &amp;&amp; (lastDamageDealer == player || lastDamageDealer == noone))
+    if (place_meeting(x,y,SpawnRoom))
         player.alarm[5] = 1;
     else 
-        player.alarm[5] = global.Server_Respawntime;
+        player.alarm[5] = global.Server_Respawntime / global.delta_factor;
     
     //part type destroy
-    if(variable_local_exists("jumpFlameParticleType")) {
-            part_type_destroy(jumpFlameParticleType);
-    }
+    if(variable_local_exists("jumpFlameParticleType"))
+        part_type_destroy(jumpFlameParticleType);
     
-    if !instance_exists(respawnTimerO) and global.myself==player and !instance_exists(ArenaHUD) and (global.respawnTimer){
-        instance_create(0,0,respawnTimerO)
+    if(variable_local_exists("jumpDustParticleSystem"))
+        part_type_destroy(jumpDustParticleSystem);
+
+    if !instance_exists(DSM_RespawnTimer) and global.myself==player and !instance_exists(ArenaHUD) and (global.dsmRespawnTimer){
+        instance_create(0,0,DSM_RespawnTimer)
     }
 }
 </argument>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Projectiles" type="GROUP"/>
+  <resource name="HUDs" type="GROUP"/>
+  <resource name="GameElements" type="GROUP"/>
+  <resource name="DSM_IconS" type="RESOURCE"/>
+</resources>

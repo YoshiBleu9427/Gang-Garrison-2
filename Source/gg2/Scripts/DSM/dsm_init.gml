@@ -1,62 +1,83 @@
+//We'll do a better format for this than game_init script
+
 ini_open("DSM.ini")
-global.drawIntelArrows=ini_read_real("Settings","DrawIntelArrows",1)
-global.hpBarText=ini_read_real("Settings","HPBarText",1)
-global.ammoBar=ini_read_real("Settings","AmmoBar",1)
-global.recoilAnimations=ini_read_real("Settings","RecoilAnimations",1)
-global.showKillLog=ini_read_real("Settings","ShowKillLog",1)
-global.recordingEnabled=ini_read_real("Settings","RecordingEnabled",0)
-global.healingArrow=ini_read_real("Settings","HealingArrow",1)
-global.recordStats=ini_read_real("Settings","RecordStats",1)
-global.chuWarSpecHud=ini_read_real("Settings","ChuWarSpecHud",0)
-global.respawnTimer=ini_read_real("Settings","RespawnTimer",1)
-global.recordingType=ini_read_real("Settings","RecordingType",0)
-global.soundPanning=ini_read_real("Settings","SoundPanning",1)
-global.pluginCleanup=ini_read_real("Settings","PluginCleanup",1)
-global.oldAutobalance=ini_read_real("Settings","OldAutobalance",0)
-global.replayNamePrompt=ini_read_real("Settings","ReplayNamePrompt",1)
-global.deadScoreboard=ini_read_real("Settings","DeadScoreboard",0)
-global.skipFaucet=ini_read_real("Settings","SkipFaucet",0)
-global.roundScores=ini_read_real("Settings","RoundScores",1)
-global.killerInfo=ini_read_real("Settings","KillerInfo",0)
+    global.colouredProjectiles=ini_read_real("Cosmetic","ColouredProjectiles",1)
+    ini_write_real("Cosmetic","ColouredProjectiles",global.colouredProjectiles)
 
-global.displayingFPS=0
-global.displayingPing=0
-global.myCurrentPlugins=''
-global.chatCheck=false
-global.dsmMapChange=0
-global.showingSPD=0
-global.totalCurrentPlugins=""
+    global.dsmHUDs=ini_read_real("Cosmetic","DSMHUDs",1)
+    ini_write_real("Cosmetic","DSMHUDs",global.dsmHUDs)
 
-//Notes
-//-use size 40 bold gg2 font for dsm menu bg version
+    global.dsmBackground=ini_read_real("Cosmetic","DSMBackground",1) //0=normal, 1=dsm, match text colour, 2=dsm, any colour, 3=no downloaded bg
+    ini_write_real("Cosmetic","DSMBackground",global.dsmBackground)
 
-ini_write_real("Settings","DrawIntelArrows",global.drawIntelArrows)
-ini_write_real("Settings","HPBarText",global.hpBarText)
-ini_write_real("Settings","AmmoBar",global.ammoBar)
-ini_write_real("Settings","RecoilAnimations",global.recoilAnimations)
-ini_write_real("Settings","ShowKillLog",global.showKillLog)
-ini_write_real("Settings","RecordingEnabled",global.recordingEnabled)
-ini_write_real("Settings","HealingArrow",global.healingArrow)
-ini_write_real("Settings","RecordStats",global.recordStats)
-ini_write_real("Settings","ChuWarSpecHud",global.chuWarSpecHud)
-ini_write_real("Settings","RespawnTimer",global.respawnTimer)
-ini_write_real("Settings","RecordingType",global.recordingType)
-ini_write_real("Settings","SoundPanning",global.soundPanning)
-ini_write_real("Settings","PluginCleanup",global.pluginCleanup)
-ini_write_real("Settings","OldAutobalance",global.oldAutobalance)
-ini_write_real("Settings","ReplayNamePrompt",global.replayNamePrompt)
-ini_write_real("Settings","DeadScoreboard",global.deadScoreboard)
-ini_write_real("Settings","SkipFaucet",global.skipFaucet)
-ini_write_real("Settings","RoundScores",global.roundScores)
-ini_write_real("Settings","KillerInfo",global.killerInfo)
+    global.dsmTextColour=ini_read_real("Cosmetic","DSMTextColour",0) //0=red, 1=blue, 2=green, 3=yellow, 4=purple, 5=random
+    ini_write_real("Cosmetic","DSMTextColour",global.dsmTextColour)
+    
+    global.dsmStereoSound=ini_read_real("Settings","DSMStereoSound",1)
+    ini_write_real("Settings","DSMStereoSound",global.dsmStereoSound)
+    
+    global.dsmSkipFaucet=ini_read_real("Settings","DSMSkipFaucet",0)
+    ini_write_real("Settings","DSMSkipFaucet",global.dsmSkipFaucet)
+    
+    global.dsmShowKillLog=ini_read_real("Cosmetic","DSMShowKillLog",1) //0=no, 1=yes, 2=semi-transparent
+    ini_write_real("Cosmetic","DSMShowKillLog",global.dsmShowKillLog)
+    
+    global.dsmDrawIntelArrows=ini_read_real("Cosmetic","DSMDrawIntelArrows",1)
+    ini_write_real("Cosmetic","DSMDrawIntelArrows",global.dsmDrawIntelArrows)
+    
+    global.dsmRespawnTimer=ini_read_real("Settings","DSMRespawnTimer",1) //0=off, 1=vanilla, 2=type 2
+    ini_write_real("Settings","DSMRespawnTimer",global.dsmRespawnTimer)
+    
+    global.dsmHealingArrow=ini_read_real("Cosmetic","DSMHealingArrow",1)
+    ini_write_real("Cosmetic","DSMHealingArrow",global.dsmHealingArrow)
+    
+    global.dsmPingDisplay=ini_read_real("Settings","DSMPingDisplay",1)
+    ini_write_real("Settings","DSMPingDisplay",global.dsmPingDisplay)
+    
+    global.dsmFPSDisplay=ini_read_real("Settings","DSMFPSDisplay",0)
+    ini_write_real("Settings","DSMFPSDisplay",global.dsmFPSDisplay)
+    
+    global.dsmHPText=ini_read_real("Cosmetic","DSMHPText",1) //0=off, 1=centre, 2=left
+    ini_write_real("Cosmetic","DSMHPText",global.dsmHPText)
+    
+    global.dsmAmmoBars=ini_read_real("Cosmetic","DSMAmmoBars",1)
+    ini_write_real("Cosmetic","DSMAmmoBars",global.dsmAmmoBars)
+    
+    global.dsmShowScoreboardWhenDead=ini_read_real("Settings","DSMShowScoreboardWhenDead",0)
+    ini_write_real("Settings","DSMShowScoreboardWhenDead",global.dsmShowScoreboardWhenDead)
+    
+    global.dsmShowAssists=ini_read_real("Settings","DSMShowAssists",1)
+    ini_write_real("Settings","DSMShowAssists",global.dsmShowAssists)
+    
+    global.dsmKillerInfo=ini_read_real("Settings","DSMKillerInfo",1)
+    ini_write_real("Settings","DSMKillerInfo",global.dsmKillerInfo)
+    
+    global.dsmRecordStats=ini_read_real("Settings","DSMRecordStats",1)
+    ini_write_real("Settings","DSMRecordStats",global.dsmRecordStats)
 ini_close()
 
-statsTracker()
-custom_init()
-ChatFix_miku()
+//DSM Controls
+ini_open("controls.gg2")
+    global.dsmQuickX4=ini_read_real("Controls","DSMQuickX4",vk_control)
+    global.dsmSuperburst = ini_read_real("Controls","DSMSuperburst",ord("R"))
+    
+    //global.screenshotButton = ini_read_real("Controls", "screenshotButton", vk_f10);
+    //global.showWMButt=ini_read_real("Controls","ShowWMButt",vk_f7)
+    //global.toggleSPD=ini_read_real("Controls","ToggleScorePerDeath",vk_f11)
+ini_close()
 
-if(!directory_exists(working_directory + "\Replays")) directory_create(working_directory + "\Replays")
-global.replayBuffer = buffer_create() //Used by the server to save the replay and by the client to load it.
-global.isPlayingReplay=0
-global.replaySpeed=1
-global.justEnabledRecording=0 //Used to know if the recording just began, to save the first bytes.
+//Variables
+global.DSM_ConsoleFont=font_add_sprite(DSM_ConsoleFontS,ord("!"),false,0);
+global.myCurrentPlugins=""
+global.totalCurrentPlugins=""
+globalvar colour1, colour2;
+global.dsmMapChange=0
+
+//Run other DSM scripts
+chatFix_miku()
+console_init()
+spriteLoader()
+soundLoader()
+stats_init()
+
+if(!directory_exists(working_directory + "\Custom")) directory_create(working_directory + "\Custom")

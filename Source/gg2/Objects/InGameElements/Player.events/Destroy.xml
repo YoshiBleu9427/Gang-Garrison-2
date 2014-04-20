@@ -13,22 +13,21 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">    if(object != -1) with(object) instance_destroy();
-    if (rewards != -1)
-        ds_map_destroy(rewards);
-    if (ghost != -1)
-    {
-        with (ghost)
-            instance_destroy();
-    }
-    socket_destroy(socket);
+        <argument kind="STRING">if(object != -1) with(object) instance_destroy();
+if (rewards != -1)
+    ds_map_destroy(rewards);
+with (ghost)
+    instance_destroy();
+socket_destroy(socket);
     
-    with(Rocket) if(ownerPlayer == other.id) instance_destroy();
-    with(BurningProjectile) if(ownerPlayer == other.id) instance_destroy();
-    with(Shot) if(ownerPlayer == other.id) instance_destroy();
-    with(Needle) if(ownerPlayer == other.id) instance_destroy();
-    with(Sentry) if(ownerPlayer == other.id) instance_destroy();
-    with(DeathCam) if(killedby == other.id) instance_destroy();
+with(Rocket) if(ownerPlayer == other.id) instance_destroy();
+with(BurningProjectile) if(ownerPlayer == other.id) instance_destroy();
+with(Shot) if(ownerPlayer == other.id) instance_destroy();
+with(Needle) if(ownerPlayer == other.id) instance_destroy();
+with(Sentry) if(ownerPlayer == other.id) instance_destroy();
+with(DeathCam) if(killedby == other.id) instance_destroy();
+
+addStats()
 </argument>
       </arguments>
     </action>

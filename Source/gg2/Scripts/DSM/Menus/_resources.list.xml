@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="DSM_write_ini" type="RESOURCE"/>
+  <resource name="stats_read_ini" type="RESOURCE"/>
+  <resource name="menu_change_option" type="RESOURCE"/>
+</resources>

@@ -15,7 +15,7 @@
       <arguments>
         <argument kind="STRING">if(readyToShoot &amp;&amp; !owner.cloak &amp;&amp; ammoCount &gt; 0)
 {
-    if(global.isHost or global.isPlayingReplay)
+    if(global.isHost)
     {
         var seed;
         seed = irandom(65535);
@@ -44,7 +44,7 @@ else if(readyToStab &amp;&amp; owner.cloak)
         stab.overlay = HatBobbleSpyStabS;
     }
     readyToStab = false;
-    alarm[1] = StabreloadTime;
+    alarm[1] = StabreloadTime / global.delta_factor;
 }
 </argument>
       </arguments>

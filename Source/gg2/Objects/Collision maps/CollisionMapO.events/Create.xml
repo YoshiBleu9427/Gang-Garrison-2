@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <event category="CREATE" id="0">
   <actions>
-    <action id="542" library="1">
-      <!--action name: Transform_Sprite-->
-      <kind>NORMAL</kind>
-      <allowRelative>false</allowRelative>
-      <question>false</question>
-      <canApplyTo>true</canApplyTo>
-      <actionType>FUNCTION</actionType>
-      <functionName>action_sprite_transform</functionName>
-      <relative>false</relative>
-      <not>false</not>
-      <appliesTo>.self</appliesTo>
-      <arguments>
-        <argument kind="EXPRESSION">6</argument>
-        <argument kind="EXPRESSION">6</argument>
-        <argument kind="EXPRESSION">0</argument>
-        <argument kind="MENU">0</argument>
-      </arguments>
-    </action>
     <action id="603" library="1">
       <!--action name: Code-->
       <kind>CODE</kind>
@@ -31,9 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">visible=1
-image_alpha=0
-setVisibility=0
+        <argument kind="STRING">image_xscale = 6;
+image_yscale = 6;
+
 </argument>
       </arguments>
     </action>

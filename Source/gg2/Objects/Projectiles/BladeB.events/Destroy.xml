@@ -15,13 +15,7 @@
       <arguments>
         <argument kind="STRING">owner.currentWeapon.bladesOut -= 1;
 if (ammoDrained &lt; owner.currentWeapon.refireTime) 
-    owner.currentWeapon.ammoCount -= owner.currentWeapon.refireTime;
-
-if shotHit==false{
-    handleHitOrMiss(ownerPlayer,0)
-}else{
-    handleHitOrMiss(ownerPlayer,1)
-}
+    owner.currentWeapon.ammoCount -= owner.currentWeapon.refireTime - ammoDrained;
 </argument>
       </arguments>
     </action>

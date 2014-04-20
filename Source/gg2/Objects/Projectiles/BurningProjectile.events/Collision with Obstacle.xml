@@ -15,8 +15,7 @@
       <arguments>
         <argument kind="STRING">{
     instance_destroy();
-}
-</argument>
+}</argument>
       </arguments>
     </action>
   </actions>

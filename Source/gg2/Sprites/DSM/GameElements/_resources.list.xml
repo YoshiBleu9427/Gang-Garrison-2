@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="DSM_ConsoleFontS" type="RESOURCE"/>
+  <resource name="ConsoleS" type="RESOURCE"/>
+  <resource name="DSM_MenuBackgroundVersionS" type="RESOURCE"/>
+</resources>

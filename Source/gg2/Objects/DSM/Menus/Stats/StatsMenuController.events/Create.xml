@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+        menu_create(40, 100, 200, 200, 32)
+    
+    if (room != StatsR){
+        menu_setdimmed()
+    }else{
+        stats_init()
+    }
+    
+    menu_background(512, 24, 8, 12, 4);
+    
+    timeString()
+    calcKDR()
+    
+    menu_addlink("In-Game Time (Minutes): "+string(global.displayTime),"")
+    menu_addlink("Games: "+string(floor(global.statsGames)),"")
+    menu_addlink("Wins: "+string(floor(global.statsWins)),"")
+    menu_addlink("Losses: "+string(global.statsLosses),"")
+    menu_addlink("Points: "+string(floor(global.statsPoints)),"")
+    menu_addlink("Kills: "+string(floor(global.statsKills)),"")
+    menu_addlink("Deaths: "+string(floor(global.statsDeaths)),"")
+    menu_addlink("Kills/Deaths: "+string(global.kdr),"")
+    menu_addlink("Assists: "+string(floor(global.statsAssists)),"")
+    menu_addlink("Destruction: "+string(floor(global.statsDestruction)),"")
+    menu_addlink("Caps: "+string(floor(global.statsCaps)),"")
+    menu_addlink("Defences: "+string(floor(global.statsDefences)),"")
+    menu_addlink("Ubers: "+string(floor(global.statsInvulns)),"")
+    menu_addlink("Healing: "+string(floor(global.statsHealing)),"")
+    menu_addlink("Stabs: "+string(floor(global.statsStabs)),"")
+    //menu_addlink("Shots Hit:","")
+    //menu_addlink("Shots Missed:","")
+    //menu_addlink("Accuracy:","")
+    
+    menu_addback("Back", '
+        instance_destroy();
+        if(room == StatsR)
+            room_goto_fix(Menu);
+        else
+            instance_create(0,0,InGameMenuController);
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

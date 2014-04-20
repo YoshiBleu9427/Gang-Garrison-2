@@ -20,16 +20,14 @@ if(!instance_exists(AmmoCounter))
 if (justShot)
 {
     justShot = false;
-    if global.recoilAnimations==1{
-        //Recoil Animation
-        if (sprite_index != recoilSprite)
-        {
-            sprite_index = recoilSprite
-            image_index = 0
-            image_speed = recoilImageSpeed
-        }
-        alarm[6] = recoilTime;
+    //Recoil Animation
+    if (sprite_index != recoilSprite)
+    {
+        sprite_index = recoilSprite;
+        image_index = 0;
+        image_speed = recoilImageSpeed * global.delta_factor;
     }
+    alarm[6] = recoilTime / global.delta_factor;
 }
 </argument>
       </arguments>

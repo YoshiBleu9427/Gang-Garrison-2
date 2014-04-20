@@ -8,7 +8,9 @@
   </grid>
   <speed>30</speed>
   <persistent>false</persistent>
-  <creationCode/>
+  <creationCode>window_set_position(previous_window_x+previous_window_w/2-window_get_width()/2, previous_window_y);
+
+</creationCode>
   <backgroundColor>C0C0C0</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>
   <backgrounds>
@@ -153,13 +155,7 @@
     </instance>
     <instance>
       <object>DevMessageChecker</object>
-      <position x="32" y="560"/>
-      <creationCode/>
-      <locked>false</locked>
-    </instance>
-    <instance>
-      <object>currentPlugins</object>
-      <position x="576" y="80"/>
+      <position x="32" y="528"/>
       <creationCode/>
       <locked>false</locked>
     </instance>

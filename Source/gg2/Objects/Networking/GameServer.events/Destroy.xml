@@ -17,15 +17,10 @@
     sendLobbyUnreg();
 }
 
-ds_list_destroy(global.banned_ips);
 ds_list_destroy(global.players);
 socket_destroy(global.tcpListener);
 socket_destroy(global.serverSocket);
 buffer_destroy(serverId);
-
-if global.recordingEnabled{
-    endRecording();
-}
 
 with(Player)
     instance_destroy();
@@ -44,11 +39,13 @@ if (global.attemptPortForward and portForwarded)
 
 room_goto_fix(Menu);
 
-if global.pluginCleanup==1{
+if (global.serverPluginsInUse){
     if show_message_ext("Clean up server plugins?","Yes","","No")==1{
         pluginscleanup()
     }
 }
+    
+set_synchronization(global.monitorSync);
 </argument>
       </arguments>
     </action>

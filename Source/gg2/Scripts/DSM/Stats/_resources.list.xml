@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="statsTracker" type="RESOURCE"/>
+  <resource name="stats_init" type="RESOURCE"/>
   <resource name="addStats" type="RESOURCE"/>
   <resource name="writeStats" type="RESOURCE"/>
-  <resource name="calcAccuracy" type="RESOURCE"/>
-  <resource name="calcAccuracy2" type="RESOURCE"/>
   <resource name="calcKDR" type="RESOURCE"/>
-  <resource name="calcKDR2" type="RESOURCE"/>
   <resource name="timeString" type="RESOURCE"/>
-  <resource name="handleHitOrMiss" type="RESOURCE"/>
 </resources>

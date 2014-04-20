@@ -13,15 +13,13 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(instance_exists(InGameMenuController) or instance_exists(OptionsController) or instance_exists(ControlsController)
-or instance_exists(HUDOptionsController) or instance_exists(DSMOptionsController) or instance_exists(StatsDisplayController)
-or instance_exists(Console))
+        <argument kind="STRING">if(instance_exists(MenuController))
     exit;
     
 var kickOpen;
 kickOpen = false
-if instance_exists(ScoreTableController)
-    if ScoreTableController.showadmin
+if (instance_exists(ScoreTableController))
+    if (ScoreTableController.showadmin)
         kickOpen = true;
     
 if(instance_exists(TeamSelectController) || instance_exists(ClassSelectController) || kickOpen)
@@ -30,37 +28,36 @@ else
     menuOpen = false;
 
 //Checking for input - Mapped Keys
-if(keyboard_check_pressed(global.changeTeam)) inputChangeTeam();
-if(keyboard_check_pressed(global.changeClass)) inputChangeClass();
+if(keyboard_check_pressed(global.changeTeam))
+    inputChangeTeam();
+if(keyboard_check_pressed(global.changeClass))
+    inputChangeClass();
 
-var scoreKeyDown;
-scoreKeyDown = keyboard_check_direct(global.showScores);
-if(scoreKeyDown and !oldScoreKeyDown)
-    inputShowScores();
-else if(!scoreKeyDown and oldScoreKeyDown)
-    inputCloseScores();
-oldScoreKeyDown = scoreKeyDown;
-
-if global.chuWarSpecHud==0{
-    if global.deadScoreboard==1 and instance_exists(Spectator){
+if global.myself.team!=TEAM_SPECTATOR{
+    if (global.dsmShowScoreboardWhenDead==1 and instance_exists(Spectator)){
         inputShowScores()
     }
-    if (global.deadScoreboard==1 and !instance_exists(Spectator)) and (!scoreKeyDown){
+    if (global.dsmShowScoreboardWhenDead==1 and !instance_exists(Spectator)) and (instance_exists(ScoreTableController)){
         inputCloseScores()
     }
 }
 
+event_user(8);
+    
 var keybyte;
 keybyte = 0;
 
-//DSM
-if keyboard_check_released(global.toggleSPD)==1 and global.showingSPD==0{
-    global.showingSPD=1
-}else if keyboard_check_released(global.toggleSPD)==1 and global.showingSPD==1{
-    global.showingSPD=0
-}
-
-if(keyboard_check_pressed(global.quickx4)) inputChat2();
+/* KeyByte flags:
+    02 - down
+    
+    04 - medic call
+    08 - primary
+    10 - secondary
+    
+    20 - right
+    40 - left
+    80 - up
+*/
 
 //character object exists
 if(global.myself.object != -1)
@@ -70,15 +67,21 @@ if(global.myself.object != -1)
         if(keyboard_check(global.left)) keybyte |= $40;
         if(keyboard_check(global.right)) keybyte |= $20;
         if(keyboard_check(global.jump)) keybyte |= $80;
+        if(keyboard_check(global.down)) keybyte |= $02;
         if(keyboard_check_pressed(global.medic)) keybyte |= $04;
         if(keyboard_check_pressed(global.chat1)) inputChat1();
         if(keyboard_check_pressed(global.chat2)) inputChat2();
         if(keyboard_check_pressed(global.chat3)) inputChat3();
         if(keyboard_check_pressed(global.drop)) inputDrop();
         
-        if keyboard_check_pressed(global.superburst){
-            write_ubyte(global.serverSocket, CHAT_BUBBLE);
-            write_ubyte(global.serverSocket, 46);
+        //DSM
+        if keyboard_check_pressed(global.dsmSuperburst){
+            write_ubyte(global.serverSocket, CHAT_BUBBLE)
+            write_ubyte(global.serverSocket, 46)
+        }
+        if(keyboard_check_pressed(global.dsmQuickX4)){
+            write_ubyte(global.serverSocket, CHAT_BUBBLE)
+            write_ubyte(global.serverSocket, 30)
         }
         
         if(!global.myself.humiliated)
@@ -110,21 +113,19 @@ if(global.myself.object != -1)
         }
     }
     
-    ClientInputstate(global.serverSocket, keybyte);
+    if(global.run_virtual_ticks)
+        ClientInputstate(global.serverSocket, keybyte);
     socket_send(global.serverSocket);
-    
-// spectator controls
 }
+// spectator controls
 else if (instance_exists(Spectator))
 {
     if(!menuOpen)
     {
-        if !keyboard_check(vk_space){
-            if(mouse_check_button_pressed(mb_left))
-                with (Spectator) event_user(7);
-            if(mouse_check_button_pressed(mb_right))
-                with (Spectator) event_user(8);
-        }
+        if(mouse_check_button_pressed(mb_left))
+            with (Spectator) event_user(7);
+        if(mouse_check_button_pressed(mb_right))
+            with (Spectator) event_user(8);
     }
 }
 
@@ -133,8 +134,9 @@ if(keybyte != 0
         or keyboard_check(global.right)
         or keyboard_check(global.jump)
         or keyboard_check(global.down)) {
-    afktimer=afktimeout;
+    afktimer = afktimeout;
 }
+
 </argument>
       </arguments>
     </action>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">currentLine=0
+lineColour=c_yellow
+
+line[0]="I've told myself so many times before"
+line[1]="But this time I think I mean it for sure"
+line[2]="We have reached a full stop"
+line[3]="Nothing's gonna save us from the big drop"
+line[4]="Reached our natural conclusion"
+line[5]="Outlived the illusion"
+line[6]="I hate being in these situations"
+line[7]="That call for diplomatic relations"
+line[8]="If I only knew the answer"
+line[9]="Or I thought we had a chance"
+line[10]="Or I could stop this"
+line[11]="I would stop this thing from spreading like a cancer"
+line[12]="What can I say? (I don't want to play) anymore"
+line[13]="What can I say? I'm heading for the door"
+line[14]="I can't stand this emotional violence"
+line[15]="Leave in silence"
+line[16]="Leave in silence"
+line[17]="We've been running around in circles all year"
+line[18]="Doing this and that and getting nowhere"
+line[19]="This'll be the last time"
+line[20]="(I think I said that last time)"
+line[21]="If I only had a potion,"
+line[22]="Some magical lotion"
+line[23]="That could stop this, I would stop this"
+line[24]="I would set the wheels in motion"
+line[25]="What can I say? (I don't want to play) anymore"
+line[26]="What can I say? I'm heading for the door"
+line[27]="I can't stand this emotional violence"
+line[28]="Leave in silence"
+line[29]="Leave in silence"
+line[30]="Leave in silence"
+line[31]="Leave in silence"
+line[32]="Leave in silence"
+line[33]="Leave in silence"
+line[34]=""
+line[35]=":D Happy Birthday, DPM! R.I.P."
+line[36]=""
+alarm[0]=50
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

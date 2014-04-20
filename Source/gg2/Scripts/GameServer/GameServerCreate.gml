@@ -22,9 +22,6 @@
     global.tcpListener = -1;
     global.serverSocket = -1;
     
-    //DSM
-    //global.dsmPlayers=ds_list_create()
-    
     global.banned_ips = ds_list_create();
     var text, str;
     if (file_exists("Banned_IPs.txt")){
@@ -37,14 +34,6 @@
         }
         file_text_close(text);
     }
-    global.currentMapIndex = 0;
-    global.currentMapArea = 1;
-    
-    if global.recordingEnabled
-    {
-        global.justEnabledRecording = 1
-    }
-    
     
     var i;
     serverId = buffer_create();
@@ -137,24 +126,18 @@
 
     currentMapIndex = -1;
     global.currentMapArea = 1;
-
-    //This is pretty hacky, but it works for now.
-    var desiredMapName, desiredMapIndex, i, numberOfMaps, message;
-    numberOfMaps = ds_list_size(global.map_rotation);
-
-    for(i = 1; i <= numberOfMaps; i += 1){
-        desiredMapIndex = (GameServer.currentMapIndex + i) mod numberOfMaps;
-        desiredMapName = ds_list_find_value(global.map_rotation, desiredMapIndex);
-        if!(findInternalMapRoom(desiredMapName) or file_exists('Maps/' + string(desiredMapName) + '.png')){
-            //ds_list_delete(global.map_rotation,i)
-            numberOfMaps = ds_list_size(global.map_rotation);
-            desiredMapIndex-=1
-            message=string(desiredMapName)+' is not a valid map name; this map will be skipped. Ensure you have the map in your maps folder and have spelt it correctly.'
-            show_message(message)
-        }
-    }
-
-    serverGotoMap(nextMapInRotation());
+    
+    //if!(findInternalMapRoom(desiredMapName) or file_exists('Maps/' + string(desiredMapName) + '.png')){
+        //numberOfMaps = ds_list_size(global.map_rotation);
+        //desiredMapIndex-=1
+        //message=string(desiredMapName)+' is not a valid map name; this map will be skipped. Ensure you have the map in your maps folder and have spelt it correctly.'
+        //show_message(message)
+    //}
+    
+    if(global.launchMap == "")
+        serverGotoMap(nextMapInRotation());
+    else
+        serverGotoMap(global.launchMap);
     
     global.joinedServerName = global.serverName; // so no errors of unknown variable occur when you create a server
     global.mapchanging = false; 
@@ -174,10 +157,10 @@
         }
 
         // Load plugins
-        if global.myCurrentPlugins!=''{
+        if global.myCurrentPlugins!=""{
             var pluginQuestion;
             pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string_replace_all(pluginList, ",", "#")+
-            "##If your plugins do not match the server's plugins (could cause clients to desync) please select restart or quit.","Continue","Restart","Quit")
+            "##If your plugins do not match the server's plugins please select restart or quit.","Continue","Restart","Quit")
             if (pluginQuestion==2){
                 restartGG2()
                 exit;
@@ -186,6 +169,7 @@
                 exit;
             }
         }
+        
         if (!loadserverplugins(pluginList))
         {
             show_message("Error ocurred loading server-sent plugins.");
@@ -199,13 +183,7 @@
         pluginList = '';
     }
     
-    if global.recordingEnabled{
-        global.justEnabledRecording = 1
-    }
-        //vsync makes the server desync
-    if (global.monitorSync == 1)
-    {
-        global.monitorSync = 0;
-        set_synchronization(0)
-    }
+    // Disable vsync to minimize framerate drops which would be noticed as lag issues by all players.
+    // "vsync makes the server desync" --Arctic
+    set_synchronization(false);
 }

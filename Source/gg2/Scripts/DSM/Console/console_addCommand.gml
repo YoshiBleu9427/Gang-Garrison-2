@@ -3,10 +3,10 @@
 
 //argument0 = command name; argument1 = command itself; argument2 = documentation.
 
-ds_map_add(global.commandMap_DSM, argument0, argument1)
+ds_map_add(global.DSM_commandMap, argument0, argument1)
 
 if argument2 != ""{
-    ds_map_add(global.documentationMap, argument0, argument2)
+    ds_map_add(global.DSM_documentationMap, argument0, argument2)
 }else{
-    ds_map_add(global.documentationMap, argument0, "This command does not have a valid documentation.")
+    ds_map_add(global.DSM_documentationMap, argument0, "This command does not have a valid documentation.")
 }

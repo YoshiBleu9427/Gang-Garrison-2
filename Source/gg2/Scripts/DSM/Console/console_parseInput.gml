@@ -47,8 +47,8 @@ while numOfCommands <= 10{// Fill up until 10 arguments, that way there are no e
 
 // Second step: Find out what command it is and execute it.
 
-if ds_map_exists(global.commandMap_DSM, input[0]){
-    execute_string(ds_map_find_value(global.commandMap_DSM, input[0]));
+if ds_map_exists(global.DSM_commandMap, input[0]){
+    execute_string(ds_map_find_value(global.DSM_commandMap, input[0]));
 }else{
     console_print("Unknown command: "+input[0]);
     console_print('Type "help" for a list of available commands.');

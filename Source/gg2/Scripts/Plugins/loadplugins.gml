@@ -3,7 +3,7 @@
 var file, pattern, prefix, list, fp, i;
 
 // Prefix since results from file_find_* don't include path
-prefix = working_directory + "\Plugins\";
+prefix = working_directory + "\DSM_Plugins\";
 pattern = prefix + "*.gml";
 
 list = ds_list_create();

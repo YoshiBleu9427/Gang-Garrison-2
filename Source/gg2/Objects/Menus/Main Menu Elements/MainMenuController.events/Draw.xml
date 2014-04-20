@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    if global.dsmTextColour==5{
+        draw_set_color(colour1)
+    }
+    draw_background(menuimage, 0, 0);
+    draw_set_color(c_white)
+
+    // display background info, if downloaded
+    if (global.backgroundHash != "default")
+    {
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
+        
+        // hovering over title
+        if (mouse_x &gt;= 595 - string_width(global.backgroundTitle)
+            &amp;&amp; mouse_x &lt; 595
+            &amp;&amp; mouse_y &gt;= 595 - string_height(global.backgroundTitle)
+            &amp;&amp; mouse_y &lt; 595
+            &amp;&amp; global.backgroundURL != "")
+        {
+            draw_set_color(c_orange);
+        }
+        else
+        {
+            draw_set_color(c_white);
+        }
+        draw_text(595, 595, global.backgroundTitle);
+    }
+
+    // fade out old background
+    if (fade &gt; 0)
+    {
+        draw_background_ext(oldBackground, 0, 0, 1, 1, 0, c_white, fade);
+    }
+
+    if (!(global.backgroundHash != "default" &amp;&amp; !global.backgroundShowVersion)) or global.dsmBackground==3
+    {
+        draw_sprite(MenuBackgroundVersionS,0,300,300);
+    }
+
+    if global.dsmBackground==1 or global.dsmBackground==2{
+        if global.dsmTextColour==0{
+            draw_set_color(c_red)
+        }else if global.dsmTextColour==1{
+            draw_set_color(c_blue)
+        }else if global.dsmTextColour==2{
+            draw_set_color(c_green)
+        }else if global.dsmTextColour==3{
+            draw_set_color(c_yellow)
+        }else if global.dsmTextColour==4{
+            draw_set_color(c_purple)
+        }else if global.dsmTextColour==5{
+            draw_set_color(colour1)
+        }
+        draw_sprite(DSM_MenuBackgroundVersionS,0,300,300)
+        draw_set_halign(fa_left)
+        draw_set_valign(fa_bottom)
+        draw_text_transformed(100,42,DSM_VERSION_STRING,2,2,0)
+    }
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+  </actions>
+</event>

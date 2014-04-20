@@ -2,5 +2,7 @@
 <resources>
   <resource name="partyTime" type="RESOURCE"/>
   <resource name="xmasTime" type="RESOURCE"/>
+  <resource name="dsmBirthdayTime" type="RESOURCE"/>
+  <resource name="dpmBirthdayTime" type="RESOURCE"/>
   <resource name="calculateMonthAndDay" type="RESOURCE"/>
 </resources>

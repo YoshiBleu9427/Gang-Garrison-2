@@ -20,18 +20,18 @@ if command == ''{
     console_print('All commands are camel case, beginning with a lower case letter.');
     console_print('');
     console_print('The current command list:');
-    key = ds_map_find_first(global.commandMap_DSM);
+    key = ds_map_find_first(global.DSM_commandMap);
     console_print(key);
-    for (i=0; i<ds_map_size(global.commandMap_DSM)-1; i+=1){
-        key = ds_map_find_next(global.commandMap_DSM, key);
+    for (i=0; i<ds_map_size(global.DSM_commandMap)-1; i+=1){
+        key = ds_map_find_next(global.DSM_commandMap, key);
         console_print(key);
     }
     console_print('')
     console_print('For more details on each command, enter '+chr(34)+'help commandName'+chr(34)+'.')
     console_print('----------------------------------------------------------------------------------');
 }else{
-    if ds_map_exists(global.documentationMap, command){
-        execute_string(ds_map_find_value(global.documentationMap, command));
+    if ds_map_exists(global.DSM_documentationMap, command){
+        execute_string(ds_map_find_value(global.DSM_documentationMap, command));
     }else{
         console_print('No documentation could be found for that command.');
     }
@@ -382,33 +382,6 @@ console_print('The password has been set to: '+global.serverPassword)
 ", "
 console_print('Syntax: serverPassword '+chr(34)+'password'+chr(34))
 console_print('Use: Changes the sever password. It does write to the .ini.')
-")
-console_addCommand("fps", "
-if global.displayingFPS==0{
-    instance_create(0,0,fpsDisplay)
-    console_print('FPS display turned on.')
-}else{
-    global.displayingFPS=0
-    console_print('FPS display turned off.')
-}
-", "
-console_print('Syntax: fps')
-console_print('Use: Displays the user's current FPS at the top of the screen.')
-console_print('Entering the command will toggle the FPS display.')
-")
-
-console_addCommand("ping", "
-if global.displayingPing==0{
-    instance_create(0,0,pingDisplay)
-    console_print('Ping display turned on.')
-}else{
-    global.displayingPing=0
-    console_print('Ping display turned off.')
-}
-", "
-console_print('Syntax: ping')
-console_print('Use: Displays the user's current ping at the bottom of the screen.')
-console_print('Entering the command will toggle the ping display.')
 ")
 
 console_addCommand("execute", "

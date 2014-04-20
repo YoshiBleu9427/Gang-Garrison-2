@@ -13,12 +13,15 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">afktimeout=180*30; //was 60*30, but 1 minute is way too low
-afktimer=afktimeout;
-oldScoreKeyDown=false;
-if global.isPlayingReplay instance_create(0,0,ReplayGUI)
+        <argument kind="STRING">afktimeout = 60*30;
+afktimer = afktimeout;
+oldScoreKeyDown = false;
 
-alarm[0]=10
+//DSM
+if global.dsmPingDisplay==1 instance_create(0,0,DSM_PingDisplay)
+if global.dsmFPSDisplay==1 instance_create(0,0,DSM_FPSDisplay)
+
+alarm[11]=30/global.delta_factor
 </argument>
       </arguments>
     </action>

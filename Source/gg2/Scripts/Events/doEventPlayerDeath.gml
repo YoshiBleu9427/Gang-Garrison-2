@@ -98,7 +98,7 @@ with(victim.object) {
         if (hasReward(victim, 'PumpkinGibs'))
         {
             repeat(global.gibLevel * 2) {
-                createGib(x,y,PumpkinGib,hspeed,vspeed,random(145)-72, choose(0,1,1,2,2,3), false, true)
+                createGib(x,y,PumpkinGib,hspeed,vspeed,random(145)-72, choose(0,1,1,2,2,3), false)
             }
         }
         else
@@ -180,7 +180,8 @@ with(victim.object) {
         playsound(x,y,Gibbing);
     } else {
         var deadbody;
-        if player.class != CLASS_QUOTE playsound(x,y,choose(DeathSnd1, DeathSnd2));
+        if (player.class != CLASS_QUOTE)
+            playsound(x,y,choose(DeathSnd1, DeathSnd2));
         deadbody = instance_create(x,y-30,DeadGuy);
         // 'GS' reward - *G*olden *S*tatue
         if(hasReward(player, 'GS'))
@@ -210,8 +211,8 @@ if (global.xmas){
     myHat.image_index = victim.team;
 }
 
-if (hasReward(victim, 'Ghost') and victim.ghost == -1) {
-    victim.ghost = instance_create(x, y, Ghost);
+if (hasReward(victim, 'Ghost') and victim.ghost == noone) {
+    victim.ghost = instance_create(victim.object.x, victim.object.y, Ghost);
     victim.ghost.owner = victim;
     victim.ghost.hspeed = hspeed;
     victim.ghost.vspeed = vspeed;
@@ -233,10 +234,22 @@ if( global.killCam and victim == global.myself and killer and killer != victim a
     DeathCam.lastDamageSource=damageSource;
     DeathCam.team = global.myself.team;
 }
-if global.killerInfo==1 and !global.killCam and (victim==global.myself and killer and !(damageSource == KILL_BOX || damageSource == FRAG_BOX || damageSource == FINISHED_OFF || damageSource == FINISHED_OFF_GIB || damageSource == GENERATOR_EXPLOSION)){
-    instance_create(view_xview[0]/2,view_yview[0]+500,dsmKillerInfo)
-    dsmKillerInfo.killedby=killer
-    dsmKillerInfo.name=killer.name
-    dsmKillerInfo.lastDamageSource=damageSource
-    dsmKillerInfo.team=global.myself.team
+if global.dsmKillerInfo==1 and !global.killCam and (victim==global.myself and killer and !(damageSource == KILL_BOX || damageSource == FRAG_BOX || damageSource == FINISHED_OFF || damageSource == FINISHED_OFF_GIB || damageSource == GENERATOR_EXPLOSION)){
+    instance_create(view_xview[0]/2,view_yview[0]+500,DSM_KillerInfo)
+    DSM_KillerInfo.killedby=killer
+    DSM_KillerInfo.name=killer.name
+    DSM_KillerInfo.lastDamageSource=damageSource
+    DSM_KillerInfo.team=global.myself.team
+}
+
+// Gamemode considerations
+if (instance_exists(TeamDeathmatchHUD) and killer and killer != victim)
+{
+    if (killer.team != victim.team)
+    {
+        if (killer.team == TEAM_RED)
+            global.redCaps += 1;
+        else if (killer.team == TEAM_BLUE)
+            global.blueCaps += 1;
+    }
 }

@@ -16,8 +16,11 @@
         <argument kind="STRING">{
     hitDamage = 4;
     lifetime = 40;
-    alarm[0] = lifetime;
-    shotHit=false
+    alarm[0] = lifetime / global.delta_factor;
+    
+    if global.colouredProjectiles==1{
+        sprite_index=DSM_NeedleS
+    }
 }
 </argument>
       </arguments>

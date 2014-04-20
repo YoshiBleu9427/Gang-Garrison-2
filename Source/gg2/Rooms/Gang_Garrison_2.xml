@@ -14,8 +14,6 @@
     exit;
 }
 
-if global.skipFaucet==1 SplashController.alarm[1]=1
-
 if(BOOT_BEHAVIOUR == BOOT_DEBUG)
 {
     ini_open("gg2.ini");
@@ -45,6 +43,7 @@ else // boot behaviour is normal or unknown
     }
 }
 
+if global.dsmSkipFaucet==1 SplashController.alarm[1]=1
 </creationCode>
   <backgroundColor>000000</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>

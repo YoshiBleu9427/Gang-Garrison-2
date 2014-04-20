@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(48, 172, 500, 260, 32, 40, 104, 6);
+    menumode = true;
+    
+    if (room != DSMOptionsR)
+        menu_setdimmed();
+    
+    menu_background(512, 24, 8, 12, 4);
+    bgtabs = true;
+
+    menu_addedit_select("HP Text:","global.dsmHPText",'
+        DSM_write_ini("Cosmetic","DSMHPText",argument0)
+    ')
+    menu_add_option(0,"Off")
+    menu_add_option(1,"Centre")
+    menu_add_option(2,"Left")
+    menu_addedit_boolean("Ammo Bar:","global.dsmAmmoBars",'
+        DSM_write_ini("Cosmetic","DSMAmmoBars",argument0)
+    ')
+    menu_addedit_boolean("Show Scoreboard When Dead:","global.dsmShowScoreboardWhenDead",'
+        DSM_write_ini("Settings","DSMShowScoreboardWhenDead",argument0)
+    ')
+    menu_addedit_boolean("Show Assists:","global.dsmShowAssists",'
+        DSM_write_ini("Settings","DSMShowAssists",argument0)
+    ')
+    menu_addedit_boolean("Killer Info:","global.dsmKillerInfo",'
+        DSM_write_ini("Settings","DSMKillerInfo",argument0)
+    ')
+    menu_addedit_boolean("Record Stats:","global.dsmRecordStats",'
+        DSM_write_ini("Settings","DSMRecordStats",argument0)
+    ')
+    
+    menu_addtablink("DSM 1", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController);
+    ');
+    menu_addtablink("DSM 2", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController2);
+    ');
+    menu_addtablink("Controls", '
+        instance_destroy();
+        instance_create(x,y,DSMControlsController);
+    ');
+    
+    menu_addback("Back", '
+        instance_destroy();
+        if(room == DSMOptionsR)
+            room_goto_fix(Menu);
+        else
+            instance_create(0,0,InGameMenuController);
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

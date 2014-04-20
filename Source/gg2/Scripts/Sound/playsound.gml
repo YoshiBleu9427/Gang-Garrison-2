@@ -8,7 +8,7 @@
         sound_stop(argument2);
     
     sound_volume(argument2, vol);
-    if global.soundPanning==1{ //This will not happen if panning is off
+    if global.dsmStereoSound==1{
         sound_pan(argument2, calculatePan(argument0));
     }
     sound_play(argument2);

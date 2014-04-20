@@ -1,4 +1,5 @@
 // creates game objects per the list in the entity data
+
 // argument0: entity data
 
 {
@@ -41,6 +42,9 @@ while(string_pos(DIVIDER, argument0) != 0) { // continue until there are no more
     case "spawnroom":
       instance_create(entityX, entityY, SpawnRoom);
     break;
+/*REMINDER: Get Leiche or Cspot to add 8 new spawn entities to Garrison Builder or 
+ *get Garrison Builder source to try out for self. In GB, aesthetics are as follows:
+ * 0=Runner, 1=Firebug, 2=Rocketman, 3=Overweight, 4=Detonator*/
     case "redspawn":
       instance_create(entityX, entityY, SpawnPointRed);
     break;
@@ -194,6 +198,10 @@ while(string_pos(DIVIDER, argument0) != 0) { // continue until there are no more
     case "KothBlueControlPoint":
       instance_create(entityX, entityY, KothBlueControlPoint);
     break;
+    case "dropdownPlatform":
+        instance_create(entityX, entityY, DropdownPlatform);
+    break;
+    //DSM
     case "CustomEnt1":
       instance_create(entityX, entityY, CustomEntity1);
     break;
@@ -206,6 +214,6 @@ while(string_pos(DIVIDER, argument0) != 0) { // continue until there are no more
     case "CustomEnt4":
       instance_create(entityX, entityY, CustomEntity4);
     break;
-  }
+    }
 }
 }

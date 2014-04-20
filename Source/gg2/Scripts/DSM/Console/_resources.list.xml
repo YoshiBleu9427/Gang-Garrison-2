@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+  <resource name="Messages" type="GROUP"/>
   <resource name="console_init" type="RESOURCE"/>
   <resource name="console_print" type="RESOURCE"/>
   <resource name="console_parseInput" type="RESOURCE"/>
@@ -9,5 +10,4 @@
   <resource name="console_close" type="RESOURCE"/>
   <resource name="getColorCodeHex" type="RESOURCE"/>
   <resource name="getColorCode" type="RESOURCE"/>
-  <resource name="Message" type="GROUP"/>
 </resources>

@@ -4,8 +4,8 @@
 global.consoleIsOpen = 0;//Console is disabled by default, open it by clicking in the in-game menu.
 global.consoleLog = ds_list_create()//All text in the console is saved here.
 global.commandLog = ds_list_create()//All commands the user gave in are logged here.
-global.commandMap_DSM = ds_map_create()//All console commands are here, with the name being the key to the to-be executed string.
-global.documentationMap = ds_map_create()//See above, only this gets called when a user enters "help something".
+global.DSM_commandMap = ds_map_create()//All console commands are here, with the name being the key to the to-be executed string.
+global.DSM_documentationMap = ds_map_create()//See above, only this gets called when a user enters "help something".
 global.consoleMaxLines = 32
 global.playerNameC=""
 

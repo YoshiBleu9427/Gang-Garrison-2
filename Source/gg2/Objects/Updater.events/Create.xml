@@ -17,7 +17,6 @@
 
 var downloadHandle, url, tmpfile, window_oldshowborder, window_oldfullscreen;
 timeLeft = 0;
-//counter = 0;
 AudioControlPlaySong(-1, false);
 window_oldshowborder = window_get_showborder();
 window_oldfullscreen = window_get_fullscreen();
@@ -47,17 +46,12 @@ while(!http_step(downloadHandle))
         room_goto_fix(Menu);
         exit;
     }
-
-    //if(counter == 0 || counter mod 60 == 0)
-        //timer = random(359)+1;
+    
+    //Gutter fake time prediction
     draw_sprite(UpdaterBackgroundS,0,0,0);
     draw_set_color(c_white);
     draw_set_halign(fa_left);
     draw_set_valign(fa_center);
-    //minutes=floor(timer/60);
-    //seconds=floor(timer-minutes*60);
-    //draw_text(x,y-20,string(minutes) + " minutes " + string(seconds) + " seconds Remaining...");
-    //counter+=1;
     var progress, size;
     progress = http_response_body_progress(downloadHandle);
     size = http_response_body_size(downloadHandle);
@@ -73,7 +67,6 @@ while(!http_step(downloadHandle))
     }
     screen_refresh();
 }
-
 // Errored
 if (http_status_code(downloadHandle) != 200)
 {
@@ -97,7 +90,7 @@ if(!file_exists(tmpfile))
     exit;
 }
 
-// rename existing "Gang Garrison 2.exe" to avoid conflict when extracting
+// rename existing "DSM.exe" to avoid conflict when extracting
 if (file_exists("DSM.exe"))
 {
     var newName, n;
