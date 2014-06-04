@@ -25,6 +25,9 @@
     
     menu_addedit_key("Superburst:", "global.dsmSuperburst");
     menu_addedit_key("Quick X4:", "global.dsmQuickX4");
+    menu_addedit_key("Show Walkmask:", "global.dsmShowWM");
+    menu_addedit_key("Open/Close Console:", "global.dsmConsoleKey");
+    menu_addedit_keyormouse("Alternate Screenshot:", "global.dsmScreenshot");
     
     menu_addtablink("DSM 1", '
         instance_destroy();

@@ -193,7 +193,7 @@ if(spinjumping)
         part_system_depth(global.jumpDustParticleSystem, 10);
     }
     
-    if(global.particles == PARTICLES_NORMAL or global.particles == PARTICLES_ALTERNATIVE)
+    if(global.particles == PARTICLES_NORMAL or global.particles == PARTICLES_ALTERNATIVE or global.dsmAlwaysShowSpinjump==1)
     {
         if(random(4) &lt; 4)
         {

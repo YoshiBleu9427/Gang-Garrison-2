@@ -42,14 +42,14 @@ if keyboard_check_pressed(vk_up){
         cursor_position = max(0, cursor_position - 1);
     }
     if cursor_moving &lt; 1{
-        cursor_moving += 1/30;
+        cursor_moving += (1/15)/global.delta_factor
     }
 }else if keyboard_check(vk_right){
     if cursor_moving == 0 or cursor_moving &gt;= 1{
         cursor_position = min(string_length(current_text), cursor_position + 1);
     }
     if cursor_moving &lt; 1{
-        cursor_moving += 1/30;
+        cursor_moving += (1/15)/global.delta_factor
     }
 }else if keyboard_check(vk_backspace) and cursor_position &gt; 0{
     if cursor_moving == 0 or cursor_moving &gt;= 1{
@@ -57,14 +57,14 @@ if keyboard_check_pressed(vk_up){
         cursor_position -= 1;
     }
     if cursor_moving &lt; 1{
-        cursor_moving += 1/30;
+        cursor_moving += (1/15)/global.delta_factor
     }
 }else if keyboard_check(vk_delete) and cursor_position &lt; string_length(current_text){
     if cursor_moving == 0 or cursor_moving &gt;= 1{
         current_text = string_copy(current_text, 0, cursor_position) + string_copy(current_text, cursor_position+2, string_length(current_text));
     }
     if cursor_moving &lt; 1{
-        cursor_moving += 1/30;
+        cursor_moving += (1/15)/global.delta_factor
     }
 }else{
     cursor_moving = 0;

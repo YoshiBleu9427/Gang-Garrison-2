@@ -14,8 +14,11 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">ini_open("controls.gg2")
-    ini_write_real("Controls","DSMSuperburst",global.dsmQuickX4)
-    ini_write_real("Controls","DSMQuickX4",global.dsmSuperburst)
+    ini_write_real("Controls","DSMSuperburst",global.dsmSuperburst)
+    ini_write_real("Controls","DSMQuickX4",global.dsmQuickX4)
+    ini_write_real("Controls","DSMShowWM",global.dsmShowWM)
+    ini_write_real("Controls","DSMConsoleKey",global.dsmConsoleKey)
+    ini_write_real("Controls","DSMScreenshot",global.dsmScreenshot)
 ini_close()
 </argument>
       </arguments>

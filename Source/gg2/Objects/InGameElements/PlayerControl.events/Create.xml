@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">afktimeout = 60*30;
+        <argument kind="STRING">afktimeout = 180*30;
 afktimer = afktimeout;
 oldScoreKeyDown = false;
 

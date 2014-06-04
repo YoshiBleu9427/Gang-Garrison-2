@@ -108,9 +108,11 @@
         global.game_fps = 60;
     }else if(global.frameratekind == 0){
         global.game_fps = 30;
-    }else if(global.frameratekind == 2){
-        global.game_fps = 1000
-    }
+    }//else if(global.frameratekind==2){
+        //global.game_fps=120
+    //}//else if(global.frameratekind == 3){
+        //global.game_fps = 1000
+    //}
     
     
     readClasslimitsFromIni();

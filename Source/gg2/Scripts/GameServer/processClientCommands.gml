@@ -75,6 +75,39 @@ while(commandLimitRemaining > 0) {
         case PLAYER_CHANGECLASS:
             var class;
             class = read_ubyte(socket);
+            
+            //DSM
+            if global.locked_scout==1 and class==CLASS_SCOUT{
+                break;
+            }
+            if global.locked_pyro==1 and class==CLASS_PYRO{
+                break;
+            }
+            if global.locked_soldier==1 and class==CLASS_SOLDIER{
+                break;
+            }
+            if global.locked_heavy==1 and class==CLASS_HEAVY{
+                break;
+            }
+            if global.locked_demoman==1 and class==CLASS_DEMOMAN{
+                break;
+            }
+            if global.locked_medic==1 and class==CLASS_MEDIC{
+                break;
+            }
+            if global.locked_engie==1 and class==CLASS_ENGINEER{
+                break;
+            }
+            if global.locked_spy==1 and class==CLASS_SPY{
+                break;
+            }
+            if global.locked_sniper==1 and class==CLASS_SNIPER{
+                break;
+            }
+            if global.locked_quote==1 and class==CLASS_QUOTE{
+                break;
+            }
+
             if(getCharacterObject(player.team, class) != -1)
             {
                 if(player.object != -1)
@@ -115,6 +148,14 @@ while(commandLimitRemaining > 0) {
         case PLAYER_CHANGETEAM:
             var newTeam, balance, redSuperiority;
             newTeam = read_ubyte(socket);
+            
+            //DSM
+            if global.locked_red==1 and newTeam==TEAM_RED{
+                break;
+            }
+            if global.locked_blue==1 and newTeam==TEAM_BLUE{
+                break;
+            }
             
             redSuperiority = 0   //calculate which team is bigger
             with(Player)

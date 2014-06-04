@@ -28,6 +28,13 @@ if(global.myself.team==TEAM_RED) {
     draw_set_color(c_blue);
 }
 
+var medAlertSprite;
+if global.dsmHUDs==1{
+    medAlertSprite=DSM_MedAlert //DSM_MedAlert2 also exists
+}else{
+    medAlertSprite=MedAlert
+}
+
 with(Character) {
     var bubbleImage, bubbleAlpha, theta, unknown, cornerDegree;
     bubbleImage = bubble.image_index;

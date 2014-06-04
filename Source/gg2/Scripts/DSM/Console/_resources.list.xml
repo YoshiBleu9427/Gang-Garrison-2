@@ -10,4 +10,6 @@
   <resource name="console_close" type="RESOURCE"/>
   <resource name="getColorCodeHex" type="RESOURCE"/>
   <resource name="getColorCode" type="RESOURCE"/>
+  <resource name="read_binds_from_file" type="RESOURCE"/>
+  <resource name="write_binds_to_file" type="RESOURCE"/>
 </resources>

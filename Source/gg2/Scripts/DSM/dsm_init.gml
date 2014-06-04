@@ -1,4 +1,4 @@
-//We'll do a better format for this than game_init script
+//We'll do a better format for this than game_init
 
 ini_open("DSM.ini")
     global.colouredProjectiles=ini_read_real("Cosmetic","ColouredProjectiles",1)
@@ -54,15 +54,26 @@ ini_open("DSM.ini")
     
     global.dsmRecordStats=ini_read_real("Settings","DSMRecordStats",1)
     ini_write_real("Settings","DSMRecordStats",global.dsmRecordStats)
+    
+    global.dsmAlwaysShowSpinjump=ini_read_real("Cosmetic","DSMAlwaysShowSpinjump",1)
+    ini_write_real("Cosmetic","DSMAlwaysShowSpinjump",global.dsmAlwaysShowSpinjump)
+    
+    global.dsmOldBlood=ini_read_real("Cosmetic","DSMOldBlood",0)
+    ini_write_real("Cosmetic","DSMOldBlood",global.dsmOldBlood)
+    
+    global.dsmVolume=ini_read_real("Settings","DSMVolume",100)
+    ini_write_real("Settings","DSMVolume",global.dsmVolume)
+    sound_global_volume(global.dsmVolume/100)
 ini_close()
 
 //DSM Controls
 ini_open("controls.gg2")
     global.dsmQuickX4=ini_read_real("Controls","DSMQuickX4",vk_control)
-    global.dsmSuperburst = ini_read_real("Controls","DSMSuperburst",ord("R"))
-    
-    //global.screenshotButton = ini_read_real("Controls", "screenshotButton", vk_f10);
-    //global.showWMButt=ini_read_real("Controls","ShowWMButt",vk_f7)
+    global.dsmSuperburst=ini_read_real("Controls","DSMSuperburst",ord("R"))
+    global.dsmShowWM=ini_read_real("Controls","DSMShowWM",vk_f7)
+    global.dsmConsoleKey=ini_read_real("Controls","DSMConsoleKey",vk_f2)
+    global.dsmScreenshot=ini_read_real("Controls","DSMScreenshot",mb_middle)
+
     //global.toggleSPD=ini_read_real("Controls","ToggleScorePerDeath",vk_f11)
 ini_close()
 
@@ -72,6 +83,9 @@ global.myCurrentPlugins=""
 global.totalCurrentPlugins=""
 globalvar colour1, colour2;
 global.dsmMapChange=0
+global.dsmBinds=ds_list_create()
+global.dsmBindCommands=ds_list_create()
+read_binds_from_file()
 
 //Run other DSM scripts
 chatFix_miku()

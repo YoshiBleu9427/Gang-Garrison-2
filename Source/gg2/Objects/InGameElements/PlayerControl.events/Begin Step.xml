@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(instance_exists(MenuController))
+        <argument kind="STRING">if(instance_exists(MenuController) or instance_exists(Console))
     exit;
     
 var kickOpen;
@@ -27,23 +27,26 @@ if(instance_exists(TeamSelectController) || instance_exists(ClassSelectControlle
 else
     menuOpen = false;
 
+for (i = 0; i &lt; ds_list_size(global.dsmBinds); i+=1){
+    if real(ds_list_find_value(global.dsmBinds,i))==real(keyboard_key){
+        if keyboard_check_pressed(keyboard_key){
+            console_parseInput(ds_list_find_value(global.dsmBindCommands,i))
+        }
+    }
+}
+
+if keyboard_check_pressed(global.dsmScreenshot) or mouse_check_button_pressed(global.dsmScreenshot){
+    takeScreenshot()
+}
+
 //Checking for input - Mapped Keys
 if(keyboard_check_pressed(global.changeTeam))
     inputChangeTeam();
 if(keyboard_check_pressed(global.changeClass))
     inputChangeClass();
 
-if global.myself.team!=TEAM_SPECTATOR{
-    if (global.dsmShowScoreboardWhenDead==1 and instance_exists(Spectator)){
-        inputShowScores()
-    }
-    if (global.dsmShowScoreboardWhenDead==1 and !instance_exists(Spectator)) and (instance_exists(ScoreTableController)){
-        inputCloseScores()
-    }
-}
-
 event_user(8);
-    
+
 var keybyte;
 keybyte = 0;
 
@@ -106,6 +109,11 @@ if(global.myself.object != -1)
             {
                 if(global.attack == MOUSE_RIGHT) keybyte |= $10;
                 if(global.special == MOUSE_RIGHT) keybyte |= $08;
+            }
+            if(mouse_check_button(mb_middle))
+            {
+                if(global.attack == MOUSE_MIDDLE) keybyte |= $10;
+                if(global.special == MOUSE_MIDDLE) keybyte |= $08;
             }
             if(mouse_check_button_pressed(mb_right) and global.special == MOUSE_RIGHT)
                 inputSpecial();

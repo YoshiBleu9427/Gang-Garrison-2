@@ -24,7 +24,7 @@ global.frameskip = 1;
 ticks = 0;
 
 //Highly experimental dynamic fps
-global.unrealFPS=1000 //capped at 1000
+global.unrealFPS=1000
 </argument>
       </arguments>
     </action>

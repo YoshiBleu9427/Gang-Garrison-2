@@ -9,6 +9,22 @@ global.DSM_documentationMap = ds_map_create()//See above, only this gets called 
 global.consoleMaxLines = 32
 global.playerNameC=""
 
+//For locking teams/classes
+//Team
+global.locked_red=0
+global.locked_blue=0
+//Classes
+global.locked_scout=0
+global.locked_pyro=0
+global.locked_soldier=0
+global.locked_heavy=0
+global.locked_demoman=0
+global.locked_medic=0
+global.locked_engie=0
+global.locked_spy=0
+global.locked_sniper=0
+global.locked_quote=0
+
 for(i=0; i<global.consoleMaxLines; i+=1){
     ds_list_add(global.consoleLog, "")
 }

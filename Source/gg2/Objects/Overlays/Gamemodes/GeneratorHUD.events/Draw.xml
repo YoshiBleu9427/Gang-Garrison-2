@@ -37,7 +37,7 @@ if instance_exists(GeneratorRed) {
         draw_text_transformed_color(xoffset+xsize/2-51,yoffset+542,string(ceil(GeneratorRed.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
         if GeneratorRed.shieldHp &gt; 1{
             draw_rectangle_color(xoffset+xsize/2-77, yoffset+554, xoffset+xsize/2-25, yoffset+568, c_black, c_black, c_black, c_black, false);
-            draw_text_transformed_color(xoffset+xsize/2-51,yoffset+562,string(ceil(GeneratorRed.shieldHp)) + "SH", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+            draw_text_transformed_color(xoffset+xsize/2-51,yoffset+562,string(ceil(GeneratorRed.shieldHp)), 1, 1, 0, c_white, c_white, c_white, c_white, 1);
         }
     }
 }
@@ -54,7 +54,7 @@ if instance_exists(GeneratorBlue) {
         draw_text_transformed_color(xoffset+xsize/2+49,yoffset+542,string(ceil(GeneratorBlue.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
         if GeneratorBlue.shieldHp &gt; 1{
             draw_rectangle_color(xoffset+xsize/2+23, yoffset+554, xoffset+xsize/2+75, yoffset+568, c_black, c_black, c_black, c_black, false);
-            draw_text_transformed_color(xoffset+xsize/2+49,yoffset+562,string(ceil(GeneratorBlue.shieldHp)) + "SH", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+            draw_text_transformed_color(xoffset+xsize/2+49,yoffset+562,string(ceil(GeneratorBlue.shieldHp)), 1, 1, 0, c_white, c_white, c_white, c_white, 1);
         }
     }
 }

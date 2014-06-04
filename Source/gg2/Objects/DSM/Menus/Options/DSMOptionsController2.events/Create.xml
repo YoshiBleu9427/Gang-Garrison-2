@@ -44,6 +44,16 @@
     menu_addedit_boolean("Record Stats:","global.dsmRecordStats",'
         DSM_write_ini("Settings","DSMRecordStats",argument0)
     ')
+    menu_addedit_boolean("Alway Show Spinjump Particles:","global.dsmAlwaysShowSpinjump",'
+        DSM_write_ini("Cosmetic","DSMAlwaysShowSpinjump",argument0)
+    ')
+    menu_addedit_boolean("Use Old Blood:","global.dsmOldBlood",'
+        DSM_write_ini("Cosmetic","DSMOldBlood",argument0)
+    ')
+    menu_addedit_num("Sound Volume:","global.dsmVolume",'
+        DSM_write_ini("Settings","DSMVolume",argument0)
+        sound_global_volume(argument0/100)
+    ',100)
     
     menu_addtablink("DSM 1", '
         instance_destroy();

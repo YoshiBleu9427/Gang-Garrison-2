@@ -162,7 +162,11 @@ if(view_hview[0] &lt; 600)
         case "edittext2":
         case "edittext":
         case "editnum":
-            val = item_value[i];
+            if (instance_exists(OptionsController) or instance_exists(LobbyController)) and (editing==i){
+                val = item_value[i] + " ("+string((MAX_PLAYERNAME_LENGTH)-string_length(item_value[i]))+")"
+            }else{
+                val = item_value[i]
+            }
             break;
         
         case "editselect":
@@ -219,7 +223,7 @@ if(view_hview[0] &lt; 600)
             case MOUSE_RIGHT:
                 val = "Right Mouse Button";
                 break;
-            //DSM: Function keys
+            //DSM: Function keys, MMB
             case vk_f1:
                 val = "F1"
                 break;
@@ -255,6 +259,9 @@ if(view_hview[0] &lt; 600)
                 break;
             case vk_f12:
                 val = "F12"
+                break;
+            case MOUSE_MIDDLE:
+                val = "Middle Mouse Button";
                 break;
             default:
                 val = chr(menu_get_var(i));

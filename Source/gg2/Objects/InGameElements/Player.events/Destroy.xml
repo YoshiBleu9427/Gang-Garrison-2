@@ -26,8 +26,6 @@ with(Shot) if(ownerPlayer == other.id) instance_destroy();
 with(Needle) if(ownerPlayer == other.id) instance_destroy();
 with(Sentry) if(ownerPlayer == other.id) instance_destroy();
 with(DeathCam) if(killedby == other.id) instance_destroy();
-
-addStats()
 </argument>
       </arguments>
     </action>

@@ -13,11 +13,11 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if fps==30{
+        <argument kind="STRING">if fps==30/global.delta_factor{
     fpsColour=c_green
-}else if fps&lt;30{
+}else if fps&lt;30/global.delta_factor{
     fpsColour=c_yellow
-}else if fps&lt;20{
+}else if fps&lt;20/global.delta_factor{
     fpsColour=c_red
 }
     

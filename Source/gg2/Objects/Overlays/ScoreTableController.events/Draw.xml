@@ -101,7 +101,8 @@
         
             draw_set_halign(fa_right);
             if global.dsmShowAssists==1{
-                draw_text(xoffset+xsize/2-15, yoffset+70+20*(i+1), string(player.stats[POINTS]))
+                draw_text(xoffset+xsize/2-15, yoffset+70+20*(i+1), string_replace_all(string(player.stats[POINTS]),".50",".5"))
+                
             }else{
                 draw_text(xoffset+xsize/2-15, yoffset+70+20*(i+1), string(floor(player.stats[POINTS])));
             }
@@ -142,7 +143,7 @@
         
             draw_set_halign(fa_right);
             if global.dsmShowAssists==1{
-                draw_text(xoffset+xsize+25, yoffset+70+20*(i+1), string(player.stats[POINTS]))
+                draw_text(xoffset+xsize+25, yoffset+70+20*(i+1), string_replace_all(string(player.stats[POINTS]),".50",".5"))
             }else{
                 draw_text(xoffset+xsize+25, yoffset+70+20*(i+1), string(floor(player.stats[POINTS])));
             }

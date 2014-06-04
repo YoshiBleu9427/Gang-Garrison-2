@@ -15,7 +15,7 @@
       <arguments>
         <argument kind="STRING">keyboard_string = ""
 current_text = "";
-alarm[0] = 10
+alarm[0] = 10/global.delta_factor
 blink = true;
 clearScreenTimer = -1
 commandLogIndex = 0;
@@ -23,6 +23,8 @@ commandLogIndex = 0;
 cursor_character = "|"
 cursor_position = 0;
 cursor_moving = 0;
+
+commandLogIndex = ds_list_size(global.commandLog);
 </argument>
       </arguments>
     </action>

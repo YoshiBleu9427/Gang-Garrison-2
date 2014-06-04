@@ -25,13 +25,20 @@
     global.ticks_per_virtual = 1;
     global.frameskip = 1;
     room_speed = 30;
-}/*else if(global.game_fps == 1000){ //Highly experimental dynamic fps
+}/*else if(global.game_fps==120){
+    global.delta_factor = virt_speed/global.game_fps
+    global.skip_delta_factor = global.delta_factor/2
+    global.ticks_per_virtual = 1/global.delta_factor
+    global.frameskip = 1/global.delta_factor
+    room_speed = 120
+}else if(global.game_fps == 1000){ //Highly experimental dynamic fps
     room_speed = global.unrealFPS
-    global.delta_factor = 30/room_speed
+    global.delta_factor = virt_speed/room_speed
     global.skip_delta_factor = global.delta_factor/2
     global.ticks_per_virtual = 1/global.delta_factor
     global.frameskip = 1/global.delta_factor
 }*/
+
 </argument>
       </arguments>
     </action>

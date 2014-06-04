@@ -21,6 +21,14 @@ else if(!scoreKeyDown and oldScoreKeyDown)
     inputCloseScores();
 oldScoreKeyDown = scoreKeyDown;
 
+if global.myself.team!=TEAM_SPECTATOR{
+    if (global.dsmShowScoreboardWhenDead==1 and instance_exists(Spectator)){
+        inputShowScores()
+    }
+    if (global.dsmShowScoreboardWhenDead==1 and !instance_exists(Spectator) and (!scoreKeyDown and oldScoreKeyDown)){
+        inputCloseScores()
+    }
+}
 </argument>
       </arguments>
     </action>

@@ -42,7 +42,7 @@ else
                     }
                 }
             }else{
-                instance_create(x,y,Explosion);
+                instance_create(x,y,MineTrail);
             }
         }
     }

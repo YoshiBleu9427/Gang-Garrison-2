@@ -9,17 +9,16 @@ command=Console.input[1]
 
 if command == ''{
     var key;
-    // User didn't ask any specific command, just give the general command list and infos.
+    //User didn't ask any specific command, just give the general command list and infos.
     console_print('DSM '+string(DSM_VERSION_STRING)+' console;');
     console_print('');
-    console_print('Usage: Type in the wanted command followed by its arguments in this syntax:');
-    console_print('command argument1 argument2 argument3')
-    console_print('');
-    console_print('If an argument contains spaces, please surround it with '+chr(34)+' '+chr(34)+'.');
-    console_print('Some commands require Player IDs, the command '+chr(34)+'listPlayers'+chr(34)+' can show them to you.');
-    console_print('All commands are camel case, beginning with a lower case letter.');
-    console_print('');
-    console_print('The current command list:');
+    console_print('-Usage: Type in the wanted command followed by its arguments in this syntax: command argument1 argument2 argument3');
+    //console_print('');
+    console_print('-If an argument contains spaces, please surround it with '+chr(34)+' '+chr(34)+'.');
+    console_print('-Some commands require Player IDs, the command '+chr(34)+'listPlayers'+chr(34)+' can show them to you.');
+    console_print('-All commands are camel case, beginning with a lower case letter.');
+    //console_print('');
+    console_print('-The current command list:');
     key = ds_map_find_first(global.DSM_commandMap);
     console_print(key);
     for (i=0; i<ds_map_size(global.DSM_commandMap)-1; i+=1){
@@ -42,18 +41,18 @@ console_print('Try entering help once, not twice.');
 
 
 console_addCommand("kick", "
-// Check whether we are the host before anything else
+//Check whether we are the host before anything else
 if not global.isHost{
     console_print('Only the host can use this command.');
     exit;
 }
 var player;
-// Check whether a name or a ID was given
+//Check whether a name or a ID was given
 if string_letters(input[1]) == ''{
-    // No letters were given
-    // First check whether that ID is even valid
+    //No letters were given
+    //First check whether that ID is even valid
     if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
-        // Valid ID, kick that player
+        //Valid ID, kick that player
         player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
         with player{
             socket_destroy_abortive(socket);
@@ -64,19 +63,19 @@ if string_letters(input[1]) == ''{
         kickMessage()
         exit;
     }else if floor(real(string_digits(input[1]))) == 0{
-        // Can't kick yourself
+        //Can't kick yourself
         console_print('The host cannot be kicked.');
     }
 }
-// If that system above did not work, try checking names
+//If that system above did not work, try checking names
 with Player{
     if name == other.input[1]{
-        // Don't kick the host
+        //Don't kick the host
         if id == global.myself{
             console_print('The host cannot be kicked.');
             continue;
         }
-        // Found the name, kick that player
+        //Found the name, kick that player
         socket_destroy_abortive(socket);
         socket = -1;
         console_print(string_replace_all(name, '/:/', '/;/')+' has been kicked successfully.');
@@ -85,11 +84,11 @@ with Player{
         exit;
     }
 }
-// We failed
+//We failed
 console_print('Could not find a player with that ID or name.');
 
 ", "
-console_print('Syntax: kick playerID/playerName')
+console_print('Syntax: kick <playerID/playerName>')
 console_print('Use: Kicks the designed player from the game, disconnecting him but not banning him.')
 console_print('Warning: IDs will be considered before names, so if a name of player x is equal to')
 console_print('         the ID of player y, player y will get kicked.')
@@ -97,29 +96,29 @@ console_print('         Also, attempting to kick the host will have no effect.')
 
 
 console_addCommand("ban", "
-// Check whether we are the host before anything else
+//Check whether we are the host before anything else
 if not global.isHost{
     console_print('Only the host can use this command.');
     exit;
 }
 var player;
-// Check whether a name or a ID was given
+//Check whether a name or a ID was given
 if string_letters(input[1]) == ''{
-    // No letters were given
-    // First check whether that ID is even valid
+    //No letters were given
+    //First check whether that ID is even valid
     if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
-        // Valid ID, ban that player
+        //Valid ID, ban that player
         player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
         ds_list_add(global.banned_ips, socket_remote_ip(player.socket));
         with player{
             socket_destroy_abortive(socket);
             socket = -1;
         }
-        // Write it now in a file
+        //Write it now in a file
         var text, str, i;
         str = ''
         for (i=0; i<ds_list_size(global.banned_ips); i+=1){
-            // chr(10) == newline
+            //chr(10) == newline
             str += ds_list_find_value(global.banned_ips, i) + chr(10);
         }
         text = file_text_open_write('Banned_IPs.txt');
@@ -131,28 +130,28 @@ if string_letters(input[1]) == ''{
         banMessage()
         exit;
     }else if floor(real(string_digits(input[1]))) == 0{
-        // Can't ban yourself
+        //Can't ban yourself
         console_print('The host cannot be banned.');
     }
 }
-// If that system above did not work, try checking names
+//If that system above did not work, try checking names
 with Player{
     if name == other.input[1]{
-        // Don't ban the host
+        //Don't ban the host
         if id == global.myself{
             console_print('The host cannot be banned.');
             continue;
         }
-        // Found the name, ban that player
+        //Found the name, ban that player
         ds_list_add(global.banned_ips, socket_remote_ip(socket));
         socket_destroy_abortive(socket);
         socket = -1;
         
-        // Write it now in a file
+        //Write it now in a file
         var text, str, i;
         str = ''
         for (i=0; i<ds_list_size(global.banned_ips); i+=1){
-            // chr(10) == newline
+            //chr(10) == newline
             str += ds_list_find_value(global.banned_ips, i) + chr(10);
         }
         text = file_text_open_write('Banned_IPs.txt');
@@ -165,11 +164,11 @@ with Player{
         exit;
     }
 }
-// We failed
+//We failed
 console_print('Could not find a player with that ID or name.');
 
 ", "
-console_print('Syntax: ban playerID/playerName')
+console_print('Syntax: ban <playerID/playerName>')
 console_print('Use: Bans the designed player from the game, disconnecting him and preventing him from ever joining again.')
 console_print('Warning: IDs will be considered before names, so if a name of player x is equal to')
 console_print('         the ID of player y, player y will get banned.')
@@ -177,18 +176,18 @@ console_print('         Also, attempting to ban the host will have no effect.')
 console_print('You can unban a person by removing their ip from the banlist, this will not take effect until the server is restarted.')");
 
 console_addCommand("tempBan", "
-// Check whether we are the host before anything else
+//Check whether we are the host before anything else
 if not global.isHost{
     console_print('Only the host can use this command.');
     exit;
 }
 var player;
-// Check whether a name or a ID was given
+//Check whether a name or a ID was given
 if string_letters(input[1]) == ''{
-    // No letters were given
-    // First check whether that ID is even valid
+    //No letters were given
+    //First check whether that ID is even valid
     if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
-        // Valid ID, ban that player
+        //Valid ID, ban that player
         player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
         ds_list_add(global.banned_ips, socket_remote_ip(player.socket));
         with player{
@@ -201,19 +200,19 @@ if string_letters(input[1]) == ''{
         tempBanMessage()
         exit;
     }else if floor(real(string_digits(input[1]))) == 0{
-        // Can't ban yourself
+        //Can't ban yourself
         console_print('The host cannot be banned.');
     }
 }
-// If that system above did not work, try checking names
+//If that system above did not work, try checking names
 with Player{
     if name == other.input[1]{
-        // Don't ban the host
+        //Don't ban the host
         if id == global.myself{
             console_print('The host cannot be banned.');
             continue;
         }
-        // Found the name, ban that player
+        //Found the name, ban that player
         ds_list_add(global.banned_ips, socket_remote_ip(socket));
         socket_destroy_abortive(socket);
         socket = -1;
@@ -226,11 +225,11 @@ with Player{
         exit;
     }
 }
-// We failed
+//We failed
 console_print('Could not find a player with that ID or name.');
 
 ", "
-console_print('Syntax: tempBan playerID/playerName')
+console_print('Syntax: tempBan <playerID/playerName>')
 console_print('Use: Bans the designed player from the game, disconnecting him and preventing him from joining until the server is restarted.')
 console_print('Warning: IDs will be considered before names, so if a name of player x is equal to')
 console_print('         the ID of player y, player y will get banned.')
@@ -246,7 +245,7 @@ console_print(string(textips))
 file_text_close(text);
 ", "
 console_print('Syntax: listBans')
-console_print('Use: Shows every IP in the players ban list, ban lists aren't sent to clients so it just shows yours.)
+console_print('Use: Shows every IP in your ban list.)
 ");
 
 console_addCommand("listPlayers", "
@@ -303,7 +302,7 @@ console_print('These IDs are necessary for anything requiring a specific player,
 
 console_addCommand("clearScreen", "
 with Console{
-    clearScreenTimer = 36// Makes text zoom up instead of just disappearing
+    clearScreenTimer = 36//Makes text zoom up instead of just disappearing
 }
 ", "
 console_print('Syntax: clearScreen')
@@ -320,16 +319,16 @@ if input[1] != ''{
     var message;
     message = input[1];
     if string_copy(message, 0, 1) == chr(34){
-        // Cut off starting and ending quotes
+        //Cut off starting and ending quotes
         message = string_copy(message, 2, string_length(message)-2);
     }
     message = string_copy(message, 0, 255);
     
-    // Send it to everyone
+    //Send it to everyone
     write_ubyte(global.sendBuffer, MESSAGE_STRING);
     write_ubyte(global.sendBuffer, string_length(message));
     write_string(global.sendBuffer, message);
-    // Show it for the host as well
+    //Show it for the host as well
     var notice;
     with NoticeO instance_destroy();
     notice = instance_create(0, 0, NoticeO);
@@ -337,7 +336,7 @@ if input[1] != ''{
     notice.message = message;
 }
 ", "
-console_print('Syntax: broadcast '+chr(34)+'message to be sent'+chr(34));
+console_print('Syntax: broadcast <message to be sent>');
 console_print('Use: Makes all clients receive a notification bearing the message.');
 console_print('Warning: If spaces are in the message, remember to surround the message in double-quotes!');
 ");
@@ -387,7 +386,7 @@ console_print('Use: Changes the sever password. It does write to the .ini.')
 console_addCommand("execute", "
 execute_string(input[1]);
 ", "
-console_print('Syntax: execute '+chr(34)+'<code>'+chr(34));
+console_print('Syntax: execute '<code>');
 console_print('Use: Executes the given code immediately.');
 console_print('Warning: Can cause crashes, use at own responsibility!');
 ");
@@ -418,7 +417,7 @@ global.dsmMapChange=1
 GameServer.currentMapIndex+=1
 console_print('The next map is: '+nextMap)
 ", "
-console_print('Syntax: nextMap '+chr(34)+'<map name>'+chr(34))
+console_print('Syntax: nextMap <map name>')
 console_print('Use: Sets the next map to the desired map.')
 console_print('Warning: An incorrect map name may lead to the server crashing; check your maps first.')
 ")
@@ -442,39 +441,38 @@ number=input[2]
 class=string(class)
 number=real(number)
 
-
 //Get the class name
-if class=='Scout' or class=='scout' or class=='Runner' or class=='runner' or class=='Jello' or class=='jello' or class=='Sc' or class=='sc'  or class=='Ru'  or class=='ru'{ //Scout
+if class=='scout' or class=='runner' or class=='r'{ //Scout
     global.classlimits[CLASS_SCOUT]=number
     console_print('Scout limit changed to '+string(number)+'.')
-}else if class=='Pyro' or class=='pyro' or class=='Firebug' or class=='firebug' or class=='Fire' or class=='fire' or class=='F' or class=='f'  or class=='P'  or class=='p'{ //Pyro
+}else if class=='pyro' or class=='firebug' or class=='p'{ //Pyro
     global.classlimits[CLASS_PYRO]=number
     console_print('Pyro limit changed to '+string(number)+'.')
-}else if class=='Soldier' or class=='soldier' or class=='Rocketman' or class=='rocketman' or class=='Solly' or class=='solly' or class=='So' or class=='so'  or class=='Ro'  or class=='ro'{ //Soldier
+}else if class=='soldier' or class=='rocketman' or class=='so'{ //Soldier
     global.classlimits[CLASS_SOLDIER]=number
     console_print('Soldier limit changed to '+string(number)+'.')
-}else if class=='Heavy' or class=='heavy' or class=='Overweight' or class=='overweight' or class=='Fat' or class=='fat' or class=='H' or class=='h'  or class=='O'  or class=='o'{ //Heavy
+}else if class=='heavy' or class=='overweight' or class=='h'{ //Heavy
     global.classlimits[CLASS_HEAVY]=number
     console_print('Heavy limit changed to '+string(number)+'.')
-}else if class=='Demoman' or class=='demoman' or class=='Detonator' or class=='detonator' or class=='Demo' or class=='demo' or class=='Deto' or class=='deto' or class=='D' or class=='d'{ //Demoman
+}else if class=='demoman' or class=='detonator' or class=='demo' or class=='deto' or class=='d'{ //Demoman
     global.classlimits[CLASS_DEMOMAN]=number
     console_print('Demoman limit changed to '+string(number)+'.')
-}else if class=='Medic' or class=='medic' or class=='Healer' or class=='healer' or class=='Med' or class=='med' or class=='M' or class=='m'  or class=='He'  or class=='he'{ //Medic
+}else if class=='medic' or class=='healer' or class=='med' or class=='m'{ //Medic
     global.classlimits[CLASS_MEDIC]=number
     console_print('Medic limit changed to '+string(number)+'.')
-}else if class=='Engineer' or class=='engineer' or class=='Constructor' or class=='constructor' or class=='Engie' or class=='engie' or class=='E' or class=='e'  or class=='C'  or class=='c'{ //Engie
+}else if class=='engineer' or class=='constructor' or class=='engie' or class=='e'{ //Engie
     global.classlimits[CLASS_ENGINEER]=number
      console_print('Engineer limit changed to '+string(number)+'.')
-}else if class=='Spy' or class=='spy' or class=='Infiltrator' or class=='infiltrator' or class=='Sp' or class=='sp' or class=='I'  or class=='i'{ //Spy
+}else if class=='spy' or class=='infiltrator' or class=='i'{ //Spy
     global.classlimits[CLASS_SPY]=number
     console_print('Spy limit changed to '+string(number)+'.')
-}else if class=='Sniper' or class=='sniper' or class=='Rifleman' or class=='rifleman' or class=='Sn' or class=='sn'  or class=='R'  or class=='r'{ //Sniper
+}else if class=='sniper' or class=='rifleman' or class=='s'{ //Sniper
     global.classlimits[CLASS_SNIPER]=number
     console_print('Sniper limit changed to '+string(number)+'.')
-}else if class=='Quote' or class=='quote' or class=='Curly' or class=='curly' or class=='QC' or class=='qc' or class=='Q/C' or class=='q/c' or class=='Q'  or class=='Cu'  or class=='q'  or class=='cu'{ //Q/C
+}else if class=='quote' or class=='curly' or class=='qc' or class=='q/c'{ //Q/C
     global.classlimits[CLASS_QUOTE]=number
     console_print('Quote/Curly limit changed to '+string(number)+'.')
-}else if class=='All' or class=='all' or class=='A' or class=='a' or class=='Every' or class=='every' or class=='Ev' or class=='ev'{
+}else if class=='all' or class=='a'{
     global.classlimits[CLASS_SCOUT]=number
     global.classlimits[CLASS_PYRO]=number
     global.classlimits[CLASS_SOLDIER]=number
@@ -491,21 +489,339 @@ if class=='Scout' or class=='scout' or class=='Runner' or class=='runner' or cla
 }
 
 ","
-console_print('Syntax: classlimit '+chr(34)+'<class name> <number>'+chr(34)+')
+console_print('Syntax: classlimit <class name> <number>')
 console_print('Use: Set classlimits in-game.')
 console_print('Warning: Might not sync with clients properly. The settings will not be saved to the gg2.ini file, meaning they will not carry over between startups.')
-//So extensive :P
+console_print('')
 console_print('List of possible names:')
-console_print('Scout/Runner: Scout, scout, Runner, runner, Jello, jello, Sc, sc, Ru, ru')
-console_print('Pyro/Firebug: Pyro, pyro, Firebug, firebug, Fire, fire, F, f, P, p')
-console_print('Soldier/Rocketman: Soldier, soldier, Rocketman, rocketman, Solly, solly, So, so, Ro, ro')
-console_print('Heavy/Overweight: Heavy, heavy, Overweight, overweight, Fat, fat, H, h, O, o')
-console_print('Demoman/Detonator: Demoman, demoman, Detonator, detonator, Demo, demo, Deto, deto, D, d')
-console_print('Medic/Healer: Medic, medic, Healer, healer, Med, med, M, m, He, he')
-console_print('Engineer/Constructor: Engineer, engineer, Constructor, constructor, Engie, engie, E, e, C, c')
-console_print('Spy/Infiltrator: Spy, spy, Infiltrator, infiltrator, Sp, sp, I, i')
-console_print('Sniper/Rifleman: Sniper, sniper, Rifleman, rifleman, Sn, sn, R, r')
-console_print('Quote/Curly: Quote, quote, Curly, curly, QC, qc, Q/C, q/c, Q, Cu, q, cu')
-console_print('All/Every: All, all, A, a, Every, every, Ev, ev')
+console_print('Scout/Runner: scout, runner, r')
+console_print('Pyro/Firebug: pyro, firebug, p')
+console_print('Soldier/Rocketman: soldier, rocketman, so')
+console_print('Heavy/Overweight: heavy, overweight, h')
+console_print('Demoman/Detonator: demoman, detonator, demo, deto, d')
+console_print('Medic/Healer: medic, healer, med, m')
+console_print('Engineer/Constructor: engineer, constructor, engie, e')
+console_print('Spy/Infiltrator: spy, infiltrator, i')
+console_print('Sniper/Rifleman: sniper, rifleman, s')
+console_print('Quote/Curly: quote, curly, qc, q/c')
+console_print('All Classes: all, a')
 ")
 
+console_addCommand("dropIntel", "
+if not global.isHost{
+    console_print('Only the host can use this command.')
+    exit
+}
+
+var player;
+//Check whether a name or a ID was given
+if string_letters(input[1]) == ''{
+    //No letters were given
+    //First check whether that ID is even valid
+    //if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
+        //Valid ID, force intel drop
+        player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
+        if (player.object.intel=true) and (player.object!=-1){
+            write_byte(global.serverSocket, DROP_INTEL)
+            sendEventDropIntel(player);
+            doEventDropIntel(player);
+            console_print(string_replace_all(player.name, '/:/', '/;/')+' was forced to drop the intel.');
+        }else{
+            console_print(string_replace_all(player.name, '/:/', '/;/')+' does not have the intel.');
+        }
+        exit;
+    //}
+}
+//If that system above did not work, try checking names
+with Player{
+    if name == other.input[1]{
+        //Found the name, force intel drop
+        if (object.intel=true) and (object!=-1){
+            write_byte(global.serverSocket, DROP_INTEL)
+            sendEventDropIntel(Player);
+            doEventDropIntel(Player);
+            console_print(string_replace_all(name, '/:/', '/;/')+' was forced to drop the intel.');
+        }else{
+            console_print(string_replace_all(name, '/:/', '/;/')+' does not have the intel.');
+        }
+        exit;
+    }
+}
+//We failed
+console_print('Could not find a player with that ID or name.');
+", "
+console_print('Syntax: dropIntel <playerID/playerName>')
+console_print('Use: Forces a player to drop the intel.')
+")
+
+console_addCommand("kill", "
+if not global.isHost{
+    console_print('Only the host can use this command.')
+    exit
+}
+
+var player;
+//Check whether a name or a ID was given
+if string_letters(input[1]) == ''{
+    //No letters were given
+    //First check whether that ID is even valid
+    //if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
+        //Valid ID, kill
+        player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
+        if(player.object!=-1){
+            player.object.hp = -9999
+            console_print(string_replace_all(player.name, '/:/', '/;/')+' was killed.');
+        }else{
+            console_print(string_replace_all(player.name, '/:/', '/;/')+' is not alive.');
+        }
+        exit;
+    //}
+}
+//If that system above did not work, try checking names
+with Player{
+    if name == other.input[1]{
+        //Found the name, kill
+        if(object!=-1){
+            object.hp = -9999
+            console_print(string_replace_all(name, '/:/', '/;/')+' was killed.');
+        }else{
+            console_print(string_replace_all(name, '/:/', '/;/')+' is not alive.');
+        }
+        exit;
+    }
+}
+//We failed
+console_print('Could not find a player with that ID or name.');
+", "
+console_print('Syntax: kill <playerID/playerName>')
+console_print('Use: Kills selected player.')
+")
+
+console_addCommand("time", "
+if not global.isHost{
+    console_print('Only the host can use this command.')
+    exit
+}
+
+var time;
+time=floor(real(input[1]))*30*60
+
+with(HUD){
+    if instance_exists(CTFHUD){
+        CTFHUD.timer=time
+        GameServer.syncTimer=1
+    }
+    if instance_exists(ControlPointHUD){
+        ControlPointHUD.timer=time
+        GameServer.syncTimer=1
+    }
+    if instance_exists(DKothHUD){
+        DKothHUD.timer=time
+        GameServer.syncTimer=1
+    }
+    if instance_exists(KothHUD){
+        KothHUD.timer=time
+        GameServer.syncTimer=1
+    }
+    if instance_exists(GeneratorHUD){
+        GeneratorHUD.timer=time
+        GameServer.syncTimer=1
+    }
+    if instance_exists(TeamDeathmatchHUD){
+        TeamDeathmatchHUD.timer=time
+        GameServer.syncTimer=1
+    }
+    if instance_exists(InvasionHUD){
+        InvasionHUD.timer=time
+        GameServer.syncTimer=1
+    }
+}
+", "
+console_print('Syntax: time <number of minutes>')
+console_print('Use: Changes current time to defined time in minutes.')
+")
+
+console_addCommand("lock", "
+if not global.isHost{
+    console_print('Only the host can use this command.')
+    exit
+}
+
+if input[1]=='red'{
+    global.locked_red=1
+    console_print('Locked red team.')
+}else if input[1]=='blue'{
+    global.locked_blue=1
+    console_print('Locked blue team.')
+}else if input[1]=='scout' or input[1]=='runner' or input[1]=='r'{
+    global.locked_scout=1
+    console_print('Locked Scout.')
+}else if input[1]=='pyro' or input[1]=='firebug' or input[1]=='p'{
+    global.locked_pyro=1
+    console_print('Locked Pyro.')
+}else if input[1]=='soldier' or input[1]=='rocketman' or input[1]=='so'{
+    global.locked_soldier=1
+    console_print('Locked Soldier.')
+}else if input[1]=='heavy' or input[1]=='overweight' or input[1]=='h'{
+    global.locked_heavy=1
+    console_print('Locked Heavy.')
+}else if input[1]=='demoman' or input[1]=='detonator' or input[1]=='demo' or input[1]=='deto' or input[1]=='d'{
+    global.locked_demoman=1
+    console_print('Locked Demoman.')
+}else if input[1]=='medic' or input[1]=='healer' or input[1]=='med' or input[1]=='m'{
+    global.locked_medic=1
+    console_print('Locked Medic.')
+}else if input[1]=='engineer' or input[1]=='constructor' or input[1]=='engie' or input[1]=='e'{
+    global.locked_engie=1
+    console_print('Locked Engineer.')
+}else if input[1]=='spy' or input[1]=='infiltrator' or input[1]=='i'{
+    global.locked_spy=1
+    console_print('Locked Spy.')
+}else if input[1]=='sniper' or input[1]=='rifleman' or input[1]=='s'{
+    global.locked_sniper=1
+    console_print('Locked Sniper.')
+}else if input[1]=='quote' or input[1]=='curly' or input[1]=='qc' or input[1]=='q/c'{
+    global.locked_quote=1
+    console_print('Locked Quote/Curly.')
+}else{
+    console_print('This is not a valid team or class.')
+}
+", "
+console_print('Syntax: lock <team/class>')
+console_print('Use: Prevent any new players from joining that team or using that class.')
+console_print('These are accepted inputs for teams: red, blue')
+console_print('These are accepted inputs for classes:')
+console_print('Scout/Runner: scout, runner, r')
+console_print('Pyro/Firebug: pyro, firebug, p')
+console_print('Soldier/Rocketman: soldier, rocketman, so')
+console_print('Heavy/Overweight: heavy, overweight, h')
+console_print('Demoman/Detonator: demoman, detonator, demo, deto, d')
+console_print('Medic/Healer: medic, healer, med, m')
+console_print('Engineer/Constructor: engineer, constructor, engie, e')
+console_print('Spy/Infiltrator: spy, infiltrator, i')
+console_print('Sniper/Rifleman: sniper, rifleman, s')
+console_print('Quote/Curly: quote, curly, qc, q/c')
+")
+
+//Just a copy of the above command, but backwards
+console_addCommand("unlock", "
+if not global.isHost{
+    console_print('Only the host can use this command.')
+    exit
+}
+
+if input[1]=='red'{
+    global.locked_red=0
+    console_print('Unlocked red team.')
+}else if input[1]=='blue'{
+    global.locked_blue=0
+    console_print('Unlocked blue team.')
+}else if input[1]=='scout' or input[1]=='runner' or input[1]=='r'{
+    global.locked_scout=0
+    console_print('Unlocked Scout.')
+}else if input[1]=='pyro' or input[1]=='firebug' or input[1]=='p'{
+    global.locked_pyro=0
+    console_print('Unlocked Pyro.')
+}else if input[1]=='soldier' or input[1]=='rocketman' or input[1]=='so'{
+    global.locked_soldier=0
+    console_print('Unlocked Soldier.')
+}else if input[1]=='heavy' or input[1]=='overweight' or input[1]=='h'{
+    global.locked_heavy=0
+    console_print('Unlocked Heavy.')
+}else if input[1]=='demoman' or input[1]=='detonator' or input[1]=='demo' or input[1]=='deto' or input[1]=='d'{
+    global.locked_demoman=0
+    console_print('Unlocked Demoman.')
+}else if input[1]=='medic' or input[1]=='healer' or input[1]=='med' or input[1]=='m'{
+    global.locked_medic=0
+    console_print('Unlocked Medic.')
+}else if input[1]=='engineer' or input[1]=='constructor' or input[1]=='engie' or input[1]=='e'{
+    global.locked_engie=0
+    console_print('Unlocked Engineer.')
+}else if input[1]=='spy' or input[1]=='infiltrator' or input[1]=='i'{
+    global.locked_spy=0
+    console_print('Unlocked Spy.')
+}else if input[1]=='sniper' or input[1]=='rifleman' or input[1]=='s'{
+    global.locked_sniper=0
+    console_print('Unlocked Sniper.')
+}else if input[1]=='quote' or input[1]=='curly' or input[1]=='qc' or input[1]=='q/c'{
+    global.locked_quote=0
+    console_print('Unlocked Quote/Curly.')
+}else{
+    console_print('This is not a valid team or class.')
+}
+", "
+console_print('Syntax: unlock <team/class>')
+console_print('Use: Re-allows any new players from joining that team or using that class.')
+console_print('These are accepted inputs for teams: red, blue')
+console_print('These are accepted inputs for classes:')
+console_print('Scout/Runner: scout, runner, r')
+console_print('Pyro/Firebug: pyro, firebug, p')
+console_print('Soldier/Rocketman: soldier, rocketman, so')
+console_print('Heavy/Overweight: heavy, overweight, h')
+console_print('Demoman/Detonator: demoman, detonator, demo, deto, d')
+console_print('Medic/Healer: medic, healer, med, m')
+console_print('Engineer/Constructor: engineer, constructor, engie, e')
+console_print('Spy/Infiltrator: spy, infiltrator, i')
+console_print('Sniper/Rifleman: sniper, rifleman, s')
+console_print('Quote/Curly: quote, curly, qc, q/c')
+")
+
+console_addCommand("bind", "
+var bind, command;
+bind=string_upper(input[1])
+command=string(input[2])
+
+if (ds_list_find_index(global.dsmBinds,ord(bind))==-1){
+    ds_list_add(global.dsmBinds,ord(bind))
+    ds_list_add(global.dsmBindCommands,command)
+    write_binds_to_file()
+    console_print('Binded '+string(ord(bind))+' to '+command)
+    exit;
+}else{
+    ds_list_replace(global.dsmBindCommands,ds_list_find_index(global.dsmBinds,ord(bind)),command)
+    write_binds_to_file()
+    console_print('Overwrote '+string(ord(bind))+' to '+command)
+    exit;
+}
+//Somehow we failed...
+console_print('Binding failed. Make sure the command is encased in quotes.')
+", "
+console_print('Syntax: bind <key> <command>')
+console_print('Use: Binds a console command to a key.')
+console_print('Warning: May cause problems with the chat plugin, use carefully.')
+")
+
+console_addCommand("unbind","
+var bind;
+bind=string_upper(input[1])
+
+for (i = 0; i < ds_list_size(global.dsmBinds); i+=1){
+    if real(ds_list_find_value(global.dsmBinds,i))==real(ord(bind)){
+        ds_list_delete(global.dsmBinds,i)
+        ds_list_delete(global.dsmBindCommands,i)
+        write_binds_to_file()
+        console_print('Removed bind: '+string(ord(bind)))
+        exit;
+    }
+}
+//User tried to remove a bind that does not exist, or just failed the command.
+console_print('Bind: '+string(bind)+' does not exist. Type listBinds for a list of all current binds.')
+", "
+console_print('Syntax: unbind <key>')
+console_print('Use: Removes a specified bind.')
+")
+
+
+
+console_addCommand("listBinds","
+var bindListSize,index;
+bindListSize=ds_list_size(global.dsmBinds)
+index=0
+while(index<bindListSize){
+    console_print(string(chr(real(ds_list_find_value(global.dsmBinds,index))))+string(' ')+string(ds_list_find_value(global.dsmBindCommands,index)))
+    index+=1
+}
+", "
+console_print('Syntax: listBinds')
+console_print('Use: Lists all binds assigned by the user.')
+")

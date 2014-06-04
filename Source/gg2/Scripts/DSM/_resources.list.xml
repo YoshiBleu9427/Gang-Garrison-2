@@ -6,6 +6,5 @@
   <resource name="Menus" type="GROUP"/>
   <resource name="PluginFixes" type="GROUP"/>
   <resource name="DSM_init" type="RESOURCE"/>
-  <resource name="NOTES" type="RESOURCE"/>
   <resource name="randomiseRotation" type="RESOURCE"/>
 </resources>
