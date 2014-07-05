@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/*
+draw_set_alpha(1);
+draw_set_color(c_red);
+if(object != -1) {
+    var yOffset, jumpLength;
+    yOffset = object.sprite_height-object.sprite_yoffset;
+    jumpLength = object.hspeed * object.jumpStrength;
+    /*draw_set_color(c_white);
+    draw_line(object.x, object.y + yOffset - 6, object.x+jumpLength, object.y + yOffset - 48);*//*
+    
+    if(pathPoint != noone)
+    if(instance_exists(pathPoint)) {
+        var caolze;
+        if(team == TEAM_RED) {
+            caolze = c_red;
+        } else {
+            caolze = c_aqua;
+        }
+        caolze += 20000 * class;
+        draw_set_color(caolze);
+        draw_line(object.x, object.y, pathPoint.x, pathPoint.y);
+        draw_circle(pathPoint.x, pathPoint.y, 4, true);
+    }
+    
+}*/
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

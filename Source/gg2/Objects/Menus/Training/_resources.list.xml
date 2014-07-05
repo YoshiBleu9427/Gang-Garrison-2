@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="CharacterMenuController" type="RESOURCE"/>
+  <resource name="CheatMenu" type="RESOURCE"/>
+  <resource name="MapMenuController" type="RESOURCE"/>
+</resources>

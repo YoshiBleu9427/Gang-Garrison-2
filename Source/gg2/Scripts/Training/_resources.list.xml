@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="AI" type="GROUP"/>
+  <resource name="Creation" type="GROUP"/>
+  <resource name="Dialogs" type="GROUP"/>
+  <resource name="Events" type="GROUP"/>
+  <resource name="Noding" type="GROUP"/>
+  <resource name="Other" type="GROUP"/>
+</resources>

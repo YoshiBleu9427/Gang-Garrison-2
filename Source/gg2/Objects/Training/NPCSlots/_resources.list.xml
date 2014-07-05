@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="NPC01" type="RESOURCE"/>
+  <resource name="NPC02" type="RESOURCE"/>
+  <resource name="NPC03" type="RESOURCE"/>
+  <resource name="NPC04" type="RESOURCE"/>
+  <resource name="NPC05" type="RESOURCE"/>
+  <resource name="NPC06" type="RESOURCE"/>
+  <resource name="NPC07" type="RESOURCE"/>
+</resources>

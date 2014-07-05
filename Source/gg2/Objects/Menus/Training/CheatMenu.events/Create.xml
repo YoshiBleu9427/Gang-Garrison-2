@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(40, 150, 200, 200, 30);
+    menu_setdimmed();
+    
+    menu_addlink("Give full health", '
+        if(global.myself.object != -1) {
+            global.myself.object.hp = global.myself.object.maxHp;
+        }
+    ');
+    menu_addedit_boolean("God mode", "CheatController.god", '');
+    menu_addedit_boolean("Invisible", "CheatController.notarget", '');
+    menu_addedit_boolean("Infinite ammo", "CheatController.infiniteAmmo", '');
+    menu_addedit_boolean("Infinite metal", "CheatController.infiniteMetal", '');
+    menu_addedit_boolean("Infinite ubercharge", "CheatController.infiniteCharge", '');
+    // If you don't toggle the uber off in the menu, it won't run out unless you get healed by a medic.
+    menu_addedit_boolean("Always ubered", "CheatController.alwaysUbered", '
+        global.myself.object.ubered = false;
+    ');
+    menu_addedit_boolean("1 hit kill", "CheatController.oneHitKill", '');
+    menu_addlink("", '');
+    menu_addback("Back", '
+        instance_destroy();
+        instance_create(x,y,InGameMenuController);
+    ')
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if(object != -1) {
+    justJumped = max(0, justJumped - 1);
+    keybyte = 0;
+    aimDirection = 0;
+    
+    jump = 0;
+    LMB = 0;
+    RMB = 0;
+    
+    npcRunAI();
+    npcRunAim();
+    
+    if(jump &gt; 0 &amp;&amp; justJumped &lt;= 0) {
+        keybyte |= $80;
+        justJumped = 10;
+    }
+    if(dir == -1) {
+        keybyte |= $40; // left
+    } else if(dir == 1) {
+        keybyte |= $20; // right
+    }
+    if(LMB &gt; 0) keybyte |= $10;
+    if(RMB &gt; 0) keybyte |= $08;
+    
+    object.keyState = keybyte;
+    object.aimDirection = aimDirection;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">var xoffset, yoffset;
+var xoffsetFace, yoffsetFace;
+var xoffsetTxt, yoffsetTxt;
+var xoffsetSprite, yoffsetSprite;
+var xsizeSprite, ysizeSprite;
+
+xoffset = view_xview[0] + 24;
+yoffset = view_yview[0] + 404;
+xoffsetFace = view_xview[0] + 78;
+yoffsetFace = view_yview[0] + 464;
+xoffsetTxt = view_xview[0] + 120;
+yoffsetTxt = view_yview[0] + 440;
+
+draw_set_alpha(alpha);
+draw_set_color(c_white);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+draw_sprite_ext(sprite_index, 0, xoffset, yoffset, 6, 6, 0, color, alpha * 0.8);
+
+if(dialogMsg.face != noone) {
+    xoffsetSprite   = sprite_get_xoffset(dialogMsg.face);
+    yoffsetSprite   = sprite_get_yoffset(dialogMsg.face);
+    xsizeSprite     = sprite_get_width(dialogMsg.face);
+    ysizeSprite     = sprite_get_height(dialogMsg.face);
+    
+    draw_sprite_ext(dialogMsg.face, dialogMsg.subFace,
+        xoffsetFace + xoffsetSprite - xsizeSprite / 2, yoffsetFace + yoffsetSprite - ysizeSprite / 2,
+        2, 2, 0, c_white, alpha * 0.8);
+}
+
+draw_text_transformed(xoffsetTxt, yoffsetTxt, dialogMsg.text, 1, 1, 0);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

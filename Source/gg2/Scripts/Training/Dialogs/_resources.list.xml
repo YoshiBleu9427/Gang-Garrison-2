@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="runDialogs" type="RESOURCE"/>
+  <resource name="addDialog" type="RESOURCE"/>
+  <resource name="addDialogForce" type="RESOURCE"/>
+  <resource name="addPriorDialog" type="RESOURCE"/>
+</resources>

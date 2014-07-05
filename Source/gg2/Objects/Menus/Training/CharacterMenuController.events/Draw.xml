@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">
+var alpha;
+    
+for(i = 0; i &lt; 9; i+=1) {
+    if(global.class == i) {
+        alpha[i] = 1;
+    } else {
+        alpha[i] = 0.6;
+    }
+    draw_set_color(c_white);
+    draw_rectangle(xoffset[i], yoffset[i], xoffset[i] + 35, yoffset[i] + 49, false);
+}
+
+draw_sprite_ext(ClassSelectSpritesS, 0, xoffset[CLASS_SCOUT], yoffset[CLASS_SCOUT], 1, 1, 0, c_white, alpha[CLASS_SCOUT]);
+draw_sprite_ext(ClassSelectSpritesS, 1, xoffset[CLASS_PYRO], yoffset[CLASS_PYRO], 1, 1, 0, c_white, alpha[CLASS_PYRO]);
+draw_sprite_ext(ClassSelectSpritesS, 2, xoffset[CLASS_SOLDIER], yoffset[CLASS_SOLDIER], 1, 1, 0, c_white, alpha[CLASS_SOLDIER]);
+draw_sprite_ext(ClassSelectSpritesS, 3, xoffset[CLASS_HEAVY], yoffset[CLASS_HEAVY], 1, 1, 0, c_white, alpha[CLASS_HEAVY]);
+draw_sprite_ext(ClassSelectSpritesS, 4, xoffset[CLASS_DEMOMAN], yoffset[CLASS_DEMOMAN], 1, 1, 0, c_white, alpha[CLASS_DEMOMAN]);
+draw_sprite_ext(ClassSelectSpritesS, 5, xoffset[CLASS_MEDIC], yoffset[CLASS_MEDIC], 1, 1, 0, c_white, alpha[CLASS_MEDIC]);
+draw_sprite_ext(ClassSelectSpritesS, 6, xoffset[CLASS_ENGINEER], yoffset[CLASS_ENGINEER], 1, 1, 0, c_white, alpha[CLASS_ENGINEER]);
+draw_sprite_ext(ClassSelectSpritesS, 7, xoffset[CLASS_SPY], yoffset[CLASS_SPY], 1, 1, 0, c_white, alpha[CLASS_SPY]);
+draw_sprite_ext(ClassSelectSpritesS, 8, xoffset[CLASS_SNIPER], yoffset[CLASS_SNIPER], 1, 1, 0, c_white, alpha[CLASS_SNIPER]);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

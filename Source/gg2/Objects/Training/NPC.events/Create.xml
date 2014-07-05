@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="604" library="1">
+      <!--action name: Inherited-->
+      <kind>NORMAL</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>false</canApplyTo>
+      <actionType>FUNCTION</actionType>
+      <functionName>action_inherited</functionName>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments/>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">text        = "";
+face        = noone;
+subFace     = 0;
+justTalked  = false;
+
+hasStandardRespawn = false; // will the npc spawn at a SpawnPosition like normal players, or at a specified (x/y) position?
+
+pathPoint   = noone;
+aimObject   = noone;
+forcePath   = false;
+forceAim    = false;
+defaultDir  = -1;   // instead of gunspinning, set your aimDirection to this
+aimModifier = 0;    // this will randomize bot's accuracy
+maxModifier = 30;   // max angle difference
+seeRange    = 350;  // how far can the npc see in pixels (circle around the character)
+spyReactTime = 35;  // after this nb of frames, the bot will consider the spy
+task        = NPC_TASK_IDLE;
+
+npcInitAI();
+justJumped = 10;
+
+// events
+justSeen = 0;       // has the player always been in npc's sight since last time seen? (a 30-frame-long, decreasing timer)
+alreadySeen = false; // has the player already be seen by this bot?
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">
+    menu_create(40, 300, 200, 200, 30);
+    menu_addlink("Select your character:", "");
+    menu_addlink("Select a map", 'event_user(0);');
+    menu_addback("Back", '
+        instance_destroy();
+        instance_create(x,y,MainMenuController);
+    ');
+
+
+xoffset[CLASS_SCOUT]    = view_xview[0] + 160;
+xoffset[CLASS_PYRO]     = view_xview[0] + 200;
+xoffset[CLASS_SOLDIER]  = view_xview[0] + 240;
+xoffset[CLASS_HEAVY]    = view_xview[0] + 280;
+xoffset[CLASS_DEMOMAN]  = view_xview[0] + 320;
+xoffset[CLASS_MEDIC]    = view_xview[0] + 180;
+xoffset[CLASS_ENGINEER] = view_xview[0] + 220;
+xoffset[CLASS_SPY]      = view_xview[0] + 260;
+xoffset[CLASS_SNIPER]   = view_xview[0] + 300;
+
+yoffset[CLASS_SCOUT]    = view_xview[0] + 180;
+yoffset[CLASS_PYRO]     = view_xview[0] + 180;
+yoffset[CLASS_SOLDIER]  = view_xview[0] + 180;
+yoffset[CLASS_HEAVY]    = view_xview[0] + 180;
+yoffset[CLASS_DEMOMAN]  = view_xview[0] + 180;
+yoffset[CLASS_MEDIC]    = view_xview[0] + 240;
+yoffset[CLASS_ENGINEER] = view_xview[0] + 240;
+yoffset[CLASS_SPY]      = view_xview[0] + 240;
+yoffset[CLASS_SNIPER]   = view_xview[0] + 240;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

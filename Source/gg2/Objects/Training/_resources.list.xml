@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="CheatController" type="RESOURCE"/>
+  <resource name="DialogBox" type="RESOURCE"/>
+  <resource name="DialogBoxMsg" type="RESOURCE"/>
+  <resource name="EventManager" type="RESOURCE"/>
+  <resource name="GameOverController" type="RESOURCE"/>
+  <resource name="NPC" type="RESOURCE"/>
+  <resource name="PathNode" type="RESOURCE"/>
+  <resource name="TriggerPoint" type="RESOURCE"/>
+  <resource name="NPCSentrySpot" type="RESOURCE"/>
+  <resource name="NPCSniperSpot" type="RESOURCE"/>
+  <resource name="NPCSlots" type="GROUP"/>
+</resources>

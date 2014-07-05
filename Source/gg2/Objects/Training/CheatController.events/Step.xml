@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if(global.myself.object != -1) {
+    if(god) {
+        global.myself.object.hp = 255;
+    }
+    if(notarget) {
+        global.myself.object.uncloakTime = 0;
+    }
+    if(infiniteAmmo) {
+        with(global.myself.object.currentWeapon) {
+            ammoCount = maxAmmo;
+        }
+    }
+    if(infiniteMetal) {
+        global.myself.object.nutsNBolts = global.myself.object.maxNutsNBolts;
+    }
+    if(infiniteCharge) {
+        var myMedigun;
+        myMedigun = noone;
+        with(Medigun) {
+            if(ownerPlayer == global.myself) myMedigun=id;
+        }
+        if(myMedigun != noone) {
+            myMedigun.uberCharge = 2000;
+        }
+    }
+    if(alwaysUbered) {
+        global.myself.object.ubered = true;
+    }
+    if(oneHitKill) {
+        with(Character) {
+            if(hp != maxHp) {
+                if(timeUnscathed &lt; 2) {
+                    hp = 0;
+                }
+            }
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>
