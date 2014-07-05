@@ -22,12 +22,17 @@
     global.MenuMusic=sound_add(choose("Music/menumusic1.wav","Music/menumusic2.wav","Music/menumusic3.wav","Music/menumusic4.wav","Music/menumusic5.wav","Music/menumusic6.wav"), 1, true);
     global.IngameMusic=sound_add("Music/ingamemusic.wav", 1, true);
     global.FaucetMusic=sound_add("Music/faucetmusic.wav", 1, true);
+    global.playerDeathSound=sound_add("Music/playerDeathSound.wav", 1, true);
+    global.gameOverSound=sound_add("Music/gameOverSound.wav", 1, true);
+    global.actionMusic=sound_add("Music/actionmusic.wav", 1, true);
     if(global.MenuMusic != -1)
         sound_volume(global.MenuMusic, 0.8);
     if(global.IngameMusic != -1)
         sound_volume(global.IngameMusic, 0.8);
     if(global.FaucetMusic != -1)
         sound_volume(global.FaucetMusic, 0.8);
+    if(global.actionMusic != -1)
+        sound_volume(global.actionMusic, 0.8);
     
     global.sendBuffer = buffer_create();
     global.tempBuffer = buffer_create();
@@ -127,6 +132,15 @@
     // Create plugin packet maps
     global.pluginPacketBuffers = ds_map_create();
     global.pluginPacketPlayers = ds_map_create();
+    
+    
+    
+    // Training data
+    global.class = CLASS_SCOUT;     // I want to redo that. Bad.
+    global.team = TEAM_RED;
+    global.dialogList = noone; // defined in GameServer creation
+    global.respawntime = 15 * 30;
+    global.restart = false; // restart the map, ingamemenucontroller
         
     ini_write_string("Settings", "PlayerName", global.playerName);
     ini_write_real("Settings", "Fullscreen", global.fullscreen);

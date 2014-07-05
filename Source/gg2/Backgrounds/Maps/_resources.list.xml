@@ -21,4 +21,5 @@
   <resource name="AvantiB" type="RESOURCE"/>
   <resource name="CustomMapB" type="RESOURCE"/>
   <resource name="ManticB" type="RESOURCE"/>
+  <resource name="heavy_dirtbowlB" type="RESOURCE"/>
 </resources>

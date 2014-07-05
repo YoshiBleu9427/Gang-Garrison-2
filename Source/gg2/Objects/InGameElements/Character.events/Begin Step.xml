@@ -114,6 +114,15 @@ if (!player.humiliated &amp;&amp; (pressedKeys &amp; $08)
     }
 }
 
+
+// NPC - JUST UNCLOAKED
+if((cloakAlpha &gt; 0.2) or stabbing) {
+    uncloakTime = min(uncloakTime + 1, uncloakMaxTime);
+} else {
+    // uncloakTimeOnRecloak &amp;gt; uncloakTime &amp;gt; 0
+    uncloakTime = max(min(uncloakTimeOnRecloak, uncloakTime - 1), 0);
+}
+
 switch(moveStatus) // moveStatus is reset in collision with ceilings (including doors if they reject you)
 {
 case 1: //If I am rocketing/mining myself

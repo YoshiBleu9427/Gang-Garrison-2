@@ -11,6 +11,9 @@ if((frame mod 900) == 0 and global.run_virtual_ticks)
 if(global.run_virtual_ticks)
     frame += 1;
 
+// TrainingMod - input
+runDialogs();
+
 // Service all players
 var i;
 for(i=0; i < ds_list_size(global.players); i+=1)
@@ -18,15 +21,22 @@ for(i=0; i < ds_list_size(global.players); i+=1)
     var player;
     player = ds_list_find_value(global.players, i);
     
-    if(socket_has_error(player.socket) or player.kicked)
-    {
-        removePlayer(player);
-        ServerPlayerLeave(i, global.sendBuffer);
-        ServerBalanceTeams();
-        i -= 1;
+    if(player.object_index != Player) { // TODO: fix is_ancestor
+        with(player.object)
+        {
+            event_user(1);
+        }
+    } else {
+        if(socket_has_error(player.socket) or player.kicked)
+        {
+            removePlayer(player);
+            ServerPlayerLeave(i, global.sendBuffer);
+            ServerBalanceTeams();
+            i -= 1;
+        }
+        else
+            processClientCommands(player, i);
     }
-    else
-        processClientCommands(player, i);
 }
 
 if(syncTimer == 1 || ((frame mod 3600)==0) || global.setupTimer == 180 and global.run_virtual_ticks)

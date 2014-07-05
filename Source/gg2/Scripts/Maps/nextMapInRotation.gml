@@ -1,6 +1,7 @@
 // next map by name = nextMapInRotation()
 // Only use from GameServer
-var desiredMapName, desiredMapIndex, i, numberOfMaps;
+
+/*var desiredMapName, desiredMapIndex, i, numberOfMaps;
 numberOfMaps = ds_list_size(global.map_rotation);
 
 for(i = 1; i <= numberOfMaps; i += 1)
@@ -14,4 +15,7 @@ for(i = 1; i <= numberOfMaps; i += 1)
     }
 }
 
-show_error("Error: Invalid rotation: doesn't contain any valid maps. Exiting.", true);
+show_error("Error: Invalid rotation: doesn't contain any valid maps. Exiting.", true);*/
+
+// actually in this mod there is no map rotation
+return "";

@@ -27,6 +27,10 @@
     menu_addback("", '
         instance_destroy();
     ');
+    menu_addlink("Cheats", '
+        instance_destroy();
+        instance_create(0,0,CheatMenu);
+    ');
     if (global.isHost) {
         menu_addlink("Kick players", '
             if(!instance_exists(ScoreTableController)) instance_create(0,0,ScoreTableController);
@@ -37,6 +41,12 @@
     menu_addlink("Options", '
         instance_destroy();
         instance_create(0,0,OptionsController);
+    ');
+    menu_addlink("", '');
+    menu_addlink("Restart", '
+        global.restart = true;
+        GameServer.impendingMapChange = 1;
+        with(GameServer) instance_destroy();
     ');
     menu_addlink("Disconnect", '
         // Force dedicated mode to off so you can go to main menu instead of just restarting server
@@ -50,6 +60,7 @@
             with(Client)
                 instance_destroy();
                 
+			GameServer.impendingMapChange = 1;
             with(GameServer)
                 instance_destroy();
         }

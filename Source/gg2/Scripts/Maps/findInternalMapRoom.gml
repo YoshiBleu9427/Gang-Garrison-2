@@ -47,6 +47,13 @@ case "ctf_oldfort":
     return Oldfort;
 case "gg_debug":
     return DebugRoom;
+case "spy_conflict":
+    return spy_conflict;
+case "medic_lumberyard":
+    return medic_lumberyard;
+case "heavy_dirtbowl":
+    return heavy_dirtbowl;
+            
 default:
     return false;
 }

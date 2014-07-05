@@ -1,5 +1,6 @@
 room_caption = global.currentMap;
 global.startedGame = true;
+global.mapchanging = false; // unnecessary?
 
 if(!global.fullscreen)
     window_set_position(previous_window_x+previous_window_w/2-global.ingamewidth/2, previous_window_y);
@@ -31,6 +32,24 @@ with(Player) {
     humiliated = 0;
 }
 
+with(global.myself) {
+    team = global.team;
+    class = global.class;
+    // do spawn right now
+    // * {
+    var group, spawnpointID, numSpawnPoints;
+    group = selectSpawnGroup(team);
+    if (group==-1) {
+        show_message("This map does not contain valid spawn points");
+        game_end();
+    }
+    if(team == TEAM_RED) numSpawnPoints = ds_list_size(global.spawnPointsRed[0,group]);
+    if(team == TEAM_BLUE) numSpawnPoints = ds_list_size(global.spawnPointsBlue[0,group]);
+    spawnpointID = floor(random(numSpawnPoints));
+    doEventSpawn(id, spawnpointID, group);
+    // * }
+}
+
 if(instance_exists(IntelligenceBase) or instance_exists(Intelligence))
 {
     if (instance_exists(ControlPointSetupGate))
@@ -45,6 +64,7 @@ else if(instance_exists(Generator))
 else if(instance_exists(ArenaControlPoint))
 {
     instance_create(0, 0, ArenaHUD);
+    doEventArenaStartRoundSpecial();
     if (ArenaHUD.roundStart == 0)
     {
         with (Player)

@@ -23,4 +23,5 @@
   <resource name="ManticO" type="RESOURCE"/>
   <resource name="OldfortO" type="RESOURCE"/>
   <resource name="CustomMapO" type="RESOURCE"/>
+  <resource name="heavy_dirtbowlO" type="RESOURCE"/>
 </resources>

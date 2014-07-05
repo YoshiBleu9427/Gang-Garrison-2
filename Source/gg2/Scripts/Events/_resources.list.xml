@@ -31,4 +31,7 @@
   <resource name="doEventArenaStartRound" type="RESOURCE"/>
   <resource name="sendEventDropIntel" type="RESOURCE"/>
   <resource name="doEventDropIntel" type="RESOURCE"/>
+  <resource name="doEventBuildSentry" type="RESOURCE"/>
+  <resource name="doEventSpawnPos" type="RESOURCE"/>
+  <resource name="doEventArenaStartRoundSpecial" type="RESOURCE"/>
 </resources>

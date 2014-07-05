@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
   <constant name="VERSION" value="27200"/>
+  <constant name="TRAINING_VERSION" value="03220"/>
   <constant name="GAME_VERSION_STRING" value="&quot;v2.7.2&quot;"/>
+  <constant name="TRAINING_VERSION_STRING" value="&quot;v0.3.3.2&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Gang Garrison 2&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
@@ -165,4 +167,29 @@
   <constant name="BOOT_BEHAVIOUR" value="0"/>
   <constant name="BOOT_STANDARD" value="0"/>
   <constant name="BOOT_DEBUG" value="1"/>
+  <constant name="NPC_TASK_IDLE" value="0"/>
+  <constant name="NPC_TASK_SPYCHECK" value="1"/>
+  <constant name="NPC_TASK_CHASE" value="2"/>
+  <constant name="NPC_TASK_CAMP" value="3"/>
+  <constant name="NPC_TASK_PET" value="4"/>
+  <constant name="NPC_TASK_SENTRY" value="5"/>
+  <constant name="NPC_TASK_STAY" value="6"/>
+  <constant name="NPC_TASK_GOAL_OFFENSIVE" value="7"/>
+  <constant name="NPC_TASK_GOAL_DEFENSIVE" value="8"/>
+  <constant name="NPC_EVENT_MEET" value="ev_user4"/>
+  <constant name="NPC_EVENT_DEATH" value="ev_user0"/>
+  <constant name="NPC_EVENT_KILL" value="ev_user3"/>
+  <constant name="NPC_EVENT_PLAYER_SEEN" value="ev_user1"/>
+  <constant name="NPC_EVENT_SENTRY_DOWN" value="ev_user2"/>
+  <constant name="NPC_EVENT_INTEL_GRAB" value="ev_user5"/>
+  <constant name="PLAYER_EVENT_DEATH" value="ev_user2"/>
+  <constant name="PLAYER_EVENT_INTEL_GRAB" value="ev_user0"/>
+  <constant name="PLAYER_EVENT_INTEL_SCORE" value="ev_user1"/>
+  <constant name="EVENT_CUSTOM_1" value="ev_user15"/>
+  <constant name="EVENT_CUSTOM_2" value="ev_user14"/>
+  <constant name="EVENT_CUSTOM_3" value="ev_user13"/>
+  <constant name="NODE_LEFT" value="0"/>
+  <constant name="NODE_RIGHT" value="1"/>
+  <constant name="NODE_TOPLEFT" value="2"/>
+  <constant name="NODE_TOPRIGHT" value="3"/>
 </constants>

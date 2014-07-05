@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">global.isHost = true;
-if(global.dedicatedMode == 0)
+/*if(global.dedicatedMode == 0)
 {
     with(DevMessageChecker)
         instance_destroy();
@@ -25,7 +25,9 @@ if(global.dedicatedMode == 0)
 }
 else {
     global.gameServer = instance_create(0,0,GameServer);    
-}
+}*/
+instance_create(x,y,CharacterMenuController);
+instance_destroy();
 </argument>
       </arguments>
     </action>

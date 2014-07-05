@@ -60,6 +60,7 @@
     
     if(variable_local_exists("jumpDustParticleSystem"))
         part_type_destroy(jumpDustParticleSystem);
+        
 }
 </argument>
       </arguments>

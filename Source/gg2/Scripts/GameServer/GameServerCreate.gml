@@ -19,6 +19,7 @@
     }
     hostSeenMOTD = false;
     global.players = ds_list_create();
+    global.dialogList = ds_list_create();
     global.tcpListener = -1;
     global.serverSocket = -1;
     
@@ -85,35 +86,24 @@
         serverPlayer.queueJump = global.queueJumping;
     
     instance_create(0,0,PlayerControl);
+    
+    instance_create(0,0,EventManager);
+    instance_create(0,0,CheatController);
 
-    var map, i;
-    if (global.shuffleRotation) {
-        ds_list_shuffle(global.map_rotation);
-        map = ds_list_find_value(global.map_rotation, 0);
-        // "Shuffle, don't make arena map first" chosen
-        if (global.shuffleRotation == 1) {
-            // if first map is arena
-            if (string_copy(map, 0, 6) == 'arena_') {
-                // try to find something else
-                for (i = 0; i < ds_list_size(global.map_rotation); i += 1) {
-                    map = ds_list_find_value(global.map_rotation, i);
-                    // swap with first map
-                    if (string_copy(map, 0, 6) != 'arena_') {
-                        ds_list_replace(global.map_rotation, i, ds_list_find_value(global.map_rotation, 0));
-                        ds_list_replace(global.map_rotation, 0, map);
-                    }
-                }
-            }
+
+
+    // TODO: rename currentMap to launchMap
+    if(file_exists("Maps/" + global.currentMap + ".png")) { // if this is an external map
+        // get the md5 and url for the map
+        global.currentMapMD5 = CustomMapGetMapMD5(global.currentMap);
+        room_goto_fix(CustomMapRoom);
+    } else { // internal map, so at the very least, MD5 must be blank
+        global.currentMapMD5 = "";
+        if(serverGotoMap(global.currentMap) != 0) {
+            show_message("Error:#Map " + global.currentMap + " is not in maps folder, and it is not a valid internal map.#Exiting.");
+            game_end();
         }
     }
-
-    currentMapIndex = -1;
-    global.currentMapArea = 1;
-    
-    if(global.launchMap == "")
-        serverGotoMap(nextMapInRotation());
-    else
-        serverGotoMap(global.launchMap);
     
     global.joinedServerName = global.serverName; // so no errors of unknown variable occur when you create a server
     global.mapchanging = false; 

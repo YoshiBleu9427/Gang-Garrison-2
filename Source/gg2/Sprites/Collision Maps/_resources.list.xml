@@ -20,4 +20,5 @@
   <resource name="AvantiS" type="RESOURCE"/>
   <resource name="DebugRoomS" type="RESOURCE"/>
   <resource name="ManticS" type="RESOURCE"/>
+  <resource name="heavy_dirtbowlS" type="RESOURCE"/>
 </resources>

@@ -24,6 +24,16 @@
     jumpStrength = 8;
     capStrength = 1;
     
+    // used by npcs
+    justUncloaked = false;  // no longer used
+    uncloakMaxTime = 90;  // the uncloakTime timer shouldn't go over that value
+    uncloakTimeOnRecloak = 30;
+        // when you go invisible again, bots should still be able
+        // to see you =&gt; your uncloakTime won't go straight to 0, but also has to be
+        // below 90 because they shouldn't know where you are for so long.
+        // Therefore, the timer will jump to this value, then decrease to 0 normally
+    uncloakTime = uncloakMaxTime;   // how many frames have you been visible for (bot reaction)
+    
     // 
     hp = maxHp;
     flamecount = 0;
