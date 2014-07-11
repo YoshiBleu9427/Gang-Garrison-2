@@ -19,8 +19,9 @@ ini_open("DSM.ini")
     global.dsmSkipFaucet=ini_read_real("Settings","DSMSkipFaucet",0)
     ini_write_real("Settings","DSMSkipFaucet",global.dsmSkipFaucet)
     
-    global.dsmShowKillLog=ini_read_real("Cosmetic","DSMShowKillLog",1) //0=no, 1=yes, 2=semi-transparent
+    global.dsmShowKillLog=ini_read_real("Cosmetic","DSMShowKillLog",1)
     ini_write_real("Cosmetic","DSMShowKillLog",global.dsmShowKillLog)
+    global.dsmShowKillLogReal=global.dsmShowKillLog/100
     
     global.dsmDrawIntelArrows=ini_read_real("Cosmetic","DSMDrawIntelArrows",1)
     ini_write_real("Cosmetic","DSMDrawIntelArrows",global.dsmDrawIntelArrows)
@@ -64,6 +65,10 @@ ini_open("DSM.ini")
     global.dsmVolume=ini_read_real("Settings","DSMVolume",100)
     ini_write_real("Settings","DSMVolume",global.dsmVolume)
     sound_global_volume(global.dsmVolume/100)
+    
+    global.dsmHudOpacity=ini_read_real("Cosmetic","DSMHUDOpacity",100)
+    ini_write_real("Cosmetic","DSMHUDOpacity",global.dsmHudOpacity)
+    global.dsmHudOpacityReal=global.dsmHudOpacity/100
 ini_close()
 
 //DSM Controls
@@ -88,10 +93,12 @@ global.dsmBindCommands=ds_list_create()
 read_binds_from_file()
 
 //Run other DSM scripts
-chatFix_miku()
 console_init()
 spriteLoader()
 soundLoader()
 stats_init()
+//Plugin Fixes and Mods
+chatFix_miku()
+chat_paste()
 
 if(!directory_exists(working_directory + "\Custom")) directory_create(working_directory + "\Custom")

@@ -49,6 +49,15 @@ menu_addedit_num("Sniper:", "global.classlimits[CLASS_SNIPER]", '
 menu_addedit_num("Quote:", "global.classlimits[CLASS_QUOTE]", '
     gg2_write_ini("Classlimits", "Quote", argument0);
 ', 255);
+menu_addlink("Start Game", '
+    //Server respawn time calculator. Converts each second to a frame. (read: multiply by 30 :hehe:)
+    if (global.Server_RespawntimeSec == 0)
+        global.Server_Respawntime = 1;
+    else
+        global.Server_Respawntime = global.Server_RespawntimeSec * 30;
+    
+    global.gameServer = instance_create(0,0,GameServer);
+');
 
 menu_addtablink("Main", '
     instance_create(x,y,HostOptionsController);

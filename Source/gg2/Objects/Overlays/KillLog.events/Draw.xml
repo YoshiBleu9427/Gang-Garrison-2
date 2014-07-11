@@ -35,11 +35,8 @@ for (i = 0; i &lt; ds_list_size(kills); i += 1) {
     in = ds_map_find_value(map, "inthis"); // Am I involved in this event?
     str = ds_map_find_value(map, "string"); // Special text: Finish off, bid farewell, domination, revenge
     
-    if global.dsmShowKillLog==2{
-        draw_set_alpha(0.5)
-    }else{
-        draw_set_alpha(1)
-    }
+    //DSM
+    draw_set_alpha(global.dsmShowKillLogReal)
     
     if (in)
        color = make_color_rgb(217,217,183);

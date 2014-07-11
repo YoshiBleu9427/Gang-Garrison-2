@@ -33,7 +33,8 @@ else
 
 drawx = xoffset+xsize/2 - 30;
 
-draw_set_alpha(1);
+//DSM
+draw_set_alpha(global.dsmHudOpacityReal)
 draw_set_color(c_white);
 
 for (i=1; i&lt;= global.totalControlPoints; i+=1)
@@ -59,14 +60,14 @@ for (i=1; i&lt;= global.totalControlPoints; i+=1)
             draw_text_transformed(drawx+4, yoffset+572, cpCapPercent,1,1,0)
         }
     }else if (global.cp[i].capping == 0){
-        draw_sprite_ext(ControlPointStatusS, teamoffset, drawx, yoffset+ysize-40, 3, 3, 0, c_white, 1);
+        draw_sprite_ext(ControlPointStatusS, teamoffset, drawx, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal);
     }
     
     if (global.cp[i].locked){
         if global.dsmHUDs==1{
             draw_set_halign(fa_center)
             if (cpUnlock &gt;= 1 or cpUnlock == 0){
-                draw_sprite_ext(ControlPointLockS, 0, drawx, yoffset+ysize-40, 3, 3, 0, c_white, 1)
+                draw_sprite_ext(ControlPointLockS, 0, drawx, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal)
             }
             draw_set_valign(fa_center)
             if cpUnlock &gt;= 900 {} //To prevent display problems at server join and during set-up
@@ -76,7 +77,7 @@ for (i=1; i&lt;= global.totalControlPoints; i+=1)
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
             if (cpUnlock &gt;= 150 or cpUnlock == 0)
-                draw_sprite_ext(ControlPointLockS, 0, drawx, yoffset+ysize-40, 3, 3, 0, c_white, 1);
+                draw_sprite_ext(ControlPointLockS, 0, drawx, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal);
             else if (cpUnlock &gt; 0)
                 draw_text_transformed(drawx+2, yoffset+ysize-38, ceil(cpUnlock/30), 3, 3, 0);
         }
@@ -84,13 +85,13 @@ for (i=1; i&lt;= global.totalControlPoints; i+=1)
     
     if (global.cp[i].cappers &gt; 0 and !global.cp[i].locked){
         if global.dsmHUDs==1{
-            draw_sprite_ext(ControlPointCappersS, 0, drawx, yoffset+ysize-45, 3, 3, 0, c_white, 1);
+            draw_sprite_ext(ControlPointCappersS, 0, drawx, yoffset+ysize-45, 3, 3, 0, c_white, global.dsmHudOpacityReal);
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
             draw_set_color(c_black);
             draw_text_transformed(drawx+13, yoffset+ysize-43, string(global.cp[i].cappers),1.5,1.5,0);
         }else{
-            draw_sprite_ext(ControlPointCappersS, 0, drawx, yoffset+ysize-40, 3, 3, 0, c_white, 1);
+            draw_sprite_ext(ControlPointCappersS, 0, drawx, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal);
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
             draw_set_color(c_black);

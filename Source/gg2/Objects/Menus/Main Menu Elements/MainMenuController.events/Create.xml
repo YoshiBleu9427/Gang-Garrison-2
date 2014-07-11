@@ -107,9 +107,21 @@
     }
     
     if global.dsmBackground==1{
-        menuimage="DSM_MenuBackground"+string(global.dsmTextColour)
+        if global.dsmTextColour==0{
+            menuimage=DSM_MenuBackground0
+        }else if global.dsmTextColour==1{
+            menuimage=DSM_MenuBackground1
+        }else if global.dsmTextColour==2{
+            menuimage=DSM_MenuBackground2
+        }else if global.dsmTextColour==3{
+            menuimage=DSM_MenuBackground3
+        }else if global.dsmTextColour==4{
+            menuimage=DSM_MenuBackground4
+        }else if global.dsmTextColour==5{
+            menuimage=choose(DSM_MenuBackground0,DSM_MenuBackground1,DSM_MenuBackground2,DSM_MenuBackground3,DSM_MenuBackground4,DSM_MenuBackground5)
+        }
     }else if global.dsmBackground==2{
-        menuimage=choose(DSM_MenuBackground0,DSM_MenuBackground1,DSM_MenuBackground2,DSM_MenuBackground3,DSM_MenuBackground4)
+        menuimage=choose(DSM_MenuBackground0,DSM_MenuBackground1,DSM_MenuBackground2,DSM_MenuBackground3,DSM_MenuBackground4,DSM_MenuBackground5)
     }else if global.dsmBackground==3{
         menuimage = choose(MenuBackground1, MenuBackground2);
     }

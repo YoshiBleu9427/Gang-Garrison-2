@@ -18,7 +18,8 @@ xoffset = view_xview[0]-800+view_wview[0]; // i'm not going to fix this the prop
 yoffset = view_yview[0]-600+view_hview[0];
 xsize = 800;
 ysize = 600;
-draw_set_alpha(1);
+//DSM
+draw_set_alpha(global.dsmHudOpacityReal)
 
 if global.myself.object != -1 {
     if instance_exists(global.myself.object.currentWeapon) {

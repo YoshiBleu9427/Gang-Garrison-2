@@ -21,11 +21,12 @@ xshift = -320*global.timerPos;
 yshift = 5*global.timerPos;
 
 barcolor=make_color_rgb(217,217,183);
-draw_set_alpha(1);
+//DSM
+draw_set_alpha(global.dsmHudOpacityReal)
 
-draw_sprite_ext(GeneratorHUDS,0,xoffset+xsize/2,yoffset+ysize-50,2,2,0,c_white,1);
+draw_sprite_ext(GeneratorHUDS,0,xoffset+xsize/2,yoffset+ysize-50,2,2,0,c_white,global.dsmHudOpacityReal);
 if instance_exists(GeneratorRed) {
-    draw_sprite_ext(GeneratorRedS,GeneratorRed.image_index,xoffset+xsize/2-50,yoffset+ysize-50,1,1,0,c_white,1);
+    draw_sprite_ext(GeneratorRedS,GeneratorRed.image_index,xoffset+xsize/2-50,yoffset+ysize-50,1,1,0,c_white,global.dsmHudOpacityReal);
     draw_sprite_ext(GeneratorShieldS,floor(GeneratorRed.shieldIndex),xoffset+xsize/2-50,yoffset+ysize-50,1,1,0,c_white, GeneratorRed.shieldResistance);
     draw_healthbar(xoffset+xsize/2-77, yoffset+ysize-75, xoffset+xsize/2-25, yoffset+ysize-68,GeneratorRed.hp*100/GeneratorRed.maxHp,c_black,barcolor,barcolor,0,true,true);
     draw_healthbar(xoffset+xsize/2-77, yoffset+ysize-30, xoffset+xsize/2-25, yoffset+ysize-23,GeneratorRed.shieldHp*100/GeneratorRed.maxShieldHp,c_black,barcolor,barcolor,0,true,true);
@@ -34,15 +35,15 @@ if instance_exists(GeneratorRed) {
         draw_set_halign(fa_center)
         draw_set_valign(fa_middle)
         draw_rectangle_color(xoffset+xsize/2-77, yoffset+534, xoffset+xsize/2-25, yoffset+548, c_black, c_black, c_black, c_black, false);
-        draw_text_transformed_color(xoffset+xsize/2-51,yoffset+542,string(ceil(GeneratorRed.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+        draw_text_transformed_color(xoffset+xsize/2-51,yoffset+542,string(ceil(GeneratorRed.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, global.dsmHudOpacityReal);
         if GeneratorRed.shieldHp &gt; 1{
             draw_rectangle_color(xoffset+xsize/2-77, yoffset+554, xoffset+xsize/2-25, yoffset+568, c_black, c_black, c_black, c_black, false);
-            draw_text_transformed_color(xoffset+xsize/2-51,yoffset+562,string(ceil(GeneratorRed.shieldHp)), 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+            draw_text_transformed_color(xoffset+xsize/2-51,yoffset+562,string(ceil(GeneratorRed.shieldHp)), 1, 1, 0, c_white, c_white, c_white, c_white, global.dsmHudOpacityReal);
         }
     }
 }
 if instance_exists(GeneratorBlue) {
-    draw_sprite_ext(GeneratorBlueS,GeneratorBlue.image_index,xoffset+xsize/2+50,yoffset+ysize-50,1,1,0,c_white,1);
+    draw_sprite_ext(GeneratorBlueS,GeneratorBlue.image_index,xoffset+xsize/2+50,yoffset+ysize-50,1,1,0,c_white,global.dsmHudOpacityReal);
     draw_sprite_ext(GeneratorShieldS,floor(GeneratorBlue.shieldIndex),xoffset+xsize/2+50,yoffset+ysize-50,1,1,0,c_white, GeneratorBlue.shieldResistance);
     draw_healthbar(xoffset+xsize/2+23, yoffset+ysize-75, xoffset+xsize/2+75, yoffset+ysize-68,GeneratorBlue.hp*100/GeneratorBlue.maxHp,c_black,barcolor,barcolor,0,true,true);
     draw_healthbar(xoffset+xsize/2+23, yoffset+ysize-30, xoffset+xsize/2+75, yoffset+ysize-23,GeneratorBlue.shieldHp*100/GeneratorBlue.maxShieldHp,c_black,barcolor,barcolor,0,true,true);
@@ -51,10 +52,10 @@ if instance_exists(GeneratorBlue) {
         draw_set_halign(fa_center)
         draw_set_valign(fa_middle)
         draw_rectangle_color(xoffset+xsize/2+23, yoffset+534, xoffset+xsize/2+75, yoffset+548, c_black, c_black, c_black, c_black, false);
-        draw_text_transformed_color(xoffset+xsize/2+49,yoffset+542,string(ceil(GeneratorBlue.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+        draw_text_transformed_color(xoffset+xsize/2+49,yoffset+542,string(ceil(GeneratorBlue.hp)) + "HP", 1, 1, 0, c_white, c_white, c_white, c_white, global.dsmHudOpacityReal);
         if GeneratorBlue.shieldHp &gt; 1{
             draw_rectangle_color(xoffset+xsize/2+23, yoffset+554, xoffset+xsize/2+75, yoffset+568, c_black, c_black, c_black, c_black, false);
-            draw_text_transformed_color(xoffset+xsize/2+49,yoffset+562,string(ceil(GeneratorBlue.shieldHp)), 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+            draw_text_transformed_color(xoffset+xsize/2+49,yoffset+562,string(ceil(GeneratorBlue.shieldHp)), 1, 1, 0, c_white, c_white, c_white, c_white, global.dsmHudOpacityReal);
         }
     }
 }

@@ -80,6 +80,7 @@ if(impendingMapChange == 0)
     serverGotoMap(global.nextMap);
     ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
     impendingMapChange = -1;
+    global.nextMap=nextMapInRotation()
     
     with(Player)
     {

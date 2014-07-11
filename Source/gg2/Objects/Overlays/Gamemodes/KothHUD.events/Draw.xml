@@ -32,7 +32,8 @@ else
 
 draw_set_color(c_white);
 draw_set_valign(fa_center);
-draw_set_alpha(1);
+//DSM
+draw_set_alpha(global.dsmHudOpacityReal)
         
 //CP
 if (KothControlPoint.team == TEAM_RED)
@@ -56,13 +57,13 @@ if (KothControlPoint.capping != 0){
         draw_text_transformed((xoffset+xsize/2)+4, yoffset+572, cpCapPercent,1,1,0)
     }
 }else if (KothControlPoint.capping == 0){
-    draw_sprite_ext(ControlPointStatusS, teamoffset, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, 1);
+    draw_sprite_ext(ControlPointStatusS, teamoffset, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal);
 }
 
 if (KothControlPoint.locked){
     if global.dsmHUDs==1{
         draw_set_halign(fa_center)
-        if cpUnlock &gt;= 1 draw_sprite_ext(ControlPointLockS, 0, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, 1)
+        if cpUnlock &gt;= 1 draw_sprite_ext(ControlPointLockS, 0, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal)
         draw_set_valign(fa_center)
         if cpUnlock &gt;= 900 {} //To prevent display problems at server join and during set-up
         else if ceil(cpUnlock/30) &gt; 5 draw_text_transformed(xoffset+xsize/2+2, yoffset+ysize-38, ceil(cpUnlock/30), 1.0, 1.0, 0);
@@ -70,24 +71,24 @@ if (KothControlPoint.locked){
     }else{
         draw_set_halign(fa_center);
         if (cpUnlock &gt;= 150){
-            draw_sprite_ext(ControlPointLockS, 0, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, 1);
+            draw_sprite_ext(ControlPointLockS, 0, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal);
         }else if (cpUnlock &gt;= 30){
             draw_text_transformed(xoffset+xsize/2+2, yoffset+ysize-38, ceil(cpUnlock/30), 3,3, 0);
         }
     }
 }else if (KothControlPoint.cappers &gt; 0 and !KothControlPoint.locked){
     if global.dsmHUDs==1{
-        draw_sprite_ext(ControlPointCappersS, 0, xoffset+xsize/2, yoffset+ysize-45, 3, 3, 0, c_white, 1);
+        draw_sprite_ext(ControlPointCappersS, 0, xoffset+xsize/2, yoffset+ysize-45, 3, 3, 0, c_white, global.dsmHudOpacityReal);
         draw_set_halign(fa_center);
         draw_set_valign(fa_center);
         draw_set_color(c_black);
         draw_text_transformed(xoffset+xsize/2+13, yoffset+ysize-43, string(KothControlPoint.cappers),1.5,1.5,0);
     }else{
-        draw_sprite_ext(ControlPointCappersS, 0, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, 1);
+        draw_sprite_ext(ControlPointCappersS, 0, xoffset+xsize/2, yoffset+ysize-40, 3, 3, 0, c_white, global.dsmHudOpacityReal);
         draw_set_halign(fa_center);
         draw_set_valign(fa_center);
         draw_set_color(c_black);
-        draw_text_transformed(xoffset+xsize/2+13, yoffset+ysize-37, string(global.cp[i].cappers),1.5,1.5,0);
+        draw_text_transformed(xoffset+xsize/2+13, yoffset+ysize-37, string(KothControlPoint.cappers),1.5,1.5,0);
     }
 }
 

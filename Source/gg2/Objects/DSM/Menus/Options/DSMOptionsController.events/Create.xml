@@ -53,12 +53,10 @@
     menu_addedit_boolean("Skip Faucet Logo:","global.dsmSkipFaucet",'
         DSM_write_ini("Settings","DSMSkipFaucet",argument0)
     ')
-    menu_addedit_select("Show Kill-Log:","global.dsmShowKillLog",'
+    menu_addedit_num("Kill-Log Opacity:","global.dsmShowKillLog",'
         DSM_write_ini("Cosmetic","DSMShowKillLog",argument0)
-    ')
-    menu_add_option(0,"No")
-    menu_add_option(1,"Yes")
-    menu_add_option(2,"Semi-transparent")
+        global.dsmShowKillLogReal=argument0/100
+    ',100)
 
     menu_addedit_boolean("Draw Intel Arrows:","global.dsmDrawIntelArrows",'
         DSM_write_ini("Cosmetic","DSMDrawIntelArrows",argument0)

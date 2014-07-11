@@ -48,12 +48,12 @@
         draw_background_ext(oldBackground, 0, 0, 1, 1, 0, c_white, fade);
     }
 
-    if (!(global.backgroundHash != "default" &amp;&amp; !global.backgroundShowVersion)) or global.dsmBackground==3
+    if (!(global.backgroundHash != "default" &amp;&amp; !global.backgroundShowVersion)) or (global.dsmBackground==3)
     {
         draw_sprite(MenuBackgroundVersionS,0,300,300);
     }
 
-    if global.dsmBackground==1 or global.dsmBackground==2{
+    //if global.dsmBackground==1 or global.dsmBackground==2{
         if global.dsmTextColour==0{
             draw_set_color(c_red)
         }else if global.dsmTextColour==1{
@@ -71,7 +71,7 @@
         draw_set_halign(fa_left)
         draw_set_valign(fa_bottom)
         draw_text_transformed(100,42,DSM_VERSION_STRING,2,2,0)
-    }
+    //}
 }
 </argument>
       </arguments>

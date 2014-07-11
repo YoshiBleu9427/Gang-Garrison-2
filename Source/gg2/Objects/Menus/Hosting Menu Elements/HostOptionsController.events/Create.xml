@@ -67,8 +67,98 @@ menu_addedit_num("Deathmatch Kill Limit:", "global.killLimit", '
 menu_addedit_num("Respawn Time (secs):", "global.Server_RespawntimeSec", '
     gg2_write_ini("Server", "Respawn Time", argument0);
 ');
-    
-    
+//DSM
+menu_addedit_text("Server Sent Plugins:", "global.serverPluginList", '
+    gg2_write_ini("Server", "ServerPluginList", argument0);
+');
+menu_addedit_text("Map Rotation:", "global.mapRotationFile", '
+    gg2_write_ini("Server", "MapRotation", argument0);
+    ds_list_clear(global.map_rotation)
+if(global.mapRotationFile != "" &amp;&amp; file_exists(global.mapRotationFile) &amp;&amp; global.launchMap == ""){
+        global.customMapdesginated = 1;
+        var fileHandle, i, mapname;
+        fileHandle = file_text_open_read(global.mapRotationFile);
+        for(i = 1; !file_text_eof(fileHandle); i += 1){
+            mapname = file_text_read_string(fileHandle);
+            // remove leading whitespace from the string
+            while(string_char_at(mapname, 0) == " " || string_char_at(mapname, 0) == chr(9)){ // while it starts with a space or tab
+              mapname = string_delete(mapname, 0, 1); // delete that space or tab
+            }
+            if(mapname != "" &amp;&amp; string_char_at(mapname, 0) != "#") { // if it is not blank and it is not a comment (starting with #)
+                ds_list_add(global.map_rotation, mapname);
+            }
+            file_text_readln(fileHandle);
+        }
+        file_text_close(fileHandle);
+    }else if (global.launchMap != "") &amp;&amp; (global.dedicatedMode == 1){  
+        ds_list_add(global.map_rotation, global.launchMap);
+        }else{ // else load from the ini file Maps section
+        //Set up the map rotation stuff
+        var i, sort_list;
+        sort_list = ds_list_create();
+        for(i=1; i &lt;= 16; i += 1) {
+            if(maps[i] != 0) ds_list_add(sort_list, ((100*maps[i])+i));
+        }
+        ds_list_sort(sort_list, 1);
+        
+        // translate the numbers back into the names they represent
+        for(i=0; i &lt; ds_list_size(sort_list); i += 1) {
+            switch(ds_list_find_value(sort_list, i) mod 100) {
+                case 1:
+                    ds_list_add(global.map_rotation, "ctf_truefort");
+                break;
+                case 2:
+                    ds_list_add(global.map_rotation, "ctf_2dfort");
+                break;
+                case 3:
+                    ds_list_add(global.map_rotation, "ctf_conflict");
+                break;
+                case 4:
+                    ds_list_add(global.map_rotation, "ctf_classicwell");
+                break;
+                case 5:
+                    ds_list_add(global.map_rotation, "ctf_waterway");
+                break;
+                case 6:
+                    ds_list_add(global.map_rotation, "ctf_orange");
+                break;
+                case 7:
+                    ds_list_add(global.map_rotation, "cp_dirtbowl");
+                break;
+                case 8:
+                    ds_list_add(global.map_rotation, "cp_egypt");
+                break;
+                case 9:
+                    ds_list_add(global.map_rotation, "arena_montane");
+                break;
+                case 10:
+                    ds_list_add(global.map_rotation, "arena_lumberyard");
+                break;
+                case 11:
+                    ds_list_add(global.map_rotation, "gen_destroy");
+                break;
+                case 12:
+                    ds_list_add(global.map_rotation, "koth_valley");
+                break;
+                case 13:
+                    ds_list_add(global.map_rotation, "koth_corinth");
+                break;
+                case 14:
+                    ds_list_add(global.map_rotation, "koth_harvest");
+                break;
+                case 15:
+                    ds_list_add(global.map_rotation, "dkoth_atalia");
+                break;
+                case 16:
+                    ds_list_add(global.map_rotation, "dkoth_sixties");
+                break;
+                    
+            }
+        }
+        ds_list_destroy(sort_list);
+    }
+');
+
 menu_addtablink("Main", '
     instance_create(x,y,HostOptionsController);
     instance_destroy();

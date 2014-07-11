@@ -411,10 +411,8 @@ if!(findInternalMapRoom(nextMap) or file_exists('Maps/' + nextMap + '.png')){
     exit;
 }
 
-ds_list_insert(global.map_rotation,GameServer.currentMapIndex,nextMap)
 global.nextMap=nextMap
 global.dsmMapChange=1
-GameServer.currentMapIndex+=1
 console_print('The next map is: '+nextMap)
 ", "
 console_print('Syntax: nextMap <map name>')
@@ -825,3 +823,11 @@ while(index<bindListSize){
 console_print('Syntax: listBinds')
 console_print('Use: Lists all binds assigned by the user.')
 ")
+
+/* fix later
+console_addCommand("mapRotation","
+console_print(global.map_rotation)
+","
+console_print('Syntax: unbind <key>')
+console_print('Use: Removes a specified bind.'))
+")*/

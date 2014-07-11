@@ -13,7 +13,22 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">keyboard_string = ""
+        <argument kind="STRING">if string_count("chat",global.totalCurrentPlugins)!=0{
+    with(global.chatWindow){
+        instance_destroy()
+    }
+    with(global.cheatycheat){
+        instance_destroy()
+    }
+    if keyboard_check(global.chatGlobal) or keyboard_check(global.chatTeam){
+        console_close()
+        instance_destroy()
+    }
+}
+
+
+
+keyboard_string = ""
 current_text = "";
 alarm[0] = 10/global.delta_factor
 blink = true;

@@ -24,7 +24,8 @@ xoffset = view_xview[0];
 yoffset = view_yview[0];
 xsize = view_wview[0];
 ysize = view_hview[0];
-draw_set_alpha(1);
+//DSM
+draw_set_alpha(global.dsmHudOpacityReal)
 draw_set_color(c_black);
 draw_set_valign(fa_center);
 draw_set_halign(fa_left);

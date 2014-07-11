@@ -20,7 +20,7 @@
     socket = -1;
     name = "";
     kicked = false;
-    
+
     // client setting stuff; set to defaults
     queueJump = false;
     

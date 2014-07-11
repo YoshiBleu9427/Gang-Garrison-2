@@ -54,6 +54,10 @@
         DSM_write_ini("Settings","DSMVolume",argument0)
         sound_global_volume(argument0/100)
     ',100)
+    menu_addedit_num("HUD Opacity:","global.dsmHudOpacity",'
+        DSM_write_ini("Cosmetic","DSMHUDOpacit",argument0)
+        global.dsmHudOpacityReal=argument0/100
+    ',100)
     
     menu_addtablink("DSM 1", '
         instance_destroy();

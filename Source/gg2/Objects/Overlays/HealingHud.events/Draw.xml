@@ -24,7 +24,8 @@
     
     draw_set_halign(fa_center);
     draw_set_color(c_white);
-    draw_set_alpha(.5);
+    //DSM
+    draw_set_alpha(global.dsmHudOpacityReal)
     if (target.object != -1) {
         draw_sprite_stretched_ext(sprite_index, global.myself.team == TEAM_BLUE, 
         xoffset+mid-(HUDwidth/2)+20, yoffset+450, HUDwidth, 36, c_white, 1);
