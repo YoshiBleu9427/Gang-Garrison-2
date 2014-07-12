@@ -15,5 +15,7 @@ else if(file_exists("Maps/" + global.currentMap + ".png"))
 }
 else
 {
-    show_error("Error:#Map " + global.currentMap + " is not in maps folder, and it is not a valid internal map.#Shutting down.", true);
+    with(GameServer) {
+        instance_destroy();
+    }
 }

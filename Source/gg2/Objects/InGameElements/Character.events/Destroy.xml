@@ -61,6 +61,37 @@
     if(variable_local_exists("jumpDustParticleSystem"))
         part_type_destroy(jumpDustParticleSystem);
         
+    
+    // If it's not me, it's a bot - fire respective events
+    // events are bot: kill and death, and player: death
+    // TODO: there is interesting stuff with events to do here.
+    if(GameServer.impendingMapChange &lt; 0) {
+        if(object_get_parent(player.object_index) == NPC) {
+            with(player) {
+                killedBy = other.lastDamageDealer;
+                event_user(0);
+                killedBy = noone;
+            }
+        } else {
+            with(EventManager) {
+                killedBy = other.lastDamageDealer;
+                killed = other.player;
+                event_user(2);
+                killed = noone;
+                killedBy = noone;
+            }
+        }
+        with(lastDamageDealer) {
+            killed = other.player;
+            event_user(3);
+            killed = noone;
+        }
+        with(secondToLastDamageDealer) {
+            killed = other.player;
+            event_user(3);
+            killed = noone;
+        }
+    }
 }
 </argument>
       </arguments>

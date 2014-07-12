@@ -9,12 +9,23 @@ sound_play(IntelGetSnd);
 var isMe;
 isMe = (global.myself == argument0);
 recordEventInLog(6, argument0.team, argument0.name, isMe);
-if (global.myself == argument0)
+if (isMe)
 {
     if !instance_exists(NoticeO)
         instance_create(0,0,NoticeO);
     with (NoticeO)
         notice = NOTICE_HAVEINTEL;
+}
+if(object_get_parent(argument0.object_index) == NPC) {
+    with(EventManager) {
+        grabber = argument0;
+        event_user(0); // fire event PLAYER_EVENT_INTEL_GRAB
+        grabber = noone;
+    }
+} else {
+    with(argument0) { 
+        event_user(5); // fire event NPC_EVENT_INTEL_GRAB
+    }
 }
 
 if(argument0.object != -1)

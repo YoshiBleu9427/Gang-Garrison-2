@@ -22,6 +22,14 @@ with(player.object)
     isMe = (global.myself == player);
     recordEventInLog(5, player.team, player.name, isMe); 
     
+    if(object_get_parent(player.object_index) == NPC) {
+        with(EventManager) {
+            dropper = player;
+            event_user(1);
+            dropper = noone;
+        }
+    }
+    
     var newIntelObject, newIntelInstance;
     // Create dropped intel
     if (player.team == TEAM_RED)

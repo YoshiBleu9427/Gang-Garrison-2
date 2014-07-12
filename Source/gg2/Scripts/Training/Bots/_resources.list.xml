@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="npcNext" type="RESOURCE"/>
+  <resource name="npcClear" type="RESOURCE"/>
+  <resource name="npcEventAdd" type="RESOURCE"/>
+</resources>

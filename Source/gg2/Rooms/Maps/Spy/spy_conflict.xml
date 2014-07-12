@@ -10,13 +10,15 @@
   <persistent>false</persistent>
   <creationCode>basicRoomSetup();
 instance_create(0,0,ConflictO);
-with(NPC01) {
+
+// Defending BLU engi
+with(npcNext(2880, 684)) {
     createEnemyEngi();
     npcSetTask(NPC_TASK_SENTRY, noone);
     sentryDownTxt = "Autogun scrapped!";
     sentryDownTxt2 = "There's an infiltrator#'round here!";
     
-    object_event_add(NPC01, ev_other, NPC_EVENT_SENTRY_DOWN, '
+    npcEventAdd(NPC_EVENT_SENTRY_DOWN, '
         addPriorDialog(sentryDownTxt, face, subFace);
         addDialog(sentryDownTxt2, face, subFace);
         if(NPC02.sentry == noone) {
@@ -24,13 +26,15 @@ with(NPC01) {
         }
     ');
 }
-with(NPC02) {
+
+// Defending BLU engi
+with(npcNext(3702, 696)) {
     createEnemyEngi();
     npcSetTask(NPC_TASK_SENTRY, noone);
     sentryDownTxt = "Infiltrator stabbing my autogun!";
     sentryDownTxt2 = "There's an infiltrator#waltzin' 'round here!";
     
-    object_event_add(NPC02, ev_other, NPC_EVENT_SENTRY_DOWN, '
+    npcEventAdd(NPC_EVENT_SENTRY_DOWN, '
         addPriorDialog(sentryDownTxt, face, subFace);
         addDialog(sentryDownTxt2, face, subFace);
         if(NPC01.sentry == noone) {
@@ -38,7 +42,9 @@ with(NPC02) {
         }
     ');
 }
-with(NPC03) {
+
+// Camping BLU Sniper
+with(npcNext(3264, 510)) {
     createEnemySniper();
     npcSetTask(NPC_TASK_CAMP, noone);
     defaultDir = 210;
@@ -46,27 +52,29 @@ with(NPC03) {
     seeTxt = "'filtrator 'round here!";
     killTxt = "Sittin' around like#a bloody wanker!";
     
-    object_event_add(NPC03, ev_other, NPC_EVENT_DEATH, '
+    npcEventAdd(NPC_EVENT_DEATH, '
         addPriorDialog(deathTxt, face, subFace);
     ');
     
-    object_event_add(NPC03, ev_other, NPC_EVENT_PLAYER_SEEN, '
+    npcEventAdd(NPC_EVENT_PLAYER_SEEN, '
         if(not alreadySeen) {
             addDialog(seeTxt, face, subFace);
         }
     ');
     
-    object_event_add(NPC03, ev_other, NPC_EVENT_KILL, '
+    npcEventAdd(NPC_EVENT_KILL, '
         addPriorDialog(killTxt, face, subFace);
     ');
 }
-with(NPC04) {
+
+// Defending RED engi
+with(npcNext(1716, 708)) {
     createAllyEngi();
     npcSetTask(NPC_TASK_SENTRY, noone);
     text = "Go stab them autoguns, son!#I'll defend our damn intel right here!";
     textIntel = "Job well done, son!";
     textWin = "Heck, that was easy.";
-    object_event_add(NPC04, ev_other, NPC_EVENT_MEET, '
+    npcEventAdd(NPC_EVENT_MEET, '
         if(global.winners == TEAM_RED) {
             addDialog(textWin, face, subFace);
         } else {
@@ -78,7 +86,10 @@ with(NPC04) {
         }
     ');
 }
-with(NPC05) {
+
+// RED idling Heavy
+// attacks when blu sentries are down
+with(npcNext(1470, 666)) {
     createAllyHeavy();
     npcSetTask(NPC_TASK_IDLE, noone);
     text = "Entire enemy team is defend!#You must destroy autogun,#and then I go with you!";
@@ -87,7 +98,7 @@ with(NPC05) {
     textWin = "We are king of team!";
     textDeath = "Daaaaaaah!";
     
-    object_event_add(NPC05, ev_other, NPC_EVENT_MEET, '
+    npcEventAdd(NPC_EVENT_MEET, '
         if(global.winners == TEAM_RED) {
             addDialog(textWin, face, subFace);
         } else if(global.myself.object.intel) {
@@ -99,10 +110,10 @@ with(NPC05) {
             addDialog(text, face, subFace);
         }
     ');
-    object_event_add(NPC05, ev_other, NPC_EVENT_DEATH, '
+    npcEventAdd(NPC_EVENT_DEATH, '
         addDialog(textDeath, face, subFace);
     ');
-    object_event_add(NPC05, ev_other, NPC_EVENT_INTEL_GRAB, '
+    npcEventAdd(NPC_EVENT_INTEL_GRAB, '
         toggleActionMusic(true);
         with(NPC) {
             if(team != global.myself.team and class == CLASS_ENGINEER) {
@@ -111,29 +122,31 @@ with(NPC05) {
         }
     ');
 }
-with(NPC06) {
+
+// Quote
+with(npcNext(2232, 570)) {
     createAllyQuote();
     text = "QQQQ-Hello. I'm a roQQQQQQQ-bot.#QQQQ-Don't press QQQQ-";
     textIntel = "You have the intel! QQQQ-#Bring it to your base QQQQ-and#place it on your team's QQQQ-";
     textDeath = "QQQQQQQQQQ-#QQ-#QQQQQ-#--";
-    object_event_add(NPC06, ev_other, NPC_EVENT_MEET, '
+    npcEventAdd(NPC_EVENT_MEET, '
         if(global.myself.object.intel) {
             addDialog(textIntel, face, subFace);
         } else {
             addDialog(text, face, subFace);
         }
     ');
-    object_event_add(NPC05, ev_other, NPC_EVENT_DEATH, '
+    npcEventAdd(NPC_EVENT_DEATH, '
         addDialog(textDeath, face, subFace);
     ');
 }
 
 with(EventManager) {
     eventCustom1Fired = false;
-    object_event_add(object_index, ev_other, PLAYER_EVENT_DEATH, '
+    npcEventAdd(PLAYER_EVENT_DEATH, '
         gameOver();
     ');
-    object_event_add(object_index, ev_other, PLAYER_EVENT_INTEL_GRAB, '
+    npcEventAdd(PLAYER_EVENT_INTEL_GRAB, '
         toggleActionMusic(true);
         with(NPC) {
             if(team != global.myself.team and class == CLASS_ENGINEER) {
@@ -141,13 +154,13 @@ with(EventManager) {
             }
         }
     ');
-    object_event_add(object_index, ev_other, EVENT_CUSTOM_1, '
+    npcEventAdd(EVENT_CUSTOM_1, '
         if(not eventCustom1Fired) {
             eventCustom1Fired = true;
             with(NPC05) {
                 npcSetTask(NPC_TASK_GOAL_OFFENSIVE);
                 npcTeleport(id, 2646, 702);
-                addDialog("Thank you!#Now take it! I cover you!", face, subFace);
+                addDialog("Thank you!#Now take intel! I cover you!", face, subFace);
             }
         }
     ');

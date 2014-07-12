@@ -6,4 +6,6 @@
   <resource name="Events" type="GROUP"/>
   <resource name="Noding" type="GROUP"/>
   <resource name="Other" type="GROUP"/>
+  <resource name="training_init" type="RESOURCE"/>
+  <resource name="Bots" type="GROUP"/>
 </resources>

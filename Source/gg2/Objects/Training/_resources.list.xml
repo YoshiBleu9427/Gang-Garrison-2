@@ -11,4 +11,6 @@
   <resource name="NPCSentrySpot" type="RESOURCE"/>
   <resource name="NPCSniperSpot" type="RESOURCE"/>
   <resource name="NPCSlots" type="GROUP"/>
+  <resource name="TrainingSetupMenuController" type="RESOURCE"/>
+  <resource name="NPCManager" type="RESOURCE"/>
 </resources>

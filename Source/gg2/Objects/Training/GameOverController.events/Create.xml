@@ -17,7 +17,9 @@
 alarm[1] = 105;
 
 AudioControlPlaySong(-1);
-sound_play(global.playerDeathSound);
+if(sound_exists(global.playerDeathSound)) {
+    sound_play(global.playerDeathSound);
+}
 global.respawnTime = 9001;
 
 text = "GAME OVER#You are dead."; // default text.
