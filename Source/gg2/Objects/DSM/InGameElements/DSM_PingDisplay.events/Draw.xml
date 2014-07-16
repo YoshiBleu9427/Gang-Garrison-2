@@ -13,7 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">docol=c_red
+        <argument kind="STRING">if global.dsmPingDisplay!=1 exit;
+
+docol=c_red
 showping=string(ping)
 if (ping&lt;275){
     docol=c_yellow
@@ -35,7 +37,7 @@ draw_set_alpha(0.7)
 draw_rectangle(view_xview+140,view_yview+520,view_xview+180,view_yview+550,false)
 
 draw_set_color(docol)
-draw_set_alpha(1)
+draw_set_alpha(0.7)
 draw_text(view_xview[0]+160, view_yview[0]+535,showping)
 </argument>
       </arguments>

@@ -19,7 +19,7 @@ ini_open("DSM.ini")
     global.dsmSkipFaucet=ini_read_real("Settings","DSMSkipFaucet",0)
     ini_write_real("Settings","DSMSkipFaucet",global.dsmSkipFaucet)
     
-    global.dsmShowKillLog=ini_read_real("Cosmetic","DSMShowKillLog",1)
+    global.dsmShowKillLog=ini_read_real("Cosmetic","DSMShowKillLog",100)
     ini_write_real("Cosmetic","DSMShowKillLog",global.dsmShowKillLog)
     global.dsmShowKillLogReal=global.dsmShowKillLog/100
     
@@ -69,6 +69,12 @@ ini_open("DSM.ini")
     global.dsmHudOpacity=ini_read_real("Cosmetic","DSMHUDOpacity",100)
     ini_write_real("Cosmetic","DSMHUDOpacity",global.dsmHudOpacity)
     global.dsmHudOpacityReal=global.dsmHudOpacity/100
+    
+    global.dsmBodyFade=ini_read_real("Cosmetic","DSMBodyFade",0)
+    ini_write_real("Cosmetic","DSMBodyFade",global.dsmBodyFade)
+    
+    global.dsmShowPluginList=ini_read_real("Settings","DSMShowPluginList",1)
+    ini_write_real("Settings","DSMShowPluginList",global.dsmShowPluginList)
 ini_close()
 
 //DSM Controls

@@ -41,7 +41,7 @@ if(stabbing)
 
 if (team == global.myself.team and (player != global.myself or global.showHealthBar))
 {
-    draw_set_alpha(1);
+    draw_set_alpha(global.dsmHudOpacityReal);
     draw_healthbar(xr-10, yr-30, xr+10, yr-25,hp*100/maxHp,c_black,c_red,c_green,0,true,true);
 }
 
@@ -221,7 +221,7 @@ if (distance_to_point(mouse_x, mouse_y) &lt; 25)
 {
     if (cloak and team != global.myself.team)
         exit;
-    draw_set_alpha(1);
+    draw_set_alpha(global.dsmHudOpacityReal);
     draw_set_halign(fa_center);
     draw_set_valign(fa_bottom);
     if(team == TEAM_RED)
@@ -247,20 +247,20 @@ if team == global.myself.team &amp;&amp; (id != global.myself.object.id or globa
     if global.dsmHPText==1{
         draw_set_halign(fa_right)
         draw_set_valign(fa_middle)
-        draw_text_color(xr+13,yr-19,ceil(hp),c_black,c_black,c_black,c_black,1)
-        draw_text_color(xr+12,yr-20,ceil(hp),c_white,c_white,c_white,c_white,1)
+        draw_text_color(xr+13,yr-19,ceil(hp),c_black,c_black,c_black,c_black,global.dsmHudOpacityReal)
+        draw_text_color(xr+12,yr-20,ceil(hp),c_white,c_white,c_white,c_white,global.dsmHudOpacityReal)
     }else if global.dsmHPText==2{
         draw_set_halign(fa_right)
         draw_set_valign(fa_middle)
-        draw_text_color(xr-10,yr-29,ceil(hp),c_black,c_black,c_black,c_black,1)
-        draw_text_color(xr-11,yr-30,ceil(hp),c_white,c_white,c_white,c_white,1)
+        draw_text_color(xr-10,yr-29,ceil(hp),c_black,c_black,c_black,c_black,global.dsmHudOpacityReal)
+        draw_text_color(xr-11,yr-30,ceil(hp),c_white,c_white,c_white,c_white,global.dsmHudOpacityReal)
     }
     
     if global.dsmAmmoBars==1{
         var xr, yr;
         xr = round(x)
         yr = round(y)
-        draw_set_alpha(1)
+        draw_set_alpha(global.dsmHudOpacityReal)
         if player.class != CLASS_SNIPER{
             draw_healthbar(xr-10, yr-35, xr+10, yr-30,currentWeapon.ammoCount*100/currentWeapon.maxAmmo,c_black,c_white,c_white,0,true,true)
         }else{
@@ -268,6 +268,7 @@ if team == global.myself.team &amp;&amp; (id != global.myself.object.id or globa
         }
     }
 }
+draw_set_alpha(1)
 
 // Copied from Lorgan's itemserver "angels" with slight modifications
 // All credit be upon him

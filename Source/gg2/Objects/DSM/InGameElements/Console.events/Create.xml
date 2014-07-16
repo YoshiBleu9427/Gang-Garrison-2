@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if string_count("chat",global.totalCurrentPlugins)!=0{
+        <argument kind="STRING">if string_count("chat",global.myCurrentPlugins)!=0 and string_count("warchat",global.myCurrentPlugins)==0{
     with(global.chatWindow){
         instance_destroy()
     }
@@ -25,7 +25,6 @@
         instance_destroy()
     }
 }
-
 
 
 keyboard_string = ""

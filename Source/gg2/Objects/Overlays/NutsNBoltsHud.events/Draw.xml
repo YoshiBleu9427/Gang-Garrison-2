@@ -34,8 +34,8 @@ draw_set_halign(fa_right);
 draw_set_alpha(global.dsmHudOpacityReal)
 draw_set_color(c_white);
 
-draw_sprite_ext(sprite_index,offset,xoffset+xsize-70,yoffset+ysize-85,2,2,0,c_white,1);
-draw_text_transformed_color(xoffset+xsize-66,yoffset+ysize-81,string(floor(global.myself.object.nutsNBolts)),1.5,1.5,0,c_white,c_white,c_white,c_white,1);
+draw_sprite_ext(sprite_index,offset,xoffset+xsize-70,yoffset+ysize-85,2,2,0,c_white,global.dsmHudOpacityReal);
+draw_text_transformed_color(xoffset+xsize-66,yoffset+ysize-81,string(floor(global.myself.object.nutsNBolts)),1.5,1.5,0,c_white,c_white,c_white,c_white,global.dsmHudOpacityReal);
 </argument>
       </arguments>
     </action>

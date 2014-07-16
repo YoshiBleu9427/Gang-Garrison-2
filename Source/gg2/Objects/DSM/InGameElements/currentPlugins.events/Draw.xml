@@ -13,7 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">draw_set_valign(fa_top)
+        <argument kind="STRING">if global.dsmShowPluginList!=1 exit;
+
+draw_set_valign(fa_top)
 
 draw_set_alpha(0.8)
 draw_rectangle_color(x,y,x-(8*25),y+12+(string_count('#',global.totalCurrentPlugins)*11),c_black,c_black,c_black,c_black,false)

@@ -13,7 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if fps==30/global.delta_factor{
+        <argument kind="STRING">if global.dsmFPSDisplay!=1 exit;
+
+if fps==30/global.delta_factor{
     fpsColour=c_green
 }else if fps&lt;30/global.delta_factor{
     fpsColour=c_yellow
@@ -28,7 +30,7 @@ draw_set_alpha(0.7)
 draw_rectangle(view_xview+140,view_yview+20,view_xview+180,view_yview+50,false)
 
 draw_set_color(fpsColour)
-draw_set_alpha(1)
+draw_set_alpha(0.7)
 draw_text(view_xview+160,view_yview+35,fps)
 draw_set_color(c_white)
 </argument>

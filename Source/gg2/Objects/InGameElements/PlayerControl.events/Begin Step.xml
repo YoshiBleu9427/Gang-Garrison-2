@@ -47,6 +47,14 @@ if(keyboard_check_pressed(global.changeClass))
 
 event_user(8);
 
+//DSM
+if global.dsmPingDisplay==1 and instance_exists(DSM_PingDisplay){
+    instance_create(0,0,DSM_PingDisplay)
+}
+if global.dsmFPSDisplay==1 and instance_exists(DSM_FPSDisplay){
+    instance_create(0,0,DSM_FPSDisplay)
+}
+
 var keybyte;
 keybyte = 0;
 

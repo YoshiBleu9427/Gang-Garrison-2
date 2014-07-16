@@ -15,11 +15,18 @@
       <arguments>
         <argument kind="STRING">{
     alarm[0]=1;
-    image_alpha -= 1/90;
+    if global.dsmBodyFade==0{
+        image_alpha -= 1/90;
+    }else if global.dsmBodyFade==1{
+        image_alpha -= 1/60;
+    }else if global.dsmBodyFade==2{
+        image_alpha -= 1/30;
+    }
     if(image_alpha &lt;= 0) {
         instance_destroy();
     }
-}</argument>
+}
+</argument>
       </arguments>
     </action>
   </actions>

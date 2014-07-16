@@ -29,6 +29,7 @@
     menu_add_option(0,"Off")
     menu_add_option(1,"Centre")
     menu_add_option(2,"Left")
+    
     menu_addedit_boolean("Ammo Bar:","global.dsmAmmoBars",'
         DSM_write_ini("Cosmetic","DSMAmmoBars",argument0)
     ')
@@ -55,9 +56,19 @@
         sound_global_volume(argument0/100)
     ',100)
     menu_addedit_num("HUD Opacity:","global.dsmHudOpacity",'
-        DSM_write_ini("Cosmetic","DSMHUDOpacit",argument0)
+        DSM_write_ini("Cosmetic","DSMHUDOpacity",argument0)
         global.dsmHudOpacityReal=argument0/100
     ',100)
+    menu_addedit_select("Body Fade Speed:","global.dsmBodyFade",'
+        DSM_write_ini("Cosmetic","DSMBodyFade",argument0)
+    ')
+    menu_add_option(0,"Normal")
+    menu_add_option(1,"Fast")
+    menu_add_option(2,"Very Fast")
+    
+    menu_addedit_boolean("Show Plugin List:","global.dsmShowPluginList",'
+        DSM_write_ini("Settings","DSMShowPluginList",argument0)
+    ')
     
     menu_addtablink("DSM 1", '
         instance_destroy();

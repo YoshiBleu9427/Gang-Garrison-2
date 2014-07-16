@@ -38,7 +38,7 @@ if !(global.myself.object.canEat)
     sandwichScalar = (1-(global.myself.object.alarm[6]/(global.myself.object.eatCooldown / global.delta_factor))) * 100
 else
     sandwichScalar = 100
-draw_sprite_ext(sprite_index,offset,xoffset+xsize-70,yoffset+ysize-85,2,2,0,c_white,1);
+draw_sprite_ext(sprite_index,offset,xoffset+xsize-70,yoffset+ysize-85,2,2,0,c_white,global.dsmHudOpacityReal);
 draw_healthbar(xoffset+xsize-85,yoffset+ysize-72,xoffset+xsize-50,yoffset+ysize-67,sandwichScalar,c_black,barcolor,barcolor,0,true,false);
 </argument>
       </arguments>
