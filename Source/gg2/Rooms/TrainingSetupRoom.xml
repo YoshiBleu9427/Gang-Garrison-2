@@ -8,14 +8,28 @@
   </grid>
   <speed>10</speed>
   <persistent>false</persistent>
-  <creationCode/>
+  <creationCode>room_caption = "Setup Room";
+global.startedGame = false; // will this cause error?
+global.mapchanging = false; // unnecessary?
+
+if(!global.fullscreen)
+    window_set_position(previous_window_x+previous_window_w/2-global.ingamewidth/2, previous_window_y);
+sound_stop_all();
+
+if(global.music == MUSIC_BOTH || global.music == MUSIC_INGAME_ONLY) {
+    AudioControlPlaySong(global.IngameMusic, true);
+}
+global.redCaps = 0;
+global.blueCaps = 0;
+global.winners = -1;
+</creationCode>
   <backgroundColor>C0C0C0</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>
   <backgrounds>
     <backgroundDef>
-      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <visibleOnRoomStart>true</visibleOnRoomStart>
       <isForeground>false</isForeground>
-      <backgroundImage/>
+      <backgroundImage>MenuBackground3</backgroundImage>
       <offset x="0" y="0"/>
       <speed x="0" y="0"/>
       <tileHorizontally>true</tileHorizontally>
@@ -96,7 +110,7 @@
   <enableViews>true</enableViews>
   <views>
     <view>
-      <visibleOnRoomStart>false</visibleOnRoomStart>
+      <visibleOnRoomStart>true</visibleOnRoomStart>
       <viewInRoom height="480" width="640" x="0" y="0"/>
       <portOnScreen height="480" width="640" x="0" y="0"/>
       <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>

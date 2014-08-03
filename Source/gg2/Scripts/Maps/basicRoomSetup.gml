@@ -5,7 +5,7 @@ global.mapchanging = false; // unnecessary?
 if(!global.fullscreen)
     window_set_position(previous_window_x+previous_window_w/2-global.ingamewidth/2, previous_window_y);
 
-global.totalMapAreas = 1+instance_number(NextAreaO);
+/*global.totalMapAreas = 1+instance_number(NextAreaO);
 
 if global.totalMapAreas > 1 {
     global.area[1] = 0;
@@ -24,7 +24,7 @@ if global.totalMapAreas > 1 {
     else if global.currentMapArea == global.totalMapAreas {
         with all if y < global.area[global.currentMapArea] && y > 0 instance_destroy();
     }
-}
+}*/
 
 offloadSpawnPoints();
 with(Player) {

@@ -1,7 +1,9 @@
 with(Player)
 {
-    write_buffer(socket, global.sendBuffer);
-    socket_send(socket);
+    if(object_index == Player) {
+        write_buffer(socket, global.sendBuffer);
+        socket_send(socket);
+    }
 }
 buffer_clear(global.sendBuffer);
 

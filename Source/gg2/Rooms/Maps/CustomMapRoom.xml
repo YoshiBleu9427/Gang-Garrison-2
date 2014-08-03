@@ -10,7 +10,9 @@
   <persistent>false</persistent>
   <creationCode>CustomMapInit("Maps/" + global.currentMap + ".png");
 basicRoomSetup();
-instance_create(0,0,CustomMapO);</creationCode>
+instance_create(0,0,CustomMapO);
+TrainingMapInit("Maps/" + global.currentMap + ".npc");
+</creationCode>
   <backgroundColor>000000</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>
   <backgrounds>

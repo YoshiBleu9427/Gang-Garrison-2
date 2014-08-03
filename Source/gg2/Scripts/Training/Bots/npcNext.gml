@@ -22,6 +22,7 @@ with(NPCManager) {
     if(currentCount >= nbAllocated) {
         npcArray[currentCount] = object_add();
         object_set_parent(npcArray[currentCount], NPC);
+        object_set_persistent(npcArray[currentCount], true);
         nbAllocated += 1;
     }
     nextNPC = npcArray[currentCount];

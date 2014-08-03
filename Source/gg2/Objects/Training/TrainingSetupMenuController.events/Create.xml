@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">show_message("Creating menu");
+with(PlayerControl) instance_destroy();
+
+destroyEventDone = false;   // gotta do that because destroying the instance
+            // causes a room changes, which destroys the instance again...
+
+// CHAT INIT
+chatLog = ds_list_create();
+chatOffset = 0;
+
+// PLAYABLE SLOTS
+// TODO: get playable slots from map
+slots = ds_list_create(); // list of strings
+
+// REPLACE PLAYER LIST
+var p, i;
+list = ds_list_create();
+for(i = 0; i &lt; ds_list_size(global.players); i += 1) {
+    with(ds_list_find_value(global.players, i)) {
+        if(object_index == Player) {
+            p = instance_create(x,y,SetupPlayer);
+            p.socket = socket;
+            p.name = name;
+            p.rewards = rewards;
+            p.ghost = ghost;
+            socket = -1; // don't destroy me :(
+            rewards = -1; // me neither :(
+            ghost = noone; // and me plz :(
+            ds_list_add(other.list, p);
+            if(global.myself == id) global.myself = p; // replace myself
+        }
+        instance_destroy();
+    }
+}
+ds_list_destroy(global.players);
+global.players = list;
+
+
+// MENUS
+nbMenus = 3
+menuX[0] = 32;
+menuY[0] = 372;
+menuText[0] = "START GAME";
+menuScript[0] = "
+    event_user(0);
+";
+
+
+menuX[1] = 100;
+menuY[1] = 32;
+menuText[1] = "GO RED";
+menuScript[1] = "
+    event_user(0);
+";
+
+
+menuX[2] = 128;
+menuY[2] = 372;
+menuText[2] = "GO SPEC";
+menuScript[2] = "
+    event_user(0);
+";
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

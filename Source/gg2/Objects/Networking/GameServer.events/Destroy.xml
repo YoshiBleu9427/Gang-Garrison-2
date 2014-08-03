@@ -18,6 +18,7 @@
 }
 
 ds_list_destroy(global.players);
+ds_list_destroy(global.dialogList);
 socket_destroy(global.tcpListener);
 socket_destroy(global.serverSocket);
 buffer_destroy(serverId);

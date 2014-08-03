@@ -19,7 +19,6 @@
     }
     hostSeenMOTD = false;
     global.players = ds_list_create();
-    global.dialogList = ds_list_create();
     global.tcpListener = -1;
     global.serverSocket = -1;
     
@@ -87,10 +86,15 @@
     
     instance_create(0,0,PlayerControl);
     
+    
+    //////////// TRAINING MOD ADDITIONS /////////////
+    
+    global.dialogList = ds_list_create();
     instance_create(0,0,EventManager);
     instance_create(0,0,CheatController);
 
-
+    // END OF ADDITIONS
+    
 
     // TODO: rename currentMap to launchMap
     if(file_exists("Maps/" + global.currentMap + ".png")) { // if this is an external map

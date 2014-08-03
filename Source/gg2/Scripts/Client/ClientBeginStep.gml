@@ -455,7 +455,7 @@ do {
             break;
                    
         case MAP_END:
-            global.nextMap=receivestring(global.serverSocket, 1);
+            // REMOVED STRING global.nextMap 
             receiveCompleteMessage(global.serverSocket,2,global.tempBuffer);
             global.winners=read_ubyte(global.tempBuffer);
             global.currentMapArea=read_ubyte(global.tempBuffer);
@@ -469,7 +469,9 @@ do {
             global.mapchanging = false;
             global.currentMap = receivestring(global.serverSocket, 1);
             global.currentMapMD5 = receivestring(global.serverSocket, 1);
-            if(global.currentMapMD5 == "") { // if this is an internal map (signified by the lack of an md5)
+            if(global.currentMap == "SETUP" and global.currentMapMD5 == "SETUP") {
+                doSetupRoom();
+            } else if(global.currentMapMD5 == "") { // if this is an internal map (signified by the lack of an md5)
                 if(findInternalMapRoom(global.currentMap))
                     room_goto_fix(findInternalMapRoom(global.currentMap));
                 else

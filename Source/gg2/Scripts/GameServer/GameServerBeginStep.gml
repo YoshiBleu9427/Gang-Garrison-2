@@ -22,6 +22,7 @@ for(i=0; i < ds_list_size(global.players); i+=1)
     player = ds_list_find_value(global.players, i);
     
     if(player.object_index != Player) { // TODO: fix is_ancestor
+        // process NPCs keybyte input
         with(player.object)
         {
             event_user(1);
@@ -73,8 +74,7 @@ if(global.winners != -1 and !global.mapchanging)
     impendingMapChange = 300; // in 300 ticks (ten seconds), we'll do a map change
     
     write_ubyte(global.sendBuffer, MAP_END);
-    write_ubyte(global.sendBuffer, string_length(global.nextMap));
-    write_string(global.sendBuffer, global.nextMap);
+    // IMPORTANT NETWORKING CHANGE: REMOVED A STRING (global.nextMap being sent)
     write_ubyte(global.sendBuffer, global.winners);
     write_ubyte(global.sendBuffer, global.currentMapArea);
     
@@ -82,13 +82,18 @@ if(global.winners != -1 and !global.mapchanging)
         instance_create(0,0,ScoreTableController);
     instance_create(0,0,WinBanner);
 }
-
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
 {
+    if(global.restart) {
+        ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
+        serverGotoMap(global.currentMap);
+    } else {
+        sendSetupRoom();
+        doSetupRoom();
+    }
+    
     global.mapchanging = false;
-    serverGotoMap(global.nextMap);
-    ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
     impendingMapChange = -1;
     
     with(Player)

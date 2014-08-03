@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="OTHER" id="4">
+<event category="CREATE" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,12 +13,18 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(room != TrainingSetupRoom) {
-    if(global.frameratekind == 1)
-        global.game_fps = 60;
-    else
-        global.game_fps = 30;
-}
+        <argument kind="STRING">name = "";
+socket = -1;
+kicked = false;
+
+hasJoined = false;
+hasDownloaded = false;
+ready = false;
+
+class = CLASS_SCOUT;
+team = TEAM_SPECTATOR;
+
+object = -1; // for compatibility
 </argument>
       </arguments>
     </action>

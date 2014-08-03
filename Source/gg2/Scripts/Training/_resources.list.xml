@@ -8,4 +8,6 @@
   <resource name="Other" type="GROUP"/>
   <resource name="training_init" type="RESOURCE"/>
   <resource name="Bots" type="GROUP"/>
+  <resource name="Networking" type="GROUP"/>
+  <resource name="Maps" type="GROUP"/>
 </resources>

@@ -74,6 +74,11 @@
   <constant name="PING" value="57"/>
   <constant name="CLIENT_SETTINGS" value="58"/>
   <constant name="KICK_MULTI_CLIENT" value="59"/>
+  <constant name="PLAYER_READY" value="100"/>
+  <constant name="GAME_OVER" value="101"/>
+  <constant name="GAME_PAUSE" value="102"/>
+  <constant name="GAME_RESUME" value="103"/>
+  <constant name="CHAT_ENTRY" value="104"/>
   <constant name="TEAM_RED" value="0"/>
   <constant name="TEAM_BLUE" value="1"/>
   <constant name="TEAM_SPECTATOR" value="2"/>

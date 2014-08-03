@@ -13,4 +13,5 @@
   <resource name="NPCSlots" type="GROUP"/>
   <resource name="TrainingSetupMenuController" type="RESOURCE"/>
   <resource name="NPCManager" type="RESOURCE"/>
+  <resource name="SetupPlayer" type="RESOURCE"/>
 </resources>
