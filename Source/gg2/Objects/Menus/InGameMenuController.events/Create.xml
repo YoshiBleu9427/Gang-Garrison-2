@@ -70,7 +70,6 @@
         splash_set_interrupt(false)
         splash_set_size(800,600)
         splash_show_web("http://www.ganggarrison.com/lobby/status",0)
-        //instance_create(112,224,LobbyController)
     ');
     menu_addlink("Disconnect", '
         addStats()

@@ -824,10 +824,23 @@ console_print('Syntax: listBinds')
 console_print('Use: Lists all binds assigned by the user.')
 ")
 
-/* fix later
-console_addCommand("mapRotation","
-console_print(global.map_rotation)
-","
-console_print('Syntax: unbind <key>')
-console_print('Use: Removes a specified bind.'))
-")*/
+console_addCommand("showMapRotation", "
+// Check whether we are the host before anything else
+if not global.isHost{
+    console_print('Only the host can use this command.');
+    exit;
+}
+
+for (i=0; i<ds_list_size(global.map_rotation); i+=1){
+    if i == global.currentMapIndex{
+        console_print(ds_list_find_value(global.map_rotation,i)+'<');
+    }else{
+        console_print(ds_list_find_value(global.map_rotation,i));
+    }
+}
+
+", "
+console_print('Syntax: showMapRotation');
+console_print('Use: Shows a list of the maps in rotation. < denotes the current map.');
+console_print(' ');
+");
