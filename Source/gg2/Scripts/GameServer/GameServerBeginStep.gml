@@ -76,6 +76,20 @@ if(global.winners != -1 and !global.mapchanging)
     instance_create(0,0,WinBanner);
 }
 
+if (global.isHost){
+    if (ds_list_size(global.players) > global.dsmPlayerThreshold){
+        //if a password is already set, don't replace it.
+        if global.serverPassword=""{
+            global.serverPassword=global.dsmServerPasswordString
+        }
+    }else{
+        //Only remove the password if it was set by this plugin
+        if global.serverPassword=global.dsmServerPasswordString{
+            global.serverPassword=""
+        }
+    }
+}
+
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
 {

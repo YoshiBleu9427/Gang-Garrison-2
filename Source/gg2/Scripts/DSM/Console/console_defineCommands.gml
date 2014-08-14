@@ -403,17 +403,17 @@ if not global.isHost{
     console_print('Only the host can use this command.')
     exit
 }
-var nextMap;
-nextMap=input[1]
+var _nextMap;
+_nextMap=input[1]
 
-if!(findInternalMapRoom(nextMap) or file_exists('Maps/' + nextMap + '.png')){
-    console_print(nextMap+' is not a valid map name. Ensure you have the map in your maps folder and have spelt it correctly.')
+if!(findInternalMapRoom(_nextMap) or file_exists('Maps/' + _nextMap + '.png')){
+    console_print(_nextMap+' is not a valid map name. Ensure you have the map in your maps folder and have spelt it correctly.')
     exit;
 }
 
-global.nextMap=nextMap
+global.nextMap=_nextMap
 global.dsmMapChange=1
-console_print('The next map is: '+nextMap)
+console_print('The next map is: '+_nextMap)
 ", "
 console_print('Syntax: nextMap <map name>')
 console_print('Use: Sets the next map to the desired map.')
@@ -824,7 +824,7 @@ console_print('Syntax: listBinds')
 console_print('Use: Lists all binds assigned by the user.')
 ")
 
-console_addCommand("showMapRotation", "
+console_addCommand("showRotation", "
 // Check whether we are the host before anything else
 if not global.isHost{
     console_print('Only the host can use this command.');

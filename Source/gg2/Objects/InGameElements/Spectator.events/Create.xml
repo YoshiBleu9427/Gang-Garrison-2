@@ -49,6 +49,11 @@ if (myTeam == TEAM_SPECTATOR)
 {
     event_user(7);
 }
+
+if global.dsmAdvancedSpectator==1{
+    advSpec=instance_create(0,0,AdvSpecHUD)
+    advSpec.parent=self
+}
 </argument>
       </arguments>
     </action>

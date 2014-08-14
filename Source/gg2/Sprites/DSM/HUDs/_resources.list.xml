@@ -3,4 +3,5 @@
   <resource name="ScoreBoard" type="GROUP"/>
   <resource name="WeaponHUDS" type="GROUP"/>
   <resource name="Timer" type="GROUP"/>
+  <resource name="AdvancedSpectator" type="GROUP"/>
 </resources>

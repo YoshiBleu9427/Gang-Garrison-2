@@ -38,6 +38,8 @@ ds_list_add(dsmCredits,"Chu")
 ds_list_add(dsmCredits,"RebelINS")
 ds_list_add(dsmCredits,"Killercrusher232")
 ds_list_add(dsmCredits,"Arctic")
+ds_list_add(dsmCredits,"Machidro")
+ds_list_add(dsmCredits,"NAGN")
 ds_list_add(dsmCredits,"Everyone else who has used this mod")
 </argument>
       </arguments>

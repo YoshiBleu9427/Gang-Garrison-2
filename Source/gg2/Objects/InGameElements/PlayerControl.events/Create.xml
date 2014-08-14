@@ -18,9 +18,6 @@ afktimer = afktimeout;
 oldScoreKeyDown = false;
 
 //DSM
-if global.dsmPingDisplay==1 instance_create(0,0,DSM_PingDisplay)
-if global.dsmFPSDisplay==1 instance_create(0,0,DSM_FPSDisplay)
-
 alarm[11]=30/global.delta_factor
 </argument>
       </arguments>

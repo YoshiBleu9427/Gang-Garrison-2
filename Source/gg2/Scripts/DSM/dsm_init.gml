@@ -75,6 +75,18 @@ ini_open("DSM.ini")
     
     global.dsmShowPluginList=ini_read_real("Settings","DSMShowPluginList",1)
     ini_write_real("Settings","DSMShowPluginList",global.dsmShowPluginList)
+    
+    global.dsmOldDeathSounds=ini_read_real("Settings","DSMOldDeathSounds",0)
+    ini_write_real("Settings","DSMOldDeathSounds",global.dsmOldDeathSounds)
+    
+    global.dsmPlayerThreshold=ini_read_real("Settings","DSMPlayerThreshold",0)
+    ini_write_real("Settings","DSMPlayerThreshold",global.dsmPlayerThreshold)
+    
+    global.dsmServerPasswordString=ini_read_string("Settings","DSMServerPasswordString","")
+    ini_write_string("Settings","DSMServerPasswordString",global.dsmServerPasswordString)
+    
+    global.dsmAdvancedSpectator=ini_read_real("Cosmetic","DSMAdvancedSpectator",0)
+    ini_write_real("Cosmetic","DSMAdvancedSpectator",global.dsmAdvancedSpectator)
 ini_close()
 
 //DSM Controls

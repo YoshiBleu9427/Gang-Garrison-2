@@ -28,7 +28,7 @@ if (ping&lt;75){
 }
 if (ping==-1){
     docol=c_gray
-    showping='TIMEOUT'
+//    showping='TIMEOUT'
 }
 draw_set_valign(fa_center)
 draw_set_halign(fa_middle)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="27300"/>
-  <constant name="GAME_VERSION_STRING" value="&quot;v2.7.3&quot;"/>
+  <constant name="VERSION" value="27400"/>
+  <constant name="GAME_VERSION_STRING" value="&quot;v2.7.4&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Derpduck's Server Mod&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/forums/index.php?topic=34847.0&quot;"/>
   <constant name="DSM_VERSION" value="206"/>

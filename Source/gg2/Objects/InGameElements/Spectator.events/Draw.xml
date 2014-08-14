@@ -13,7 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">xoffset = view_xview[0];
+        <argument kind="STRING">if global.dsmAdvancedSpectator==1 exit; //and global.myself.team==TEAM_SPECTATOR exit;
+
+xoffset = view_xview[0];
 yoffset = view_yview[0];
 xsize = view_wview[0];
 ysize = view_hview[0];
@@ -30,7 +32,7 @@ draw_set_halign(fa_left);
 draw_set_color(c_white);
 if (tracking)
 {
-    draw_text(xoffset+50, yoffset+ysize-10, player.name);
+    draw_name_badges(xoffset+50, yoffset+ysize-16, player);
     if (player.object == -1)
         break;
     if (global.myself.team == TEAM_SPECTATOR and player.object.maxHp != 0)
