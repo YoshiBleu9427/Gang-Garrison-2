@@ -35,6 +35,8 @@
         file_text_close(text);
     }
     
+    //global.RCONList=ds_list_create()
+    
     var i;
     serverId = buffer_create();
     for (i = 0; i < 16; i += 1)
@@ -127,12 +129,18 @@
     currentMapIndex = -1;
     global.currentMapArea = 1;
     
-    //if!(findInternalMapRoom(desiredMapName) or file_exists('Maps/' + string(desiredMapName) + '.png')){
-        //numberOfMaps = ds_list_size(global.map_rotation);
-        //desiredMapIndex-=1
-        //message=string(desiredMapName)+' is not a valid map name; this map will be skipped. Ensure you have the map in your maps folder and have spelt it correctly.'
-        //show_message(message)
-    //}
+    var desiredMapName, desiredMapIndex, i, numberOfMaps;
+numberOfMaps = ds_list_size(global.map_rotation);
+
+for(i = 1; i <= numberOfMaps; i += 1)
+{
+    desiredMapIndex = (GameServer.currentMapIndex + i) mod numberOfMaps;
+    desiredMapName = ds_list_find_value(global.map_rotation, desiredMapIndex);
+    if!(findInternalMapRoom(desiredMapName) or file_exists("Maps/" + desiredMapName + ".png"))
+    {
+show_message(string(desiredMapName)+' is not a valid map name; this map will be skipped.')
+    }
+}
     
     if(global.launchMap == "")
         serverGotoMap(nextMapInRotation());

@@ -398,6 +398,42 @@ while(commandLimitRemaining > 0) {
             write_ubyte(global.sendBuffer, mirror);
             break;
         
+        case DSM_RCON_LOGIN:
+            var rconCommand,commandLength;
+            commandLength=socket_receivebuffer_size(player.socket)
+            rconCommand=read_string(player.socket,commandLength)
+            
+            if global.dsmRCONAllowed==0 exit;
+            
+            if string(rconCommand)==string(global.dsmRCONPassword){
+                write_ubyte(player.socket,DSM_RCON_LOGIN)
+                write_ubyte(player.socket,DSM_RCON_LOGIN_SUCCESSFUL) //valid password
+                ds_list_add(global.RCONList,player)
+                console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' is now identified as a RCON.')
+            }else{
+                write_ubyte(player.socket,DSM_RCON_LOGIN)
+                write_ubyte(player.socket,DSM_RCON_LOGIN_FAILED) //invalid password
+            }
+            break;
+        
+        case DSM_RCON_COMMAND:
+            var rconCommand,commandLength;
+            commandLength=socket_receivebuffer_size(player.socket)
+            rconCommand=read_string(player.socket,commandLength)
+            
+            if global.dsmRCONAllowed==0 exit;
+            
+            if(string_length(rconCommand) > MAX_RCON_COMMAND_LENGTH){
+                write_ubyte(player.socket, KICK)
+                write_ubyte(player.socket, KICK_RCON)
+                console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' sent a command with a length over the maximum limit; kicking.')
+                socket_destroy(player.socket);
+                player.socket = -1;
+                exit;
+            }
+            
+            console_parseInput_RCON(rconCommand,player.name)
+            break;
         }
         break;
     } 

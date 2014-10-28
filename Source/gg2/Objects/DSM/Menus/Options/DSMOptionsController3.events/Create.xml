@@ -30,6 +30,21 @@
     menu_addedit_boolean("Advanced Spectator:","global.dsmAdvancedSpectator",'
         DSM_write_ini("Cosmetic","DSMAdvancedSpectator",argument0)
     ')
+        
+    menu_addedit_select("Arrow Origin:","global.dsmArrowOrigin",'
+        DSM_write_ini("Cosmetic","DSMArrowOrigin",argument0)
+    ')
+    menu_add_option(0,"Player")
+    menu_add_option(1,"HUD")
+    
+    /*var CrosshairFilename;
+    menu_addedit_text("Crosshair:","CrosshairFilename",'
+    if (file_exists(argument0)){
+        sprite_replace(CrosshairS,argument0,1,1,false,0,0);
+        sprite_set_offset(CrosshairS,sprite_get_width(CrosshairS)/2,sprite_get_height(CrosshairS)/2);
+    }
+    gg2_write_ini("Settings", "CrosshairFilename", argument0);
+    ')*/
     
     menu_addtablink("DSM 1", '
         instance_destroy();

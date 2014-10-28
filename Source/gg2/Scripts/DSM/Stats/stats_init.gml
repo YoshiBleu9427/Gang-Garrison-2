@@ -43,5 +43,7 @@ ini_open("stats.gg2")
 ini_close()
 
 global.kdr=0
+global.wlr=0
 global.dsmInGameTime=0 //Recorded in minutes
 global.displayTime=""
+global.ratio=0

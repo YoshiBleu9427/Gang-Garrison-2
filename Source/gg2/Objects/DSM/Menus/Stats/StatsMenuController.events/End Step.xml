@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if keyboard_check_released(vk_control) and s1==-1{
+    s1=value[virtualitem]
+}else if keyboard_check_released(vk_control) and s1!=-1{
+    s2=value[virtualitem]
+}
+
+if s1!=-1 and s2!=-1{
+    calcRatio(s1,s2)
+    s1=-1
+    s2=-1
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

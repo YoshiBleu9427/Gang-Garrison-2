@@ -4,4 +4,6 @@
   <resource name="ConsoleS" type="RESOURCE"/>
   <resource name="DSM_ConsoleFontS" type="RESOURCE"/>
   <resource name="DSM_MenuBackgroundVersionS" type="RESOURCE"/>
+  <resource name="DSM_EUFlagS" type="RESOURCE"/>
+  <resource name="DSM_CanadaFlagS" type="RESOURCE"/>
 </resources>

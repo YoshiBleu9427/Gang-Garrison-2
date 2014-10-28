@@ -58,12 +58,7 @@ while(!http_step(downloadHandle))
     if (size != -1)
     {
         draw_text(x,y-20,string((progress/size)*100)+'% done...')
-        progressBar = floor((progress/size) * 20);
-        offset = 3;
-        for(i=0;i&lt;progressBar;i+=1){
-            draw_sprite(UpdaterProgressS,0,x+offset,y);
-            offset+=12;
-        }
+        draw_sprite_part(DSM_UpdaterProgressS,0,0,0,(progress/size)*240,20,x,y-11)
     }
     screen_refresh();
 }

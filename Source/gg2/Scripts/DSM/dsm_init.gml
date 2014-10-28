@@ -87,6 +87,15 @@ ini_open("DSM.ini")
     
     global.dsmAdvancedSpectator=ini_read_real("Cosmetic","DSMAdvancedSpectator",0)
     ini_write_real("Cosmetic","DSMAdvancedSpectator",global.dsmAdvancedSpectator)
+    
+    global.dsmRCONAllowed=ini_read_real("Settings","DSMRCONAllowed",0)
+    ini_write_real("Settings","DSMRCONAllowed",global.dsmRCONAllowed)
+    
+    global.dsmRCONPassword=ini_read_string("Settings","DSMRCONPassword","")
+    ini_write_string("Settings","DSMRCONPassword",global.dsmRCONPassword)
+    
+    global.dsmArrowOrigin=ini_read_real("Cosmetic","DSMArrowOrigin",0)
+    ini_write_real("Cosmetic","DSMArrowOrigin",global.dsmArrowOrigin)
 ini_close()
 
 //DSM Controls
@@ -109,6 +118,7 @@ global.dsmMapChange=0
 global.dsmBinds=ds_list_create()
 global.dsmBindCommands=ds_list_create()
 read_binds_from_file()
+global.isRCON=0
 
 //Run other DSM scripts
 console_init()

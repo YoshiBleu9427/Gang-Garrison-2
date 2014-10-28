@@ -45,7 +45,7 @@
     menu_addedit_boolean("Record Stats:","global.dsmRecordStats",'
         DSM_write_ini("Settings","DSMRecordStats",argument0)
     ')
-    menu_addedit_boolean("Alway Show Spinjump Particles:","global.dsmAlwaysShowSpinjump",'
+    menu_addedit_boolean("Always Show Spinjump Particles:","global.dsmAlwaysShowSpinjump",'
         DSM_write_ini("Cosmetic","DSMAlwaysShowSpinjump",argument0)
     ')
     menu_addedit_boolean("Use Old Blood:","global.dsmOldBlood",'

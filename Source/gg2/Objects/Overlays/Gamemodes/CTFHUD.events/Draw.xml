@@ -61,11 +61,14 @@
         }
     }
       
-    
     // Point to the intel if it's on the field
     if (instance_exists(IntelligenceRed))
     {
-        reddir = point_direction(redx, redy, IntelligenceRed.x, IntelligenceRed.y);
+        if global.dsmArrowOrigin=0{ //0=from player
+            reddir = point_direction(global.myself.object.x, global.myself.object.y, IntelligenceRed.x, IntelligenceRed.y);
+        }else{ //1=from intel hud
+            reddir = point_direction(redx, redy, IntelligenceRed.x, IntelligenceRed.y);
+        }
         if (IntelligenceRed.alarm[0] &lt;= 0)
             redintelstatus = 2;
         else
@@ -75,19 +78,32 @@
     else
     {
         // If we're carrying it, it should point where we need to go
-        reddir = point_direction(redx, redy, IntelligenceBaseBlue.x, IntelligenceBaseBlue.y);
+        if global.dsmArrowOrigin=0{ //0=from player
+            reddir = point_direction(global.myself.object.x, global.myself.object.y, IntelligenceBaseBlue.x, IntelligenceBaseBlue.y);
+        }else{ //1=from intel hud
+            reddir = point_direction(redx, redy, IntelligenceBaseBlue.x, IntelligenceBaseBlue.y);
+        }
         with(Character)
         {
             // Otherwise it whould point at the person who's carrying it
-            if (team == TEAM_BLUE and intel and id != global.myself.object)
-                reddir = point_direction(redx, redy, x, y);
+            if (team == TEAM_BLUE and intel and id != global.myself.object){
+                if global.dsmArrowOrigin=0{ //0=from player
+                    reddir = point_direction(global.myself.object.x, global.myself.object.y, x, y);
+                }else{ //1=from intel hud
+                    reddir = point_direction(redx, redy, x, y);
+                }
+            }
         }
         redintelstatus=1;
     }
      
     if (instance_exists(IntelligenceBlue))
     {
-        bluedir = point_direction(bluex, bluey, IntelligenceBlue.x, IntelligenceBlue.y);
+        if global.dsmArrowOrigin=0{ //0=from player
+            bluedir = point_direction(global.myself.object.x, global.myself.object.y, IntelligenceBlue.x, IntelligenceBlue.y);
+        }else{ //1=from intel hud
+            bluedir = point_direction(bluex, bluey, IntelligenceBlue.x, IntelligenceBlue.y);
+        }
         if (IntelligenceBlue.alarm[0] &lt;= 0)
             blueintelstatus = 2;
         else
@@ -95,11 +111,20 @@
     }
     else
     {
-        bluedir = point_direction(bluex, bluey, IntelligenceBaseRed.x, IntelligenceBaseRed.y);
+        if global.dsmArrowOrigin=0{ //0=from player
+            bluedir = point_direction(global.myself.object.x, global.myself.object.y, IntelligenceBaseRed.x, IntelligenceBaseRed.y);
+        }else{ //1=from intel hud
+            bluedir = point_direction(bluex, bluey, IntelligenceBaseRed.x, IntelligenceBaseRed.y);
+        }
         with(Character)
         {
-            if (team == TEAM_RED and intel and id != global.myself.object)
-                bluedir = point_direction(bluex, bluey, x, y);
+            if (team == TEAM_RED and intel and id != global.myself.object){
+                if global.dsmArrowOrigin=0{ //0=from player
+                    bluedir = point_direction(global.myself.object.x, global.myself.object.y, x, y);
+                }else{ //1=from intel hud
+                    bluedir = point_direction(bluex, bluey, x, y);
+                }
+            }
         }
         blueintelstatus=1;
     }

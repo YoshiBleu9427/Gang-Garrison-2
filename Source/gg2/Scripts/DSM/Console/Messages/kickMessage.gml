@@ -1,5 +1,5 @@
 //£ signs are used instead of spaces because they don't show up in the font, so this avoids problems with using " and '
 var endString;
 endString='£has£been£kicked£from£the£server.'
-string_replace_all(global.playerNameC,' ','£')
+global.playerNameC=string_replace_all(global.playerNameC,' ','£')
 console_parseInput('broadcast '+global.playerNameC+endString)

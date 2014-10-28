@@ -8,6 +8,10 @@ global.DSM_commandMap = ds_map_create()//All console commands are here, with the
 global.DSM_documentationMap = ds_map_create()//See above, only this gets called when a user enters "help something".
 global.consoleMaxLines = 32
 global.playerNameC=""
+global.RCONList=ds_list_create()
+global.RCONSentCommand=0
+global.RCONSentCommand_PlayerName=""
+global.RCONCommand_out=""
 
 //For locking teams/classes
 //Team

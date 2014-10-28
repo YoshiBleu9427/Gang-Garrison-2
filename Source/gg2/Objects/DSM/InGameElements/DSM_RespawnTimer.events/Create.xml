@@ -16,7 +16,6 @@
         <argument kind="STRING">//Thanks to lorgan for creating the original plugin for this
 
 time = 0
-rectAlpha=0.6
 </argument>
       </arguments>
     </action>

@@ -433,6 +433,7 @@ do {
             if reason == KICK_NAME kickReason = "Name Exploit";
             else if reason == KICK_BAD_PLUGIN_PACKET kickReason = "Invalid plugin packet ID";
             else if reason == KICK_MULTI_CLIENT kickReason = "There are too many connections from your IP";
+            else if reason == KICK_RCON kickReason = "RCON command exceeds maximum limit.";
             else kickReason = "";
             show_message("You have been kicked from the server. "+kickReason+".");
             instance_destroy();
@@ -638,6 +639,20 @@ do {
             receiveCompleteMessage(global.serverSocket,2,global.tempBuffer);
             player = ds_list_find_value(global.players, read_ubyte(global.tempBuffer));
             player.queueJump = read_ubyte(global.tempBuffer);
+            break;
+        
+        case DSM_RCON_LOGIN:
+            receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
+            var loginStatus;
+            loginStatus=read_ubyte(global.tempBuffer)
+            if loginStatus==DSM_RCON_LOGIN_SUCCESSFUL{
+                global.isRCON=1
+                console_print('/:/'+COLOR_LIGHTBLUE+"RCON login successful.")
+            }else if loginStatus==DSM_RCON_LOGIN_FAILED{
+                console_print('/:/'+COLOR_LIGHTBLUE+"RCON login failed.")
+            }else{
+                console_print('/:/'+COLOR_LIGHTBLUE+"Unexpected reply from server.")
+            }
             break;
 
         default:

@@ -32,9 +32,13 @@ if (ping==-1){
 }
 draw_set_valign(fa_center)
 draw_set_halign(fa_middle)
-draw_set_color(c_black)
-draw_set_alpha(0.7)
-draw_rectangle(view_xview+140,view_yview+520,view_xview+180,view_yview+550,false)
+if (ping&lt;200){
+    draw_set_color(c_black)
+    draw_set_alpha(0.7)
+    draw_rectangle(view_xview+140,view_yview+520,view_xview+180,view_yview+550,false)
+}else if (ping&gt;=200){
+    draw_sprite_ext(DSM_EUFlagS,0,view_xview+140,view_yview+520,1,1,0,c_white,0.7)
+}
 
 draw_set_color(docol)
 draw_set_alpha(0.7)

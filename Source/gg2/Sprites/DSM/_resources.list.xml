@@ -4,5 +4,6 @@
   <resource name="HUDs" type="GROUP"/>
   <resource name="Obstacles" type="GROUP"/>
   <resource name="GameElements" type="GROUP"/>
+  <resource name="Updater" type="GROUP"/>
   <resource name="DSM_IconS" type="RESOURCE"/>
 </resources>

@@ -47,7 +47,13 @@ menu_addedit_text("VIP Password:", "global.dsmServerPasswordString", '
     DSM_write_ini("Settings", "DSMServerPasswordString", argument0);
 ');
 menu_addedit_num("VIP Threshold:", "global.dsmPlayerThreshold", '
-    DSM_write_ini("Settings", "DSMPlayerThreshold Limit", argument0);
+    DSM_write_ini("Settings", "DSMPlayerThreshold", argument0);
+');
+menu_addedit_text("RCON Password:", "global.dsmRCONPassword", '
+    DSM_write_ini("Settings", "DSMRCONPassword", argument0);
+');
+menu_addedit_num("RCON Allowed:", "global.dsmRCONAllowed", '
+    DSM_write_ini("Settings", "DSMRCONAllowed", argument0);
 ');
 
 menu_addlink("Start Game", '

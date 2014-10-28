@@ -4,14 +4,14 @@
   <constant name="GAME_VERSION_STRING" value="&quot;v2.7.4&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Derpduck's Server Mod&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/forums/index.php?topic=34847.0&quot;"/>
-  <constant name="DSM_VERSION" value="206"/>
-  <constant name="DSM_VERSION_STRING" value="&quot;v2.0.6&quot;"/>
+  <constant name="DSM_VERSION" value="210"/>
+  <constant name="DSM_VERSION_STRING" value="&quot;v2.1.0&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
   <constant name="PLUGIN_SOURCE_NOTICE" value="&quot;While these plugins have been screened by the Gang Garrison 2 community, they cannot guarantee they are safe.&quot;"/>
   <constant name="BACKGROUND_SOURCE" value="&quot;http://www.ganggarrison.com/background.png&quot;"/>
-  <constant name="DEVMESSAGES_SOURCE" value="&quot;http://derpduck.ajf.me/DSM/dsmdevmsg.txt&quot;"/>
+  <constant name="DEVMESSAGES_SOURCE" value="&quot;http://derpduck.github.io/files/DSM/dsmdevmsg.txt&quot;"/>
   <constant name="DEVMESSAGES_SOURCE_BETA" value="&quot;http://www.ganggarrison.com/devmessages_beta.txt&quot;"/>
-  <constant name="UPDATE_SOURCE" value="&quot;http://derpduck.ajf.me/DSM/DSM.zip&quot;"/>
+  <constant name="UPDATE_SOURCE" value="&quot;http://derpduck.github.io/files/DSM/DSM.zip&quot;"/>
   <constant name="UPDATE_SOURCE_BETA" value="&quot;http://www.ganggarrison.com/gg2update_beta.zip&quot;"/>
   <constant name="LOBBY_SERVER_HOST" value="&quot;ganggarrison.com&quot;"/>
   <constant name="LOBBY_SERVER_PORT" value="29944"/>
@@ -179,5 +179,11 @@
   <constant name="COLOR_GOLD" value="&quot;252-217-023&quot;"/>
   <constant name="COLOR_RGB_LENGTH" value="11"/>
   <constant name="MAX_COMMAND_LOG_SIZE" value="100"/>
+  <constant name="DSM_RCON_LOGIN" value="60"/>
+  <constant name="DSM_RCON_COMMAND" value="61"/>
+  <constant name="KICK_RCON" value="62"/>
+  <constant name="MAX_RCON_COMMAND_LENGTH" value="88"/>
+  <constant name="DSM_RCON_LOGIN_SUCCESSFUL" value="1"/>
+  <constant name="DSM_RCON_LOGIN_FAILED" value="2"/>
   <constant name="MOUSE_MIDDLE" value="3"/>
 </constants>
