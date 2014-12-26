@@ -25,4 +25,5 @@
   <resource name="console_command_showRotation" type="RESOURCE"/>
   <resource name="console_command_unmute" type="RESOURCE"/>
   <resource name="console_command_rcon" type="RESOURCE"/>
+  <resource name="console_command_unban" type="RESOURCE"/>
 </resources>

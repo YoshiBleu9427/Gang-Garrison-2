@@ -645,15 +645,48 @@ do {
             receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
             var loginStatus;
             loginStatus=read_ubyte(global.tempBuffer)
+            
             if loginStatus==DSM_RCON_LOGIN_SUCCESSFUL{
                 global.isRCON=1
                 console_print('/:/'+COLOR_LIGHTBLUE+"RCON login successful.")
             }else if loginStatus==DSM_RCON_LOGIN_FAILED{
+                global.isRCON=0
                 console_print('/:/'+COLOR_LIGHTBLUE+"RCON login failed.")
             }else{
                 console_print('/:/'+COLOR_LIGHTBLUE+"Unexpected reply from server.")
             }
             break;
+            
+        case DSM_RCON_COMMAND:
+            receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
+            var status;
+            status=read_ubyte(global.tempBuffer)
+            
+            if global.isRCON==0{
+                console_print('/:/'+COLOR_LIGHTBLUE+"You are not a RCON.")
+                exit;
+            }
+            
+            if status==DSM_RCON_COMMAND_SUCESSFUL{
+                console_print('/:/'+COLOR_LIGHTBLUE+"RCON command successful.")
+                exit;
+            }else if status==DSM_RCON_COMMAND_FAILED{
+                console_print('/:/'+COLOR_LIGHTBLUE+"RCON command failed.")
+                exit;
+            }else{
+                console_print('/:/'+COLOR_LIGHTBLUE+"Unexpected reply from server.")
+                exit;
+            }
+            break;
+            
+        /*case DSM_RCON_COMMAND_CUSTOM_MESSAGE:
+            receiveCompleteMessage(global.serverSocket,2,global.tempBuffer);
+            var message,length;
+            length=read_ubyte(global.tempBuffer)
+            message=read_string(global.tempBuffer,length)
+            show_message(message)
+            break;
+            */
 
         default:
             promptRestartOrQuit("The Server sent unexpected data.");

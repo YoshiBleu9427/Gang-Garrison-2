@@ -19,6 +19,7 @@
     ini_write_real("Controls","DSMShowWM",global.dsmShowWM)
     ini_write_real("Controls","DSMConsoleKey",global.dsmConsoleKey)
     ini_write_real("Controls","DSMScreenshot",global.dsmScreenshot)
+    ini_write_real("Controls","DSMChatHideButton",global.dsmChatHideButton)
 ini_close()
 </argument>
       </arguments>

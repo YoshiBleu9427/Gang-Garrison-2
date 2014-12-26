@@ -1,4 +1,4 @@
-console_addCommand("endRound", "
+console_addCommand("endround", "
 var command;
 command=input[0]
 if global.isRCON==1 and !global.isHost{

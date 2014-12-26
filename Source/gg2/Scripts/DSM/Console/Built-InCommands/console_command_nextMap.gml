@@ -1,4 +1,4 @@
-console_addCommand("nextMap", "
+console_addCommand("nextmap", "
 var command;
 command=input[0]+' '+input[1]
 if global.isRCON==1 and !global.isHost{

@@ -12,6 +12,8 @@ global.RCONList=ds_list_create()
 global.RCONSentCommand=0
 global.RCONSentCommand_PlayerName=""
 global.RCONCommand_out=""
+global.RCONCustomMessage=""
+global.RCONUseCustomMessage=0
 
 //For locking teams/classes
 //Team

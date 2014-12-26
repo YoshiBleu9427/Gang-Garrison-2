@@ -37,6 +37,14 @@
     menu_add_option(0,"Player")
     menu_add_option(1,"HUD")
     
+    menu_addedit_boolean("Show Secret Flag:","global.dsmUseSecretFlag",'
+        DSM_write_ini("Cosmetic","DSMSecretFlag",argument0)
+    ')
+    
+    menu_addedit_boolean("Write Console Log To File:","global.dsmWriteConsoleLog",'
+        DSM_write_ini("Settings","DSMWriteConsoleLog",argument0)
+    ')
+    
     /*var CrosshairFilename;
     menu_addedit_text("Crosshair:","CrosshairFilename",'
     if (file_exists(argument0)){

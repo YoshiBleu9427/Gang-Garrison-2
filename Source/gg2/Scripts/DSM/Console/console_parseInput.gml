@@ -45,8 +45,10 @@ while numOfCommands <= 10{// Fill up until 10 arguments, that way there are no e
     numOfCommands += 1;
 }
 
-// Second step: Find out what command it is and execute it.
+//Remove case sensitivity for command name
+input[0]=string_lower(input[0])
 
+// Second step: Find out what command it is and execute it.
 if ds_map_exists(global.DSM_commandMap, input[0]){
     execute_string(ds_map_find_value(global.DSM_commandMap, input[0]));
 }else{

@@ -96,6 +96,12 @@ ini_open("DSM.ini")
     
     global.dsmArrowOrigin=ini_read_real("Cosmetic","DSMArrowOrigin",0)
     ini_write_real("Cosmetic","DSMArrowOrigin",global.dsmArrowOrigin)
+    
+    global.dsmUseSecretFlag=ini_read_real("Cosmetics","DSMUseSecretFlag",1)
+    ini_write_real("Cosmetic","DSMUseSecretFlag",global.dsmUseSecretFlag)
+    
+    global.dsmWriteConsoleLog=ini_read_real("Settings","DSMWriteConsoleLog",0)
+    ini_write_real("Settings","DSMWriteConsoleLog",global.dsmWriteConsoleLog)
 ini_close()
 
 //DSM Controls
@@ -105,6 +111,7 @@ ini_open("controls.gg2")
     global.dsmShowWM=ini_read_real("Controls","DSMShowWM",vk_f7)
     global.dsmConsoleKey=ini_read_real("Controls","DSMConsoleKey",vk_f2)
     global.dsmScreenshot=ini_read_real("Controls","DSMScreenshot",mb_middle)
+    global.dsmChatHideButton=ini_read_real("Controls","DSMChatHideButton",ord("I"))
 
     //global.toggleSPD=ini_read_real("Controls","ToggleScorePerDeath",vk_f11)
 ini_close()
@@ -119,6 +126,8 @@ global.dsmBinds=ds_list_create()
 global.dsmBindCommands=ds_list_create()
 read_binds_from_file()
 global.isRCON=0
+global.chatHide=0
+global.chatHideJustChanged=0
 
 //Run other DSM scripts
 console_init()
@@ -128,5 +137,7 @@ stats_init()
 //Plugin Fixes and Mods
 chatFix_miku()
 chat_paste()
+chat_hide()
 
-if(!directory_exists(working_directory + "\Custom")) directory_create(working_directory + "\Custom")
+if(!directory_exists(working_directory+"\Custom")) directory_create(working_directory+"\Custom")
+if(!directory_exists(working_directory+"\ConsoleLogs")) directory_create(working_directory+"\ConsoleLogs")

@@ -47,6 +47,7 @@ console_print('Try entering help once, not twice.');
 //Other commands put into scripts to make them easier to look at
 console_command_kick()
 console_command_ban()
+console_command_tempBan()
 console_command_listBans()
 console_command_listBans()
 console_command_listPlayers()
@@ -69,3 +70,4 @@ console_command_listBinds()
 console_command_showRotation()
 console_command_unmute()
 console_command_rcon()
+console_command_unban()

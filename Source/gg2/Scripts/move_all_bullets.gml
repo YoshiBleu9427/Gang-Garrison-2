@@ -1,6 +1,5 @@
 gunSetSolids();
-with(Shot)
-{
+with(Shot){
     if(!variable_local_exists("firststep"))
         firststep = true;
     
@@ -34,8 +33,8 @@ with(Shot)
     else
         firststep = false;
 }
-with(Rocket)
-{
+
+with(Rocket){
     if(!variable_local_exists("firststep"))
         firststep = true;
     
@@ -79,13 +78,13 @@ with(Rocket)
                 if (!variable_local_exists("rocketblurParticleType"))
                 {
                     rocketblurParticleType = part_type_create();
-					if global.colouredProjectiles==1{
-						if team == TEAM_RED rocketParticleSprite = DSM_RedRocketS;
-						else rocketParticleSprite = DSM_BlueRocketS;
-					}else{
-						if team == TEAM_RED rocketParticleSprite = RedRocketS;
-						else rocketParticleSprite = BlueRocketS;
-					}
+                    if global.colouredProjectiles==1{
+                        if team == TEAM_RED rocketParticleSprite = DSM_RedRocketS;
+                        else rocketParticleSprite = DSM_BlueRocketS;
+                    }else{
+                        if team == TEAM_RED rocketParticleSprite = RedRocketS;
+                        else rocketParticleSprite = BlueRocketS;
+                    }
                     part_type_sprite(rocketblurParticleType,rocketParticleSprite,false,true,false);
                     part_type_alpha2(rocketblurParticleType,0.7,0.1);
                     part_type_life(rocketblurParticleType,5,5);
@@ -130,8 +129,8 @@ with(Rocket)
     
     firststep = false;
 }
-with(BladeB)
-{
+
+with(BladeB){
     if(!variable_local_exists("firststep"))
         firststep = true;
     
@@ -158,8 +157,8 @@ with(BladeB)
     
     firststep = false;
 }
-with(BurningProjectile)
-{
+
+with(BurningProjectile){
     if(!variable_local_exists("firststep"))
         firststep = true;
     
@@ -169,18 +168,18 @@ with(BurningProjectile)
     if(global.particles == PARTICLES_NORMAL and global.run_virtual_ticks)
     {
         if(random(5) < 1){
-			var colour;
-			if global.colouredProjectiles==1{
-				if team==TEAM_RED{
-					colour=c_red
-				}else{
-					colour=c_blue
-				}
-			}else{
-				colour=c_gray
-			}
+            var colour;
+            if global.colouredProjectiles==1{
+                if team==TEAM_RED{
+                    colour=c_red
+                }else{
+                    colour=c_blue
+                }
+            }else{
+                colour=c_gray
+            }
             effect_create_below(ef_smokeup, x, y-8, 0, c_gray);
-		}
+        }
     }
     else if(global.particles == PARTICLES_ALTERNATIVE and global.run_virtual_ticks)
     {
@@ -220,8 +219,8 @@ with(BurningProjectile)
     
     firststep = false;
 }
-with(Mine)
-{
+
+with(Mine){
     if(!variable_local_exists("firststep"))
         firststep = true;
     
@@ -241,22 +240,22 @@ with(Mine)
             particleCycle = (particleCycle + 1) mod 2;
             if(particleCycle){
                 if global.colouredProjectiles==1{
-					var colouredTrail;
-					colouredTrail=instance_create(x, y, MineTrail);
-					colouredTrail.team=team
-					with(colouredTrail){
-						if global.colouredProjectiles==1{
-							if team == TEAM_RED{
-								sprite_index = DSM_RedMineTrailS
-							}else if team == TEAM_BLUE{
-								sprite_index = DSM_BlueMineTrailS
-							}
-						}
-					}
-				}else{
-					instance_create(x,y,MineTrail);
-				}
-			}
+                    var colouredTrail;
+                    colouredTrail=instance_create(x, y, MineTrail);
+                    colouredTrail.team=team
+                    with(colouredTrail){
+                        if global.colouredProjectiles==1{
+                            if team == TEAM_RED{
+                                sprite_index = DSM_RedMineTrailS
+                            }else if team == TEAM_BLUE{
+                                sprite_index = DSM_BlueMineTrailS
+                            }
+                        }
+                    }
+                }else{
+                    instance_create(x,y,MineTrail);
+                }
+            }
         }
     }
     
@@ -282,8 +281,8 @@ with(Mine)
     
     firststep = false;
 }
-with(Needle)
-{
+
+with(Needle){
     if(!variable_local_exists("firststep"))
         firststep = true;
     

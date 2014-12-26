@@ -1,4 +1,4 @@
-console_addCommand("tempBan", "
+console_addCommand("tempban", "
 //HOST+RCON ONLY
 var command;
 command=input[0]+' '+input[1]

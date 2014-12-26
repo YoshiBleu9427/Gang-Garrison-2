@@ -52,7 +52,7 @@ menu_addedit_num("VIP Threshold:", "global.dsmPlayerThreshold", '
 menu_addedit_text("RCON Password:", "global.dsmRCONPassword", '
     DSM_write_ini("Settings", "DSMRCONPassword", argument0);
 ');
-menu_addedit_num("RCON Allowed:", "global.dsmRCONAllowed", '
+menu_addedit_boolean("RCON Allowed:", "global.dsmRCONAllowed", '
     DSM_write_ini("Settings", "DSMRCONAllowed", argument0);
 ');
 

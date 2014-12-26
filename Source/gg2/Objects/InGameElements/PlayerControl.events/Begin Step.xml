@@ -39,6 +39,16 @@ if keyboard_check_pressed(global.dsmScreenshot) or mouse_check_button_pressed(gl
     takeScreenshot()
 }
 
+if keyboard_check_released(global.dsmChatHideButton){
+    if global.chatHide==0{
+        global.chatHide=1
+        global.chatHideJustChanged=1
+    }else if global.chatHide==1{
+        global.chatHide=0
+        global.chatHideJustChanged=1
+    }
+}
+
 //Checking for input - Mapped Keys
 if(keyboard_check_pressed(global.changeTeam))
     inputChangeTeam();

@@ -1,4 +1,4 @@
-console_addCommand("shuffleRotation", "
+console_addCommand("shufflerotation", "
 if global.RCONSentCommand=1{
     console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+global.RCONSentCommand_PlayerName+' sent this command:')
     console_print('/:/'+COLOR_ORANGE+global.RCONCommand_out)

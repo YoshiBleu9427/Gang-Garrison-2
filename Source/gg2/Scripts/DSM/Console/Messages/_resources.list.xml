@@ -3,4 +3,5 @@
   <resource name="kickMessage" type="RESOURCE"/>
   <resource name="banMessage" type="RESOURCE"/>
   <resource name="tempBanMessage" type="RESOURCE"/>
+  <resource name="newRconMessage" type="RESOURCE"/>
 </resources>

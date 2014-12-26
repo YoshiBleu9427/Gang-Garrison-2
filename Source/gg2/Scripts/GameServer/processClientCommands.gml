@@ -403,7 +403,7 @@ while(commandLimitRemaining > 0) {
             commandLength=socket_receivebuffer_size(player.socket)
             rconCommand=read_string(player.socket,commandLength)
             
-            if global.dsmRCONAllowed==0 exit;
+            if global.dsmRCONAllowed==0 break;
             
             if string(rconCommand)==string(global.dsmRCONPassword){
                 write_ubyte(player.socket,DSM_RCON_LOGIN)
@@ -421,7 +421,11 @@ while(commandLimitRemaining > 0) {
             commandLength=socket_receivebuffer_size(player.socket)
             rconCommand=read_string(player.socket,commandLength)
             
-            if global.dsmRCONAllowed==0 exit;
+            if global.dsmRCONAllowed==0 or ds_list_find_value(global.RCONList,ds_list_find_index(global.RCONList,player))!=player{
+                write_ubyte(player.socket,DSM_RCON_COMMAND)
+                write_ubyte(player.socket,DSM_RCON_COMMAND_FAILED)
+                break;
+            }
             
             if(string_length(rconCommand) > MAX_RCON_COMMAND_LENGTH){
                 write_ubyte(player.socket, KICK)
@@ -429,11 +433,26 @@ while(commandLimitRemaining > 0) {
                 console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' sent a command with a length over the maximum limit; kicking.')
                 socket_destroy(player.socket);
                 player.socket = -1;
-                exit;
+                break;
             }
             
             console_parseInput_RCON(rconCommand,player.name)
+            write_ubyte(player.socket,DSM_RCON_COMMAND)
+            write_ubyte(player.socket,DSM_RCON_COMMAND_SUCESSFUL)
             break;
+        
+            /*if global.RCONUseCustomMessage==1{
+                case DSM_RCON_COMMAND_CUSTOM_MESSAGE:
+                    var customMessage,messageLength;
+                    messageLength=string_length(global.RCONCustomMessage)
+                    customMessage=string(global.RCONCustomMessage)
+                    //write_ubyte(player.socket,string_length(global.RCONCustomMessage)) //command length
+                    write_string(player.socket,global.RCONCustomMessage)
+                    global.RCONCustomMessage=""
+                    global.RCONUseCustomMessage=0
+                    break;
+            }
+            */
         }
         break;
     } 

@@ -15,15 +15,13 @@
     
     serverName=global.joinedServerName
     //Characters reserved for file paths (http://msdn.microsoft.com/en-us/library/aa365247%28VS.85%29.aspx)
-    serverName=string_replace_all(serverName,"<"," ")
-    serverName=string_replace_all(serverName,">"," ")
-    serverName=string_replace_all(serverName,":"," ")
-    serverName=string_replace_all(serverName,'"'," ")
-    serverName=string_replace_all(serverName,"/"," ")
-    serverName=string_replace_all(serverName,"\"," ")
-    serverName=string_replace_all(serverName,"|"," ")
-    serverName=string_replace_all(serverName,"?"," ")
-    serverName=string_replace_all(serverName,"*"," ")
+    {
+        serverName=string_replace_all(serverName,"<","_");serverName=string_replace_all(serverName,">","_");
+        serverName=string_replace_all(serverName,":","_");serverName=string_replace_all(serverName,'"',"_");
+        serverName=string_replace_all(serverName,"/","_");serverName=string_replace_all(serverName,"\","_");
+        serverName=string_replace_all(serverName,"|","_");serverName=string_replace_all(serverName,"?","_");
+        serverName=string_replace_all(serverName,"*","_")
+    }
     
     if instance_exists(PlayerControl)
         serverMap = " " + serverName + " " + global.currentMap;

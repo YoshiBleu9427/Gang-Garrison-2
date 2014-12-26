@@ -8,6 +8,15 @@ if (file_exists("Binds.txt")){
     
     //Binds
     tempString_Binds=fileString
+    
+    //Prevent crashes from bad binds
+    if string_count("##",tempString_Binds)>0{
+        show_message("Bad bind found, check 'Binds.txt'.")
+        file_text_close(file)
+        exit;
+    }
+    
+    //No bad binds; continue
     tempString_Binds=string_delete(fileString,string_pos("{COMMANDS}",fileString),string_length(fileString))
     oldBindsSize=string_length(tempString_Binds)
 

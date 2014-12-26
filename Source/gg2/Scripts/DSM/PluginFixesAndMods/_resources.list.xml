@@ -2,4 +2,5 @@
 <resources>
   <resource name="chatFix_miku" type="RESOURCE"/>
   <resource name="chat_paste" type="RESOURCE"/>
+  <resource name="chat_hide" type="RESOURCE"/>
 </resources>

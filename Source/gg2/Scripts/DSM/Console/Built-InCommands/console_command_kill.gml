@@ -30,7 +30,7 @@ var player;
 if string_letters(input[1]) == ''{
     //No letters were given
     //First check whether that ID is even valid
-    //if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) > 0{
+    if floor(real(string_digits(input[1]))) < ds_list_size(global.players) and floor(real(string_digits(input[1]))) >= 0{
         //Valid ID, kill
         player = ds_list_find_value(global.players, floor(real(string_digits(input[1]))));
         if(player.object!=-1){
@@ -40,8 +40,9 @@ if string_letters(input[1]) == ''{
             console_print(string_replace_all(player.name, '/:/', '/;/')+' is not alive.');
         }
         exit;
-    //}
+    }
 }
+
 //If that system above did not work, try checking names
 with Player{
     if name == other.input[1]{
