@@ -274,6 +274,7 @@ if(place_free(x,y+1)) // no obstacle ground below us
     if (place_meeting(x, y+1, DropdownPlatform) and !place_meeting(x, y, DropdownPlatform) and vspeed &gt;= 0)
     {
         onground = true;
+        moveStatus = 0;
     }
     else // NOT standing on one
     {
@@ -381,6 +382,11 @@ if ubered {
             if(variable_local_exists("maxAmmo")) {
                 ammoCount = maxAmmo;
             }
+            if (alarm[5] &gt; 0)
+            {
+                // Stop the animation
+                event_perform(ev_alarm, 5);
+            }
             alarm[5] = -1;
         }
     }
@@ -400,6 +406,11 @@ if (arenaRoundEnd and global.mapchanging and !player.humiliated) {
         with(currentWeapon){
             if(variable_local_exists("maxAmmo")) {
                 ammoCount = maxAmmo;
+            }
+            if (alarm[5] &gt; 0)
+            {
+                // Stop the animation
+                event_perform(ev_alarm, 5);
             }
             alarm[5] = -1;
         }

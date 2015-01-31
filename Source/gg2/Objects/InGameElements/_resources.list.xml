@@ -17,4 +17,8 @@
   <resource name="Spectator" type="RESOURCE"/>
   <resource name="JoiningPlayer" type="RESOURCE"/>
   <resource name="Balancer" type="RESOURCE"/>
+  <resource name="Builder" type="RESOURCE"/>
+  <resource name="CollisionDummy" type="RESOURCE"/>
+  <resource name="SpriteObject" type="RESOURCE"/>
+  <resource name="ParallaxController" type="RESOURCE"/>
 </resources>

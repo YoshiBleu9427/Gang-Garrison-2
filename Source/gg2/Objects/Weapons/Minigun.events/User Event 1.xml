@@ -22,11 +22,12 @@
         
         shot = instance_create(x+lengthdir_x(20,owner.aimDirection),y+12+lengthdir_y(20,owner.aimDirection),Shot);
         shot.direction=owner.aimDirection+(random(14)-7);
+        shot.image_angle = shot.direction;
         shot.speed=12+random(1);
         shot.owner=owner;
         shot.ownerPlayer=ownerPlayer;
         shot.team=owner.team;
-        shot.weapon=WEAPON_MINIGUN;
+        shot.weapon=DAMAGE_SOURCE_MINIGUN;
         if(golden)
             shot.sprite_index = ShotGoldS;
         shot.hspeed += owner.hspeed;
@@ -45,8 +46,14 @@
         
         alarm[0] = refireTime / global.delta_factor;
         alarm[5] = reloadBuffer*reloadBufferFactor / global.delta_factor;
+        
+        if (global.particles == PARTICLES_NORMAL)
+        {
+            var shell;
+            shell = instance_create(x, y+4, Shell);
+            shell.direction = owner.aimDirection + (140 - random(40)) * image_xscale;
+        }
     }
-    
 }
 </argument>
       </arguments>
