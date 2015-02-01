@@ -47,6 +47,12 @@ case "ctf_oldfort":
     return "ctf_oldfort.png";
 case "gg_debug":
     return "gg_debug.png";
+case "spy_conflict":
+    return "spy_conflict.png";
+case "medic_lumberyard":
+    return "medic_lumberyard.png";
+case "heavy_dirtbowl":
+    return "heavy_dirtbowl.png";
 default:
     return "";
 }
