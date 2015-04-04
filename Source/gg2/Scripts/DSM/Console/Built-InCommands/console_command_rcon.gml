@@ -116,6 +116,10 @@ if input[1]='remove'{
 }
 
 if input[1]='password'{
+    if !global.isHost{
+        console_print('Only the host can use this command.');
+        exit;
+    }
     var newPass,oldPass;
     newPass=input[2]
     
@@ -128,6 +132,10 @@ if input[1]='password'{
 }
 
 if input[1]='toggle'{
+    if !global.isHost{
+        console_print('Only the host can use this command.');
+        exit;
+    }
     if global.dsmRCONAllowed==0{
         global.dsmRCONAllowed=1
         console_print('/:/'+COLOR_LIGHTBLUE+'RCON enabled.')

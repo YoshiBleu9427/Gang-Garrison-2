@@ -49,6 +49,10 @@ if keyboard_check_released(global.dsmChatHideButton){
     }
 }
 
+if keyboard_check_pressed(global.dsmReduceEyePain){
+    //draw_background_ext(background_index[0],0,0,1,1,0,c_gray,1)
+}
+
 //Checking for input - Mapped Keys
 if(keyboard_check_pressed(global.changeTeam))
     inputChangeTeam();

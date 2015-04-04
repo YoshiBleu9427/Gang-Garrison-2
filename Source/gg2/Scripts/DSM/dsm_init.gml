@@ -102,6 +102,9 @@ ini_open("DSM.ini")
     
     global.dsmWriteConsoleLog=ini_read_real("Settings","DSMWriteConsoleLog",0)
     ini_write_real("Settings","DSMWriteConsoleLog",global.dsmWriteConsoleLog)
+    
+    global.dsmTransparentSkull=ini_read_real("Cosmetic","DSMTransparentSkull",0)
+    ini_write_real("Cosmetic","DSMTransparentSkull",global.dsmTransparentSkull)
 ini_close()
 
 //DSM Controls
@@ -112,6 +115,7 @@ ini_open("controls.gg2")
     global.dsmConsoleKey=ini_read_real("Controls","DSMConsoleKey",vk_f2)
     global.dsmScreenshot=ini_read_real("Controls","DSMScreenshot",mb_middle)
     global.dsmChatHideButton=ini_read_real("Controls","DSMChatHideButton",ord("I"))
+    global.dsmReduceEyePain=ini_read_real("Controls","DSMReduceEyePain",ord("O"))
 
     //global.toggleSPD=ini_read_real("Controls","ToggleScorePerDeath",vk_f11)
 ini_close()

@@ -106,7 +106,11 @@
                 draw_text(xoffset+xsize/2-15, yoffset+70+20*(i+1), string(floor(player.stats[POINTS])));
             }
             
-            if(player.object==-1) draw_sprite_ext(DeadS,0,xoffset+195,yoffset+75+20*(i+1),1,1,0,c_white,alpha);    
+            if global.dsmTransparentSkull==1{
+                if(player.object==-1) draw_sprite_ext(DeadS,0,xoffset+195,yoffset+75+20*(i+1),1,1,0,c_white,0.3);
+            }else{
+                if(player.object==-1) draw_sprite_ext(DeadS,0,xoffset+195,yoffset+75+20*(i+1),1,1,0,c_white,alpha);    
+            }
             
         }          
     }
@@ -146,8 +150,11 @@
                 draw_text(xoffset+xsize+25, yoffset+70+20*(i+1), string(floor(player.stats[POINTS])));
             }
             
-            if (player.object==-1) draw_sprite_ext(DeadS,0,xoffset+472,yoffset+75+20*(i+1),1,1,0,c_white,alpha);    
-        
+            if global.dsmTransparentSkull==1{
+                if (player.object==-1) draw_sprite_ext(DeadS,0,xoffset+472,yoffset+75+20*(i+1),1,1,0,c_white,0.3);
+            }else{
+                if (player.object==-1) draw_sprite_ext(DeadS,0,xoffset+472,yoffset+75+20*(i+1),1,1,0,c_white,alpha);
+            }
         }
     }
     

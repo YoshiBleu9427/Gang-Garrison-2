@@ -45,6 +45,10 @@
         DSM_write_ini("Settings","DSMWriteConsoleLog",argument0)
     ')
     
+    menu_addedit_boolean("Transparent skull on scoreboard:","global.dsmTransparentSkull",'
+        DSM_write_ini("Cosmetic","DSMTransparentSkull",argument0)
+    ')
+    
     /*var CrosshairFilename;
     menu_addedit_text("Crosshair:","CrosshairFilename",'
     if (file_exists(argument0)){
