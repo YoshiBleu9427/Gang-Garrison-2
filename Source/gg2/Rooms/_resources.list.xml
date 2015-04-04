@@ -7,7 +7,9 @@
   <resource name="DSMOptionsR" type="RESOURCE"/>
   <resource name="StatsR" type="RESOURCE"/>
   <resource name="Lobby" type="RESOURCE"/>
-  <resource name="Maps" type="GROUP"/>
+  <resource name="CustomMapRoom" type="RESOURCE"/>
   <resource name="DownloadRoom" type="RESOURCE"/>
   <resource name="UpdaterRoom" type="RESOURCE"/>
+  <resource name="BuilderOptions" type="RESOURCE"/>
+  <resource name="BuilderRoom" type="RESOURCE"/>
 </resources>

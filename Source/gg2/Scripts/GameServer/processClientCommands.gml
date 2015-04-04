@@ -118,8 +118,8 @@ while(commandLimitRemaining > 0) {
                         {
                             if (!instance_exists(lastDamageDealer) || lastDamageDealer == player)
                             {
-                                sendEventPlayerDeath(player, player, noone, BID_FAREWELL);
-                                doEventPlayerDeath(player, player, noone, BID_FAREWELL);
+                                sendEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
+                                doEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
                             }
                             else
                             {
@@ -128,8 +128,8 @@ while(commandLimitRemaining > 0) {
                                 if (lastDamageDealer.object)
                                     if (lastDamageDealer.object.healer)
                                         assistant = lastDamageDealer.object.healer;
-                                sendEventPlayerDeath(player, lastDamageDealer, assistant, FINISHED_OFF);
-                                doEventPlayerDeath(player, lastDamageDealer, assistant, FINISHED_OFF);
+                                sendEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
+                                doEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
                             }
                         }
                         else 
@@ -182,8 +182,8 @@ while(commandLimitRemaining > 0) {
                         {
                             if (!instance_exists(lastDamageDealer) || lastDamageDealer == player)
                             {
-                                sendEventPlayerDeath(player, player, noone, BID_FAREWELL);
-                                doEventPlayerDeath(player, player, noone, BID_FAREWELL);
+                                sendEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
+                                doEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
                             }
                             else
                             {
@@ -192,8 +192,8 @@ while(commandLimitRemaining > 0) {
                                 if (lastDamageDealer.object)
                                     if (lastDamageDealer.object.healer)
                                         assistant = lastDamageDealer.object.healer;
-                                sendEventPlayerDeath(player, lastDamageDealer, assistant, FINISHED_OFF);
-                                doEventPlayerDeath(player, lastDamageDealer, assistant, FINISHED_OFF);
+                                sendEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
+                                doEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
                             }
                         }
                         player.alarm[5] = global.Server_Respawntime;

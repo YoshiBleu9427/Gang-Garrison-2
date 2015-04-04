@@ -77,6 +77,8 @@
     rewards = ds_map_create();
     badges = ds_list_create();
     ghost = noone;
+    
+    corpse = noone;
 }
 </argument>
       </arguments>

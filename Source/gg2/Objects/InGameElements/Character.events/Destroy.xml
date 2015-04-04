@@ -33,7 +33,7 @@
         
         // lastDamageSource is not always synchronized on Character destruction (e.g. if the player just leaves), so we HAVE to sync here.
         // Let's just hope it doesn't matter whether we return the intel now (Server) or after the player destruction is finished (Client).
-        if (global.isHost and (lastDamageSource == KILL_BOX || lastDamageSource == FRAG_BOX || lastDamageSource == PITFALL))
+        if (global.isHost and (lastDamageSource == DAMAGE_SOURCE_KILL_BOX || lastDamageSource == DAMAGE_SOURCE_FRAG_BOX || lastDamageSource == DAMAGE_SOURCE_PITFALL))
         {
             var intelTeam;
             if (team == TEAM_RED)
@@ -64,6 +64,17 @@
     if !instance_exists(DSM_RespawnTimer) and global.myself==player and !instance_exists(ArenaHUD) and (global.dsmRespawnTimer){
         instance_create(0,0,DSM_RespawnTimer)
     }
+        
+    // destroy overlay lists
+    ds_list_destroy(stillOverlays);
+    ds_list_destroy(leanROverlays);
+    ds_list_destroy(leanLOverlays);
+    ds_list_destroy(jumpOverlays);
+    ds_list_destroy(runOverlays);
+    ds_list_destroy(walkOverlays);
+    ds_list_destroy(crouchOverlays);
+    ds_list_destroy(tauntOverlays);
+    ds_list_destroy(omnomnomnomOverlays);
 }
 </argument>
       </arguments>

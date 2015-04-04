@@ -7,5 +7,4 @@ with(TeamGate)
 with(ControlPointSetupGate)
     event_user(0);
 with(BulletWall)
-    solid = true;
-
+    solid = !open;

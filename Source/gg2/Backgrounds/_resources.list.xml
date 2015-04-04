@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="GameElements" type="GROUP"/>
-  <resource name="Maps" type="GROUP"/>
   <resource name="Updater" type="GROUP"/>
   <resource name="DSM" type="GROUP"/>
+  <resource name="BuilderWMB" type="RESOURCE"/>
+  <resource name="BuilderBGB" type="RESOURCE"/>
+  <resource name="CustomMapB" type="RESOURCE"/>
 </resources>

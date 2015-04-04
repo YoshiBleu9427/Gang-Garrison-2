@@ -9,5 +9,4 @@ with(ControlPointSetupGate)
 with(PlayerWall)
     solid = true;
 with(BulletWall)
-    solid = true;
-
+    solid = !open;

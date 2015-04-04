@@ -7,12 +7,13 @@
   <resource name="ServerJoinUpdate" type="RESOURCE"/>
   <resource name="serialize" type="RESOURCE"/>
   <resource name="deserialize" type="RESOURCE"/>
+  <resource name="character_init" type="RESOURCE"/>
   <resource name="getCharacterObject" type="RESOURCE"/>
   <resource name="room_goto_fix" type="RESOURCE"/>
+  <resource name="Unit tests" type="GROUP"/>
   <resource name="Message Builders" type="GROUP"/>
   <resource name="Sound" type="GROUP"/>
   <resource name="Networking" type="GROUP"/>
-  <resource name="CustomMaps" type="GROUP"/>
   <resource name="Client" type="GROUP"/>
   <resource name="GameServer" type="GROUP"/>
   <resource name="AudioControl" type="GROUP"/>
@@ -32,11 +33,8 @@
   <resource name="Math" type="GROUP"/>
   <resource name="Physics" type="GROUP"/>
   <resource name="Damage API" type="GROUP"/>
+  <resource name="Kill Log" type="GROUP"/>
   <resource name="ds_list_turn" type="RESOURCE"/>
-  <resource name="recordKillInLog" type="RESOURCE"/>
-  <resource name="recordDestructionInLog" type="RESOURCE"/>
-  <resource name="recordEventInLog" type="RESOURCE"/>
-  <resource name="recordDominationInLog" type="RESOURCE"/>
   <resource name="serializeState" type="RESOURCE"/>
   <resource name="deserializeState" type="RESOURCE"/>
   <resource name="setChatBubble" type="RESOURCE"/>
@@ -52,12 +50,13 @@
   <resource name="calculateHealingFactor" type="RESOURCE"/>
   <resource name="toggleZoom" type="RESOURCE"/>
   <resource name="ds_list_sorted_insert" type="RESOURCE"/>
+  <resource name="startGG2" type="RESOURCE"/>
   <resource name="restartGG2" type="RESOURCE"/>
   <resource name="isBetaVersion" type="RESOURCE"/>
   <resource name="promptRestartOrQuit" type="RESOURCE"/>
   <resource name="split" type="RESOURCE"/>
   <resource name="draw_pinched_blackrect" type="RESOURCE"/>
+  <resource name="createShot" type="RESOURCE"/>
+  <resource name="classname" type="RESOURCE"/>
   <resource name="Faucet HTTP" type="GROUP"/>
-  <resource name="move_all_bullets" type="RESOURCE"/>
-  <resource name="move_all_gore" type="RESOURCE"/>
 </resources>

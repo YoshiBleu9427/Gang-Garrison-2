@@ -17,6 +17,8 @@
     
     var customMapRotationFile, restart;
     restart = false;
+	
+    initializeDamageSources();
     
     //import wav files for music
     global.MenuMusic=sound_add(choose("Music/menumusic1.wav","Music/menumusic2.wav","Music/menumusic3.wav","Music/menumusic4.wav","Music/menumusic5.wav","Music/menumusic6.wav"), 1, true);
@@ -65,6 +67,7 @@
     global.timerPos=ini_read_real("Settings","Timer Position", 0)
     global.killLogPos=ini_read_real("Settings","Kill Log Position", 0)
     global.kothHudPos=ini_read_real("Settings","KoTH HUD Position", 0)
+    global.fadeScoreboard = ini_read_real("Settings", "Fade Scoreboard", 1);
     global.clientPassword = "";
     // for admin menu
     customMapRotationFile = ini_read_string("Server", "MapRotation", "");
@@ -154,6 +157,7 @@
     ini_write_real("Settings", "Timer Position", global.timerPos);
     ini_write_real("Settings", "Kill Log Position", global.killLogPos);
     ini_write_real("Settings", "KoTH HUD Position", global.kothHudPos);
+    ini_write_real("Settings", "Fade Scoreboard", global.fadeScoreboard);
     ini_write_real("Settings", "ServerPluginsPrompt", global.serverPluginsPrompt);
     ini_write_real("Settings", "RestartPrompt", global.restartPrompt);
     ini_write_string("Server", "MapRotation", customMapRotationFile);
@@ -462,10 +466,14 @@ global.launchMap = "";
     ini_close();
     
     calculateMonthAndDay();
+    
+    builder_init();
+	
+	character_init();
 
     DSM_init()
 
-    if(!directory_exists(working_directory + "\DSM_Plugins")) directory_create(working_directory + "\DSM_Plugins");
+    if(!directory_exists(working_directory + "\DSM_Plugins")) directory_create(working_directory + "\DSM_Plugins");    
     loadplugins();
     
     /* Windows 8 is known to crash GM when more than three (?) sounds play at once
@@ -484,6 +492,7 @@ global.launchMap = "";
         sprite_replace(CrosshairS,CrosshairFilename,1,CrosshairRemoveBG,false,0,0);
         sprite_set_offset(CrosshairS,sprite_get_width(CrosshairS)/2,sprite_get_height(CrosshairS)/2);
     }
+    
     if(global.dedicatedMode == 1) {
         AudioControlToggleMute();
         room_goto_fix(Menu);

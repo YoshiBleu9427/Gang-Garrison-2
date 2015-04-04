@@ -13,16 +13,11 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">maxHp = 140;
+        <argument kind="STRING">maxHp = 120;
 runPower = 1;
 weapons[0] = Minegun;
 haxxyStatue = DemomanHaxxyStatueS;
-
-// 'GW' reward - *G*olden *W*eapon
-if(hasClassReward(global.paramPlayer, 'GW'))
-    tauntsprite = DemoGoldTauntS;
-else
-    tauntsprite = DemoTauntS;
+tauntsprite = DemoTauntS;
 </argument>
       </arguments>
     </action>
@@ -52,6 +47,13 @@ else
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">numFlames = 3;
+
+// 'GW' reward - *G*olden *W*eapon
+if(hasClassReward(global.paramPlayer, 'GW'))
+{
+    // Prepend to the start of the overlay list, so that it gets drawn first (it's a full sprite replacement)
+    ds_list_insert(tauntOverlays, 0, DemoGoldWeaponTauntS);
+}
 </argument>
       </arguments>
     </action>

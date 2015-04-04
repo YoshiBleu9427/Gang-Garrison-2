@@ -37,7 +37,10 @@ with(Console)
 if (global.attemptPortForward and portForwarded)
     upnp_release_port(string(global.hostingPort), "TCP")
 
-room_goto_fix(Menu);
+if (instance_exists(Builder))
+    room_goto_fix(BuilderRoom);
+else
+    room_goto_fix(Menu);
 
 if (global.serverPluginsInUse){
     if show_message_ext("Clean up server plugins?","Yes","","No")==1{
