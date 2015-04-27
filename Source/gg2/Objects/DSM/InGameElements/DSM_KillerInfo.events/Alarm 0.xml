@@ -17,7 +17,7 @@
     hp=killedby.object.hp;
     maxHp=killedby.object.maxHp;
     killMessage="Your killer had "+string(hp)+"/"+string(maxHp)+"HP."
-}else if(lastDamageSource == WEAPON_SENTRYTURRET and killedby.sentry){
+}else if(lastDamageSource == DAMAGE_SOURCE_SENTRYTURRET and killedby.sentry){
     hp=killedby.sentry.hp;
     maxHp=killedby.sentry.maxHp;
     killMessage="Your killer had "+string(hp)+"/"+string(maxHp)+"HP."

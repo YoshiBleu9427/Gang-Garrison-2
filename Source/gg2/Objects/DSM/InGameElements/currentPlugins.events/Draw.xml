@@ -24,6 +24,15 @@ draw_set_alpha(1)
 draw_set_halign(fa_right)
 draw_set_color(c_white)
 draw_text(x,y,"Currently Loaded Plugins:#"+string(global.totalCurrentPlugins))
+
+//Show if stats are being recorded
+var bool;
+if global.dsmRecordStats==1{
+    bool="Yes"
+}else{
+    bool="No"
+}
+draw_text(x,y-40,"Recording Stats: "+bool)
 </argument>
       </arguments>
     </action>

@@ -25,6 +25,12 @@
         instance_destroy()
     }
 }
+oldChatGlobal=global.chatGlobal
+oldChatTeam=global.chatTeam
+oldChatToggle=global.chatToggle
+global.chatGlobal=noone
+global.chatTeam=noone
+global.chatToggle=noone
 
 
 keyboard_string = ""

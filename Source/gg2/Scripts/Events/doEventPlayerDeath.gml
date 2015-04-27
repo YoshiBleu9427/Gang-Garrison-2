@@ -208,7 +208,7 @@ with(victim.object) {
         var deadbody;
         if (player.class != CLASS_QUOTE)
             playsound(x,y,choose(DeathSnd1, DeathSnd2));
-			
+
         deadbody = instance_create(x,y-30,DeadGuy);
         // 'GS' reward - *G*olden *S*tatue
         if(hasReward(player, 'GS'))
@@ -271,7 +271,7 @@ if( global.killCam and victim == global.myself and killer and killer != victim a
     DeathCam.lastDamageSource=damageSource;
     DeathCam.team = global.myself.team;
 }
-if global.dsmKillerInfo==1 and !global.killCam and (victim==global.myself and killer and !(damageSource == KILL_BOX || damageSource == FRAG_BOX || damageSource == FINISHED_OFF || damageSource == FINISHED_OFF_GIB || damageSource == GENERATOR_EXPLOSION)){
+if global.dsmKillerInfo==1 and !global.killCam and (victim==global.myself and killer and !(damageSource == DAMAGE_SOURCE_KILL_BOX || damageSource == DAMAGE_SOURCE_FRAG_BOX || damageSource == DAMAGE_SOURCE_FINISHED_OFF || damageSource == DAMAGE_SOURCE_FINISHED_OFF_GIB || damageSource == DAMAGE_SOURCE_GENERATOR_EXPLOSION)){
     instance_create(view_xview[0]/2,view_yview[0]+500,DSM_KillerInfo)
     DSM_KillerInfo.killedby=killer
     DSM_KillerInfo.name=killer.name

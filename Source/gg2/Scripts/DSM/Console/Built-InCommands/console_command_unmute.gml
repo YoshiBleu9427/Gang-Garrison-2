@@ -24,7 +24,12 @@ if !global.isHost{
     console_print('Only the host/RCON can use this command.')
     exit;
 }
-
+//arctic a shit
+with(Player){
+    if (ds_list_find_value(global.chatBanlist,socket_remote_ip(socket))){
+        hasChat=true
+    }
+}
 ds_list_clear(global.chatBanlist)
 console_print('Mute list cleared.')
 ", "

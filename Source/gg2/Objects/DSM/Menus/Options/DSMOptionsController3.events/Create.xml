@@ -49,6 +49,10 @@
         DSM_write_ini("Cosmetic","DSMTransparentSkull",argument0)
     ')
     
+    menu_addedit_boolean("Disable Corpse Tracking:","global.dsmDisableCorpseTracking",'
+        DSM_write_ini("Cosmetic","DSMDisableCorpseTracking",argument0)
+    ')
+    
     /*var CrosshairFilename;
     menu_addedit_text("Crosshair:","CrosshairFilename",'
     if (file_exists(argument0)){

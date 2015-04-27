@@ -11,5 +11,10 @@
     if global.dsmStereoSound==1{
         sound_pan(argument2, calculatePan(argument0));
     }
-    sound_play(argument2);
+    
+    if global.enablePrimeNo==1{
+        sound_play(PrimeNoSnd)
+    }else{
+        sound_play(argument2);
+    }
 }

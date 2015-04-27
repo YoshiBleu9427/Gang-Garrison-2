@@ -20,13 +20,11 @@ yoffset = view_yview[0];
 xsize = view_wview[0];
 ysize = view_hview[0];
 
-if global.dsmAdvancedSpectator!=1{
-    // special thanks to wareya for the warhud HP cross code &amp; images
-    var sprite_xpos, sprite_ypos, icon_xpos, icon_ypos, hppixels;
-
-    draw_set_alpha(1);
-    draw_rectangle_color(view_xview,view_yview,view_xview+xsize,view_yview+20,c_black,c_black,c_black,c_black,0);
-    draw_rectangle_color(view_xview,view_yview+ysize-20,view_xview+xsize,view_yview+ysize,c_black,c_black,c_black,c_black,0);
+// special thanks to wareya for the warhud HP cross code &amp; images
+var sprite_xpos, sprite_ypos, icon_xpos, icon_ypos, hppixels;
+draw_set_alpha(1);
+draw_rectangle_color(view_xview,view_yview,view_xview+xsize,view_yview+20,c_black,c_black,c_black,c_black,0);
+draw_rectangle_color(view_xview,view_yview+ysize-20,view_xview+xsize,view_yview+ysize,c_black,c_black,c_black,c_black,0);
 
 draw_set_color(c_white);
 if (tracking)
@@ -63,10 +61,9 @@ if global.dsmAdvancedSpectator==1{
                         round(player.object.x) + cos(degtorad(player.object.aimDirection))*player.object.aimDistance,
                         round(player.object.y) - sin(degtorad(player.object.aimDirection))*player.object.aimDistance);
     }
-}
+}    
 
-if (global.myself != -1)
-{
+if (global.myself != -1){
     if ((global.myself.alarm[5] &gt; 0) and (global.myself.team != TEAM_SPECTATOR))
     {
         if (global.myself.stats[KILLS]/max(1,global.myself.stats[DEATHS]))&gt;=3{
@@ -79,8 +76,15 @@ if (global.myself != -1)
                 draw_text(xoffset+10, yoffset+10,'No Respawning in Arena');
             }
         }
+        //toggle prime no
+        if (global.myself.stats[DEATHS]/max(1,global.myself.stats[KILLS]))&gt;=3{
+            global.enablePrimeNo=1
+        }else{
+            global.enablePrimeNo=0
+        }
     }
 }
+
 </argument>
       </arguments>
     </action>

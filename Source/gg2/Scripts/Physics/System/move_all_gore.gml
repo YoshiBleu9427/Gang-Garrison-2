@@ -28,6 +28,7 @@ with(BloodDrop)
     else
         stick = true;
     
+    if global.dsmOldBlood==0{
     _asdf_xvkleolw_id = collision_circle(x, y, image_xscale/1.7, BloodDrop, false, true);
     with(_asdf_xvkleolw_id)
     {
@@ -37,6 +38,13 @@ with(BloodDrop)
             other.image_yscale = min(2, other.image_yscale + image_yscale*0.4);
             other.image_alpha += image_alpha;
             instance_destroy();
+        }
+    }
+    }else{
+        if((random(16)<1)) {
+            other.image_xscale+=0.1;
+            other.image_yscale+=0.1;
+            instance_destroy()
         }
     }
 }

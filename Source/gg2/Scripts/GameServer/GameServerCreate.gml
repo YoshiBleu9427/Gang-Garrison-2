@@ -136,10 +136,10 @@ for(i = 1; i <= numberOfMaps; i += 1)
 {
     desiredMapIndex = (GameServer.currentMapIndex + i) mod numberOfMaps;
     desiredMapName = ds_list_find_value(global.map_rotation, desiredMapIndex);
-    if!(findInternalMapRoom(desiredMapName) or file_exists("Maps/" + desiredMapName + ".png"))
-    {
-show_message(string(desiredMapName)+' is not a valid map name; this map will be skipped.')
-    }
+//    if!(findInternalMapRoom(desiredMapName) or file_exists("Maps/" + desiredMapName + ".png"))
+//    {
+//show_message(string(desiredMapName)+' is not a valid map name; this map will be skipped.')
+//    }
 }
     
     if(global.launchMap == "")

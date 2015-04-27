@@ -53,42 +53,35 @@ if(!instance_exists(MenuController))
     }
 }
 
-if(moved)
-{
+if(moved){
     afktimer = afktimeout;
     stopTracking = true;
-}
-else if(tracking)
-{
-    if (instance_exists(player))
-    {
-        if(player.team != TEAM_SPECTATOR)
-        {
-            if(player.object)
-            {
-                if(!(player.object.cloak &amp;&amp; player.team != myTeam))
-                {
+}else if(tracking){
+    if (instance_exists(player)){
+        if(player.team != TEAM_SPECTATOR){
+            if(player.object){
+                if(!(player.object.cloak &amp;&amp; player.team != myTeam)){
                     x = round(player.object.x);
                     y = round(player.object.y);
-                }
-                else
+                }else{
                     stopTracking = true;
+                }
+            }
+        }else{
+            stopTracking = true;
+        }
+        if global.dsmDisableCorpseTracking==0{
+            if (instance_exists(player.corpse) and !player.object and tracking){
+                x = round(player.corpse.x);
+                y = round(player.corpse.y);
             }
         }
-        else
-            stopTracking = true;
-        if (instance_exists(player.corpse) and !player.object and tracking)
-        {
-            x = round(player.corpse.x);
-            y = round(player.corpse.y);
-        }
-    }
-    else
+    }else{
         stopTracking = true;
+    }
 }
 
-if(tracking and stopTracking) 
-{
+if(tracking and stopTracking){
     tracking = false;
 }
 

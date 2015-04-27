@@ -26,4 +26,5 @@
   <resource name="console_command_unmute" type="RESOURCE"/>
   <resource name="console_command_rcon" type="RESOURCE"/>
   <resource name="console_command_unban" type="RESOURCE"/>
+  <resource name="console_command_autokill" type="RESOURCE"/>
 </resources>

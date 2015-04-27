@@ -105,6 +105,9 @@ ini_open("DSM.ini")
     
     global.dsmTransparentSkull=ini_read_real("Cosmetic","DSMTransparentSkull",0)
     ini_write_real("Cosmetic","DSMTransparentSkull",global.dsmTransparentSkull)
+    
+    global.dsmDisableCorpseTracking=ini_read_real("Cosmetic","DSMDisableCorpseTracking",0)
+    ini_write_real("Cosmetic","DSMDisableCorpseTracking",global.dsmDisableCorpseTracking)
 ini_close()
 
 //DSM Controls
@@ -132,6 +135,7 @@ read_binds_from_file()
 global.isRCON=0
 global.chatHide=0
 global.chatHideJustChanged=0
+global.enablePrimeNo=0
 
 //Run other DSM scripts
 console_init()
