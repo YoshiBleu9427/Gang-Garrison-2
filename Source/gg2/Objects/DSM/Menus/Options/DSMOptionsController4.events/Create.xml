@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(48, 172, 500, 260, 32, 40, 104, 6);
+    menumode = true;
+    
+    if (room != DSMOptionsR)
+        menu_setdimmed();
+    
+    menu_background(512, 24, 8, 12, 4);
+    bgtabs = true;
+
+    menu_addedit_num("DSM Chat Box Transparency:","global.dsmChatBoxAlpha",'
+        DSM_write_ini("Cosmetic","DSMChatBoxAlpha",argument0)
+    ',100)
+    
+    menu_addedit_num("DSM Chat Text Transparency:","global.dsmChatTextAlpha",'
+        DSM_write_ini("Cosmetic","DSMChatTextAlpha",argument0)
+    ',100)
+    
+    menu_addedit_boolean("Always Record Replay:","global.dsmAlwaysRecordReplay",'
+        DSM_write_ini("Settings","DSMAlwaysRecordReplay",argument0)
+    ')
+    
+    //menu_addedit_boolean("Split Replays By Map:","global.dsmSplitReplaysByMap",'
+    //    DSM_write_ini("Settings","DSMSplitReplaysByMap",argument0)
+    //')
+    
+    menu_addedit_boolean("Write Chat Log To File:","global.dsmWriteChatLog",'
+        DSM_write_ini("Settings",DSMWriteChatLog",argument0)
+    ')
+    
+    menu_addtablink("DSM 1", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController);
+    ');
+    menu_addtablink("DSM 2", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController2);
+    ');
+    menu_addtablink("DSM 3", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController3);
+    ');
+    menu_addtablink("DSM 4", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController4);
+    ');
+    menu_addtablink("Controls", '
+        instance_destroy();
+        instance_create(x,y,DSMControlsController);
+    ');
+    
+    menu_addback("Back", '
+        instance_destroy();
+        if(room == DSMOptionsR)
+            room_goto_fix(Menu);
+        else
+            instance_create(0,0,InGameMenuController);
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

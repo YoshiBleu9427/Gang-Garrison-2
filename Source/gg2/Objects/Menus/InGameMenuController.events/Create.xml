@@ -37,6 +37,26 @@
             ');
         break;
     }
+    
+    if (global.isHost){
+        switch (global.recordingReplay){
+            case false:
+                menu_addlink("Record Replay", '
+                beginRecording();
+                instance_destroy() //recreate object to show player that they have pressed it
+                instance_create(x,y,InGameMenuController);
+                ');
+            break;
+
+            case true:
+                menu_addlink("End Recording", '
+                endRecording();
+                instance_destroy()
+                instance_create(x,y,InGameMenuController);
+                ');
+            break;
+        }
+    }
 
     menu_addlink("Return to Game", '
         instance_destroy();
@@ -72,6 +92,9 @@
         splash_show_web("http://www.ganggarrison.com/lobby/status",0)
     ');
     menu_addlink("Disconnect", '
+        if (global.recordingReplay)
+        endRecording();
+        
         addStats()
         // Force dedicated mode to off so you can go to main menu instead of just restarting server
         if (global.serverPluginsInUse)

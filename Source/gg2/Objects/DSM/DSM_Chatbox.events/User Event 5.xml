@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="15">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//event5 : read the color code
+    switch(string_copy(message,1,1)) {
+        case "R":
+            draw_set_color(make_color_rgb(237,61,61));
+            break;
+        case "B":
+            draw_set_color(make_color_rgb(61,135,218));
+            break
+        case "O":
+            draw_set_color(c_orange);
+            break;
+        case "Y":
+            //draw_set_color(c_yellow)
+            draw_set_color(make_color_rgb(224,181,35))
+            break;
+        case "G":
+            draw_set_color(make_color_rgb(10,200,10));
+            break;
+        default: draw_set_color(c_white);
+    }
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -6,4 +6,10 @@
   <resource name="GameElements" type="GROUP"/>
   <resource name="Updater" type="GROUP"/>
   <resource name="DSM_IconS" type="RESOURCE"/>
+  <resource name="lorgan chat" type="RESOURCE"/>
+  <resource name="ChatS" type="RESOURCE"/>
+  <resource name="Chat2S" type="RESOURCE"/>
+  <resource name="chatwithscrollbar" type="RESOURCE"/>
+  <resource name="originalchatS" type="RESOURCE"/>
+  <resource name="SliderS" type="RESOURCE"/>
 </resources>

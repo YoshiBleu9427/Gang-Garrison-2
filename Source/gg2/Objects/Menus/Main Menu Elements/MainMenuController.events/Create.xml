@@ -18,7 +18,7 @@
     
     instance_create(576,80,currentPlugins)
     
-    menu_create(40, 200, 200, 200, 32);
+    menu_create(40, 180, 200, 200, 32);
     menu_background(208, 24, 8, 12, 4);
     
     menu_addlink("Host Game", 'event_user(0);');
@@ -44,8 +44,17 @@
     menu_addlink("Stats", '
         room_goto_fix(StatsR);
     ');
-    if (global.rewardId != '')
-    {
+    menu_addlink("Load Replay", '
+        global.isHost = false;
+        loadReplay();
+        if !global.isPlayingReplay// If the user gave an invalid file.
+        exit;
+        global.serverIP = 127.0.0.1
+        global.serverPort = global.hostingPort
+        instance_create(0,0,Client);
+        Client.returnRoom = Menu;
+    ');
+    if (global.rewardId != ''){
         menu_addlink("Manage Haxxy Rewards", '
             splash_set_main(false);
             splash_set_interrupt(false);

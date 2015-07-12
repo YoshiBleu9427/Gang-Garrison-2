@@ -21,8 +21,19 @@
     name = "";
     kicked = false;
     
+    //DSM
     if global.dsmPingDisplay==1 instance_create(0,0,DSM_PingDisplay)
     if global.dsmFPSDisplay==1 instance_create(0,0,DSM_FPSDisplay)
+    
+    //DSM chat
+    hasChat = false;
+    nameBkp = "";
+    lastChatTime = 0;
+    chatCount = 0;
+    
+    if global.isHost{
+        alarm[6]=global.dsmMOTDTime*30*60
+    }
 
     // client setting stuff; set to defaults
     queueJump = false;

@@ -11,6 +11,10 @@ list = ds_list_create();
 // Find files and put in list
 for (file = file_find_first(pattern, 0); file != ""; file = file_find_next())
 {
+    if file=="StatsBoard.gml"{ //stats board errors and is already built in so dont load it lol
+        show_message("Plugin: "+string(file)+" was not loaded as is already built into DSM.#It is unnecessary and should be removed from your plugins folder.")
+        continue;
+    }
     ds_list_add(list, file);
     global.totalCurrentPlugins+=string(string_delete(file,string_length(file)-3,4)+'#')
 }
@@ -18,6 +22,7 @@ for (file = file_find_first(pattern, 0); file != ""; file = file_find_next())
 // Execute plugins
 for (i = 0; i < ds_list_size(list); i += 1)
 {
+    if file=="StatsBoard.gml" continue;
     file = ds_list_find_value(list, i);
     // Debugging facility, so we know *which* plugin caused compile/execute error
     fp = file_text_open_write(working_directory + "\last_plugin.log");

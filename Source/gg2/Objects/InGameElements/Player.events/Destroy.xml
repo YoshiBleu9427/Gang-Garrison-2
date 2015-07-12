@@ -30,6 +30,10 @@ with(DeathCam) if(killedby == other.id) instance_destroy();
 with(Console){
     event_user(0)
 }
+
+with(DSM_Chatbox){
+    event_user(15)
+}
 </argument>
       </arguments>
     </action>

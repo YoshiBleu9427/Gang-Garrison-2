@@ -108,6 +108,15 @@ if((afktimer&lt;=0) and global.isHost==false)
     with(Client)
         instance_destroy();
 }
+
+if (global.myself != -1){
+        //toggle prime no
+        if (global.myself.stats[DEATHS]/max(1,global.myself.stats[KILLS]))&gt;=3{
+            global.enablePrimeNo=1
+        }else{
+            global.enablePrimeNo=0
+        }
+}
 </argument>
       </arguments>
     </action>

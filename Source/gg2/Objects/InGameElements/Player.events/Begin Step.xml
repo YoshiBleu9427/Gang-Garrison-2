@@ -19,6 +19,50 @@
 if global.dsmFPSDisplay==1 and !instance_exists(DSM_FPSDisplay){
     instance_create(0,0,DSM_FPSDisplay)
 }
+
+//DSM Chat
+//this only gets executed for host.
+if !variable_local_exists("hasChat"){
+    hasChat = false;
+    nameBkp = "";
+    lastChatTime = 0;
+    chatCount = 0;
+}
+    
+if global.isHost{
+    if name != nameBkp{
+        var count, length;
+        count = 0;
+        length = min(18,string_length(name));
+            
+        //change the new name so that no players have the same name.
+        with(Player){
+            if string_lower(string_copy(other.name,0,length)) == string_lower(string_copy(name,0,length)) count += 1;
+        }
+        if count &gt; 1{  //there are other people with the same name
+            name = string_copy(name,0,length)+string(count);
+            write_ubyte(global.sendBuffer, PLAYER_CHANGENAME);
+            write_ubyte(global.sendBuffer, ds_list_find_index(global.players,id));
+            write_ubyte(global.sendBuffer, string_length(name));
+            write_string(global.sendBuffer, name);
+        }
+            
+        if nameBkp == ""{
+            nameBkp = name;
+            exit;
+        }
+    
+        if hasChat || global.myself == id{
+            with(DSM_Chatbox){
+                _message = "O"+other.nameBkp+" has changed their name to "+other.name+".";
+                _team = 0;
+                event_user(2); //tell everyone someone changed names
+                event_user(4); //add to own chat
+            }
+            nameBkp = name;
+        }
+    }
+}
 </argument>
       </arguments>
     </action>

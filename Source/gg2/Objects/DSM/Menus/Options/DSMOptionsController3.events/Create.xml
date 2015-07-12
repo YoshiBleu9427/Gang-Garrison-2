@@ -53,6 +53,26 @@
         DSM_write_ini("Cosmetic","DSMDisableCorpseTracking",argument0)
     ')
     
+    menu_addedit_boolean("Use DSM Chat:","global.dsmUseDSMChat",'
+        DSM_write_ini("Settings","DSMUseDSMChat",argument0)
+    ')
+    
+    menu_addedit_num("Number of idle chat lines:","global.dsmChatLineNumber",'
+        DSM_write_ini("Settings","DSMChatLineNumber",argument0)
+    ',12)
+    
+    menu_addedit_boolean("Close Chat After Message:","global.dsmAutocloseChat",'
+        DSM_write_ini("Settings","DSMAutocloseChat",argument0)
+    ')
+    
+    menu_addedit_boolean("Instant chat hide allowed:","global.dsmChatCloseAllowed",'
+        DSM_write_ini("Settings","DSMChatCloseAllowed",argument0)
+    ')
+    
+    menu_addedit_boolean("Countdown Theme During Setup:","global.dsmCountdownTheme",'
+        DSM_write_ini("Settings","DSMCountdownTheme",argument0)
+    ')
+    
     /*var CrosshairFilename;
     menu_addedit_text("Crosshair:","CrosshairFilename",'
     if (file_exists(argument0)){
@@ -73,6 +93,10 @@
     menu_addtablink("DSM 3", '
         instance_destroy();
         instance_create(x,y,DSMOptionsController3);
+    ');
+    menu_addtablink("DSM 4", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController4);
     ');
     menu_addtablink("Controls", '
         instance_destroy();

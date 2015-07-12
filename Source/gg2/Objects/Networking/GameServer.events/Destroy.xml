@@ -33,6 +33,9 @@ with(PlayerControl)
 
 with(Console)
     instance_destroy();
+
+with(DSM_Chatbox)
+    instance_destroy();
     
 if (global.attemptPortForward and portForwarded)
     upnp_release_port(string(global.hostingPort), "TCP")
@@ -43,9 +46,9 @@ else
     room_goto_fix(Menu);
 
 if (global.serverPluginsInUse){
-    if show_message_ext("Clean up server plugins?","Yes","","No")==1{
+    //if show_message_ext("Clean up server plugins?","Yes","","No")==1{
         pluginscleanup()
-    }
+    //}
 }
     
 set_synchronization(global.monitorSync);

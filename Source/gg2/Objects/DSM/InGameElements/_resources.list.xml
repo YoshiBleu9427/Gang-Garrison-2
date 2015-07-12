@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="Console" type="RESOURCE"/>
   <resource name="currentPlugins" type="RESOURCE"/>
   <resource name="DSM_RespawnTimer" type="RESOURCE"/>
   <resource name="DSM_PingDisplay" type="RESOURCE"/>

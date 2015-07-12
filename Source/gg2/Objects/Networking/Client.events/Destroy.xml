@@ -27,15 +27,19 @@
 
     with(Console)
         instance_destroy();
+        
+    if instance_exists(DSM_Chatbox){
+        with(DSM_Chatbox)
+            instance_destroy();
+    }
 
     room_goto_fix(returnRoom);
     if (global.serverPluginsInUse &amp;&amp; !noUnloadPlugins){
-        if show_message_ext("Clean up server plugins?","Yes","","No")==1{
+        //if show_message_ext("Clean up server plugins?","Yes","","No")==1{
             pluginscleanup()
-        }
+        //}
     }
 }
-
 </argument>
       </arguments>
     </action>

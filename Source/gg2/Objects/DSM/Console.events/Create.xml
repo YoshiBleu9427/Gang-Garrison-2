@@ -20,17 +20,25 @@
     with(global.cheatycheat){
         instance_destroy()
     }
+    
+    if global.dsmUseDSMChat==0{
     if keyboard_check(global.chatGlobal) or keyboard_check(global.chatTeam){
         console_close()
         instance_destroy()
     }
+    }else{
+        if keyboard_check(global.dsmChatGlobal) or keyboard_check(global.dsmChatTeam){
+        console_close()
+        instance_destroy()
+    }
+    }
 }
-oldChatGlobal=global.chatGlobal
+/*oldChatGlobal=global.chatGlobal
 oldChatTeam=global.chatTeam
 oldChatToggle=global.chatToggle
 global.chatGlobal=noone
 global.chatTeam=noone
-global.chatToggle=noone
+global.chatToggle=noone*/
 
 
 keyboard_string = ""

@@ -3,5 +3,6 @@
   <resource name="DSMOptionsController" type="RESOURCE"/>
   <resource name="DSMOptionsController2" type="RESOURCE"/>
   <resource name="DSMOptionsController3" type="RESOURCE"/>
+  <resource name="DSMOptionsController4" type="RESOURCE"/>
   <resource name="DSMControlsController" type="RESOURCE"/>
 </resources>

@@ -88,11 +88,19 @@ if (global.isHost){
             global.serverPassword=""
         }
     }
+    
+    if global.dsmAlwaysRecordReplay==1 and global.recordingReplay==false{
+        beginRecording()
+    }
 }
 
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
 {
+    if global.dsmSplitReplaysByMap==1 and global.recordingReplay==true and global.isHost{
+        endRecording()
+        global.replayMapSplit=1
+    }
     global.mapchanging = false;
     serverGotoMap(global.nextMap);
     ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);

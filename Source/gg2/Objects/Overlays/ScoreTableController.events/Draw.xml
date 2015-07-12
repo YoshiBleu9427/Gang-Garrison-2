@@ -95,13 +95,18 @@
                     draw_sprite_ext(Icon,player.class,xoffset+14,yoffset+70+20*(i+1),1,1,0,c_red,alpha*0.2);
                 }
             }
-        
-            draw_name_badges(xoffset+28, yoffset+70+20*(i+1), player, alpha);
+            
+            if player==global.myself{
+                draw_set_color(make_color_rgb(255,101,0));
+                draw_name_badges(xoffset+28, yoffset+70+20*(i+1), player, alpha);
+            }else{
+                draw_set_color(c_red); 
+                draw_name_badges(xoffset+28, yoffset+70+20*(i+1), player, alpha);
+            }
         
             draw_set_halign(fa_right);
             if global.dsmShowAssists==1{
                 draw_text(xoffset+xsize/2-15, yoffset+70+20*(i+1), string_replace_all(string(player.stats[POINTS]),".50",".5"))
-                
             }else{
                 draw_text(xoffset+xsize/2-15, yoffset+70+20*(i+1), string(floor(player.stats[POINTS])));
             }
@@ -144,7 +149,15 @@
                 }
             }
        
-            draw_name_badges(xoffset+xsize/2+60, yoffset+70+20*(i+1), player, alpha);
+            
+            
+            if player==global.myself{
+                draw_set_color(make_color_rgb(0,113,255));
+                draw_name_badges(xoffset+xsize/2+60, yoffset+70+20*(i+1), player, alpha);
+            }else{
+                draw_set_color(c_blue); 
+                draw_name_badges(xoffset+xsize/2+60, yoffset+70+20*(i+1), player, alpha);
+            }
         
             draw_set_halign(fa_right);
             if global.dsmShowAssists==1{

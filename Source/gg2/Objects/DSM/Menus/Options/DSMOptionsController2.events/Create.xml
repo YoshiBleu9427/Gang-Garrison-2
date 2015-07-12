@@ -82,6 +82,10 @@
         instance_destroy();
         instance_create(x,y,DSMOptionsController3);
     ');
+    menu_addtablink("DSM 4", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController4);
+    ');
     menu_addtablink("Controls", '
         instance_destroy();
         instance_create(x,y,DSMControlsController);

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="11">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//event1 : process a message as host
+_message = string_replace_all(_message,"#","\#");
+if _player.team == TEAM_RED _color = "R";
+else if _player.team == TEAM_BLUE _color = "B";
+else _color = "G";
+if _team == 0{
+    if _player.id == global.myself _message = _color+_player.name+": #Y"+_message;
+    else _message = _color+_player.name+": #W"+_message;
+}else{
+    _message = _color+_player.name+": "+_message;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

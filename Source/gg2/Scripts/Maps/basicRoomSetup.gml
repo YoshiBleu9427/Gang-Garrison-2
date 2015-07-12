@@ -1,6 +1,11 @@
 room_caption = global.currentMap;
 global.startedGame = true;
 
+if global.replayMapSplit==1 and global.isHost{
+    beginRecording()
+    global.replayMapSplit=0
+}
+
 if(!global.fullscreen)
     window_set_position(previous_window_x+previous_window_w/2-global.ingamewidth/2, previous_window_y);
 

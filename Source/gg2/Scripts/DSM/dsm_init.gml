@@ -108,6 +108,42 @@ ini_open("DSM.ini")
     
     global.dsmDisableCorpseTracking=ini_read_real("Cosmetic","DSMDisableCorpseTracking",0)
     ini_write_real("Cosmetic","DSMDisableCorpseTracking",global.dsmDisableCorpseTracking)
+    
+    global.dsmUseDSMChat=ini_read_real("Settings","DSMUseDSMChat",1)
+    ini_write_real("Settings","DSMUseDSMChat",global.dsmUseDSMChat)
+    
+    global.dsmChatLineNumber=ini_read_real("Settings","DSMChatLineNumber",3)
+    ini_write_real("Settings","DSMChatLineNumber",global.dsmChatLineNumber)
+    
+    global.dsmMOTD=ini_read_string("Settings","DSMMOTD","")//"Message Of The Day.")
+    ini_write_string("Settings","DSMMOTD",global.dsmMOTD)
+    
+    global.dsmMOTDTime=ini_read_real("Settings","DSMMOTDTime",7)
+    ini_write_real("Settings","DSMMOTDTime",global.dsmMOTDTime)
+    
+    global.dsmAutocloseChat=ini_read_real("Settings","DSMAutocloseChat",1)
+    ini_write_real("Settings","DSMAutocloseChat",global.dsmAutocloseChat)
+    
+    global.dsmChatCloseAllowed=ini_read_real("Settings","DSMChatCloseAllowed",1) //pretty much just to accomodate for muscle memory when using autoclose chat after sending a message
+    ini_write_real("Settings","DSMChatCloseDelayed",global.dsmChatCloseAllowed)
+    
+    global.dsmCountdownTheme=ini_read_real("Settings","DSMCountdownTheme",0)
+    ini_write_real("Settings","DSMCountdownTheme",global.dsmCountdownTheme)
+    
+    global.dsmChatBoxAlpha=ini_read_real("Cosmetic","DSMChatBoxAlpha",80)
+    ini_write_real("Cosmetic","DSMChatBoxAlpha",global.dsmChatBoxAlpha)
+    
+    global.dsmChatTextAlpha=ini_read_real("Cosmetic","DSMChatTextAlpha",100)
+    ini_write_real("Cosmetic","DSMChatTextAlpha",global.dsmChatTextAlpha)
+    
+    global.dsmAlwaysRecordReplay=ini_read_real("Settings","DSMAlwaysRecordReplay",0)
+    ini_write_real("Settings","DSMAlwaysRecordReplay",global.dsmAlwaysRecordReplay)
+    
+    global.dsmSplitReplaysByMap=ini_read_real("Settings","DSMSplitReplaysByMap",0)
+    ini_write_real("Settings","DSMSplitReplaysByMap",global.dsmSplitReplaysByMap)
+    
+    global.dsmWriteChatLog=ini_read_real("Settings","DSMWriteChatLog",0)
+    ini_write_real("Settings","DSMWriteChatLog",global.dsmWriteChatLog)
 ini_close()
 
 //DSM Controls
@@ -119,6 +155,9 @@ ini_open("controls.gg2")
     global.dsmScreenshot=ini_read_real("Controls","DSMScreenshot",mb_middle)
     global.dsmChatHideButton=ini_read_real("Controls","DSMChatHideButton",ord("I"))
     global.dsmReduceEyePain=ini_read_real("Controls","DSMReduceEyePain",ord("O"))
+    global.dsmChatToggle=ini_read_real("Controls","DSMChatToggle",ord("T"))
+    global.dsmChatGlobal=ini_read_real("Controls","DSMChatGlobal",ord("Y"))
+    global.dsmChatTeam=ini_read_real("Controls","DSMChatTeam",ord("U"))
 
     //global.toggleSPD=ini_read_real("Controls","ToggleScorePerDeath",vk_f11)
 ini_close()
@@ -136,6 +175,7 @@ global.isRCON=0
 global.chatHide=0
 global.chatHideJustChanged=0
 global.enablePrimeNo=0
+global.dsmChatID=noone
 
 //Run other DSM scripts
 console_init()
@@ -149,3 +189,12 @@ chat_hide()
 
 if(!directory_exists(working_directory+"\Custom")) directory_create(working_directory+"\Custom")
 if(!directory_exists(working_directory+"\ConsoleLogs")) directory_create(working_directory+"\ConsoleLogs")
+if(!directory_exists(working_directory+"\ChatLogs")) directory_create(working_directory+"\ChatLogs")
+
+//replays
+global.replayBuffer = buffer_create();
+global.isPlayingReplay = false;
+global.replayTime = 0;
+global.recordingReplay = false;
+//global.isPlayingReplay = false;
+global.replayMapSplit=0

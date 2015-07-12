@@ -16,7 +16,7 @@ var i;
 for (i = 0; i < ds_list_size(player.badges); i += 1)
 {
     //seems a bit overkill but its the easiest way to do draw_sprite transparency from what i can gather
-    draw_sprite_ext(HaxxyBadgeS, ds_list_find_value(player.badges, i) ,_x, _y - 1, 1, 1, 0, c_white, alpha);
+    draw_sprite_ext(HaxxyBadgeS, ds_list_find_value(player.badges, i) ,_x, _y - 1, 1, 1, 0, c_white, 1);
     _x += sprite_get_width(HaxxyBadgeS);
 }
 

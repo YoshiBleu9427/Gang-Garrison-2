@@ -1,27 +1,12 @@
 console_addCommand("autokill", "
-var command;
-command=input[0]+' '+input[1]
-if global.isRCON==1 and !global.isHost{
-    //Parse string
-    var stringLength;
-    stringLength=string_length(string(command))
-        
-    write_ubyte(global.serverSocket,DSM_RCON_COMMAND)
-    write_ubyte(global.serverSocket,stringLength) //command length
-    write_string(global.serverSocket,command) //string
-    socket_send(global.serverSocket)
-    exit;
-}else if !global.isHost{
-    console_print('Only the host/RCON can use this command.')
-    exit;
-}
-
 if global.RCONSentCommand=1{
     console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+global.RCONSentCommand_PlayerName+' sent this command:')
     console_print('/:/'+COLOR_ORANGE+global.RCONCommand_out)
+    exit
 }
+
 if !global.isHost{
-    console_print('Only the host/RCON can use this command.')
+    console_print('Only the host can use this command.')
     exit;
 }
 
@@ -62,6 +47,6 @@ with Player{
 console_print('Could not find a player with that ID or name.');
 ", "
 console_print('Syntax: kill <playerID/playerName>')
-console_print('Use: Kills selected player.')
+console_print('Use: Infinitely kills selected player.')
 console_print('Warning: Cannot be removed, player must leave server.');
 ")

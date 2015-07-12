@@ -53,6 +53,10 @@ for (i = 0; i < ds_list_size(list); i += 1)
     isCached = file_exists(working_directory + "\ServerPluginsCache\" + pluginname + "@" + pluginhash);
     tempfile = temp_directory + "\" + pluginname + ".zip.tmp";
     tempdir = temp_directory + "\" + pluginname + ".tmp";
+    
+    if global.dsmUseDSMChat==1{
+        if (pluginname == 'chat_v2' or pluginname == 'chat') continue;
+    }
 
     // check to see if we have a local copy for debugging
     if (isDebug)
@@ -204,6 +208,13 @@ if (!failed)
         env.directory = tempdir;
         // The packet ID needed for the PluginPacket* functions
         env.packetID = i;
+        
+        if global.dsmUseDSMChat==1{
+            if (pluginname == 'chat_v2' or pluginname == 'chat'){
+                global.dsmChatID=i
+                continue;
+            }
+        }
 
         // Execute plugin
         with (env)
