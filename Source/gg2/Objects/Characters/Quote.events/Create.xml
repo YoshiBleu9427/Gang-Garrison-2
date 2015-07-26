@@ -45,6 +45,19 @@ weapons[0] = Blade;
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">numFlames = 3;
+
+if (player.team == TEAM_RED)
+{
+    sprite_index = QuoteRedS;
+    humiliationPoses = QuoteRedHS;
+    haxxyStatue = QuoteHaxxyStatueS;
+}
+else if (player.team == TEAM_BLUE)
+{
+    sprite_index = CurlyBlueS;
+    humiliationPoses = CurlyBlueHS;
+    haxxyStatue = CurlyHaxxyStatueS;
+}
 </argument>
       </arguments>
     </action>
