@@ -80,11 +80,16 @@ while(commandLimitRemaining > 0) {
             }
             var class;
             class = read_ubyte(socket);
-            if(getCharacterObject(player.team, class) != -1){
-                if(player.object != -1){
-                    with(player.object){
-                        if (collision_point(x,y,SpawnRoom,0,0) < 0){
-                            if (!instance_exists(lastDamageDealer) || lastDamageDealer == player){
+            if(getCharacterObject(class) != -1)
+            {
+                if(player.object != -1)
+                {
+                    with(player.object)
+                    {
+                        if (collision_point(x,y,SpawnRoom,0,0) < 0)
+                        {
+                            if (!instance_exists(lastDamageDealer) or lastDamageDealer == player)
+                            {
                                 sendEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
                                 doEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
                             }else{
@@ -147,8 +152,8 @@ while(commandLimitRemaining > 0) {
 
             if(balance != newTeam)
             {
-                if(getCharacterObject(newTeam, player.class) != -1 or newTeam==TEAM_SPECTATOR)
-                {
+                if(getCharacterObject(player.class) != -1 or newTeam==TEAM_SPECTATOR)
+                {  
                     if(player.object != -1)
                     {
                         with(player.object)
