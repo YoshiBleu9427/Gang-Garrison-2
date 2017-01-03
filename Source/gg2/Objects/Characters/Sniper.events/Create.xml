@@ -17,7 +17,6 @@
 runPower = 0.9;
 weapons[0]=Rifle;
 haxxyStatue = SniperHaxxyStatueS;
-tauntsprite = SniperTauntS;
 </argument>
       </arguments>
     </action>
@@ -48,11 +47,13 @@ tauntsprite = SniperTauntS;
       <arguments>
         <argument kind="STRING">numFlames = 4;
 
-// 'GW' reward - *G*olden *W*eapon
-if(hasClassReward(global.paramPlayer, 'GW'))
+if (player.team == TEAM_RED)
 {
-    // Prepend to the start of the overlay list, so that it gets drawn first (it's a full sprite replacement)
-    ds_list_insert(tauntOverlays, 0, SniperGoldWeaponTauntS);
+    sprite_index = SniperRedS;
+}
+else if (player.team == TEAM_BLUE)
+{
+    sprite_index = SniperBlueS;
 }
 </argument>
       </arguments>
