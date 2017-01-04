@@ -59,12 +59,12 @@ if (team == TEAM_RED){
 var sprite, overlayList, noNewAnim, sprite_tilt_left, sprite_tilt_right, overlays_tilt_left, overlays_tilt_right;
 noNewAnim = player.class == CLASS_QUOTE or sprite_special or player.humiliated;
 
-if (zoomed){
-    if (team == TEAM_RED){
-        sprite = SniperCrouchRedS;
-    }else{
-        sprite = SniperCrouchBlueS;
-    }
+if (zoomed)
+{
+    if (team == TEAM_RED)
+        sprite = SniperRedCrouchS;
+    else
+        sprite = SniperBlueCrouchS;
     overlayList = crouchOverlays;
     animationImage = animationImage mod 2; // sniper crouch only has two frames, avoid overflow
 }else if (!noNewAnim){
