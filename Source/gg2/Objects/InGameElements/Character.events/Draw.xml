@@ -168,10 +168,11 @@ equipmentOffset += yoffset;
 
 yr += yoffset;
 
-if (omnomnomnom){
-    draw_sprite_ext_overlay(omnomnomnomSprite,omnomnomnomOverlays,omnomnomnomindex,xr,yr,image_xscale,image_yscale,image_angle,c_white,1);
-    if (ubered){
-        draw_sprite_ext_overlay(omnomnomnomSprite,omnomnomnomOverlays,omnomnomnomindex,xr,yr,image_xscale,image_yscale,image_angle,ubercolour,0.7);
+if (omnomnomnom)
+{
+    draw_sprite_ext_overlay(omnomnomnomSprite,omnomnomnomOverlays,floor(omnomnomnomindex),xr,yr,image_xscale,image_yscale,image_angle,c_white,1);
+    if (ubered)
+        draw_sprite_ext_overlay(omnomnomnomSprite,omnomnomnomOverlays,floor(omnomnomnomindex),xr,yr,image_xscale,image_yscale,image_angle,ubercolour,0.7);
 }
 else if (taunting)
 {

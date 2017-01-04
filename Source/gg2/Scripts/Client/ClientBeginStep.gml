@@ -397,13 +397,8 @@ do {
                         canEat = false;
                         alarm[6] = eatCooldown/global.delta_factor
                     }
-                    if(player.team == TEAM_RED) {
-                        omnomnomnomindex=0;
-                        omnomnomnomend=31;
-                    } else if(player.team==TEAM_BLUE) {
-                        omnomnomnomindex=32;
-                        omnomnomnomend=63;
-                    }
+                    omnomnomnomindex=0;
+                    omnomnomnomend=32;
                     xscale=image_xscale; 
                 } 
             }
