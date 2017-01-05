@@ -8,6 +8,7 @@
   <resource name="Events" type="GROUP"/>
   <resource name="Functions" type="GROUP"/>
   <resource name="GameServer" type="GROUP"/>
+  <resource name="Gear" type="GROUP"/>
   <resource name="Holidays" type="GROUP"/>
   <resource name="Input" type="GROUP"/>
   <resource name="Lobby" type="GROUP"/>
