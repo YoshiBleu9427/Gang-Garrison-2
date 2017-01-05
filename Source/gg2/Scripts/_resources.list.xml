@@ -29,4 +29,5 @@
   <resource name="Kill Log" type="GROUP"/>
   <resource name="scripts2" type="GROUP"/>
   <resource name="Faucet HTTP" type="GROUP"/>
+  <resource name="Gear" type="GROUP"/>
 </resources>

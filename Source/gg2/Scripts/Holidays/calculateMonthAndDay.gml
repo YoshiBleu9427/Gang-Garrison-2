@@ -29,8 +29,6 @@ if(date_get_month(currentDate) == 8 and date_get_day(currentDate) == 31){
 if(global.aFirst)
     sprite_assign(BubblesS, BubbleFaceS);
 
-if(global.gg_birthday)
-    partyTime();
 if(global.xmas)
     xmasTime();
 if(global.dsmBirthday)

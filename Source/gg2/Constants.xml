@@ -157,4 +157,5 @@
   <constant name="BOOL" value="2"/>
   <constant name="HEX" value="3"/>
   <constant name="REPLAY_END" value="255"/>
+  <constant name="GEAR_PARTY_HAT" value="&quot;PartyHat&quot;"/>
 </constants>
