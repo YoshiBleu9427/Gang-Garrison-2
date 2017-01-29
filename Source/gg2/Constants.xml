@@ -133,6 +133,8 @@
   <constant name="BOOL" value="2"/>
   <constant name="HEX" value="3"/>
   <constant name="GEAR_PARTY_HAT" value="&quot;PartyHat&quot;"/>
+  <constant name="GEAR_CROWN" value="&quot;Crown&quot;"/>
+  <constant name="GEAR_NAVIGATORHAT" value="&quot;NavigatorHat&quot;"/>
   <constant name="COLOR_WHITE" value="&quot;255-255-255&quot;"/>
   <constant name="COLOR_RGB_LENGTH" value="11"/>
   <constant name="MAX_COMMAND_LOG_SIZE" value="100"/>
