@@ -39,7 +39,6 @@
     global.frameskip = 1/global.delta_factor
 }*/
 }
-//room_speed = 10;
 
 </argument>
       </arguments>
