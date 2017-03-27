@@ -29,7 +29,6 @@
     if global.colouredProjectiles==1{
         sprite_index=DSM_RocketS
     }
-    alarm[0] = 55 / global.delta_factor;
     alarm[1] = 20 / global.delta_factor;
     alarm[2] = 30 / global.delta_factor;
 }
