@@ -18,7 +18,7 @@
         with(other){
             dealFlicker(id)
         }
-        characterHit = other;
+        characterHit = other.id;
         event_user(5);
     }
 }
