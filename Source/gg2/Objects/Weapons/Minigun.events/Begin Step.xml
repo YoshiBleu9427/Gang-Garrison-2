@@ -28,7 +28,7 @@
     }
 }
 if(!readyToShoot and alarm[5] &lt; 25 and !isRefilling){
-    alarm[5] += (1/global.delta_factor);
+    alarm[5] += 1;
 }
 
 if ammoCount&gt;maxAmmo{

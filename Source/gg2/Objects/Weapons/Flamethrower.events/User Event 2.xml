@@ -71,7 +71,7 @@
                     ownerPlayer = other.ownerPlayer;
                     team = other.owner.team;
                     weapon = DAMAGE_SOURCE_REFLECTED_FLARE;
-                    alarm[0]=40;
+                    alarm[0]=40 / global.delta_factor;
                     
                     motion_set(other.owner.aimDirection, speed);
                 }

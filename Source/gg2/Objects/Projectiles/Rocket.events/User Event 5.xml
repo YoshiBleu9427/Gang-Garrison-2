@@ -79,9 +79,7 @@
                             lastDamageDealer = other.ownerPlayer;
                             lastDamageSource = other.weapon;
                         }
-                        cloakAlpha = max(cloakAlpha, 0.3);
-                        cloakFlicker = true;
-                        alarm[7] = 3/global.delta_factor;
+                        dealFlicker(id)
                     }
                     if id==other.ownerPlayer.object and other.team == team {
                         moveStatus = 1;
