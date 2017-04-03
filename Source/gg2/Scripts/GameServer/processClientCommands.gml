@@ -73,39 +73,37 @@ while(commandLimitRemaining > 0) {
             break;
             
         case PLAYER_CHANGECLASS:
+            if instance_exists(ArenaHUD) and global.isLive==1{
+                if ArenaHUD.roundStart == 0 && ArenaHUD.endCount == 0{
+                    break;
+                }
+            }
             var class;
             class = read_ubyte(socket);
-            if(getCharacterObject(player.team, class) != -1)
-            {
-                if(player.object != -1)
-                {
-                    with(player.object)
-                    {
-                        if (collision_point(x,y,SpawnRoom,0,0) < 0)
-                        {
-                            if (!instance_exists(lastDamageDealer) || lastDamageDealer == player)
-                            {
+            if(getCharacterObject(player.team, class) != -1){
+                if(player.object != -1){
+                    with(player.object){
+                        if (collision_point(x,y,SpawnRoom,0,0) < 0){
+                            if (!instance_exists(lastDamageDealer) || lastDamageDealer == player){
                                 sendEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
                                 doEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
-                            }
-                            else
-                            {
+                            }else{
                                 var assistant;
                                 assistant = secondToLastDamageDealer;
-                                if (lastDamageDealer.object)
-                                    if (lastDamageDealer.object.healer)
+                                if (lastDamageDealer.object){
+                                    if (lastDamageDealer.object.healer){
                                         assistant = lastDamageDealer.object.healer;
+                                    }
+                                }
                                 sendEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
                                 doEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
                             }
-                        }
-                        else 
+                        }else
                         instance_destroy(); 
-                        
                     }
-                }
-                else if(player.alarm[5]<=0)
+                }else if(player.alarm[5]<=0){
                     player.alarm[5] = 1;
+                }
                 class = checkClasslimits(player, player.team, class);
                 player.class = class;
                 ServerPlayerChangeclass(playerId, player.class, global.sendBuffer);
@@ -116,25 +114,37 @@ while(commandLimitRemaining > 0) {
             var newTeam, balance, redSuperiority;
             newTeam = read_ubyte(socket);
             
-            redSuperiority = 0   //calculate which team is bigger
-            with(Player)
-            {
-                if(team == TEAM_RED)
-                    redSuperiority += 1;
-                else if(team == TEAM_BLUE)
-                    redSuperiority -= 1;
+            if global.lockedTeams==1{
+                break;
             }
-            if(redSuperiority > 0)
-                balance = TEAM_RED;
-            else if(redSuperiority < 0)
-                balance = TEAM_BLUE;
-            else
-                balance = -1;
             
+            if global.maxPlayers!=-1{
+                var redTeam,blueTeam;
+                redTeam=0
+                blueTeam=0
+                for (i=0; i<ds_list_size(global.players); i+=1){
+                    player=ds_list_find_value(global.players, i)
+                    if player.team==TEAM_RED{
+                        redTeam+=1
+                    }else if player.team==TEAM_BLUE{
+                        blueTeam+=1
+                    }
+                }
+                if redTeam>=global.maxPlayers and newTeam==TEAM_RED{
+                    exit;
+                }
+                if blueTeam>=global.maxPlayers and newTeam==TEAM_BLUE{
+                    exit;
+                }
+            }
+            
+            redSuperiority = 0   //calculate which team is bigger
+            balance = -1;
+
             if(balance != newTeam)
             {
                 if(getCharacterObject(newTeam, player.class) != -1 or newTeam==TEAM_SPECTATOR)
-                {  
+                {
                     if(player.object != -1)
                     {
                         with(player.object)
@@ -155,10 +165,12 @@ while(commandLimitRemaining > 0) {
                                 doEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
                             }
                         }
-                        player.alarm[5] = global.Server_Respawntime;
+                        if global.isLive==1{
+                            player.alarm[5] = global.Server_Respawntime / global.delta_factor
+                        }
+                    }else if(player.alarm[5]<=0){
+                        player.alarm[5] = 1;
                     }
-                    else if(player.alarm[5]<=0)
-                        player.alarm[5] = 1;                    
                     var newClass;
                     newClass = checkClasslimits(player, newTeam, player.class);
                     if newClass != player.class
@@ -171,12 +183,12 @@ while(commandLimitRemaining > 0) {
                     ServerBalanceTeams();
                 }
             }
-            break;                   
+            break;
             
         case CHAT_BUBBLE:
             var bubbleImage;
             bubbleImage = read_ubyte(socket);
-            if(global.aFirst) {
+            if(global.aFirst and bubbleImage != 45){
                 bubbleImage = 0;
             }
             write_ubyte(global.sendBuffer, CHAT_BUBBLE);
@@ -204,12 +216,12 @@ while(commandLimitRemaining > 0) {
                     buildSentry(player, player.object.x, player.object.y, player.object.image_xscale);
                 }
             }
-            break;                                       
+            break;
 
         case DESTROY_SENTRY:
             with(player.sentry)
                 instance_destroy();
-            break;                     
+            break;
         
         case DROP_INTEL:
             if (player.object != -1)
@@ -220,7 +232,7 @@ while(commandLimitRemaining > 0) {
                     doEventDropIntel(player);
                 }
             }
-            break;     
+            break;
               
         case OMNOMNOMNOM:
             if(player.object != -1) {
@@ -228,8 +240,7 @@ while(commandLimitRemaining > 0) {
                     and !player.object.taunting
                     and !player.object.omnomnomnom
                     and player.object.canEat
-                    and player.class==CLASS_HEAVY)
-                {                            
+                    and player.class==CLASS_HEAVY){
                     write_ubyte(global.sendBuffer, OMNOMNOMNOM);
                     write_ubyte(global.sendBuffer, playerId);
                     with(player.object)
@@ -243,7 +254,7 @@ while(commandLimitRemaining > 0) {
                             omnomnomnomend=63;
                         } 
                         xscale=image_xscale;
-                    }             
+                    }
                 }
             }
             break;
@@ -276,11 +287,23 @@ while(commandLimitRemaining > 0) {
                         if(current_time - lastNamechange < 1000)
                             break;
                     lastNamechange = current_time;
+                    oldname=name
                     name = read_string(socket, nameLength);
-                    if(string_count("#",name) > 0)
-                    {
-                        name = "I <3 Bacon";
+                    
+                    with(ModController){
+                        event_user(0)
                     }
+                    if global.chatPBF_4==1{
+                        var message, color;
+                        color = getPlayerColor(player, true);
+                        message = global.chatPrintPrefix+color+c_filter(oldname)+" "+C_WHITE+"has changed their name to"+color+" "+c_filter(name)+C_WHITE+"."
+                        write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+                        write_ushort(global.publicChatBuffer, string_length(message));
+                        write_string(global.publicChatBuffer, message);
+                        write_byte(global.publicChatBuffer,-1)
+                        print_to_chat(message);// For the host
+                    }
+                    
                     write_ubyte(global.sendBuffer, PLAYER_CHANGENAME);
                     write_ubyte(global.sendBuffer, playerId);
                     write_ubyte(global.sendBuffer, string_length(name));
@@ -290,14 +313,13 @@ while(commandLimitRemaining > 0) {
             break;
             
         case INPUTSTATE:
-            if(player.object != -1)
-            {
-                with(player.object)
-                {
+            if(player.object != -1){
+                with(player.object){
                     keyState = read_ubyte(socket);
                     netAimDirection = read_ushort(socket);
                     aimDirection = netAimDirection*360/65536;
                     aimDistance = read_ubyte(socket)*2;
+
                     event_user(1);
                 }
             }
@@ -316,8 +338,9 @@ while(commandLimitRemaining > 0) {
             answer = read_binstring(socket, 16);
             
             with(player)
-                if(variable_local_exists("challenge") and variable_local_exists("rewardId"))
+                if(variable_local_exists("challenge") and variable_local_exists("rewardId")){
                     rewardAuthStart(player, answer, challenge, true, rewardId);
+                }
            
             break;
 
@@ -357,6 +380,293 @@ while(commandLimitRemaining > 0) {
             write_ubyte(global.sendBuffer, mirror);
             break;
         
+        case RCON_LOGIN:
+            var rconCommand,commandLength;
+            commandLength=socket_receivebuffer_size(player.socket)
+            rconCommand=read_string(player.socket,commandLength)
+            
+            if global.RCONAllowed==0 break;
+            
+            if string(rconCommand)==string(global.RCONPassword){
+                write_ubyte(player.socket,RCON_LOGIN)
+                write_ubyte(player.socket,RCON_LOGIN_SUCCESSFUL) //valid password
+                ds_list_add(global.RCONList,player)
+                console_print(C_PINK+'RCON: '+player.name+' is now identified as a RCON.')
+                var color;
+                color=getPlayerColor(player, true);
+                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' is now a '+C_PINK+'RCON'+C_WHITE+'.'
+                console_sendmsg()
+            }else{
+                write_ubyte(player.socket,RCON_LOGIN)
+                write_ubyte(player.socket,RCON_LOGIN_FAILED) //invalid password
+            }
+            break;
+        
+        case RCON_COMMAND:
+            var rconCommand,commandLength;
+            commandLength=socket_receivebuffer_size(player.socket)
+            rconCommand=read_string(player.socket,commandLength)
+            
+            if global.RCONAllowed==0 or ds_list_find_value(global.RCONList,ds_list_find_index(global.RCONList,player))!=player{
+                write_ubyte(player.socket,RCON_COMMAND)
+                write_ubyte(player.socket,RCON_COMMAND_FAILED)
+                break;
+            }
+            
+            if(string_length(rconCommand) > MAX_RCON_COMMAND_LENGTH){
+                write_ubyte(player.socket, KICK)
+                write_ubyte(player.socket, KICK_RCON)
+                console_print(C_PINK+'RCON: '+player.name+' sent a command with a length over the maximum limit; kicking.')
+                socket_destroy(player.socket);
+                player.socket = -1;
+                break;
+            }
+            
+            console_parseInput_RCON(rconCommand,player.name)
+            write_ubyte(player.socket,RCON_COMMAND)
+            write_ubyte(player.socket,RCON_COMMAND_SUCESSFUL)
+            break;
+            
+        case CHAT_PUBLIC_MESSAGE:
+            var messageLength;
+            messageLength = socket_receivebuffer_size(socket);
+            if(messageLength > CHAT_MAX_STRING_LENGTH){
+                write_ubyte(player.socket, KICK);
+                write_ubyte(player.socket, KICK_NAME);
+                socket_destroy(player.socket);
+                player.socket = -1;
+            }else{
+                with(player){
+                    //dont send messgaes from muted players
+                    if ds_list_find_index(global.chatBanList,id)!=-1{
+                        break;
+                    }
+                    if(current_time - lastChatTime < 500){
+                        break;
+                    }
+                    lastChatTime = current_time;
+                    
+                    var message;
+                    message = read_string(socket, messageLength);
+                    // Prevent messing with the color code as well
+                    if(string_count("/:/", message) > 0){
+                        message = c_filter(message)
+                    }
+                    
+                    message = parse_custom_color(message)
+                    playerListID=ds_list_find_index(global.players,id)
+                    
+                    if string_char_at(message,0)=="!"{
+                        var globalCommand;
+                        globalCommand=string_delete(message,1,1)
+                        chat_parseInputCommandSent(string(globalCommand), player)
+                    }
+                    
+                    if object!=-1 and team!=TEAM_SPECTATOR{
+                        with object{
+                            sAfkTimer=sAfkTimeout
+                        }
+                    }
+                    
+                    var color, roleColour;
+                    color = getPlayerColor(player, true);
+                    
+                    if isDerpduck==1{
+                        roleColour=P_ORNGE
+                    }else if ds_list_find_index(global.players, player)==0{
+                        roleColour=P_YELLW
+                    }else if ds_list_find_index(global.RCONList, player)!=-1{
+                        roleColour=C_LPINK
+                    }else{
+                        roleColour=C_WHITE
+                    }
+                    
+                    if team == TEAM_RED{
+                        message = color + c_filter(name) + ": " + roleColour + message;
+                    }else if team == TEAM_BLUE{
+                        message = color + c_filter(name) + ": " + roleColour + message;
+                    }else{
+                        message = color + c_filter(name) + ": " + roleColour + message;
+                    }
+                    
+                    write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+                    write_ushort(global.publicChatBuffer, string_length(message));
+                    write_string(global.publicChatBuffer, message);
+                    write_byte(global.publicChatBuffer,playerListID);
+                    
+                    // For the host, who never receives stuff
+                    if ds_list_find_index(global.clientChatBanList,permID)!=-1{
+                        break;
+                    }
+                    print_to_chat(message);
+                }
+            }
+            break;
+
+        case CHAT_PRIV_MESSAGE:
+            var messageLength;
+            messageLength = socket_receivebuffer_size(socket);
+            if(messageLength > CHAT_MAX_STRING_LENGTH){
+                write_ubyte(player.socket, KICK);
+                write_ubyte(player.socket, KICK_NAME);
+                socket_destroy(player.socket);
+                player.socket = -1;
+            }else{
+                with(player){
+                    //dont send muted players messages
+                    if ds_list_find_index(global.chatBanList,id)!=-1{
+                        break;
+                    }
+                    if(current_time - lastChatTime < 500){
+                        break;
+                    }
+                    lastChatTime = current_time;
+                    var message, teambuffer;
+                    message = read_string(socket, messageLength);
+                    // Prevent messing with the color code as well
+                    if(string_count("/:/", message) > 0){
+                        message = c_filter(message)
+                    }
+                    
+                    message = parse_custom_color(message)
+                    playerListID=ds_list_find_index(global.players,id)
+                    
+                    if string_char_at(message,0)=="!"{
+                        var globalCommand;
+                        globalCommand=string_delete(message,1,1)
+                        chat_parseInputCommandSent(string(globalCommand), player)
+                    }
+                    
+                    if object!=-1 and team!=TEAM_SPECTATOR{
+                        with object{
+                            sAfkTimer=sAfkTimeout
+                        }
+                    }
+
+                    var color;
+                    color = getPlayerColor(player, false);
+                    
+                    if team == TEAM_RED{
+                        teambuffer = global.privChatRedBuffer;
+                        message = color + "(team) " + c_filter(name) + ": " + message;
+                    }else if team == TEAM_BLUE{
+                        teambuffer = global.privChatBlueBuffer;
+                        message = color + "(team) " + c_filter(name) + ": " + message;
+                    }else{
+                        teambuffer = global.privChatSpecBuffer;
+                        message = color + "(team) " + c_filter(name) + ": " + message;
+                    }
+                    write_ubyte(teambuffer, CHAT_PRIV_MESSAGE);
+                    write_ushort(teambuffer, string_length(message));
+                    write_string(teambuffer, message);
+                    write_byte(teambuffer,playerListID);
+
+                    // For the host, who never receives stuff
+                    if global.myself.team == team or (global.myself.team==TEAM_SPECTATOR and global.specReadChat==1){
+                        if ds_list_find_index(global.clientChatBanList,permID)!=-1{
+                            break;
+                        }
+                        print_to_chat(message);
+                    }
+                }
+            }
+            break;
+            
+        case RUP_READY:
+            with(player){
+                if(current_time - lastChatTime < 800){
+                    break;
+                }
+                lastChatTime=current_time;
+                
+                if team==TEAM_SPECTATOR{
+                    break;
+                }
+                if object!=-1{
+                    with object{
+                        sAfkTimer=sAfkTimeout
+                    }
+                }
+            }
+            
+            if global.canStart==0{
+                break;
+            }
+            
+            if ds_map_find_value(rupPlayers,player)==0{
+                ds_map_replace(rupPlayers,player,1)
+                
+                with(ModController){
+                    event_user(0)
+                }
+                if global.chatPBF_128==1{
+                    var message,color;
+                    color = getPlayerColor(player, true);
+                    message = global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+" is ready."
+                    write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+                    write_ushort(global.publicChatBuffer, string_length(message));
+                    write_string(global.publicChatBuffer, message);
+                    write_byte(global.publicChatBuffer,-1)
+                    print_to_chat(message);// For the host
+                }
+            }
+            break;
+            
+        case RUP_UNREADY:
+            with(player){
+                if(current_time - lastChatTime < 800){
+                    break;
+                }
+                lastChatTime=current_time;
+                
+                if team==TEAM_SPECTATOR{
+                    break;
+                }
+                if object!=-1{
+                    with object{
+                        sAfkTimer=sAfkTimeout
+                    }
+                }
+            }
+            
+            if global.canStart==0{
+                break;
+            }
+            
+            if ds_map_find_value(rupPlayers,player)==1{
+                ds_map_replace(rupPlayers,player,0)
+                
+                with(ModController){
+                    event_user(0)
+                }
+                if global.chatPBF_128==1{
+                    var message,color;
+                    color = getPlayerColor(player, true);
+                    message = global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+" is no longer ready."
+                    write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+                    write_ushort(global.publicChatBuffer, string_length(message));
+                    write_string(global.publicChatBuffer, message);
+                    write_byte(global.publicChatBuffer,-1)
+                    print_to_chat(message);// For the host
+                }
+            }
+            break;
+            
+        case DC_REASON_USER:
+            with(player){
+                dcReason=DC_REASON_USER
+            }
+            break;
+            
+        case PLAYER_PING:
+            if(player.object != -1){
+                with(player.object){
+                    playerPing=read_ushort(player.socket)
+                }
+            }
+            break;
+            
+        //end of cases
         }
         break;
     } 

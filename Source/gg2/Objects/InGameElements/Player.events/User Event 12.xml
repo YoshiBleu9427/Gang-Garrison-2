@@ -32,7 +32,7 @@
         unparsed = unparseRewards(rewards);
         write_ushort(global.serializeBuffer, string_length(unparsed));
         write_string(global.serializeBuffer, unparsed);
-    } 
+    }
     
     subobjects=0;
     
@@ -41,7 +41,7 @@
     
     write_ubyte(global.serializeBuffer, subobjects);
 
-    if(object != -1) with(object) event_user(12);     
+    if(object != -1) with(object) event_user(12);
     with(sentry)
         event_user(12);
 </argument>

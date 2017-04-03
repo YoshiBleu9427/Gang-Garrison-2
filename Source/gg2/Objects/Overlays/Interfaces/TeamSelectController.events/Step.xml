@@ -25,7 +25,8 @@ else {
     if y &lt; -120 instance_destroy();
 }
 
-balance = calculateTeamBalance();
+balance = -1//calculateTeamBalance();
+get_team_numbers()
     
 xoffset = view_xview[0];
 yoffset = view_yview[0];
@@ -64,7 +65,7 @@ else if mouse_x&gt;xoffset+228 &amp;&amp; mouse_x &lt;xoffset+315 &amp;&amp; mou
     newteam=2;
     drawx=228;
     if balance == TEAM_RED door=3;
-    else door=0;    
+    else door=0;
     text[0]="RED";
     text[1]="Respectable Elucidation Division";
     text[2]="A private company dedicated to";
@@ -101,10 +102,10 @@ if mouse_check_button(mb_left) &amp;&amp; newteam !=-1 {
     event_user(1);
 }
 
-if(afk == true){
-    team = TEAM_SPECTATOR;
-    event_user(1);
-}
+//if(afk == true){
+//    team = TEAM_SPECTATOR;
+//    event_user(1);
+//}
 </argument>
       </arguments>
     </action>

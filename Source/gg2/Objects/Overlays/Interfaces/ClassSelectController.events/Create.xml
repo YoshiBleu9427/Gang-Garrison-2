@@ -14,6 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
+    
     alpha=0.01;
     characters = ds_list_create();
     done = false;

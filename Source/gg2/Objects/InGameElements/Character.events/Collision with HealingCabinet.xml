@@ -13,14 +13,18 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if (!global.mapchanging) {
-    if ((hp &lt; maxHp or nutsNBolts &lt; 100 or !canEat) and other.heal)
+        <argument kind="STRING">if global.healCabs==0 exit;
+
+if (!global.mapchanging){
+    if ((hp &lt; maxHp or nutsNBolts &lt; 100 or !canEat or canBubble==0) and other.heal)
     {
         playsound(x,y,CbntHealSnd);
         hp = maxHp;
         nutsNBolts = maxNutsNBolts;
         alarm[6] = 0
         canEat = true;
+        lasthp=maxHp
+        canBubble=1
     }
     if (burnIntensity &gt; 0 or burnDuration &gt; 0)
     {

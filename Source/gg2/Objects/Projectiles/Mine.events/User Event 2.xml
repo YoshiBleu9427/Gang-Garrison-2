@@ -30,9 +30,15 @@
             vectorfactor = point_distance(0, 0, sin(degtorad(rdir)), cos(degtorad(rdir))*0.8);
             if (1 - distance_to_object(other)/other.blastRadius &lt;= 0.25 and other.splashThreshhold) // skip if we're out of theshhold
                 continue;
-            motion_add(rdir, min(15, other.knockback-other.knockback*(distance_to_object(other)/other.blastRadius)) * vectorfactor);
-            if((other.team != team or id==other.ownerPlayer.object) and !ubered and hp &gt; 0)
-            {
+            motion_add(rdir, min(7, other.knockback-other.knockback*(distance_to_object(other)/other.blastRadius)) * vectorfactor);
+            
+            if ubered{
+                if (id==other.ownerPlayer.object){
+                    moveStatus = 1;
+                }
+            }
+            
+            if((other.team != team or id==other.ownerPlayer.object) and !ubered and hp &gt; 0){
                 var dmg;
                 dmg = other.explosionDamage*(1-(distance_to_object(other)/other.blastRadius));
                 if id == other.ownerPlayer.object// self damage resistance
@@ -49,7 +55,7 @@
                         alarm[4] = alarm[3]
                     }
                     if (other.ownerPlayer != id or (instance_exists(other.reflector) and other.ownerPlayer == id))
-                        alarm[3] = ASSIST_TIME;
+                        alarm[3] = ASSIST_TIME/global.delta_factor;
                     lastDamageDealer = other.ownerPlayer;
                     lastDamageSource = other.weapon;
                     if (id==other.ownerPlayer.object and instance_exists(other.reflector))
@@ -67,16 +73,20 @@
                         blood.direction = point_direction(other.x,other.y,x,y)-180;
                     }
                 }
-                if (id==other.ownerPlayer.object)
+                if (id==other.ownerPlayer.object){
                     moveStatus = 1;
-                else if (other.team == team)
+                    if abs(hspeed)&gt;=9{
+                        hspeed=9.5*sign(hspeed)
+                    }
+                }else if (other.team == team){
                     moveStatus = 2;
-                else
+                }else{
                     moveStatus = 4;
+                }
             }
             cloakAlpha = max(cloakAlpha, 0.3);
             cloakFlicker = true;
-            alarm[7] = 3;
+            alarm[7] = 3/global.delta_factor;
         }
     }
 
@@ -103,18 +113,12 @@
         }   
     }
        
-    with (Rocket)
-    {
-        if (distance_to_object(other) &lt; other.affectRadius * 0.75
-            and (other.team != team or other.ownerPlayer == ownerPlayer))
-        {
-            if(distance_to_object(other) &lt; other.affectRadius * 0.25)
-            {
+    with (Rocket){
+        if (distance_to_object(other) &lt; other.affectRadius * 0.75 and (other.team != team or other.ownerPlayer == ownerPlayer)){
+            if(distance_to_object(other) &lt; other.affectRadius * 0.25){
                 characterHit = -1;
                 event_user(5);
-            }
-            else
-            {
+            }else{
                 motion_add(point_direction(other.x,other.y,x,y),10-10*(distance_to_object(other)/(other.affectRadius)));
             }
         }
@@ -156,10 +160,13 @@
     
     // Handle bubbles
     
-    with(Bubble)
+    with(SuperBubble)
     {
-        if (point_distance(x, y, other.x, other.y) &lt; other.blastRadius + selfPopRadius)
-            instance_destroy();
+        if (point_distance(x, y, other.x, other.y) &lt; other.affectRadius) and (team != other.team){ //other.affectRadius + selfPopRadius)
+            damageAuto(other.ownerPlayer, id, other.explosionDamage*3/2.7*(1-(distance_to_object(other)/other.affectRadius)));
+            other.lastDamageDealer = ownerPlayer;
+            other.lastDamageSource = weapon;
+        }
     }
     
     instance_destroy();

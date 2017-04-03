@@ -22,24 +22,13 @@
         shot.team=owner.team;
         shot.hitDamage = 200;
         shot.weapon=DAMAGE_SOURCE_KNIFE;
+        
+        stabShow=instance_create(x,y,StabShow)
+        stabShow.owner=owner
+        stabShow.speed=0
+        stabShow.direction=stabdirection
 }
 </argument>
-      </arguments>
-    </action>
-    <action id="301" library="1">
-      <!--action name: Set_Alarm-->
-      <kind>NORMAL</kind>
-      <allowRelative>true</allowRelative>
-      <question>false</question>
-      <canApplyTo>true</canApplyTo>
-      <actionType>FUNCTION</actionType>
-      <functionName>action_set_alarm</functionName>
-      <relative>false</relative>
-      <not>false</not>
-      <appliesTo>.self</appliesTo>
-      <arguments>
-        <argument kind="EXPRESSION">18</argument>
-        <argument kind="MENU">2</argument>
       </arguments>
     </action>
   </actions>

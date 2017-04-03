@@ -17,16 +17,48 @@ for(i=0; i < ds_list_size(global.players); i+=1)
 {
     var player;
     player = ds_list_find_value(global.players, i);
-    
-    if(socket_has_error(player.socket) or player.kicked)
-    {
+    if(socket_has_error(player.socket) or player.kicked or player.banned){
+        with(ModController){
+            event_user(0)
+        }
+        if global.chatPBF_2==1 and global.srvMsgChatPrint==""{
+            //Get disconnect reason
+            var dcMessage, dcColour;
+            dcColour=C_ORNGE
+            
+            if player.dcReason==DC_REASON_USER{
+                dcMessage="Disconnect by user"
+            }else if player.dcReason==KICK_ADMIN_KICK{
+                dcMessage="Kicked by admin"
+            }else if player.dcReason==KICK_BANNED{
+                dcMessage="Banned by admin"
+                dcColour=P_RED
+            }else if player.dcReason==KICK_TEMP_BANNED{
+                dcMessage="Temporarily banned by admin"
+                dcColour=P_RED
+            }else{ //Assume player crashed/timed out, should be the only other way for them to leave that isn't checked
+                dcMessage="User timed out"
+            }
+            
+            var message, color;
+            color = getPlayerColor(player, true);
+            message = global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+" has left - "+dcColour+dcMessage+"."
+            write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+            write_ushort(global.publicChatBuffer, string_length(message));
+            write_string(global.publicChatBuffer, message);
+            write_byte(global.publicChatBuffer,-1);
+            print_to_chat(message);// For the host
+        }
+        
+        ds_list_delete(global.chatBanList,player)
+        
         removePlayer(player);
         ServerPlayerLeave(i, global.sendBuffer);
         ServerBalanceTeams();
         i -= 1;
-    }
-    else
+    }else{
         processClientCommands(player, i);
+    }
 }
 
 if(syncTimer == 1 || ((frame mod 3600)==0) || global.setupTimer == 180 and global.run_virtual_ticks)
@@ -56,11 +88,26 @@ if(global.winners != -1 and !global.mapchanging)
     else
     {
         global.currentMapArea = 1;
-        global.nextMap = nextMapInRotation();
+        if global.consoleMapChange==0{
+            global.nextMap = nextMapInRotation();
+        }
     }
     
     global.mapchanging = true;
     impendingMapChange = 300; // in 300 ticks (ten seconds), we'll do a map change
+    
+    with(ModController){
+        event_user(0)
+    }
+    if global.chatPBF_32==1{
+        var message, color;
+        message = global.chatPrintPrefix+C_WHITE+"Next map: "+C_GREEN+global.nextMap+C_WHITE+"."
+        write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+        write_ushort(global.publicChatBuffer, string_length(message));
+        write_string(global.publicChatBuffer, message);
+        write_byte(global.publicChatBuffer,-1)
+        print_to_chat(message);// For the host
+    }
     
     write_ubyte(global.sendBuffer, MAP_END);
     write_ubyte(global.sendBuffer, string_length(global.nextMap));
@@ -74,17 +121,19 @@ if(global.winners != -1 and !global.mapchanging)
 }
 
 // if map change timer hits 0, do a map change
-if(impendingMapChange == 0)
-{
+if(impendingMapChange == 0){
     global.mapchanging = false;
     serverGotoMap(global.nextMap);
     ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
     impendingMapChange = -1;
+    global.consoleMapChange=0
     
-    with(Player)
-    {
-        if(global.currentMapArea == 1)
-        {
+    with(ReadyUpController){
+        event_user(1)
+    }
+    
+    with(Player){
+        if(global.currentMapArea == 1){
             stats[KILLS] = 0;
             stats[DEATHS] = 0;
             stats[CAPS] = 0;
@@ -119,3 +168,28 @@ if(impendingMapChange == 0)
     // message lobby to update map name
     sendLobbyRegistration();
 }
+
+var i;
+for(i=1; i<ds_list_size(global.players); i+=1){
+    var player;
+    player = ds_list_find_value(global.players, i);
+    write_buffer(player.socket, global.sendBuffer);
+    write_buffer(player.socket, global.publicChatBuffer);
+    
+    if player.team == TEAM_RED{
+        write_buffer(player.socket, global.privChatRedBuffer);
+    }else if player.team == TEAM_BLUE{
+        write_buffer(player.socket, global.privChatBlueBuffer);
+    }else if player.team == TEAM_SPECTATOR and global.specReadChat==1{
+        write_buffer(player.socket, global.privChatRedBuffer);
+        write_buffer(player.socket, global.privChatBlueBuffer);
+        write_buffer(player.socket, global.privChatSpecBuffer);
+    }else{
+        write_buffer(player.socket, global.privChatSpecBuffer);
+    }
+}
+buffer_clear(global.sendBuffer);
+buffer_clear(global.privChatRedBuffer);
+buffer_clear(global.privChatBlueBuffer);
+buffer_clear(global.privChatSpecBuffer);
+buffer_clear(global.publicChatBuffer);

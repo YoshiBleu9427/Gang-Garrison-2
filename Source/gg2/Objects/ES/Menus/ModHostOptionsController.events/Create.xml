@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(48, 110, 500, 300, 32, 40, 104, 6)
+    menumode = true;
+    virnum=0
+    setVirNum=0
+    
+    if (room != ModOptions){
+        menu_setdimmed();
+    }
+    
+    menu_background(512, 24, 8, 12, 4);
+    bgtabs = true;
+    
+    menu_addedit_boolean("RCON Enabled:","global.RCONAllowed",'
+        es_write_ini("s","RCONAllowed",argument0)
+    ')setVirNum+=1
+
+    menu_addedit_text("RCON Password:","global.RCONPassword",'
+        es_write_ini("s","RCONPassword",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_boolean("Ready-up Enabled:","global.autoStart",'
+        es_write_ini("s","AutoStart",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_boolean("ADCP Stop-watch Mode:","global.adcpStopwatch",'
+        es_write_ini("s","ADCPStopwatch",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_num("Arena Win Limit:","global.arenaRoundsToWin",'
+        es_write_ini("s","ArenaRoundsToWin",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_boolean("Config Voting:","global.configVoteAllowed",'
+        es_write_ini("s","ConfigVoteAllowed",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_num("Config Vote Timer:","global.voteTimer",'
+        es_write_ini("s","ConfigVoteTimer",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_boolean("Chat Color Codes:","global.chatColorCodes",'
+        es_write_ini("s","ChatColorCodes",argument0)
+    ')setVirNum+=1
+    
+    menu_addlink("Enabled Chat Prints:",'
+        var newvalue;
+        global.chatPBF=get_integer("Chat Prints Bit Field (Add the numbers you want to use)#-1 = All#1 = Player Join#2 = Player Leave#4 = Name Change#8 = Airshot#16 = Kick/Ban/RCON/Kill/Mute#32 = Next Map#64 = Misc. Console Commands/Admin Actions#128 = Ready-Up"
+        ,global.chatPBF)
+        with(ModController){
+            event_user(0)
+        }
+        es_write_ini("s","ChatPBF",global.chatPBF)
+    ')setVirNum+=1
+    
+    menu_addedit_boolean("Specators Can See Team Chat:","global.specReadChat",'
+        es_write_ini("s","SpecReadChat",argument0)
+    ')setVirNum+=1
+    
+    menu_addedit_num("AFK Timeout:","global.serverAfkTimeout",'
+        es_write_ini("s","ServerAfkTimeout",argument0)
+        
+        if room==CustomMapRoom{
+            with(Character){
+                sAfkTimeout=argument0*30/global.delta_factor
+                sAfkTimer=sAfkTimeout
+            }
+        }
+    ')setVirNum+=1
+    
+    //menu_addedit_text("Default Config", "global.defaultConfig", '
+    //    es_write_ini("s","DefaultConfig",argument0)
+    //')
+    
+    //TABS
+    menu_addtablink("General", '
+        instance_destroy()
+        instance_create(x,y,ModOptionsController)
+    ');
+    menu_addtablink("Host", '
+        instance_destroy()
+        instance_create(x,y,ModHostOptionsController)
+    ');
+    menu_addtablink("GFX", '
+        instance_destroy()
+        instance_create(x,y,ModGraphicalOptionsController)
+    ');
+    menu_addtablink("HUD", '
+        instance_destroy()
+        instance_create(x,y,ModHUDOptionsController)
+    ');
+    menu_addtablink("HUD 2", '
+        instance_destroy()
+        instance_create(x,y,ModHUD2OptionsController)
+    ');
+    menu_addtablink("Controls", '
+        instance_destroy()
+        instance_create(x,y,ModControlsOptionsController)
+    ');
+    menu_addtablink("Configs", '
+        instance_destroy()
+        instance_create(x,y,ModConfigsController)
+    ');
+    
+    menu_addback("[0] Back", '
+        instance_destroy()
+        if(room == ModOptions){
+            room_goto_fix(Menu)
+        }else{
+            instance_create(0,0,InGameMenuController)
+        }
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -14,10 +14,11 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    receiveCompleteMessage(global.serverSocket,4,global.deserializeBuffer);
+    receiveCompleteMessage(global.serverSocket,6,global.deserializeBuffer);
     keyState = read_ubyte(global.deserializeBuffer);
     aimDirection = read_ushort(global.deserializeBuffer)*360/65536;
     aimDistance = read_ubyte(global.deserializeBuffer)*2;
+    playerPing=read_ushort(global.deserializeBuffer)
     
     var temp, newIntel;
     if(global.updateType == QUICK_UPDATE) or (global.updateType == FULL_UPDATE) {
@@ -54,6 +55,9 @@ if(global.updateType == FULL_UPDATE){
             break;
         case CLASS_SNIPER:
             currentWeapon.t = read_ubyte(global.deserializeBuffer);
+            break;
+        case CLASS_QUOTE:
+            canBubble = read_ubyte(global.deserializeBuffer);
             break;
         default:
             read_ubyte(global.deserializeBuffer)

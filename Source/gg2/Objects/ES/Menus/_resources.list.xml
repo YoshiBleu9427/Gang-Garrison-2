@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="ModOptionsController" type="RESOURCE"/>
+  <resource name="ModHostOptionsController" type="RESOURCE"/>
+  <resource name="ModGraphicalOptionsController" type="RESOURCE"/>
+  <resource name="ModHUDOptionsController" type="RESOURCE"/>
+  <resource name="ModHUD2OptionsController" type="RESOURCE"/>
+  <resource name="ModControlsOptionsController" type="RESOURCE"/>
+  <resource name="ModConfigsController" type="RESOURCE"/>
+  <resource name="MapMenuBG" type="RESOURCE"/>
+</resources>

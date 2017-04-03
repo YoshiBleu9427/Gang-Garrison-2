@@ -49,10 +49,13 @@
     }
     
     player.object=-1;
-    if (place_meeting(x,y,SpawnRoom))
+    if place_meeting(x,y,SpawnRoom) or tdmGrace==1{
         player.alarm[5] = 1;
-    else 
-        player.alarm[5] = global.Server_Respawntime / global.delta_factor;
+    }else{
+        if global.isLive{
+            player.alarm[5] = global.Server_Respawntime / global.delta_factor;
+        }
+    }
     
     //part type destroy
     if(variable_local_exists("jumpFlameParticleType"))

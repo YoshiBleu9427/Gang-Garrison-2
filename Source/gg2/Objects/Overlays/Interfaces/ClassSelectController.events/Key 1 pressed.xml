@@ -13,10 +13,13 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">{
+        <argument kind="STRING">if instance_exists(Console) exit;
+
+{
     class = CLASS_SCOUT;
     event_user(1);
-}</argument>
+}
+</argument>
       </arguments>
     </action>
   </actions>

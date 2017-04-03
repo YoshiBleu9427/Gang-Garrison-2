@@ -14,8 +14,9 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    menu_create(48, 172, 500, 260, 32, 40, 104, 6);
+    menu_create(48, 110, 500, 300, 32, 40, 104, 6)
     menumode = true;
+    virnum=0
     
     if(room != Options)
         menu_setdimmed();
@@ -62,7 +63,7 @@
         instance_create(x,y,HUDOptionsController);
     ');
     
-    menu_addback("Back", '
+    menu_addback("[0] Back", '
         instance_destroy();
         if(room == Options)
             room_goto_fix(Menu);

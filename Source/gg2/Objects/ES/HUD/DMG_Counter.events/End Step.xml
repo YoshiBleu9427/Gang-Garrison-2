@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if global.damageIndicator==0 exit;
+col_custom=make_color_rgb(global.damageColourR,global.damageColourG,global.damageColourB)
+
+with(Character){
+    if (!variable_local_exists("lasthp")){
+        lasthp = hp
+    }
+    
+    if (hp!=lasthp and (lasthp-hp)&gt;10 and !cloak){
+        if lastDamageDealer != -1 and instance_exists(lastDamageDealer){
+            if lastDamageDealer.object != -1 and instance_exists(lastDamageDealer.object){
+                if (lastDamageDealer==global.myself or lastDamageDealer.object.healer==global.myself){
+                    dmgI=instance_create(x+irandom_range(-12,12),y,DMG_Indicator)
+                    damage=(lasthp-hp)
+                    if round(damage)==damage{
+                        dmgI.dmg=string(damage)
+                    }else{
+                        dmgI.dmg=string_format(damage,round(damage),1)
+                    }
+                    dmgI.colour=other.col_custom
+                    if id==global.myself.object{
+                        dmgI.colour=other.col_self
+                    }
+                    playsound(x,y,global.DingSound)
+                }
+            }
+        }
+        lasthp=hp
+    }
+}
+
+with(Sentry){
+    if (!variable_local_exists("lasthp")){
+        lasthp = hp
+    }
+    
+    if (hp!=lasthp and (lasthp-hp)&gt;10){
+        if lastDamageDealer != -1 and instance_exists(lastDamageDealer){
+            if lastDamageDealer.object != -1 and instance_exists(lastDamageDealer.object){
+                if (lastDamageDealer==global.myself or lastDamageDealer.object.healer==global.myself){
+                    dmgI=instance_create(x+irandom_range(-12,12),y,DMG_Indicator)
+                    damage=(lasthp-hp)
+                    if round(damage)==damage{
+                        dmgI.dmg=string(damage)
+                    }else{
+                        dmgI.dmg=string_format(damage,round(damage),1)
+                    }
+                    dmgI.colour=other.col_custom
+                    playsound(x,y,global.DingSound)
+                }
+            }
+        }
+        lasthp=hp
+    }
+}
+
+/*with(SuperBubble){
+    if (!variable_local_exists("lasthp")){
+        lasthp = hp
+    }
+    
+    if (hp!=lasthp and (lasthp-hp)&gt;10){
+        dmgI=instance_create(x+irandom_range(-12,12),y,DMG_Indicator)
+        damage=(lasthp-hp)
+        if round(damage)==damage{
+            dmgI.dmg=string(damage)
+        }else{
+            dmgI.dmg=string_format(damage,round(damage),1)
+        }
+        dmgI.colour=other.col_custom
+        playsound(x,y,global.DingSound)
+        lasthp=hp
+    }
+}*/
+
+with(Generator){
+    if (!variable_local_exists("lasthp")){
+        lasthp = hp
+    }
+    
+    if (hp!=lasthp and (lasthp-hp)&gt;10){
+        dmgI=instance_create(x+irandom_range(-12,12),y,DMG_Indicator)
+        damage=(lasthp-hp)
+        if round(damage)==damage{
+            dmgI.dmg=string(damage)
+        }else{
+            dmgI.dmg=string_format(damage,round(damage),1)
+        }
+        dmgI.colour=other.col_custom
+        playsound(x,y,global.DingSound)
+        lasthp=hp
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

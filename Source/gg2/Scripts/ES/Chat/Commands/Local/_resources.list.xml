@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="chatc_ready" type="RESOURCE"/>
+  <resource name="chatc_unready" type="RESOURCE"/>
+  <resource name="chatc_toggleready" type="RESOURCE"/>
+</resources>

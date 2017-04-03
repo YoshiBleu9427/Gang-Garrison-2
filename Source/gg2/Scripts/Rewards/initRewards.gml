@@ -56,7 +56,7 @@ global.HatBobbleClassTaunt[8] = HatBobblePyroTauntS;
 // None for CLASS_QUOTE
 
 // Array of haxxy badge indexes (into the sprite) to reward names
-global.HaxxyBadgesLength = 39;
+global.HaxxyBadgesLength = 41;
 global.HaxxyBadges[0] = 'Badge_Trn1Orng';
 global.HaxxyBadges[1] = 'Badge_Trn1Gold';
 global.HaxxyBadges[2] = 'Badge_Trn2Orng';
@@ -91,11 +91,13 @@ global.HaxxyBadges[30] = 'Badge_Rifleman';
 global.HaxxyBadges[31] = 'Badge_Moneybag';
 global.HaxxyBadges[32] = 'Badge_ChessWhite';
 global.HaxxyBadges[33] = 'Badge_ChessBlack';
-global.HaxxyBadges[34] = 'Badge_BasketBall';
-global.HaxxyBadges[35] = 'Badge_RocketJump';
+global.HaxxyBadges[34] = 'Badge_B-BallBlitz';
+global.HaxxyBadges[35] = 'Badge_Elton-Jump-athon';
 global.HaxxyBadges[36] = 'Badge_2spooky4u';
-global.HaxxyBadges[37] = 'Badge_Ins';
-global.HaxxyBadges[38] = 'Badge_FriedChicken';
+global.HaxxyBadges[37] = 'Badge_Rebel-ution';
+global.HaxxyBadges[38] = 'Badge_GloryDays';
+global.HaxxyBadges[39] = 'Badge_DynamicDuo';
+global.HaxxyBadges[40] = 'Badge_ArmyOfOne';
 
 // Makes array of Golden Accessory overlay sprites
 // Pre-initialize array to detect if sprites should be reused
@@ -150,25 +152,27 @@ global.GoldenAttireOverlay[8] = PyroGoldAttireS;
 global.GoldenAttireTaunt[8] = PyroGoldAttireTauntS;
 // None for CLASS_QUOTE
 // fill in empty sprites
-for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1)
-{
-    if (global.GoldenAttireRunOverlay[i] == -1)
+for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1){
+    if (global.GoldenAttireRunOverlay[i] == -1){
         global.GoldenAttireRunOverlay[i] = global.GoldenAttireOverlay[i];
+    }
         
-    if (global.GoldenAttireJumpOverlay[i] == -1)
+    if (global.GoldenAttireJumpOverlay[i] == -1){
         global.GoldenAttireJumpOverlay[i] = global.GoldenAttireOverlay[i];
+    }
         
-    if (global.GoldenAttireLeanROverlay[i] == -1)
+    if (global.GoldenAttireLeanROverlay[i] == -1){
         global.GoldenAttireLeanROverlay[i] = global.GoldenAttireOverlay[i];
+    }
         
-    if (global.GoldenAttireLeanLOverlay[i] == -1)
+    if (global.GoldenAttireLeanLOverlay[i] == -1){
         global.GoldenAttireLeanLOverlay[i] = global.GoldenAttireOverlay[i];
+    }
 }
 
 // Array of Canadium accessories
 // Pre-initialize array to detect if sprites should be reused
-for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1)
-{
+for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1){
     global.SilverAttireOverlay[i] = -1;
     global.SilverAttireRunOverlay[i] = -1;
     global.SilverAttireJumpOverlay[i] = -1;
@@ -217,19 +221,22 @@ global.SilverAttireOverlay[8] = PyroSilverAttireS;
 global.SilverAttireTaunt[8] = PyroSilverAttireTauntS;
 // None for CLASS_QUOTE
 // fill in empty sprites
-for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1)
-{
-    if (global.SilverAttireRunOverlay[i] == -1)
+for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1){
+    if (global.SilverAttireRunOverlay[i] == -1){
         global.SilverAttireRunOverlay[i] = global.SilverAttireOverlay[i];
+    }
         
-    if (global.SilverAttireJumpOverlay[i] == -1)
+    if (global.SilverAttireJumpOverlay[i] == -1){
         global.SilverAttireJumpOverlay[i] = global.SilverAttireOverlay[i];
+    }
         
-    if (global.SilverAttireLeanROverlay[i] == -1)
+    if (global.SilverAttireLeanROverlay[i] == -1){
         global.SilverAttireLeanROverlay[i] = global.SilverAttireOverlay[i];
+    }
         
-    if (global.SilverAttireLeanLOverlay[i] == -1)
+    if (global.SilverAttireLeanLOverlay[i] == -1){
         global.SilverAttireLeanLOverlay[i] = global.SilverAttireOverlay[i];
+    }
 }
 
 // Array of Top Hat + Monocle Package Deals

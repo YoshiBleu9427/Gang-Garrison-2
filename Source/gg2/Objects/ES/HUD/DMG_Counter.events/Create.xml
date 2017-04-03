@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//col_red=make_color_rgb(255,25,25)
+//col_orange=make_color_rgb(255,101,0)
+//col_yellow=make_color_rgb(255,226,41)
+//col_blue=make_color_rgb(25,25,255)
+//col_purple=make_color_rgb(255,25,255)
+//col_green=make_color_rgb(60,200,70)
+
+col_default=make_color_rgb(244,244,11)
+col_custom=make_color_rgb(global.damageColourR,global.damageColourG,global.damageColourB)
+col_self=make_color_rgb(60,200,70)
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -19,7 +19,7 @@ weapons[0]=Medigun;
 tauntsprite = MedicTauntS;
 haxxyStatue = MedicHaxxyStatueS;
 
-alarm[11] = 30;
+alarm[11] = 30/global.delta_factor;
 </argument>
       </arguments>
     </action>
