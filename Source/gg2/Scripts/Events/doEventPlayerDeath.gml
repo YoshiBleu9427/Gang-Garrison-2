@@ -99,7 +99,7 @@ if global.chatPBF_8==1 and global.isHost{
                 
                 reflectString=""
                 if damageSource==DAMAGE_SOURCE_REFLECTED_ROCKET or DAMAGE_SOURCE_REFLECTED_STICKY or DAMAGE_SOURCE_REFLECTED_FLARE{
-                    reflectString=" reflect"
+                    reflectString=""//" reflect"
                 }
                 
                 message = global.chatPrintPrefix+colorKiller+killerString+C_WHITE+reflectString+" airshot"+colorVictim+" "+victimString+C_WHITE+"!"
