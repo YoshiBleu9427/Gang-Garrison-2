@@ -197,6 +197,12 @@ ini_open("ES.ini")
     
     global.medicTargeting=ini_read_real("s","MedicTargeting",0)
     ini_write_real("s","MedicTargeting",global.medicTargeting)
+    
+    global.jumpMapMode=ini_read_real("s","JumpMapMode",0)
+    ini_write_real("s","JumpMapMode",global.jumpMapMode)
+    
+    global.jumpPlayerAttack=ini_read_real("s","JumpPlayerAttack",0)
+    ini_write_real("s","JumpPlayerAttack",global.jumpPlayerAttack)
 ini_close()
 
 ini_open("controls.gg2")
@@ -213,6 +219,15 @@ global.testing=0
 global.myPing=0
 global.madeRupList=0
 //global.isCasting=0
+global.playerListExists=0
+global.rupTimeMin=0
+global.rupTimeSec=0
+global.permIDCounter=0
+global.healCabs=1
+global.spawnDoors=1
+global.configSuperString=""
+global.jumpMode=0
+
 //adcp stopwatch mode
 global.adcpRound1Score=-1
 global.adcpRound2Score=-1
@@ -223,13 +238,6 @@ global.adcpWinner=""
 global.adcpRound1CapTimestamp=-1
 global.adcpRound2CapTimestamp=-1
 global.myAdcpTeam=""
-global.playerListExists=0
-global.rupTimeMin=0
-global.rupTimeSec=0
-global.permIDCounter=0
-global.healCabs=1
-global.spawnDoors=1
-global.configSuperString=""
 
 //replays
 global.replayBuffer = buffer_create();

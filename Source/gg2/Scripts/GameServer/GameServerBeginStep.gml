@@ -128,6 +128,27 @@ if(impendingMapChange == 0){
     impendingMapChange = -1;
     global.consoleMapChange=0
     
+    global.jumpMode=0
+    if global.jumpMapMode==1{
+        global.jumpMode=1
+    }else if global.jumpMapMode==2{
+        prefixIndex[0]="rj"
+        prefixIndex[1]="dj"
+        prefixIndex[2]="rr"
+        prefixIndex[3]="sj"
+        prefixIndex[4]="ej"
+        prefixIndex[5]="qr"
+        prefixIndex[6]="pj"
+        prefixIndex[7]="jt"
+        prefixIndex[8]="surf"
+        prefixIndex[9]="jump"
+        for (i=0; i<10; i+=1){
+            if string_pos(prefixIndex[i],string_lower(global.nextMap))==1{
+                global.jumpMode=1
+            }
+        }
+    }
+    
     with(ReadyUpController){
         event_user(1)
     }

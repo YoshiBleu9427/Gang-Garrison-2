@@ -23,7 +23,7 @@
     playsound(x,y,ExplosionSnd);
     
     with (Character) {
-        if (distance_to_object(other) &lt; other.blastRadius and !(team == other.team and id != other.ownerPlayer.object and place_meeting(x, y+1, Obstacle)))
+        if (distance_to_object(other) &lt; other.blastRadius and !(team == other.team and id != other.ownerPlayer.object and place_meeting(x, y+1, Obstacle))) and (global.jumpMode==0 or ((global.jumpMode==1 and global.jumpPlayerAttack=1) or id==other.ownerPlayer.object))
         {
             var rdir, vectorfactor;
             rdir = point_direction(other.x ,other.y, (bbox_left+bbox_right)/2, (bbox_top+bbox_bottom)/2);
@@ -75,7 +75,7 @@
                 }
                 if (id==other.ownerPlayer.object){
                     moveStatus = 1;
-                    if abs(hspeed)&gt;=9{
+                    if abs(hspeed)&gt;=9.5 and global.jumpMode==0{
                         hspeed=9.5*sign(hspeed)
                     }
                 }else if (other.team == team){

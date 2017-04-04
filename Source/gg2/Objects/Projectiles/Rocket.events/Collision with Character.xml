@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    if (other.team != team){
+    if (other.team != team) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1)){
         with(other){
             dealFlicker(id)
         }

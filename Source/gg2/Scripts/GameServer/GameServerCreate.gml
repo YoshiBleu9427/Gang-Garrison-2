@@ -126,17 +126,38 @@
             // "Shuffle, don't make arena map first" chosen
             if (global.shuffleRotation == 1) {
                 // if first map is arena
-                if (string_copy(map, 0, 6) == 'arena_') {
+                if (string_copy(map, 0, 6) == 'arena') {
                     // try to find something else
                     for (i = 0; i < ds_list_size(global.map_rotation); i += 1) {
                         map = ds_list_find_value(global.map_rotation, i);
                         // swap with first map
-                        if (string_copy(map, 0, 6) != 'arena_') {
+                        if (string_copy(map, 0, 6) != 'arena') {
                             ds_list_replace(global.map_rotation, i, ds_list_find_value(global.map_rotation, 0));
                             ds_list_replace(global.map_rotation, 0, map);
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    global.jumpMode=0
+    if global.jumpMapMode==1{
+        global.jumpMode=1
+    }else if global.jumpMapMode==2{
+        prefixIndex[0]="rj"
+        prefixIndex[1]="dj"
+        prefixIndex[2]="rr"
+        prefixIndex[3]="sj"
+        prefixIndex[4]="ej"
+        prefixIndex[5]="qr"
+        prefixIndex[6]="pj"
+        prefixIndex[7]="jt"
+        prefixIndex[8]="surf"
+        prefixIndex[9]="jump"
+        for (i=0; i<10; i+=1){
+            if string_pos(prefixIndex[i],string_lower(map))==1{
+                global.jumpMode=1
             }
         }
     }

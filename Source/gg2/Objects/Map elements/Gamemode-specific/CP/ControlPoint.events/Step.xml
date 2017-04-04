@@ -289,6 +289,10 @@ if global.isLive==0{
     capping=0
     cappers=0
 }
+
+if global.jumpMode==1{
+    capTime=2
+}
 </argument>
       </arguments>
     </action>

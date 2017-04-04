@@ -44,7 +44,7 @@
             
         //Reflects
         with(Rocket){
-            if(ownerPlayer.team != other.owner.team){
+            if(ownerPlayer.team != other.owner.team) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1)){
                 dir = point_direction(other.x, other.y, x, y);
                 dist = point_distance(other.x, other.y, x, y);
                 angle = abs((dir-other.owner.aimDirection)+720) mod 360;
@@ -79,7 +79,7 @@
         }
         
         with(Mine){
-            if(ownerPlayer.team != other.owner.team){
+            if(ownerPlayer.team != other.owner.team) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1)){
                 dir = point_direction(other.x, other.y, x, y);
                 dist = point_distance(other.x, other.y, x, y);
                 angle = abs((dir-other.owner.aimDirection)+720) mod 360;
@@ -114,7 +114,7 @@
             dir = point_direction(other.x, other.y, x, y);
             dist = point_distance(other.x, other.y, x, y);
             angle = abs((dir-other.owner.aimDirection)+720) mod 360;
-            if (collision_circle(x,y,25,other.poof,false,true)){
+            if (collision_circle(x,y,25,other.poof,false,true)) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1)){
                 //reduce knockback through walls
                 var reductionFactor;
                 if collision_line(x,y,other.owner.x,other.owner.y,Obstacle,true,true)&gt;=0{

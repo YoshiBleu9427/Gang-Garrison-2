@@ -125,7 +125,7 @@ if(!nearestTarget) {
     
     noticedTarget = false;
     
-    if(readyToShoot &amp;&amp; (rotating == false)) {
+    if(readyToShoot &amp;&amp; (rotating == false)) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1)){
         direction = point_direction(x,y,nearestTarget.x,nearestTarget.y);
         
         // Prevent the turret from turning too high even if it is shooting in that direction.

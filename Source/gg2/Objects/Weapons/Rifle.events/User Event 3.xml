@@ -75,7 +75,7 @@ while(len&gt;1) {
 }
 
 with(Player) {
-    if(id != other.ownerPlayer and team != other.owner.team and object != -1) {
+    if(id != other.ownerPlayer and team != other.owner.team and object != -1) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1)){
         if (collision_line(other.x,other.y,other.x2,other.y2,object,true,false) &gt;= 0 and !object.ubered) {
             damageCharacter(other.ownerPlayer, object, other.hitDamage);
             if (object.lastDamageDealer != other.ownerPlayer &amp;&amp; object.lastDamageDealer != object.player)

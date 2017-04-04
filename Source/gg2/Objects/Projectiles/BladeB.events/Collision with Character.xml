@@ -14,7 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
-    if(other.id != ownerPlayer.object and other.team != team)
+    if(other.id != ownerPlayer.object and other.team != team) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1))
     {
         if(!other.ubered)
         { 

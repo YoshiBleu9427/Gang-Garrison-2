@@ -83,6 +83,17 @@
         }
     ')setVirNum+=1
     
+    menu_addedit_select("Jump Map Mode:","global.jumpMapMode",'
+        es_write_ini("s","JumpMapMode",argument0)
+    ')setVirNum+=1
+    menu_add_option(0,"Off")
+    menu_add_option(1,"On")
+    menu_add_option(2,"On, by map name")
+    
+    menu_addedit_boolean("Jump Mode Player Attack:","global.jumpPlayerAttack",'
+        es_write_ini("s","JumpPlayerAttack",argument0)
+    ')setVirNum+=1
+    
     //menu_addedit_text("Default Config", "global.defaultConfig", '
     //    es_write_ini("s","DefaultConfig",argument0)
     //')
