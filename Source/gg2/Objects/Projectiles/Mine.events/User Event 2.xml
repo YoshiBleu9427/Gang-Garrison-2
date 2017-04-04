@@ -19,7 +19,8 @@
     } else {
         exploded = true;
     }
-    instance_create(x,y,Explosion);
+    explo=instance_create(x,y,Explosion);
+    explo.blastSize=blastRadius
     playsound(x,y,ExplosionSnd);
     
     with (Character) {
