@@ -19,7 +19,7 @@ xsize = view_wview[0];
 ysize = view_hview[0];
 
 // special thanks to wareya for the warhud HP cross code &amp; images
-var sprite_xpos, sprite_ypos, icon_xpos, icon_ypos, hppixels, timerPosY, timerPosX;
+var sprite_xpos, sprite_ypos, icon_xpos, icon_ypos, hppixels, timerPosY, timerPosX, textString;
 
 draw_set_alpha(1);
 draw_set_color(c_white);
@@ -32,17 +32,22 @@ if (tracking){
         round(player.object.y) - sin(degtorad(player.object.aimDirection))*player.object.aimDistance);
 }
 
+if (!instance_exists(ArenaHUD)){
+    textString='Respawn in ' +string(ceil(global.myself.alarm[5]/30*global.delta_factor))+ ' second(s).'
+}else{
+    textString='No Respawning in Arena.'
+}
+
 timerPosX=xsize
 if global.respawnTimerPos==0{ //vanilla
     timerPosY=view_yview
 }else if global.respawnTimerPos==1{ //center
     timerPosY=(view_yview+ysize/2)-40
     //if in center, reduce size of bar
-    timerPosX=24*9
+    timerPosX=string_length(textString)*8 + 14 //24*9
 }else{ //bottom
     timerPosY=(view_yview+ysize)-20
 }
-
 
 if (global.myself != -1){
     if ((global.myself.alarm[5] &gt; 0) and (global.myself.team != TEAM_SPECTATOR)){
@@ -51,11 +56,7 @@ if (global.myself != -1){
         draw_set_alpha(global.respawnTimerAlpha/100);
         draw_rectangle_color(xoffset,timerPosY,xoffset+timerPosX,timerPosY+20,c_black,c_black,c_black,c_black,0);
         draw_set_alpha(1);
-        if (!instance_exists(ArenaHUD)){
-            draw_text(xoffset+10, timerPosY+10,'Respawn in ' +string(ceil(global.myself.alarm[5]/30*global.delta_factor))+ ' second(s).')
-        }else{
-            draw_text(xoffset+10, timerPosY+10,'No Respawning in Arena.');
-        }
+        draw_text(xoffset+10, timerPosY+10,textString)
     }
 }
 </argument>
