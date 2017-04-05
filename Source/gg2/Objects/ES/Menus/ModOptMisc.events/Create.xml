@@ -18,13 +18,18 @@
     menumode = true;
     virnum=0
     setVirNum=0
-    
+        
     if (room != ModOptions){
         menu_setdimmed();
     }
     
     menu_background(512, 24, 8, 12, 4);
     bgtabs = true;
+    
+    menu_addedit_num("Volume:","global.volume",'
+        es_write_ini("s","Volume",argument0)
+        sound_global_volume(argument0/100)
+    ')setVirNum+=1
     
     menu_addedit_boolean("Borderless Window:","global.borderless",'
         es_write_ini("s","Borderless",argument0)
@@ -37,49 +42,40 @@
         }
     ')setVirNum+=1
     
-    menu_addedit_boolean("Faster Corpse Fade:","global.fastBodyFade",'
-        es_write_ini("s","FastBodyFade",argument0)
+    menu_addedit_select("Medic Targeting:","global.medicTargeting",'
+        es_write_ini("s","MedicTargeting",argument0)
+    ')setVirNum+=1
+    menu_add_option(0,"Line Of Sight (Original)")
+    menu_add_option(1,"Cursor Positon (New)")
+    
+    menu_addedit_boolean("No Sounds During RUP:","global.noSoundsDuringRUP",'
+        es_write_ini("s","NoSoundsDuringRUP",argument0)
     ')setVirNum+=1
     
-    menu_addedit_boolean("Hide Gun Shells:","global.noShells",'
-        es_write_ini("s","NoShells",argument0)
+    menu_addedit_boolean("Save Chat Logs:","global.writeChatLog",'
+        es_write_ini("s","WriteChatLog",argument0)
     ')setVirNum+=1
     
-    menu_addedit_boolean("Yellow Mine Trails:","global.yellowMineTrails",'
-        es_write_ini("s","YellowMineTrails",argument0)
+    menu_addedit_boolean("Save Console Logs:","global.writeConsoleLog",'
+        es_write_ini("s","WriteConsoleLog",argument0)
     ')setVirNum+=1
-    
-    menu_addedit_boolean("Show Weapon Only When Shooting:","global.weaponDraw",'
-        es_write_ini("s","WeaponDraw",argument0)
-    ')setVirNum+=1
-    
-    menu_addedit_select("Text Highlight Color:","global.textSelectCol",'
-        es_write_ini("s","TextSelectCol",argument0)
-    ')setVirNum+=1
-    menu_add_option(0,"Red")
-    menu_add_option(1,"Cyan")
-    
     
     //TABS
-    menu_addtablink("General", '
-        instance_destroy()
-        instance_create(x,y,ModOptionsController)
-    ');
     menu_addtablink("Host", '
         instance_destroy()
         instance_create(x,y,ModHostOptionsController)
     ');
-    menu_addtablink("GFX", '
+    menu_addtablink("GFX Basic", '
         instance_destroy()
-        instance_create(x,y,ModGraphicalOptionsController)
+        instance_create(x,y,ModOptGFXBasic)
     ');
-    menu_addtablink("HUD", '
+    menu_addtablink("GFX Adv", '
         instance_destroy()
-        instance_create(x,y,ModHUDOptionsController)
+        instance_create(x,y,ModOptGFXAdv)
     ');
-    menu_addtablink("HUD 2", '
+    menu_addtablink("Misc", '
         instance_destroy()
-        instance_create(x,y,ModHUD2OptionsController)
+        instance_create(x,y,ModOptMisc)
     ');
     menu_addtablink("Controls", '
         instance_destroy()

@@ -28,7 +28,7 @@
     
     menu_addedit_boolean("Save Console Logs:","global.writeConsoleLog",'
         es_write_ini("s","WriteConsoleLog",argument0)
-    ')setVirNum+=1
+    ')setVirNum+=1 
     
     menu_addedit_boolean("Save Chat Logs:","global.writeChatLog",'
         es_write_ini("s","WriteChatLog",argument0)

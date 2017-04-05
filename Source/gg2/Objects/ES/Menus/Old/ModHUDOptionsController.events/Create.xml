@@ -26,9 +26,9 @@
     menu_background(512, 24, 8, 12, 4);
     bgtabs = true;
     
-    menu_addedit_boolean("Kill-Log Background:","global.killLogBG",'
-        es_write_ini("s","KillLogBG",argument0)
-    ')setVirNum+=1
+    //menu_addedit_boolean("Kill-Log Background:","global.killLogBG",'
+    //    es_write_ini("s","KillLogBG",argument0)
+    //')setVirNum+=1
     
     menu_addedit_num("Kill-Log Max Items:","global.killLogItems",'
         es_write_ini("s","KillLogItems",argument0)

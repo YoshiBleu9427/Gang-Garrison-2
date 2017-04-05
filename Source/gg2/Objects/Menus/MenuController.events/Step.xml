@@ -47,9 +47,12 @@ if room==CustomMapRoom{
     }
 }
 
-if (instance_exists(ModOptionsController) or instance_exists(ModHUDOptionsController) or instance_exists(ModHUD2OptionsController)){
-//or instance_exists(ModGraphicalOptionsController) or instance_exists(ModHostOptionsController) or instance_exists(ModControlsOptionsController)){
-    if(view_hview[0] &lt; 800){
+if instance_exists(ModOptGFXBasic) or instance_exists(ModOptGFXAdv){
+    hPlus=60
+    if instance_exists(ModOptGFXAdv){
+        hPlus=220
+    }
+    if(view_hview[0] &lt; 720+hPlus){
         ds_list_add(mouse_samples, window_mouse_get_y());
         while(ds_list_size(mouse_samples) &gt; 10)
             ds_list_delete(mouse_samples, 0);
@@ -59,7 +62,7 @@ if (instance_exists(ModOptionsController) or instance_exists(ModHUDOptionsContro
             des_y += ds_list_find_value(mouse_samples, i);
         des_y /= ds_list_size(mouse_samples);
         
-        ybegin = round(baseybegin - min(1, max(0, des_y/view_hview[0]))*(800-view_hview[0]));
+        ybegin = round(baseybegin - min(1, max(0, des_y/view_hview[0]))*(720+hPlus-view_hview[0]));
     }
 }
 stepHasRun = true;

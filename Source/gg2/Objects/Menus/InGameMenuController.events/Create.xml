@@ -38,7 +38,7 @@
     ');
     menu_addlink("[3] Mod Options", '
         instance_destroy();
-        instance_create(0,0,ModOptionsController);
+        instance_create(0,0,ModHostOptionsController);
     ');
     menu_addlink("[4] Disconnect", '
         if instance_exists(ReadyUpController){

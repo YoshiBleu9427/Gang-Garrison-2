@@ -35,25 +35,21 @@
     menu_addedit_key("Open/Close Console:","global.consoleKey")setVirNum+=1
     
     //TABS
-    menu_addtablink("General", '
-        instance_destroy()
-        instance_create(x,y,ModOptionsController)
-    ');
     menu_addtablink("Host", '
         instance_destroy()
         instance_create(x,y,ModHostOptionsController)
     ');
-    menu_addtablink("GFX", '
+    menu_addtablink("GFX Basic", '
         instance_destroy()
-        instance_create(x,y,ModGraphicalOptionsController)
+        instance_create(x,y,ModOptGFXBasic)
     ');
-    menu_addtablink("HUD", '
+    menu_addtablink("GFX Adv", '
         instance_destroy()
-        instance_create(x,y,ModHUDOptionsController)
+        instance_create(x,y,ModOptGFXAdv)
     ');
-    menu_addtablink("HUD 2", '
+    menu_addtablink("Misc", '
         instance_destroy()
-        instance_create(x,y,ModHUD2OptionsController)
+        instance_create(x,y,ModOptMisc)
     ');
     menu_addtablink("Controls", '
         instance_destroy()

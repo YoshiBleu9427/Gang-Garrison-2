@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="ModOptionsController" type="RESOURCE"/>
+  <resource name="Old" type="GROUP"/>
   <resource name="ModHostOptionsController" type="RESOURCE"/>
-  <resource name="ModGraphicalOptionsController" type="RESOURCE"/>
-  <resource name="ModHUDOptionsController" type="RESOURCE"/>
-  <resource name="ModHUD2OptionsController" type="RESOURCE"/>
+  <resource name="ModOptGFXBasic" type="RESOURCE"/>
+  <resource name="ModOptGFXAdv" type="RESOURCE"/>
+  <resource name="ModOptMisc" type="RESOURCE"/>
   <resource name="ModControlsOptionsController" type="RESOURCE"/>
   <resource name="ModConfigsController" type="RESOURCE"/>
   <resource name="MapMenuBG" type="RESOURCE"/>
