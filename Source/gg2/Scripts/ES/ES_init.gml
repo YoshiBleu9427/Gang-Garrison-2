@@ -27,9 +27,6 @@ ini_open("ES.ini")
     }
     ini_write_real("s","Borderless",global.borderless)
     
-    global.killLogBG=ini_read_real("s","KillLogBG",1)
-    ini_write_real("s","KillLogBG",global.killLogBG)
-    
     global.killLogItems=ini_read_real("s","KillLogItems",5)
     ini_write_real("s","KillLogItems",global.killLogItems)
     
