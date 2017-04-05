@@ -9,7 +9,7 @@ if global.RCONSentCommand=1{
 }
 
 var command;
-command=Console.input[1]
+command=input[1]//Console.input[1]
 
 if command == ''{
     var key,temp_print;
