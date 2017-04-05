@@ -14,9 +14,12 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">draw_sprite_ext(sprite_index,image_index,x,y,
-2.2+(blastSize/24),
-2.2+(blastSize/24),
+(2+(blastSize/24))*0.75,
+(2+(blastSize/24))*0.75,
 image_angle,c_white,image_alpha)
+
+//1.5+((blastSize*0.75)/24),
+//1.5+((blastSize*0.75)/24),
 </argument>
       </arguments>
     </action>
