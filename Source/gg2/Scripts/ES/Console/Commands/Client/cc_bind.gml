@@ -32,12 +32,12 @@ if ord(input[1])!=0 and string_length(string(input[1]))==1{
         ds_list_add(global.bindsCtrl,string(real(bind)))
         ds_list_add(global.bindCommandsCtrl,command)
         write_binds_to_file_special()
-        console_print('Bound: '+'Non-character $ key'+' ('+string(real(bind))+') to: '+command)
+        console_print('Bound: '+'Non-character key'+' ('+string(real(bind))+') to: '+command)
         exit;
     }else{
         ds_list_replace(global.bindCommandsCtrl,ds_list_find_index(global.bindsCtrl,bind),command)
         write_binds_to_file_special()
-        console_print('Overwrote bind: '+'Non-character $ key'+' ('+string(real(bind))+') to: '+command)
+        console_print('Overwrote bind: '+'Non-character key'+' ('+string(real(bind))+') to: '+command)
         exit;
     }
 }else{

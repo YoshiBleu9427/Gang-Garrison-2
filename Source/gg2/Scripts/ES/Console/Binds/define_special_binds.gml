@@ -1,6 +1,6 @@
 global.spBinds=ds_map_create()
-ds_map_add(global.spBinds,vk_nokey,0)
-ds_map_add(global.spBinds,vk_anykey,1)
+//ds_map_add(global.spBinds,vk_nokey,0)
+//ds_map_add(global.spBinds,vk_anykey,1)
 ds_map_add(global.spBinds,vk_backspace,8)
 ds_map_add(global.spBinds,vk_tab,9)
 ds_map_add(global.spBinds,vk_enter,13)

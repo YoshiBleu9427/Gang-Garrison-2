@@ -11,13 +11,26 @@ if global.RCONSentCommand=1{
 var bind;
 bind=string_upper(input[1])
 
-for (i = 0; i < ds_list_size(global.binds); i+=1){
-    if real(ds_list_find_value(global.binds,i))==real(ord(bind)){
-        ds_list_delete(global.binds,i)
-        ds_list_delete(global.bindCommands,i)
-        write_binds_to_file()
-        console_print('Removed bind: '+string(ord(bind)))
-        exit;
+if string_pos('$',string(input[1])){
+    bind=string_digits(bind)
+    for (i = 0; i < ds_list_size(global.bindsCtrl); i+=1){
+        if real(ds_list_find_value(global.bindsCtrl,i))==real(bind){
+            ds_list_delete(global.bindsCtrl,i)
+            ds_list_delete(global.bindCommandsCtrl,i)
+            write_binds_to_file_special()
+            console_print('Removed bind: '+string(bind))
+            exit;
+        }
+    }
+}else{
+    for (i = 0; i < ds_list_size(global.binds); i+=1){
+        if real(ds_list_find_value(global.binds,i))==real(ord(bind)){
+            ds_list_delete(global.binds,i)
+            ds_list_delete(global.bindCommands,i)
+            write_binds_to_file()
+            console_print('Removed bind: '+string(ord(bind)))
+            exit;
+        }
     }
 }
 
