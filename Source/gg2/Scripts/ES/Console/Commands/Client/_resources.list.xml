@@ -12,6 +12,5 @@
   <resource name="cc_cast" type="RESOURCE"/>
   <resource name="cc_disconnect" type="RESOURCE"/>
   <resource name="cc_smute" type="RESOURCE"/>
-  <resource name="cc_key" type="RESOURCE"/>
   <resource name="cc_say" type="RESOURCE"/>
 </resources>

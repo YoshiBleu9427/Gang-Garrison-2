@@ -62,6 +62,6 @@ if global.chatPBF_32==1 or global.chatPBF_64==1{
 
 ", "
 console_print('Syntax: map <map name>')
-console_print('Append <end> to have the round end with this command.')
 console_print('Sets the next map to the desired map.')
+console_print('Append <end> to have the round end with this command.')
 ")

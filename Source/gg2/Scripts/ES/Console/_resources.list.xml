@@ -9,5 +9,4 @@
   <resource name="console_rulesCheck" type="RESOURCE"/>
   <resource name="console_parseInput" type="RESOURCE"/>
   <resource name="console_parseInput_RCON" type="RESOURCE"/>
-  <resource name="sprint" type="RESOURCE"/>
 </resources>

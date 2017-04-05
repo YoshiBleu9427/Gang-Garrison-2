@@ -1,7 +1,5 @@
-//cc_
-//put these in correct order
-//CONSOLE COMMANDS
-//server
+//Add console commands to command map
+//Server
 cc_rcon()
 cc_password()
 cc_end()
@@ -31,8 +29,9 @@ cc_load()
 cc_reset()
 cc_medcabs()
 cc_spawndoors()
+cc_jump()
 
-//client
+//Client
 cc_help()
 cc_execute()
 cc_quit()
@@ -45,5 +44,4 @@ cc_log()
 cc_cast()
 cc_disconnect()
 cc_smute()
-//cc_key()
 cc_say()
