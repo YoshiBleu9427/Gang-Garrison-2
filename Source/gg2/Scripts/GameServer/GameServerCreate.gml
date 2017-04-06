@@ -141,7 +141,9 @@
         }
     }
     
+    var mapName
     global.jumpMode=0
+    mapName = ds_list_find_value(global.map_rotation, 0);
     if global.jumpMapMode==1{
         global.jumpMode=1
     }else if global.jumpMapMode==2{
@@ -156,7 +158,7 @@
         prefixIndex[8]="surf"
         prefixIndex[9]="jump"
         for (i=0; i<10; i+=1){
-            if string_pos(prefixIndex[i],string_lower(map))==1{
+            if string_pos(prefixIndex[i],string_lower(mapName))==1{
                 global.jumpMode=1
             }
         }
