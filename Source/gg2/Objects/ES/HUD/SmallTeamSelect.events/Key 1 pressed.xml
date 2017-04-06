@@ -14,6 +14,7 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">if instance_exists(Console) exit;
+if ChatBox.isTyping!=false exit;
 
 //team=choose(TEAM_RED,TEAM_BLUE)
 var redTeam,blueTeam;
