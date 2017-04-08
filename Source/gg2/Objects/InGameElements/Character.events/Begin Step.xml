@@ -59,6 +59,7 @@ if(!taunting and !omnomnomnom){
             tauntindex=0;
             image_speed=tauntspeed;
         } 
+    }
     
     if(pressedKeys &amp; $80 or (player.queueJump and wantToJump)){
         charSetSolids();

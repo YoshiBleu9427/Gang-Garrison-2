@@ -179,8 +179,7 @@ else if (taunting)
     draw_sprite_ext_overlay(tauntsprite,tauntOverlays,gearList,tauntindex,xr,yr,image_xscale,image_yscale,image_angle,c_white,1);
     if (ubered)
         draw_sprite_ext_overlay(tauntsprite,tauntOverlays,gearList,tauntindex,xr,yr,image_xscale,image_yscale,image_angle,ubercolour,0.7);
-}
-else if (player.humiliated)
+}else if (player.humiliated){
     draw_sprite_ext(humiliationPoses,floor(animationImage)+humiliationOffset,xr,yr,image_xscale,image_yscale,image_angle,c_white,image_alpha);
 }else if (!taunting){
     if (intel and player.class != CLASS_QUOTE and !zoomed){
@@ -188,6 +187,7 @@ else if (player.humiliated)
     }
     if (zoomed){
         overlayOffset += 4;
+    }
     if (cloak)
     {
         if (!ubered)

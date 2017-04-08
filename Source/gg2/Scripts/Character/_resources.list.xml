@@ -3,4 +3,6 @@
   <resource name="character_init" type="RESOURCE"/>
   <resource name="getCharacterObject" type="RESOURCE"/>
   <resource name="removePlayer" type="RESOURCE"/>
+  <resource name="getCharacterSpriteId" type="RESOURCE"/>
+  <resource name="initCharacterSpritePrefixes" type="RESOURCE"/>
 </resources>

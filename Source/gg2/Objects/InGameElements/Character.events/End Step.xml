@@ -155,7 +155,7 @@ if (taunting){
         taunting = false;
     if (hasClassReward(player, "TauntMoney_"))
     {
-        if (tauntindex == 0.30)
+        if (tauntindex == 0.30){
             instance_create(x, y, Money);
         }
     }

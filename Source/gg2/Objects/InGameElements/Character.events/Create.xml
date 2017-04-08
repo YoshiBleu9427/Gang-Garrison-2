@@ -270,8 +270,10 @@
             ds_list_add(walkOverlays, global.HatBobbleClassOverlay[player.class]);
             ds_list_add(omnomnomnomOverlays, global.HatBobbleSandwich[player.class]);
         }
-        if (player.class == CLASS_SNIPER){
+        if (player.class == CLASS_SNIPER)
+        {
             ds_list_add(crouchOverlays, global.HatBobbleClassOverlay[player.class]);
+        }
             
         if (player.class == CLASS_SPY and player.team == TEAM_BLUE)
         {
@@ -295,8 +297,10 @@
             ds_list_add(walkOverlays, global.TopHatMonocleOverlay[player.class]);
             ds_list_add(omnomnomnomOverlays, global.TopHatMonocleSandwich[player.class]);
         }
-        if (player.class == CLASS_SNIPER){
+        if (player.class == CLASS_SNIPER)
+        {
             ds_list_add(crouchOverlays, global.TopHatMonocleOverlay[player.class]);
+        }
             
         if (player.class == CLASS_QUOTE and player.team == TEAM_BLUE)
         {
@@ -320,8 +324,10 @@
             ds_list_add(walkOverlays, global.TopHatOverlay[player.class]);
             ds_list_add(omnomnomnomOverlays, global.TopHatSandwich[player.class]);
         }
-        if (player.class == CLASS_SNIPER){
+        if (player.class == CLASS_SNIPER)
+        {
             ds_list_add(crouchOverlays, global.TopHatOverlay[player.class]);
+        }
             
         if (player.class == CLASS_QUOTE and player.team == TEAM_BLUE)
         {
