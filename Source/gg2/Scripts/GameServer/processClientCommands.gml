@@ -116,7 +116,7 @@ while(commandLimitRemaining > 0) {
             
             if global.lockedTeams==1{
                 break;
-			}
+            }
             
             if global.maxPlayers!=-1{
                 var redTeam,blueTeam;
@@ -137,10 +137,10 @@ while(commandLimitRemaining > 0) {
                     exit;
                 }
             }
-			
-			// Invalid team was requested, treat it as a random team
-			if(newTeam != TEAM_RED and newTeam != TEAM_BLUE and newTeam != TEAM_SPECTATOR)
-				newTeam = TEAM_ANY;
+
+            // Invalid team was requested, treat it as a random team
+            if(newTeam != TEAM_RED and newTeam != TEAM_BLUE and newTeam != TEAM_SPECTATOR)
+                newTeam = TEAM_ANY;
             
             redSuperiority = 0   //calculate which team is bigger
             balance = -1;

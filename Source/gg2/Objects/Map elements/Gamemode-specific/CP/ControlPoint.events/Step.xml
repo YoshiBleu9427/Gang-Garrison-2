@@ -280,10 +280,10 @@ if(capping &lt;= 0){
         }
         GameServer.syncTimer = 1; 
     }
-}else if floor(capping) == floor(capTime - capTime/4)-10 or floor(capping) == floor(capTime/4)-10 or floor(capping) == floor(capTime/10)-10{ //floor(capping)&lt;capTime
+}//else if floor(capping) == floor(capTime - capTime/4)-10 or floor(capping) == floor(capTime/4)-10 or floor(capping) == floor(capTime/10)-10{ //floor(capping)&lt;capTime
     //since CPs are not perfectly in sync,the client might be ahead of the server, so stall it
-    capping -= 10*global.delta_factor;
-}
+//    capping -= 10*global.delta_factor;
+//}
 
 if global.isLive==0{
     capping=0

@@ -270,7 +270,7 @@ if (intel){
     }
     if (cloak){
         cloak=false;
-        cloakAplha=1;
+        cloakAlpha=1;
     }
     //if (!omnomnomnom){ // Do not recharge intel timer if eating
         //intelRecharge = min(INTEL_MAX_TIMER, // Cap timer charge at the intel timer's length (bandwidth)

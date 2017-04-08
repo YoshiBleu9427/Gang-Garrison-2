@@ -27,7 +27,6 @@ alarm[3]=lifetime / global.delta_factor
 alarm[4]=lifetime-5 / global.delta_factor
 
 //other alarms
-alarm[0]=55/global.delta_factor
 alarm[1]=20/global.delta_factor
 alarm[2]=30/global.delta_factor
 </argument>
