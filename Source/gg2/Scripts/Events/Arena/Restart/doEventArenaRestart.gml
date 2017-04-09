@@ -3,6 +3,10 @@ with(ArenaHUD) {
     endCount = 0;
     cpUnlock = 45*30;
     winners = TEAM_SPECTATOR;
+    overtime=0
+    timeLimit=2*30*60//global.timeLimitMins*30*60;
+    timer=timeLimit;
+    GameServer.syncTimer = 1;
 }
 
 ArenaControlPoint.team = -1;

@@ -1,5 +1,6 @@
+ArenaHUD.overtime=0
 ArenaHUD.gameStarted = 1;
-ArenaHUD.timer=3*30*60
+ArenaHUD.timer=ArenaHUD.timeLimit
 
 with (Player){
     if (team != TEAM_SPECTATOR){
