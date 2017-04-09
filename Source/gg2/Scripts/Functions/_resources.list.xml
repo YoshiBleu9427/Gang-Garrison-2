@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+  <resource name="Classlimits" type="GROUP"/>
   <resource name="Damage API" type="GROUP"/>
   <resource name="Drawing" type="GROUP"/>
-  <resource name="Classlimits" type="GROUP"/>
   <resource name="Faucet HTTP" type="GROUP"/>
   <resource name="Gameplay" type="GROUP"/>
   <resource name="Kill Log" type="GROUP"/>
