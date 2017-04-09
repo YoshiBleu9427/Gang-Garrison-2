@@ -52,6 +52,7 @@ if(vspeed == 0 and (!place_meeting(x, y+1, DropdownPlatform) or place_meeting(x,
 xprevious = x;
 yprevious = y;
 
+//Bhop
 if vspeed &gt;= 0{
     if !place_free(x,y+1){
         if wantToJump==false {
