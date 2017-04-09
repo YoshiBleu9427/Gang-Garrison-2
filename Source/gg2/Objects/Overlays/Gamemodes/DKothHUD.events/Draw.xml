@@ -61,7 +61,8 @@ for (i=1; i&lt;= global.totalControlPoints; i+=1){
     if (global.cp[i].locked){
         if cpUnlock&gt;0{
             draw_sprite_ext(ControlPointLockS, 0, drawx, yoffset+ysize-45, 2, 2, 0, c_white, 1);
-            draw_text_transformed(drawx, yoffset+ysize-28, ceil(cpUnlock/30), 1, 1, 0);
+            draw_set_color(c_black);
+            draw_text_transformed(drawx, yoffset+ysize-25, ceil(cpUnlock/30), 1, 1, 0);
         }else{
             draw_sprite_ext(ControlPointLockS, 0, drawx, yoffset+ysize-40, 2, 2, 0, c_white, 1);
         }
