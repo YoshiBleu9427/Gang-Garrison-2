@@ -93,5 +93,6 @@ console_print('Could not find a player with that ID or name.')
 ", "
 console_print('Syntax: ban <Player ID/Player Name>')
 console_print('Bans the selected player from the server. IDs are considered before names.')
-console_print('You can unban a person by removing their IP from the banlist, but this will not take effect until the server is restarted.')
+console_print('You can unban a person with the <unban> command, or by removing their IP from the banlist,')
+console_print('but that will not take effect until the server is restarted.')
 ");

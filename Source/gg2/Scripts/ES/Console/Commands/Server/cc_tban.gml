@@ -87,6 +87,7 @@ with Player{
 console_print('Could not find a player with that ID or name.')
 ", "
 console_print('Syntax: tban <Player ID/Player Name>')
-console_print('Temporarily bans the selected player from the server, until the server is restarted. IDs are considered before names.')
-console_print('You can unban a person by removing their IP from the banlist, but this will not take effect until the server is restarted.')
+console_print('Temporarily bans the selected player from the server, until the server is restarted.')
+console_print('IDs are considered before names.')
+console_print('You can unban a person with the <unban> command.')
 ");
