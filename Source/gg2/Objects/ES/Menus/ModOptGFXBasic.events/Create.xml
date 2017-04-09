@@ -128,7 +128,7 @@
         instance_destroy()
         instance_create(x,y,ModOptGFXAdv)
     ');
-    menu_addtablink("Misc", '
+    menu_addtablink("Misc.", '
         instance_destroy()
         instance_create(x,y,ModOptMisc)
     ');
