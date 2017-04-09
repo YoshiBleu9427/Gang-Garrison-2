@@ -37,16 +37,13 @@ reloadTime = 55;
 reloadBuffer = 0;
 golden=1
 
-//if(golden){
+if(golden){
     normalSprite = BladeGoldS;
     recoilSprite = BladeGoldFS;
-
-//}else{
-//    normalSprite = BladeS;
-//    recoilSprite = BladeFS;
-//}
-//normalSprite = BladeS;
-//recoilSprite = BladeFS;
+}else{
+    normalSprite = BladeS;
+    recoilSprite = BladeFS;
+}
 reloadSprite = -1;
 sprite_index=normalSprite
 
