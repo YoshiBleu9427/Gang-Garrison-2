@@ -164,6 +164,7 @@ if(!nearestTarget) {
             }
         }
         shooting=true;
+        tracerAlpha=0.6
         readyToShoot=false;
         alarm[0]=refireTime / global.delta_factor;
     }
