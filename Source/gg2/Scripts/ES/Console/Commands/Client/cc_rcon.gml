@@ -43,10 +43,10 @@ if input[1]='add'{
             write_ubyte(player.socket,RCON_LOGIN)
             write_ubyte(player.socket,RCON_LOGIN_SUCCESSFUL)
             ds_list_add(global.RCONList,player)
-            console_print(C_PINK+'RCON: '+player.name+' is now a RCON.')
+            console_print(C_PINK+'RCON: '+player.name+' given RCON access.')
             var color;
             color=getPlayerColor(player, true);
-            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' is now a '+C_PINK+'RCON'+C_WHITE+'.'
+            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' given '+C_PINK+'RCON'+C_WHITE+' access.'
             console_sendmsg()
             exit;
         }else if trueID==0{
@@ -66,10 +66,10 @@ if input[1]='add'{
             write_ubyte(socket,RCON_LOGIN)
             write_ubyte(socket,RCON_LOGIN_SUCCESSFUL)
             ds_list_add(global.RCONList,Player)
-            console_print(C_PINK+'RCON: '+name+' is now a RCON.')
+            console_print(C_PINK+'RCON: '+name+' given RCON access.')
             var color;
             color=getPlayerColor(player, true);
-            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(name)+C_WHITE+' is now a '+C_PINK+'RCON'+C_WHITE+'.'
+            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(name)+C_WHITE+' given '+C_PINK+'RCON'+C_WHITE+' access.'
             console_sendmsg()
             exit;
         }
@@ -97,10 +97,10 @@ if input[1]='remove'{
                 write_ubyte(player.socket,RCON_LOGIN)
                 write_ubyte(player.socket,RCON_LOGIN_FAILED)
                 ds_list_delete(global.RCONList,ds_list_find_index(global.RCONList,player))
-                console_print(C_PINK+'RCON: '+player.name+' is no longer a RCON.')
+                console_print(C_PINK+'RCON: '+player.name+chr(39)+'s RCON access removed.')
                 var color;
                 color=getPlayerColor(player, true);
-                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' is no longer a '+C_PINK+'RCON'+C_WHITE+'.'
+                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+chr(39)+'s '+C_PINK+'RCON'+C_WHITE+' access'+P_RED+' removed'+C_WHITE+'.'
                 console_sendmsg()
                 exit;
             }else{
@@ -125,10 +125,10 @@ if input[1]='remove'{
                 write_ubyte(socket,RCON_LOGIN)
                 write_ubyte(socket,RCON_LOGIN_FAILED)
                 ds_list_delete(global.RCONList,ds_list_find_index(global.RCONList,Player))
-                console_print(C_PINK+'RCON: '+name+' is no longer a RCON.')
+                console_print(C_PINK+'RCON: '+name+chr(39)+'s RCON access removed.')
                 var color;
                 color=getPlayerColor(player, true);
-                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(name)+C_WHITE+' is no longer a '+C_PINK+'RCON'+C_WHITE+'.'
+                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(name)+C_WHITE+chr(39)+'s '+C_PINK+'RCON'+C_WHITE+' access'+P_RED+' removed'+C_WHITE+'.'
                 console_sendmsg()
                 exit;
             }else{
