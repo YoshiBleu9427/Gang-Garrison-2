@@ -6,7 +6,6 @@
   <resource name="cc_tban" type="RESOURCE"/>
   <resource name="cc_unban" type="RESOURCE"/>
   <resource name="cc_bans" type="RESOURCE"/>
-  <resource name="cc_rcon" type="RESOURCE"/>
   <resource name="cc_kill" type="RESOURCE"/>
   <resource name="cc_message" type="RESOURCE"/>
   <resource name="cc_password" type="RESOURCE"/>
