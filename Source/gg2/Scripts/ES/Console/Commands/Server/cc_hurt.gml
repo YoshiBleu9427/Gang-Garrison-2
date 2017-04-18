@@ -41,7 +41,7 @@ if string_letters(input[1])==''{
             console_print(c_filter(player.name)+' has been hurt for '+string(dmgAmount)+' by admin.')
             var color;
             color=getPlayerColor(player, true);
-            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' has been hurt for '+string(dmgAmount)+' damage by admin.'
+            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' hurt for'+P_RED+' '+string(dmgAmount)+C_WHITE+' damage.'
             console_sendmsg()
             exit;
         }else{
@@ -59,7 +59,7 @@ with Player{
             console_print(c_filter(name)+' has been hurt for '+string(dmgAmount)+' by admin.')
             var color;
             color=getPlayerColor(player, true);
-            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(name)+C_WHITE+' has been hurt for '+string(dmgAmount)+' by admin.'
+            global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(name)+C_WHITE+' hurt for'+P_RED+' '+string(dmgAmount)+C_WHITE+' damage.'
             console_sendmsg()
             exit;
         }else{
