@@ -32,3 +32,4 @@ commandBytes[RUP_READY]=0
 commandBytes[RUP_UNREADY]=0
 commandBytes[DC_REASON_USER]=0
 commandBytes[PLAYER_PING]=2
+commandBytes[MGE_CHANGE_ARENA]=1

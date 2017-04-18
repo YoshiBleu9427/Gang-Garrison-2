@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//fix all this
+
+var a, i, winner, loser, checkArena;
+for (i=0; i&lt;totalArenas; i+=1){
+show_message(i)
+if redScore[i]&gt;=maxScore{
+checkArena=i
+with(Player){
+if MGE_currentArena==other.checkArena{
+//for (a=0; a&lt;ds_list_size(global.players); a+=1){
+//player=ds_list_find_value(global.players,a)
+//if i=player.MGE_currentArena{
+if team==TEAM_RED{
+other.winner=id
+}else if team==TEAM_BLUE{
+other.loser=id
+}
+//}
+}
+}
+
+}
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

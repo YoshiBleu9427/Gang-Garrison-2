@@ -7,4 +7,5 @@
   <resource name="CasterHUD" type="RESOURCE"/>
   <resource name="SmallTeamSelect" type="RESOURCE"/>
   <resource name="SmallClassSelect" type="RESOURCE"/>
+  <resource name="MGE_HUD" type="RESOURCE"/>
 </resources>

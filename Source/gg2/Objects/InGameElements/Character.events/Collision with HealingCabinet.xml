@@ -13,11 +13,12 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if global.healCabs==0 exit;
+        <argument kind="STRING">if !instance_exists(MGE_HUD){
+    if global.healCabs==0 exit;
+}
 
 if (!global.mapchanging){
-    if ((hp &lt; maxHp or nutsNBolts &lt; 100 or !canEat or canBubble==0) and other.heal)
-    {
+    if ((hp &lt; maxHp or nutsNBolts &lt; 100 or !canEat or canBubble==0)){ //and other.heal){
         playsound(x,y,CbntHealSnd);
         hp = maxHp;
         nutsNBolts = maxNutsNBolts;
@@ -34,7 +35,7 @@ if (!global.mapchanging){
         afterburnSource = -1;
     }
     //ammo stuffs
-    if (other.refill) {
+    //if (other.refill) {
         if(currentWeapon.ammoCount &lt; currentWeapon.maxAmmo) {
             switch(currentWeapon.object_index) {
             case Medigun:
@@ -67,13 +68,13 @@ if (!global.mapchanging){
                 break;
             }
         }
-    }
-    if (other.uber and currentWeapon.object_index == Medigun) {
-        if (global.isHost and !currentWeapon.uberReady and !currentWeapon.ubering) {
-            sendEventUberReady(player);
-            doEventUberReady(player);
-        }
-    }
+    //}
+    //if (currentWeapon.object_index == Medigun){ //and other.uber) {
+        //if (global.isHost and !currentWeapon.uberReady and !currentWeapon.ubering) {
+            //sendEventUberReady(player);
+            //doEventUberReady(player);
+        //}
+    //}
 }
 </argument>
       </arguments>

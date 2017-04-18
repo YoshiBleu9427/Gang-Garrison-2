@@ -64,6 +64,8 @@ if(instance_exists(IntelligenceBase) or instance_exists(Intelligence)){
         event_user(0);
     }
     instance_create(0,0,ControlPointHUD);
+}else if instance_exists(MGEController){
+    instance_create(0,0,MGE_HUD)
 }else{
     instance_create(0, 0, TeamDeathmatchHUD);
 }
@@ -134,6 +136,10 @@ if global.currentConfig==""{
         global.forceReady=1
     }
 }*/
+
+if instance_exists(MGE_HUD){
+    global.forceReady=1
+}
 
 if(instance_exists(GameServer))
 {

@@ -44,6 +44,8 @@
                 myTeamCP += 1;
         }
         group = myTeamCP;
+    }else if instance_exists(MGE_HUD){
+        group = MGE_currentArena
     }
     else // game mode does not support forward spawns
     {

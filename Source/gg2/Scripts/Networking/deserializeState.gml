@@ -41,6 +41,20 @@ if(argument0 == FULL_UPDATE) {
     global.Server_Respawntime = global.Server_RespawntimeSec * 30;
     global.arenaRoundsToWin = read_ubyte(global.tempBuffer)
     global.isLive = read_ubyte(global.tempBuffer)
+    
+    if instance_exists(MGE_HUD){
+        receiveCompleteMessage(global.serverSocket,10,global.tempBuffer);
+        MGE_HUD.redScore[0]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[1]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[2]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[3]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[4]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[0]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[1]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[2]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[3]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[4]=read_ubyte(global.tempBuffer)
+    }
          
     with (HUD){
         event_user(13);
@@ -57,6 +71,20 @@ if(argument0 == CAPS_UPDATE) {
     global.redCaps = read_ubyte(global.tempBuffer);
     global.blueCaps = read_ubyte(global.tempBuffer);
     global.Server_RespawntimeSec = read_ubyte(global.tempBuffer);
+    
+    if instance_exists(MGE_HUD){
+        receiveCompleteMessage(global.serverSocket,10,global.tempBuffer);
+        MGE_HUD.redScore[0]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[1]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[2]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[3]=read_ubyte(global.tempBuffer)
+        MGE_HUD.redScore[4]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[0]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[1]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[2]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[3]=read_ubyte(global.tempBuffer)
+        MGE_HUD.blueScore[4]=read_ubyte(global.tempBuffer)
+    }
 
     with (HUD)
         event_user(13);

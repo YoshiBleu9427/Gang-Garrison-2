@@ -4,5 +4,6 @@
   <resource name="Menus" type="GROUP"/>
   <resource name="HUD" type="GROUP"/>
   <resource name="Projectiles" type="GROUP"/>
+  <resource name="MapElements" type="GROUP"/>
   <resource name="ModController" type="RESOURCE"/>
 </resources>

@@ -28,12 +28,17 @@
         write_ubyte(global.serializeBuffer, stats[BONUS]);
         write_ubyte(global.serializeBuffer, stats[POINTS]);
         write_ubyte(global.serializeBuffer, queueJump);
+        
         var unparsed;
         unparsed = unparseRewards(rewards);
         write_ushort(global.serializeBuffer, string_length(unparsed));
         write_string(global.serializeBuffer, unparsed);
     }
     
+    if(global.updateType == QUICK_UPDATE){
+        write_byte(global.serializeBuffer, MGE_currentArena)
+    }
+        
     subobjects=0;
     
     if(object != -1) subobjects |= $01;

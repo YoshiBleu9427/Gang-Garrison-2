@@ -49,6 +49,20 @@
         write_ubyte(argument1, global.Server_RespawntimeSec);
         write_ubyte(argument1, global.arenaRoundsToWin)
         write_ubyte(argument1, global.isLive)
+        
+        if instance_exists(MGE_HUD){
+            write_ubyte(argument1,MGE_HUD.redScore[0])
+            write_ubyte(argument1,MGE_HUD.redScore[1])
+            write_ubyte(argument1,MGE_HUD.redScore[2])
+            write_ubyte(argument1,MGE_HUD.redScore[3])
+            write_ubyte(argument1,MGE_HUD.redScore[4])
+            write_ubyte(argument1,MGE_HUD.blueScore[0])
+            write_ubyte(argument1,MGE_HUD.blueScore[1])
+            write_ubyte(argument1,MGE_HUD.blueScore[2])
+            write_ubyte(argument1,MGE_HUD.blueScore[3])
+            write_ubyte(argument1,MGE_HUD.blueScore[4])
+        }
+        
         with (HUD){
             event_user(12);
         }
@@ -63,6 +77,20 @@
         write_ubyte(argument1, global.redCaps);
         write_ubyte(argument1, global.blueCaps);
         write_ubyte(argument1, global.Server_RespawntimeSec);
+        
+        if instance_exists(MGE_HUD){
+            write_ubyte(argument1,MGE_HUD.redScore[0])
+            write_ubyte(argument1,MGE_HUD.redScore[1])
+            write_ubyte(argument1,MGE_HUD.redScore[2])
+            write_ubyte(argument1,MGE_HUD.redScore[3])
+            write_ubyte(argument1,MGE_HUD.redScore[4])
+            write_ubyte(argument1,MGE_HUD.blueScore[0])
+            write_ubyte(argument1,MGE_HUD.blueScore[1])
+            write_ubyte(argument1,MGE_HUD.blueScore[2])
+            write_ubyte(argument1,MGE_HUD.blueScore[3])
+            write_ubyte(argument1,MGE_HUD.blueScore[4])
+        }
+        
         with (HUD)
             event_user(12);
     }

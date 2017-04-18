@@ -163,4 +163,5 @@
   <constant name="DC_REASON_USER" value="70"/>
   <constant name="PLAYER_PING" value="71"/>
   <constant name="KICK_TEMP_BANNED" value="72"/>
+  <constant name="MGE_CHANGE_ARENA" value="73"/>
 </constants>

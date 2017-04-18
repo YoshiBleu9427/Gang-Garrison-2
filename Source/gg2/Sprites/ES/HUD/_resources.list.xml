@@ -10,4 +10,5 @@
   <resource name="MoveCursorS" type="RESOURCE"/>
   <resource name="StatsBoardS" type="RESOURCE"/>
   <resource name="IntelStatusESS" type="RESOURCE"/>
+  <resource name="MGE_HUDS" type="RESOURCE"/>
 </resources>

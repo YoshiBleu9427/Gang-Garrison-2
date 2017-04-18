@@ -3,4 +3,5 @@
   <resource name="chatc_ready" type="RESOURCE"/>
   <resource name="chatc_unready" type="RESOURCE"/>
   <resource name="chatc_toggleready" type="RESOURCE"/>
+  <resource name="chatc_arena" type="RESOURCE"/>
 </resources>

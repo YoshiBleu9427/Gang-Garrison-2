@@ -109,7 +109,9 @@ while(commandLimitRemaining > 0) {
                 }else if(player.alarm[5]<=0){
                     player.alarm[5] = 1;
                 }
-                class = checkClasslimits(player, player.team, class);
+                if !instance_exists(MGE_HUD){
+                    class = checkClasslimits(player, player.team, class);
+                }
                 player.class = class;
                 ServerPlayerChangeclass(playerId, player.class, global.sendBuffer);
             }
@@ -144,8 +146,13 @@ while(commandLimitRemaining > 0) {
             }
 
             // Invalid team was requested, treat it as a random team
-            if(newTeam != TEAM_RED and newTeam != TEAM_BLUE and newTeam != TEAM_SPECTATOR)
+            if(newTeam != TEAM_RED and newTeam != TEAM_BLUE and newTeam != TEAM_SPECTATOR){
                 newTeam = TEAM_ANY;
+            }
+            
+            if player.MGE_currentArena==-1{
+                newTeam=TEAM_SPECTATOR
+            }
             
             redSuperiority = 0   //calculate which team is bigger
             balance = -1;
@@ -175,7 +182,11 @@ while(commandLimitRemaining > 0) {
                             }
                         }
                         if global.isLive==1{
-                            player.alarm[5] = global.Server_Respawntime / global.delta_factor
+                            if !instance_exists(MGE_HUD){
+                                player.alarm[5] = global.Server_Respawntime / global.delta_factor
+                            }else{
+                                player.alarm[5] = 30 / global.delta_factor
+                            }
                         }
                     }else if(player.alarm[5]<=0){
                         player.alarm[5] = 1;
@@ -395,10 +406,10 @@ while(commandLimitRemaining > 0) {
                 write_ubyte(player.socket,RCON_LOGIN)
                 write_ubyte(player.socket,RCON_LOGIN_SUCCESSFUL) //valid password
                 ds_list_add(global.RCONList,player)
-                console_print(C_PINK+'RCON: '+player.name+' is now identified as a RCON.')
+                console_print(C_PINK+'RCON: '+player.name+' given RCON access.')
                 var color;
                 color=getPlayerColor(player, true);
-                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' is now a '+C_PINK+'RCON'+C_WHITE+'.'
+                global.srvMsgChatPrint=global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' given '+C_PINK+'RCON'+C_WHITE+' access.'
                 console_sendmsg()
             }else{
                 write_ubyte(player.socket,RCON_LOGIN)
@@ -667,6 +678,73 @@ while(commandLimitRemaining > 0) {
                 with(player.object){
                     playerPing=read_ushort(player.socket)
                 }
+            }
+            break;
+            
+        case MGE_CHANGE_ARENA:
+            var newArena;
+            newArena = read_byte(player.socket);
+            
+            if player.MGE_currentArena==newArena{
+                exit;
+            }
+            
+            var newArenaRed,newArenaBlue;
+            newArenaRed=0
+            newArenaBlue=0
+            for (i=0; i<ds_list_size(global.players); i+=1){
+                if ds_list_find_value(global.players,i).MGE_currentArena==newArena{
+                    if newArena!=-1{
+                        if ds_list_find_value(global.players,i).team==TEAM_RED newArenaRed+=1
+                        if ds_list_find_value(global.players,i).team==TEAM_BLUE newArenaBlue+=1
+                    }
+                }
+            }
+            
+            if newArenaRed>0 and newArenaBlue>0{
+                exit;
+            }
+            
+            player.MGE_currentArena=newArena
+            
+            if(player.object!=-1){
+                with(player.object){
+                    if (!instance_exists(lastDamageDealer) || lastDamageDealer == player){
+                        sendEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
+                        doEventPlayerDeath(player, player, noone, DAMAGE_SOURCE_BID_FAREWELL);
+                    }else{
+                        var assistant;
+                        assistant = secondToLastDamageDealer;
+                        if (lastDamageDealer.object){
+                            if (lastDamageDealer.object.healer){
+                                assistant = lastDamageDealer.object.healer;
+                            }
+                        }
+                        sendEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
+                        doEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
+                    }
+                }
+                if global.isLive==1{
+                    player.alarm[5] = 30 / global.delta_factor
+                }
+            }else if(player.alarm[5]<=0){
+                player.alarm[5] = 1;
+            }
+            
+            if newArena==-1{
+                player.team=TEAM_SPECTATOR
+                ServerPlayerChangeteam(playerId, player.team, global.sendBuffer);
+            }
+            
+            if newArena!=-1{
+                if newArenaRed==0 and newArenaBlue==0{
+                    player.team=choose(TEAM_RED,TEAM_BLUE)
+                }else if newArenaRed==0 and newArenaBlue>0{
+                    player.team=TEAM_RED
+                }else if newArenaRed>0 and newArenaBlue==0{
+                    player.team=TEAM_BLUE
+                }
+                ServerPlayerChangeteam(playerId, player.team, global.sendBuffer);
             }
             break;
             

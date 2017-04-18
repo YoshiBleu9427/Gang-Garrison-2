@@ -27,6 +27,7 @@
     hrID=-1
     isDerpduck=0
     oldPing=-1
+    MGE_currentArena=-1
     
     // client setting stuff; set to defaults
     queueJump = false;
