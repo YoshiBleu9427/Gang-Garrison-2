@@ -1,6 +1,6 @@
 //get better names
 globalvar C_WHITE, C_BLACK, C_RED, C_BLUE, C_ORNGE, C_YELLW, C_BROWN, C_GREEN, C_LBLUE, C_PINK, C_LRED, C_PURPL, C_LPINK, C_CYAN, C_CYAN2;
-globalvar; 
+globalvar C_TEAL; 
 globalvar P_RED, P_BLUE, P_YELLW, P_DKRED, P_ORNGE, P_DKPRP, P_DBLUE, P_AQUA, P_DKGRN;
 
 C_WHITE="/:/255-255-255" //COLOR_WHITE
