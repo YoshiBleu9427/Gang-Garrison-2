@@ -224,19 +224,17 @@ if(object_index == ArenaControlPoint and cappingTeam != -1){
         }
     }
     
-    if(cappingTeam == TEAM_BLUE){
-        capTime = baseCapTime //* livereds/max(1,reds)
+    if ArenaHUD.overtime==1{
+        //capping+=capTime/2
+        capTime=60
     }else{
-        capTime = baseCapTime //* liveblues/max(1,blues)
+        capTime = baseCapTime //* livereds/max(1,reds)
     }
     if(capTime == 0){
         capTime = 1;
     }
     if (variable_local_exists("lastCapTime")){
         capping = (capping/lastCapTime) * capTime;
-    }
-    if ArenaHUD.overtime==1{
-        capping+=capTime/2
     }
     lastCapTime = capTime;
 }
