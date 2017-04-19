@@ -19,7 +19,7 @@ teamoffset=0;
 overtime = 0;
 global.rupTime=5*30/global.delta_factor
 
-maxScore=2
+maxScore=global.mgeScoreLimit
 totalArenas=5 //0-4
 
 redScore[0]=0
@@ -45,6 +45,22 @@ arena[1]=0
 arena[2]=0
 arena[3]=0
 arena[4]=0
+
+redPlayer[0]=-1
+redPlayer[1]=-1
+redPlayer[2]=-1
+redPlayer[3]=-1
+redPlayer[4]=-1
+
+bluePlayer[0]=-1
+bluePlayer[1]=-1
+bluePlayer[2]=-1
+bluePlayer[3]=-1
+bluePlayer[4]=-1
+
+sendWinner=-1
+sendLoser=-1
+sendI=-1
 </argument>
       </arguments>
     </action>

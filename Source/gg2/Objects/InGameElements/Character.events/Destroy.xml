@@ -71,7 +71,7 @@
         
         if lastDamageDealer != -1 and instance_exists(lastDamageDealer){
             if lastDamageDealer.object != -1 and instance_exists(lastDamageDealer.object){
-                if (lastDamageDealer==global.myself ){
+                if lastDamageDealer.MGE_currentArena=player.MGE_currentArena{
                     with(lastDamageDealer.object){
                         event_perform(ev_collision, HealingCabinet);
                         

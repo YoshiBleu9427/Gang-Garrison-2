@@ -13,28 +13,45 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">//fix all this
+        <argument kind="STRING">var a, i;
+for (a=0; a&lt;ds_list_size(global.players); a+=1){
+    player=ds_list_find_value(global.players,a)
+    if player.MGE_currentArena!=-1{
+        if player.team==TEAM_RED{
+            redPlayer[player.MGE_currentArena]=player
+        }else if player.team==TEAM_BLUE{
+            bluePlayer[player.MGE_currentArena]=player
+        }
+    }
+}
 
-var a, i, winner, loser, checkArena;
 for (i=0; i&lt;totalArenas; i+=1){
-show_message(i)
-if redScore[i]&gt;=maxScore{
-checkArena=i
-with(Player){
-if MGE_currentArena==other.checkArena{
-//for (a=0; a&lt;ds_list_size(global.players); a+=1){
-//player=ds_list_find_value(global.players,a)
-//if i=player.MGE_currentArena{
-if team==TEAM_RED{
-other.winner=id
-}else if team==TEAM_BLUE{
-other.loser=id
-}
-//}
-}
-}
-
-}
+    var winner, loser;
+    if redScore[i]&gt;=maxScore{
+        winner=redPlayer[i]
+        loser=bluePlayer[i]
+        
+        sendWinner=winner
+        sendLoser=loser
+        sendI=i
+        if sendWinner!=-1{
+            if sendLoser!=-1{
+                event_user(0)
+            }
+        }
+    }else if blueScore[i]&gt;=maxScore{
+        winner=bluePlayer[i]
+        loser=redPlayer[i]
+        
+        sendWinner=winner
+        sendLoser=loser
+        sendI=i
+        if sendWinner!=-1{
+            if sendLoser!=-1{
+                event_user(0)
+            }
+        }
+    }
 }
 </argument>
       </arguments>

@@ -150,8 +150,12 @@ while(commandLimitRemaining > 0) {
                 newTeam = TEAM_ANY;
             }
             
-            if player.MGE_currentArena==-1{
-                newTeam=TEAM_SPECTATOR
+            if instance_exists(MGE_HUD){
+                if player.MGE_currentArena==-1{
+                    newTeam=TEAM_SPECTATOR
+                }else{
+                    exit;
+                }
             }
             
             redSuperiority = 0   //calculate which team is bigger

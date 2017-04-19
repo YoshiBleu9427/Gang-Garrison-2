@@ -33,7 +33,7 @@ if(argument0 == FULL_UPDATE) {
     deserialize(IntelligenceBlue);
     deserialize(SuperBubble)
     
-    receiveCompleteMessage(global.serverSocket,6,global.tempBuffer);
+    receiveCompleteMessage(global.serverSocket,7,global.tempBuffer);
     global.caplimit = read_ubyte(global.tempBuffer);
     global.redCaps = read_ubyte(global.tempBuffer);
     global.blueCaps = read_ubyte(global.tempBuffer);
@@ -41,6 +41,7 @@ if(argument0 == FULL_UPDATE) {
     global.Server_Respawntime = global.Server_RespawntimeSec * 30;
     global.arenaRoundsToWin = read_ubyte(global.tempBuffer)
     global.isLive = read_ubyte(global.tempBuffer)
+    global.mgeScoreLimit = read_ubyte(global.tempBuffer)
     
     if instance_exists(MGE_HUD){
         receiveCompleteMessage(global.serverSocket,10,global.tempBuffer);

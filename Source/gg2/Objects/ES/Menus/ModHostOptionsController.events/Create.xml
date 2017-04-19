@@ -116,6 +116,11 @@
         es_write_ini("s","JumpPlayerAttack",argument0)
     ')setVirNum+=1
     
+    menu_addedit_num("MGE Score Limit:","global.mgeScoreLimit",'
+        es_write_ini("s","MGEScoreLimit",argument0)
+    ')setVirNum+=1
+    
+    
     //TABS
     menu_addtablink("Host", '
         instance_destroy()

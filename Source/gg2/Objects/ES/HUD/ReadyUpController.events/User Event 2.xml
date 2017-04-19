@@ -53,6 +53,10 @@ if instance_exists(InvasionHUD){
     InvasionHUD.timer=InvasionHUD.timeLimit
     GameServer.syncTimer=1
 }
+if instance_exists(MGE_HUD){
+    MGE_HUD.timer=MGE_HUD.timeLimit
+    GameServer.syncTimer=1
+}
 
 if global.isHost==1{
     with(Player){

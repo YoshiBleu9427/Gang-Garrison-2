@@ -49,6 +49,7 @@
         write_ubyte(argument1, global.Server_RespawntimeSec);
         write_ubyte(argument1, global.arenaRoundsToWin)
         write_ubyte(argument1, global.isLive)
+        write_ubyte(argument1, global.mgeScoreLimit)
         
         if instance_exists(MGE_HUD){
             write_ubyte(argument1,MGE_HUD.redScore[0])

@@ -58,7 +58,7 @@ ini_open("ES.ini")
     global.adcpStopwatch=ini_read_real("s","ADCPStopwatch",1)
     ini_write_real("s","ADCPStopwatch",global.adcpStopwatch)
     
-    global.arenaRoundsToWin=ini_read_real("s","ArenaRoundsToWin",5)
+    global.arenaRoundsToWin=max(1, min(255,ini_read_real("s","ArenaRoundsToWin",5)))
     ini_write_real("s","ArenaRoundsToWin",global.arenaRoundsToWin)
     
     global.noShells=ini_read_real("s","NoShells",0)
@@ -200,6 +200,9 @@ ini_open("ES.ini")
     
     global.jumpPlayerAttack=ini_read_real("s","JumpPlayerAttack",0)
     ini_write_real("s","JumpPlayerAttack",global.jumpPlayerAttack)
+    
+    global.mgeScoreLimit=max(1, min(255,ini_read_real("s","MGEScoreLimit",20)))
+    ini_write_real("s","MGEScoreLimit",global.mgeScoreLimit)
 ini_close()
 
 ini_open("controls.gg2")
