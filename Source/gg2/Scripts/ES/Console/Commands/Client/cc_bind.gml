@@ -10,6 +10,18 @@ if global.RCONSentCommand=1{
 var bind, command,number;
 command=string(input[2])
 
+/*
+if input[3]!=''{
+    command+=' '+string(input[3])
+}
+if input[4]!=''{
+    command+=' '+string(input[4])
+}
+if input[5]!=''{
+    command+=' '+string(input[5])
+}
+*/
+
 if ord(input[1])!=0 and string_length(string(input[1]))==1{
     //Create a bind for a normal character
     bind=string_upper(input[1])
