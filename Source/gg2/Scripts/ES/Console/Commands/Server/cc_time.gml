@@ -76,6 +76,11 @@ with(ArenaHUD){
     ArenaHUD.timer=time
     GameServer.syncTimer=1
 }
+with(MGE_HUD){
+    timeLimit=time
+    ArenaHUD.timer=time
+    GameServer.syncTimer=1
+}
 
 console_print('Round time limit changed to: '+string(time/(30*60))+' minutes.')
 exit;
