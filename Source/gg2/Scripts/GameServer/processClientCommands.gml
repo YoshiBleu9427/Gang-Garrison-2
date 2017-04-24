@@ -693,6 +693,13 @@ while(commandLimitRemaining > 0) {
                 exit;
             }
             
+            //Check if the arena exists
+            if (newArena==0 and (!instance_exists(SpawnPointRed) or !instance_exists(SpawnPointBlue))) exit;
+            if (newArena==1 and (!instance_exists(SpawnPointRed1) or !instance_exists(SpawnPointBlue1))) exit;
+            if (newArena==2 and (!instance_exists(SpawnPointRed2) or !instance_exists(SpawnPointBlue2))) exit;
+            if (newArena==3 and (!instance_exists(SpawnPointRed3) or !instance_exists(SpawnPointBlue3))) exit;
+            if (newArena==4 and (!instance_exists(SpawnPointRed4) or !instance_exists(SpawnPointBlue4))) exit;
+            
             var newArenaRed,newArenaBlue;
             newArenaRed=0
             newArenaBlue=0
