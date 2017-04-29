@@ -66,6 +66,6 @@ if global.jumpMapMode==1{
 }
 
 ", "
-console_print('Syntax: jump')
+console_print('Syntax: jump <0-2>')
 console_print('Changes the jump map mode option.')
 ");
