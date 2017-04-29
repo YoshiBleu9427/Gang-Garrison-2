@@ -1,12 +1,14 @@
 chat_addCommandLocal("arena", "
 if !instance_exists(MGE_HUD) exit;
 if string(input[1])=='' exit;
-newArena=real(input[1])-1
+newArena=real(input[1])
+newArenaSend=newArena-1
+
 if newArena<0 exit;
 if newArena>5 exit;
 
 write_ubyte(global.serverSocket, MGE_CHANGE_ARENA)
-write_byte(global.serverSocket, newArena)
+write_byte(global.serverSocket, newArenaSend)
 socket_send(global.serverSocket)
 
 with(TeamSelectController) done=1

@@ -49,6 +49,11 @@ if global.myself!=-1{
             draw_text_transformed(drawx+45,yoffset+ysize-35,"0",2,2,0)
         }
     }
+    
+    draw_set_color(c_white)
+    if global.myself.team==TEAM_SPECTATOR and global.isLive==1{
+        //draw_text_transformed((xoffset+xsize/2),(yoffset+ysize/2)+55+33,"Type /arena &lt;1-5&gt; to join.",1,1,0)
+    }
 }
 
 draw_set_color(c_white)

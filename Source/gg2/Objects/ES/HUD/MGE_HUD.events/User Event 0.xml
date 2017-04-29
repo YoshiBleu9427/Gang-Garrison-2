@@ -32,13 +32,6 @@ write_string(global.publicChatBuffer, message);
 write_byte(global.publicChatBuffer,-1);
 print_to_chat(message);
 
-//Winner &gt; Loser (20 - 0, Arena 1) maybe do this
-
-//message = (global.chatPrintPrefix
-//    +wincolor+c_filter(sendWinner.name)+C_WHITE+" has defeated "+losecolor+" "+c_filter(sendLoser.name)
-//    +C_WHITE+" by "+C_GREEN+string(redScore[sendI])+" - "+string(blueScore[sendI])
-//    +" (Arena "+string(sendI+1)+")"+C_WHITE+".")
-
 if(sendLoser.object != -1){
     with(sendLoser.object){
         if (!instance_exists(lastDamageDealer) || lastDamageDealer == sendLoser){

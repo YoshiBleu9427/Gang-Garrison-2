@@ -40,12 +40,6 @@ arenaPlayers[2]=0
 arenaPlayers[3]=0
 arenaPlayers[4]=0
 
-arena[0]=0 //if the arena exists, then check it when picking spawn groups. if arena[x]!=-1, group=x
-arena[1]=0
-arena[2]=0
-arena[3]=0
-arena[4]=0
-
 redPlayer[0]=-1
 redPlayer[1]=-1
 redPlayer[2]=-1

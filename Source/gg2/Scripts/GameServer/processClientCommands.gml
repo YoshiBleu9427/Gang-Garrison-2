@@ -153,6 +153,15 @@ while(commandLimitRemaining > 0) {
             if instance_exists(MGE_HUD){
                 if player.MGE_currentArena==-1{
                     newTeam=TEAM_SPECTATOR
+                    
+                    message = global.chatPrintPrefix+C_WHITE+"Type "+C_GREEN+"/arena <1-5> "+C_WHITE+"to join."
+                    write_ubyte(player.socket, CHAT_PUBLIC_MESSAGE);
+                    write_ushort(player.socket, string_length(message));
+                    write_string(player.socket, message);
+                    write_byte(player.socket,-1)
+                    if player==global.myself{
+                        print_to_chat(message);
+                    }
                 }else{
                     exit;
                 }
@@ -694,26 +703,28 @@ while(commandLimitRemaining > 0) {
             }
             
             //Check if the arena exists
-            if (newArena==0 and (!instance_exists(SpawnPointRed) or !instance_exists(SpawnPointBlue))) exit;
-            if (newArena==1 and (!instance_exists(SpawnPointRed1) or !instance_exists(SpawnPointBlue1))) exit;
-            if (newArena==2 and (!instance_exists(SpawnPointRed2) or !instance_exists(SpawnPointBlue2))) exit;
-            if (newArena==3 and (!instance_exists(SpawnPointRed3) or !instance_exists(SpawnPointBlue3))) exit;
-            if (newArena==4 and (!instance_exists(SpawnPointRed4) or !instance_exists(SpawnPointBlue4))) exit;
-            
-            var newArenaRed,newArenaBlue;
-            newArenaRed=0
-            newArenaBlue=0
-            for (i=0; i<ds_list_size(global.players); i+=1){
-                if ds_list_find_value(global.players,i).MGE_currentArena==newArena{
-                    if newArena!=-1{
-                        if ds_list_find_value(global.players,i).team==TEAM_RED newArenaRed+=1
-                        if ds_list_find_value(global.players,i).team==TEAM_BLUE newArenaBlue+=1
+            if newArena!=-1{
+                if (newArena==0 and (!instance_exists(SpawnPointRed) or !instance_exists(SpawnPointBlue))) exit;
+                if (newArena==1 and (!instance_exists(SpawnPointRed1) or !instance_exists(SpawnPointBlue1))) exit;
+                if (newArena==2 and (!instance_exists(SpawnPointRed2) or !instance_exists(SpawnPointBlue2))) exit;
+                if (newArena==3 and (!instance_exists(SpawnPointRed3) or !instance_exists(SpawnPointBlue3))) exit;
+                if (newArena==4 and (!instance_exists(SpawnPointRed4) or !instance_exists(SpawnPointBlue4))) exit;
+                
+                var newArenaRed,newArenaBlue;
+                newArenaRed=0
+                newArenaBlue=0
+                for (i=0; i<ds_list_size(global.players); i+=1){
+                    if ds_list_find_value(global.players,i).MGE_currentArena==newArena{
+                        if newArena!=-1{
+                            if ds_list_find_value(global.players,i).team==TEAM_RED newArenaRed+=1
+                            if ds_list_find_value(global.players,i).team==TEAM_BLUE newArenaBlue+=1
+                        }
                     }
                 }
-            }
-            
-            if newArenaRed>0 and newArenaBlue>0{
-                exit;
+                
+                if newArenaRed>0 and newArenaBlue>0{
+                    exit;
+                }
             }
             
             player.MGE_currentArena=newArena
