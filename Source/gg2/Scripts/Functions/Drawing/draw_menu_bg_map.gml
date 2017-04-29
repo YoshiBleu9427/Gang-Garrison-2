@@ -12,7 +12,9 @@ ds_list_add(mapList,currentMap)
 while(currentMap)!=""{
     currentMap=file_find_next()
     if string_count("_plx",currentMap)==0{
-        ds_list_add(mapList,currentMap)
+        if string_count("mge_",currentMap)==0{
+            ds_list_add(mapList,currentMap)
+        }
     }
 }
 ds_list_delete(mapList,ds_list_size(mapList)-1)
