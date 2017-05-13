@@ -48,14 +48,14 @@ weapons[0] = Blade;
 
 if (player.team == TEAM_RED)
 {
-    sprite_index = QuoteRedS;
-    humiliationPoses = QuoteRedHS;
+    sprite_index = QuerlyRedS;
+    humiliationPoses = QuerlyRedHS;
     haxxyStatue = QuoteHaxxyStatueS;
 }
 else if (player.team == TEAM_BLUE)
 {
-    sprite_index = CurlyBlueS;
-    humiliationPoses = CurlyBlueHS;
+    sprite_index = QuerlyBlueS;
+    humiliationPoses = QuerlyBlueHS;
     haxxyStatue = CurlyHaxxyStatueS;
 }
 </argument>

@@ -4,8 +4,8 @@
   <constant name="GAME_VERSION_STRING" value="&quot;v2.8.4&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Derpduck's Server Mod&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/forums/index.php?topic=34847.0&quot;"/>
-  <constant name="DSM_VERSION" value="218"/>
-  <constant name="DSM_VERSION_STRING" value="&quot;v2.1.8&quot;"/>
+  <constant name="DSM_VERSION" value="219"/>
+  <constant name="DSM_VERSION_STRING" value="&quot;v2.1.9&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
   <constant name="PLUGIN_SOURCE_NOTICE" value="&quot;While these plugins have been screened by the Gang Garrison 2 community, they cannot guarantee they are safe.&quot;"/>
   <constant name="BACKGROUND_SOURCE" value="&quot;http://www.ganggarrison.com/background.png&quot;"/>
