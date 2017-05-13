@@ -75,7 +75,6 @@ while(commandLimitRemaining > 0) {
         case PLAYER_CHANGECLASS:
             var class;
             class = read_ubyte(socket);
-<<<<<<< HEAD
             
             //DSM
             if global.locked_scout==1 and class==CLASS_SCOUT{
