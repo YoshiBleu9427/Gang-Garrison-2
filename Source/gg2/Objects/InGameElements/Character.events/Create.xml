@@ -192,6 +192,11 @@
     currentWeapon = instance_create(x,y,weapons[0]);
     global.paramOwner = noone;
     
+    // Gear that drops with gibs
+    has_partyhat     = false;
+    has_crown        = false;
+    has_navigatorhat = false;
+    
     // Temporary invuln on spawn for deathmatch players
     if(instance_exists(TeamDeathmatchHUD))
     {
