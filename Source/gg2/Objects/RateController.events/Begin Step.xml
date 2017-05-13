@@ -38,7 +38,6 @@
     global.ticks_per_virtual = 1/global.delta_factor
     global.frameskip = 1/global.delta_factor
 }*/
-}
 
 </argument>
       </arguments>
