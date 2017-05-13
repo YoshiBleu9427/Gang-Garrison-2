@@ -19,19 +19,26 @@
     global.ticks_per_virtual = 2;
     global.frameskip = 1;
     room_speed = 60;
-}else if(global.game_fps == 90){
-   global.delta_factor = 1/3;
-    global.skip_delta_factor = 1/3;
-    global.ticks_per_virtual = 3;
-    global.frameskip = 1
-    room_speed = 90; 
-}else{ //30 fps
+}else if(global.game_fps == 30){ // 30fps
     global.delta_factor = 1;
     global.skip_delta_factor = 1/2;
     global.ticks_per_virtual = 1;
     global.frameskip = 2;
     room_speed = 30;
-}
+}/*else if(global.game_fps==120){
+    global.delta_factor = virt_speed/global.game_fps
+    global.skip_delta_factor = global.delta_factor/2
+    global.ticks_per_virtual = 1/global.delta_factor
+    global.frameskip = 1/global.delta_factor
+    room_speed = 120
+}else if(global.game_fps == 1000){ //Highly experimental dynamic fps
+    room_speed = global.unrealFPS
+    global.delta_factor = virt_speed/room_speed
+    global.skip_delta_factor = global.delta_factor/2
+    global.ticks_per_virtual = 1/global.delta_factor
+    global.frameskip = 1/global.delta_factor
+}*/
+
 </argument>
       </arguments>
     </action>

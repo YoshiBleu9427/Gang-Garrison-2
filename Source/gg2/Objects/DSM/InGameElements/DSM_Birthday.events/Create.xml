@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">currentLine=0
+lineColour=c_yellow
+line[0]="When I'm with you baby"
+line[1]="I go out of my head"
+line[2]="And I just can't get enough"
+line[3]="And I just can't get enough"
+line[4]="All the things you do to me"
+line[5]="And everything you said"
+line[6]="I just can't get enough"
+line[7]="I just can't get enough"
+line[8]="We slip and slide as we fall in love"
+line[9]="And I just can't seem to get enough of"
+line[10]="We walk together"
+line[11]="We're walking down the street"
+line[12]="And I just can't get enough"
+line[13]="And I just can't get enough"
+line[14]="Every time I think of you"
+line[15]="I know we have to meet"
+line[16]="And I just can't get enough"
+line[17]="And I just can't get enough"
+line[18]="It's getting hotter"
+line[19]="It's a burning love"
+line[20]="And I just can't get enough of"
+line[21]="I just can't get enough"
+line[22]="I just can't get enough"
+line[23]="I just can't get enough"
+line[24]="I just can't get enough"
+line[25]="I just can't get enough"
+line[26]="I just can't get enough"
+line[27]="I just can't get enough"
+line[28]="I just can't get enough"
+line[29]="I just can't get enough"
+line[30]="I just can't get enough"
+line[31]="I just can't get enough"
+line[32]="I just can't get enough"
+line[33]="I just can't get enough"
+line[34]="I just can't get enough"
+line[35]="I just can't get enough"
+line[36]="I just can't get enough"
+line[37]="And when it rains"
+line[38]="You're shining out for me"
+line[39]="And I just can't get enough"
+line[40]="And I just can't get enough"
+line[41]="Just like a rainbow"
+line[42]="You know you set me free"
+line[43]="And I just can't get enough"
+line[44]="And I just can't get enough"
+line[45]="You're like an angel"
+line[46]="And you give me your love"
+line[47]="And I just can't get enough of"
+line[48]="I just can't get enough"
+line[49]="I just can't get enough"
+line[50]="I just can't get enough"
+line[51]="I just can't get enough"
+line[52]="I just can't get enough"
+line[53]="I just can't get enough"
+line[54]="I just can't get enough"
+line[55]="I just can't get enough"
+line[56]="I just can't get enough"
+line[57]="I just can't get enough"
+line[58]="I just can't get enough"
+line[59]="I just can't get enough"
+line[60]="I just can't get enough"
+line[61]="I just can't get enough"
+line[62]="I just can't get enough"
+line[63]="I just can't get enough"
+line[64]=""
+line[65]=":D Happy Birthday, DSM!"
+line[66]=""
+alarm[0]=50
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

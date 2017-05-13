@@ -1,8 +1,7 @@
 {
-    if global.isLive==0 and global.noSoundsDuringRUP==1{
-        if !instance_exists(NoticeO){
-            exit;
-        }
-    }
+    //if global.enablePrimeNo==1{
+    //    sound_stop(PrimeNoSnd)
+    //}else{
     sound_stop(argument0);
+    //}
 }

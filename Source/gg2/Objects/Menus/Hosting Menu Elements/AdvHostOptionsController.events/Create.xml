@@ -13,9 +13,8 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">menu_create(48, 110, 500, 300, 32, 40, 112, 6)
+        <argument kind="STRING">menu_create(48, 172, 500, 260, 32, 40, 112, 128);
 menumode = true;
-virnum=0
 
 menu_background(512, 24, 8, 12, 4);
 bgtabs = true;
@@ -33,9 +32,9 @@ menu_add_option(1, "Shuffle (no arena initial map)");
 menu_add_option(2, "Shuffle without bias");
 menu_add_option(3, "Shuffle, but start with first map");
 
-//menu_addedit_boolean("Auto Balance:", "global.autobalance", '
-//    gg2_write_ini("Server", "AutoBalance", argument0);
-//');
+menu_addedit_boolean("Auto Balance:", "global.autobalance", '
+    gg2_write_ini("Server", "AutoBalance", argument0);
+');
 menu_addedit_boolean("Announce to Lobby:", "global.useLobbyServer", '
     gg2_write_ini("Settings", "UseLobby", argument0);
 ');
@@ -44,8 +43,26 @@ menu_addedit_boolean("Attempt UPnP Forwarding:", "global.attemptPortForward", '
         show_message("Warning: UPNP support is currently experimental and enabling it may cause freezing while starting a server, but should cause no freezing ingame")
     gg2_write_ini("Server", "Attempt UPnP Forwarding", argument0);
 ');
+menu_addedit_text("VIP Password:", "global.dsmServerPasswordString", '
+    DSM_write_ini("Settings", "DSMServerPasswordString", argument0);
+');
+menu_addedit_num("VIP Threshold:", "global.dsmPlayerThreshold", '
+    DSM_write_ini("Settings", "DSMPlayerThreshold", argument0);
+');
+menu_addedit_text("RCON Password:", "global.dsmRCONPassword", '
+    DSM_write_ini("Settings", "DSMRCONPassword", argument0);
+');
+menu_addedit_boolean("RCON Allowed:", "global.dsmRCONAllowed", '
+    DSM_write_ini("Settings", "DSMRCONAllowed", argument0);
+');
+//menu_addedit_text("MOTD:", "global.dsmMOTD", '
+//    DSM_write_ini("Settings", "DSMMOTD", argument0);
+//');
+//menu_addedit_num("MOTD Repeat Time:", "global.dsmMOTDTime", '
+//    DSM_write_ini("Settings", "DSMMOTDTime", argument0)
+//');
 
-menu_addlink("[1] Start Game", '
+menu_addlink("Start Game", '
     //Server respawn time calculator. Converts each second to a frame. (read: multiply by 30 :hehe:)
     if (global.Server_RespawntimeSec == 0)
         global.Server_Respawntime = 1;
@@ -68,7 +85,7 @@ menu_addtablink("Classlimits", '
     instance_destroy();
 ');
 
-menu_addback("[0] Back", '
+menu_addback("Back", '
     instance_create(x,y,MainMenuController);
     instance_destroy();
 ');

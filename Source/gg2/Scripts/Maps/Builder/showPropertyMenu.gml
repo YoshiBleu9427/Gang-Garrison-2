@@ -1,5 +1,4 @@
-/**
- * Allows the user to edit an entities properties
+/** Allows the user to edit an entities properties
  * Argument0: A map with properties.
  * Argument1: A map to add the changed properties to.
  * [Argument2]: Allow adding new properties.
@@ -66,7 +65,7 @@ do
                     new = get_string("Value for " + prop + ":", "")
                     ds_map_add(argument0, prop, new);
                 }
-            }
+            }            
         }
         else
         {
@@ -96,7 +95,7 @@ do
             }
             else
             {
-                new = get_string("New value for " + prop + ":", old);
+                new = get_string("New value for " + prop + ":", old);                    
                 if (exists)
                     ds_map_replace(argument1, prop, new);
                 else
@@ -112,5 +111,5 @@ do
     {
         ds_map_delete(argument1, prop);
         i -= 1;
-    }
+    }     
 } until(res == -1 || i <= 1);

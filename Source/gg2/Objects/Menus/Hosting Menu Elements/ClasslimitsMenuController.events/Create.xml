@@ -13,9 +13,8 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">menu_create(48, 110, 500, 300, 32, 40, 112, 6)
+        <argument kind="STRING">menu_create(48, 172, 500, 260, 32, 40, 112, 128);
 menumode = true;
-virnum=0
 
 menu_background(512, 24, 8, 12, 4);
 bgtabs = true;
@@ -50,8 +49,7 @@ menu_addedit_num("Sniper:", "global.classlimits[CLASS_SNIPER]", '
 menu_addedit_num("Quote:", "global.classlimits[CLASS_QUOTE]", '
     gg2_write_ini("Classlimits", "Quote", argument0);
 ', 255);
-
-menu_addlink("[1] Start Game", '
+menu_addlink("Start Game", '
     //Server respawn time calculator. Converts each second to a frame. (read: multiply by 30 :hehe:)
     if (global.Server_RespawntimeSec == 0)
         global.Server_Respawntime = 1;
@@ -74,8 +72,7 @@ menu_addtablink("Classlimits", '
     instance_destroy();
 ');
 
-
-menu_addback("[0] Back", '
+menu_addback("Back", '
     instance_create(x,y,MainMenuController);
     instance_destroy();
 ');

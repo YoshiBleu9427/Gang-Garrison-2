@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(other.id != ownerPlayer.object and other.team != team  and other.hp &gt; 0 and !other.ubered) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1))
+        <argument kind="STRING">if(other.id != ownerPlayer.object and other.team != team  and other.hp &gt; 0 and !other.ubered)
 {
     if(!collision_line(x,y-12,other.x,other.y,Obstacle,true,true)) and (!collision_line(x,y-12,other.x,other.y,TeamGate,true,true) and (!collision_line(x,y-12,other.x,other.y,BulletWall,true,true)))
     {
@@ -23,7 +23,7 @@
             other.secondToLastDamageDealer = other.lastDamageDealer;
             other.alarm[4] = other.alarm[3]
         }
-        other.alarm[3] = ASSIST_TIME/global.delta_factor;
+        other.alarm[3] = ASSIST_TIME;
         other.lastDamageDealer = ownerPlayer;
         if sign(other.image_xscale) == sign(image_xscale)
             other.lastDamageSource = DAMAGE_SOURCE_BACKSTAB;

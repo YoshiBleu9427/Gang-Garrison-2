@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if global.dsmPingDisplay==1 and !instance_exists(DSM_PingDisplay){
+    instance_create(0,0,DSM_PingDisplay)
+}
+if global.dsmFPSDisplay==1 and !instance_exists(DSM_FPSDisplay){
+    instance_create(0,0,DSM_FPSDisplay)
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -13,9 +13,34 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">done = false;
-alpha = 1;
+        <argument kind="STRING">done=false;
+alpha=1;
 
+//DSM Credits
+currentLineNumber=0
+dsmAlpha=0
+currentString=""
+alarm[0]=30
+
+dsmCredits=ds_list_create()
+ds_list_add(dsmCredits,"-DSM-")
+ds_list_add(dsmCredits,"Created by Derpduck")
+ds_list_add(dsmCredits,"Thanks to:")
+//Names of people
+ds_list_add(dsmCredits,"Orpheon")
+ds_list_add(dsmCredits,"AJF")
+ds_list_add(dsmCredits,"Cerapter")
+ds_list_add(dsmCredits,"YB")
+ds_list_add(dsmCredits,"Vindicator")
+ds_list_add(dsmCredits,"Lorgan")
+ds_list_add(dsmCredits,"Meow")
+ds_list_add(dsmCredits,"Chu")
+ds_list_add(dsmCredits,"RebelINS")
+ds_list_add(dsmCredits,"Killercrusher232")
+ds_list_add(dsmCredits,"Arctic")
+ds_list_add(dsmCredits,"Machidro")
+ds_list_add(dsmCredits,"NAGN")
+ds_list_add(dsmCredits,"Everyone else who has used this mod")
 </argument>
       </arguments>
     </action>

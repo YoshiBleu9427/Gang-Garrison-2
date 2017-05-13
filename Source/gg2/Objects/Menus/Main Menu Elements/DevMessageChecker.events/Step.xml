@@ -37,6 +37,21 @@ if (http_step(handle)) {
     var c;
     for(c = 0; c &lt; ds_list_size(data); c += 2)
     {
+        {
+            //DSM: Manually forcing this makes it work :/
+            versioncheck = ds_list_find_value(data, c + 1);
+            versionend = string_pos("!",versioncheck);
+            version = string_copy(versioncheck,1,versionend-1);
+            changeslength = string_length(versioncheck)-versionend;
+            changes=string_copy(versioncheck,versionend+1,changeslength);
+            if(real(version) &gt; DSM_VERSION){
+                var popup;
+                popup = instance_create(250, 471, DevMessagePopup);
+                popup.msg = "Updates have been made to DSM!##"+changes;
+                popup.updating = true;
+            }
+            break;
+        }
         switch(ds_list_find_value(data, c))
         {
         case "ShowMessage":
@@ -50,15 +65,15 @@ if (http_step(handle)) {
             version = string_copy(versioncheck,1,versionend-1);
             changeslength = string_length(versioncheck)-versionend;
             changes=string_copy(versioncheck,versionend+1,changeslength);
-            if(real(version) &gt; VERSION)
+            if(real(version) &gt; DSM_VERSION)
             {
                 var popup;
                 popup = instance_create(250, 471, DevMessagePopup);
-                popup.msg = "Updates have been made to Gang Garrison 2!##"+changes;
+                popup.msg = "Updates have been made to DSM!##"+changes;
                 popup.updating = true;
             }
             break;
-        /*case "Background":
+        case "Background":
             var text, list, hash, title, url, showVersion;
             text = ds_list_find_value(data, c + 1);
             list = ds_list_create();
@@ -134,7 +149,6 @@ if (http_step(handle)) {
                 ini_close();
             }
             break;
-            */
         }
     }
 

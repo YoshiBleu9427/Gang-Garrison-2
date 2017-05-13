@@ -45,7 +45,6 @@ else if(readyToStab &amp;&amp; owner.cloak)
     }
     readyToStab = false;
     alarm[1] = StabreloadTime / global.delta_factor;
-    alarm[2]=68/global.delta_factor
 }
 </argument>
       </arguments>

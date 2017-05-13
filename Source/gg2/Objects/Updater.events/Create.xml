@@ -28,13 +28,13 @@ if(global.updaterBetaChannel)
 else
     url = UPDATE_SOURCE;
 
-tmpfile = temp_directory + "\gg2update.zip";
+tmpfile = temp_directory + "\dsmupdate.zip";
     
 downloadHandle = http_new_get(url);
 
 while(!http_step(downloadHandle)) 
 { // while download isn't finished
-    sleep(floor((1000/30) / global.delta_factor)); // sleep for the equivalent of one frame
+    sleep(floor(1000/30)); // sleep for the equivalent of one frame
     io_handle(); // this prevents GameMaker from appearing locked-up
     
     // check if the user cancelled the download with the esc key
@@ -57,9 +57,10 @@ while(!http_step(downloadHandle))
     size = http_response_body_size(downloadHandle);
     // If the URL we fetch is a redirect with no body, size might briefly be 0
     // Also, Faucet HTTP reports an unknown size as -1
-    if (size &gt; 0){
+    if (size &gt; 0)
+    {
         draw_text(x,y-20,string((progress/size)*100)+'% done...')
-        draw_sprite_part(UpdaterProgressBarS,0,0,0,(progress/size)*240,20,x,y-11)
+        draw_sprite_part(DSM_UpdaterProgressS,0,0,0,(progress/size)*240,20,x,y-11)
     }
     screen_refresh();
 }
@@ -81,13 +82,13 @@ if(!file_exists(tmpfile))
 {
     window_set_showborder(window_oldshowborder);
     window_set_fullscreen(window_oldfullscreen);
-    show_message("Error updating: Missing gg2update.zip in temp directory, download failed(?)");
+    show_message("Error updating: Missing dsmupdate.zip in temp directory, download failed(?)");
     room_goto_fix(Menu);
     exit;
 }
 
-// rename existing "Gang Garrison 2.exe" to avoid conflict when extracting
-if (file_exists("ES.exe"))
+// rename existing "DSM.exe" to avoid conflict when extracting
+if (file_exists("DSM.exe"))
 {
     var newName, n;
     n = 1;
@@ -95,12 +96,12 @@ if (file_exists("ES.exe"))
     // increment until unused name found
     do
     {
-        newName = "gg2-old.delete.me." + string(n);
+        newName = "dsm-old.delete.me." + string(n);
         n += 1;
     }
     until(!file_exists(newName));
 
-    file_rename("ES.exe", newName);
+    file_rename("DSM.exe", newName);
 }
 
 
@@ -109,7 +110,7 @@ if (file_exists("ES.exe"))
 extractzip(tmpfile, working_directory);
 
 // run new version    
-execute_program("ES.exe", "", false);
+execute_program("DSM.exe", "", false);
 
 // exit
 game_end();

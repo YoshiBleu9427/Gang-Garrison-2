@@ -21,7 +21,7 @@ if(spawner.team == TEAM_RED) {
     spawnY = ds_list_find_value(global.spawnPointsBlue[1,spawnGroup], spawnpointId);
 }
 
-character = getCharacterObject(spawner.class);
+character = getCharacterObject(spawner.team, spawner.class);
 if(character == -1) {
     show_message("Spawning a player did not succeed because his class and/or team were invalid.");
     exit;
@@ -37,5 +37,11 @@ if(spawner.object != -1) {
 global.paramPlayer = spawner;
 spawner.object = instance_create(spawnX,spawnY,character);
 global.paramPlayer = noone;
+
+if (instance_exists(RespawnTimer)) {
+    with(RespawnTimer) {
+        done = true;
+    }
+}
 
 playsound(spawnX, spawnY, RespawnSnd);

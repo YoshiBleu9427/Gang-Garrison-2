@@ -17,6 +17,7 @@
 maxHp = 100;
 weapons[0] = Scattergun;
 haxxyStatue = ScoutHaxxyStatueS;
+tauntsprite = ScoutTauntS;
 </argument>
       </arguments>
     </action>
@@ -50,13 +51,11 @@ capStrength = 2;
 canDoublejump = 1;
 numFlames = 3;
 
-if (player.team == TEAM_RED)
+// 'GW' reward - *G*olden *W*eapon
+if(hasClassReward(global.paramPlayer, 'GW'))
 {
-    sprite_index = ScoutRedS;
-}
-else if (player.team == TEAM_BLUE)
-{
-    sprite_index = ScoutBlueS;
+    // Prepend to the start of the overlay list, so that it gets drawn first (it's a full sprite replacement)
+    ds_list_insert(tauntOverlays, 0, ScoutGoldWeaponTauntS);
 }
 </argument>
       </arguments>

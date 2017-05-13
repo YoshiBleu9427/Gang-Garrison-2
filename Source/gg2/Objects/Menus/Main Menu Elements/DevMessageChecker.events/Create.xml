@@ -34,6 +34,8 @@ else
 handle = http_new_get(url);
 
 image_speed = 5/room_speed;
+
+alarm[0]=300/global.delta_factor
 </argument>
       </arguments>
     </action>

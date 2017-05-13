@@ -49,14 +49,14 @@ global.HatBobbleClassTaunt[6] = HatBobbleHeavyTauntS;
 global.HatBobbleSandwich[6] = HatBobbleOmnomnomnomS;
 // CLASS_SPY
 global.HatBobbleClassOverlay[7] = HatBobbleSpyS;
-global.HatBobbleClassTaunt[7] = HatBobbleSpyRedTauntS; // Blue overlay will be substituted in code. I don't want to do this properly now because this will be removed anyway.
+global.HatBobbleClassTaunt[7] = HatBobbleSpyTauntS;
 // CLASS_PYRO
 global.HatBobbleClassOverlay[8] = HatBobblePyroS;
 global.HatBobbleClassTaunt[8] = HatBobblePyroTauntS;
 // None for CLASS_QUOTE
 
 // Array of haxxy badge indexes (into the sprite) to reward names
-global.HaxxyBadgesLength = 46;
+global.HaxxyBadgesLength = 41;
 global.HaxxyBadges[0] = 'Badge_Trn1Orng';
 global.HaxxyBadges[1] = 'Badge_Trn1Gold';
 global.HaxxyBadges[2] = 'Badge_Trn2Orng';
@@ -98,11 +98,6 @@ global.HaxxyBadges[37] = 'Badge_Rebel-ution';
 global.HaxxyBadges[38] = 'Badge_GloryDays';
 global.HaxxyBadges[39] = 'Badge_DynamicDuo';
 global.HaxxyBadges[40] = 'Badge_ArmyOfOne';
-global.HaxxyBadges[41] = 'Badge_ThreeMajor';
-global.HaxxyBadges[42] = 'Badge_ThreeMinor';
-global.HaxxyBadges[43] = 'Badge_ThreeCTF';
-global.HaxxyBadges[44] = 'Badge_ThreeEtc';
-global.HaxxyBadges[45] = 'Badge_ThreeKoTH';
 
 // Makes array of Golden Accessory overlay sprites
 // Pre-initialize array to detect if sprites should be reused
@@ -157,27 +152,25 @@ global.GoldenAttireOverlay[8] = PyroGoldAttireS;
 global.GoldenAttireTaunt[8] = PyroGoldAttireTauntS;
 // None for CLASS_QUOTE
 // fill in empty sprites
-for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1){
-    if (global.GoldenAttireRunOverlay[i] == -1){
+for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1)
+{
+    if (global.GoldenAttireRunOverlay[i] == -1)
         global.GoldenAttireRunOverlay[i] = global.GoldenAttireOverlay[i];
-    }
         
-    if (global.GoldenAttireJumpOverlay[i] == -1){
+    if (global.GoldenAttireJumpOverlay[i] == -1)
         global.GoldenAttireJumpOverlay[i] = global.GoldenAttireOverlay[i];
-    }
         
-    if (global.GoldenAttireLeanROverlay[i] == -1){
+    if (global.GoldenAttireLeanROverlay[i] == -1)
         global.GoldenAttireLeanROverlay[i] = global.GoldenAttireOverlay[i];
-    }
         
-    if (global.GoldenAttireLeanLOverlay[i] == -1){
+    if (global.GoldenAttireLeanLOverlay[i] == -1)
         global.GoldenAttireLeanLOverlay[i] = global.GoldenAttireOverlay[i];
-    }
 }
 
 // Array of Canadium accessories
 // Pre-initialize array to detect if sprites should be reused
-for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1){
+for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1)
+{
     global.SilverAttireOverlay[i] = -1;
     global.SilverAttireRunOverlay[i] = -1;
     global.SilverAttireJumpOverlay[i] = -1;
@@ -226,22 +219,19 @@ global.SilverAttireOverlay[8] = PyroSilverAttireS;
 global.SilverAttireTaunt[8] = PyroSilverAttireTauntS;
 // None for CLASS_QUOTE
 // fill in empty sprites
-for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1){
-    if (global.SilverAttireRunOverlay[i] == -1){
+for (i = CLASS_SCOUT; i <= CLASS_PYRO; i+= 1)
+{
+    if (global.SilverAttireRunOverlay[i] == -1)
         global.SilverAttireRunOverlay[i] = global.SilverAttireOverlay[i];
-    }
         
-    if (global.SilverAttireJumpOverlay[i] == -1){
+    if (global.SilverAttireJumpOverlay[i] == -1)
         global.SilverAttireJumpOverlay[i] = global.SilverAttireOverlay[i];
-    }
         
-    if (global.SilverAttireLeanROverlay[i] == -1){
+    if (global.SilverAttireLeanROverlay[i] == -1)
         global.SilverAttireLeanROverlay[i] = global.SilverAttireOverlay[i];
-    }
         
-    if (global.SilverAttireLeanLOverlay[i] == -1){
+    if (global.SilverAttireLeanLOverlay[i] == -1)
         global.SilverAttireLeanLOverlay[i] = global.SilverAttireOverlay[i];
-    }
 }
 
 // Array of Top Hat + Monocle Package Deals
@@ -275,8 +265,8 @@ global.TopHatMonocleOverlay[8] = PyroMonocleHatS;
 global.TopHatMonocleTaunt[8] = PyroMonocleHatTauntS;
 // Introducing the first ever Quote/Curly class reward
 // CLASS_QUOTE
-global.TopHatMonocleOverlay[9] = QuerlyMonocleHatS;
-global.TopHatMonocleTaunt[9] = QuerlyRedMonocleHatTauntS; // Curly overlay will be substituted in code. I don't want to do this properly now because this will be removed anyway.
+global.TopHatMonocleOverlay[9] = QuoteMonocleHatS;
+global.TopHatMonocleTaunt[9] = QuoteMonocleHatTauntS;
 
 // CLASS_SCOUT
 global.TopHatOverlay[0] = ScoutTopHatS;
@@ -307,5 +297,5 @@ global.TopHatTaunt[7] = SpyTopHatS;
 global.TopHatOverlay[8] = PyroTopHatS;
 global.TopHatTaunt[8] = PyroTopHatTauntS;
 // CLASS_QUOTE
-global.TopHatOverlay[9] = QuerlyTopHatS;
-global.TopHatTaunt[9] = QuerlyRedTopHatTauntS; // Curly overlay will be substituted in code. I don't want to do this properly now because this will be removed anyway.
+global.TopHatOverlay[9] = QuoteTopHatS;
+global.TopHatTaunt[9] = QuoteTopHatTauntS;

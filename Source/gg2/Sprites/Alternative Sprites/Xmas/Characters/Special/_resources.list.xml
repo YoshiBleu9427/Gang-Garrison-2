@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="HeavyRedOmnomnomnomSX" type="RESOURCE"/>
-  <resource name="HeavyBlueOmnomnomnomSX" type="RESOURCE"/>
+  <resource name="OmnomnomnomSX" type="RESOURCE"/>
 </resources>

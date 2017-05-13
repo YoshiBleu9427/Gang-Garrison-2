@@ -17,6 +17,7 @@
 maxHp = 200;
 weapons[0] = Minigun;
 haxxyStatue = HeavyHaxxyStatueS;
+tauntsprite = HeavyTauntS;
 </argument>
       </arguments>
     </action>
@@ -45,16 +46,19 @@ haxxyStatue = HeavyHaxxyStatueS;
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">numFlames = 5;
+        <argument kind="STRING">// 'GW' reward - *G*olden *W*eapon
+if(hasClassReward(global.paramPlayer, 'GW'))
+{
+    // Prepend to the start of the overlay list, so that it gets drawn first (it's a full sprite replacement)
+    ds_list_insert(tauntOverlays, 0, HeavyGoldWeaponTauntS);
+    ds_list_insert(omnomnomnomOverlays, 0, OmnomnomnomGoldWeaponS);
+}
 
-if (player.team == TEAM_RED)
-{
-    sprite_index = HeavyRedS;
-}
-else if (player.team == TEAM_BLUE)
-{
-    sprite_index = HeavyBlueS;
-}
+// 'BH' reward - *B*obble *H*ead
+if(hasClassReward(global.paramPlayer, 'BH'))
+    ds_list_add(omnomnomnomOverlays, HatBobbleOmnomnomnomS);
+
+numFlames = 5;
 </argument>
       </arguments>
     </action>

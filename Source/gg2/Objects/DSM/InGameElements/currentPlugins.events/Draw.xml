@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if global.dsmShowPluginList!=1 exit;
+
+draw_set_valign(fa_top)
+
+draw_set_alpha(0.8)
+draw_rectangle_color(x,y,x-(8*25),y+12+(string_count('#',global.totalCurrentPlugins)*11),c_black,c_black,c_black,c_black,false)
+
+draw_set_alpha(1)
+draw_set_halign(fa_right)
+draw_set_color(c_white)
+draw_text(x,y,"Currently Loaded Plugins:#"+string(global.totalCurrentPlugins))
+
+//Show if stats are being recorded
+var bool;
+if global.dsmRecordStats==1{
+    bool="Yes"
+}else{
+    bool="No"
+}
+draw_text(x,y-40,"Recording Stats: "+bool)
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

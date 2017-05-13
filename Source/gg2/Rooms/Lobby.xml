@@ -8,9 +8,8 @@
   </grid>
   <speed>100</speed>
   <persistent>false</persistent>
-  <creationCode>draw_menu_bg_map()
-</creationCode>
-  <backgroundColor>000000</backgroundColor>
+  <creationCode/>
+  <backgroundColor>C0C0C0</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>
   <backgrounds>
     <backgroundDef>

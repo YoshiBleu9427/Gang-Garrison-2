@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//event0 : process input as a host
+while(PluginPacketGetBuffer(global.chatPacketID) != -1) {
+    chatReceiveBuffer = PluginPacketGetBuffer(global.chatPacketID);
+    switch(read_ubyte(chatReceiveBuffer)) {
+        case 0: //hello
+            _player = PluginPacketGetPlayer(global.chatPacketID);
+            if ds_list_find_index(global.chatBanlist,socket_remote_ip(_player.socket)) == -1 {  //ignore muted players
+                _player.hasChat = true;
+                _player.nameBkp = _player.name;
+                _message = "O"+_player.name+" has joined chat!";
+                _team = 0;
+                event_user(2); //tell everyone someone joined chat
+                event_user(4); //add to own chat
+            }
+        break;
+        case 1: //global chat
+            _player = PluginPacketGetPlayer(global.chatPacketID);
+            if _player.hasChat {
+                _team = 0;
+                _len = read_ubyte(chatReceiveBuffer);
+                _message = read_string(chatReceiveBuffer,_len);
+                event_user(1); //process a message
+                event_user(2); //send
+                event_user(4); //add to chatwindow
+                event_user(7); //prevent spamming
+            }
+        break;
+        case 2: //team chat
+            _player = PluginPacketGetPlayer(global.chatPacketID);
+            if _player.team != TEAM_SPECTATOR &amp;&amp; _player.hasChat {
+                _team = 1+_player.team;
+                _len = read_ubyte(chatReceiveBuffer);
+                _message = read_string(chatReceiveBuffer,_len);
+                event_user(1); //process a message
+                event_user(2); //send
+                if global.myself.team == TEAM_SPECTATOR and global.isHost!=true || _team == global.myself.team+1 event_user(4); //add to chatwindow
+                event_user(7); //prevent spamming
+            }
+        break;
+    }
+        
+        buffer_clear(chatReceiveBuffer);
+        PluginPacketPop(global.chatPacketID);
+    }
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

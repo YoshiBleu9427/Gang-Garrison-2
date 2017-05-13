@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="DSM_RocketS" type="RESOURCE"/>
+  <resource name="DSM_RedRocketS" type="RESOURCE"/>
+  <resource name="DSM_BlueRocketS" type="RESOURCE"/>
+  <resource name="DSM_ShotS" type="RESOURCE"/>
+  <resource name="DSM_BubbleS" type="RESOURCE"/>
+  <resource name="DSM_BlueFlameS" type="RESOURCE"/>
+  <resource name="DSM_BlueFlareS" type="RESOURCE"/>
+  <resource name="DSM_NeedleS" type="RESOURCE"/>
+  <resource name="DSM_RedBladeProjectileS" type="RESOURCE"/>
+  <resource name="DSM_BlueBladeProjectileS" type="RESOURCE"/>
+  <resource name="DSM_PopS" type="RESOURCE"/>
+  <resource name="DSM_RedExplosionS" type="RESOURCE"/>
+  <resource name="DSM_BlueExplosionS" type="RESOURCE"/>
+  <resource name="DSM_RedMineTrailS" type="RESOURCE"/>
+  <resource name="DSM_BlueMineTrailS" type="RESOURCE"/>
+</resources>

@@ -7,9 +7,7 @@
   <resource name="ScoutBlueLeanRS" type="RESOURCE"/>
   <resource name="ScoutBlueRunS" type="RESOURCE"/>
   <resource name="ScoutBlueS" type="RESOURCE"/>
-  <resource name="ScoutBlueDeadS" type="RESOURCE"/>
   <resource name="ScoutBlueStandS" type="RESOURCE"/>
-  <resource name="ScoutBlueTauntS" type="RESOURCE"/>
   <resource name="ScoutRedHS" type="RESOURCE"/>
   <resource name="ScoutRedIntelS" type="RESOURCE"/>
   <resource name="ScoutRedJumpS" type="RESOURCE"/>
@@ -17,7 +15,6 @@
   <resource name="ScoutRedLeanRS" type="RESOURCE"/>
   <resource name="ScoutRedRunS" type="RESOURCE"/>
   <resource name="ScoutRedS" type="RESOURCE"/>
-  <resource name="ScoutRedDeadS" type="RESOURCE"/>
   <resource name="ScoutRedStandS" type="RESOURCE"/>
-  <resource name="ScoutRedTauntS" type="RESOURCE"/>
+  <resource name="ScoutTauntS" type="RESOURCE"/>
 </resources>

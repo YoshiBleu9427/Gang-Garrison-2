@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(48, 172, 500, 260, 32, 40, 104, 6);
+    menumode = true;
+    
+    if (room != DSMOptionsR)
+        menu_setdimmed();
+    
+    menu_background(512, 24, 8, 12, 4);
+    bgtabs = true;
+
+    menu_addedit_boolean("Old Death Sounds Only:","global.dsmOldDeathSounds",'
+        DSM_write_ini("Settings","DSMOldDeathSounds",argument0)
+    ')
+
+    menu_addedit_boolean("Advanced Spectator:","global.dsmAdvancedSpectator",'
+        DSM_write_ini("Cosmetic","DSMAdvancedSpectator",argument0)
+    ')
+        
+    menu_addedit_select("Arrow Origin:","global.dsmArrowOrigin",'
+        DSM_write_ini("Cosmetic","DSMArrowOrigin",argument0)
+    ')
+    menu_add_option(0,"Player")
+    menu_add_option(1,"HUD")
+    
+    menu_addedit_boolean("Show Secret Flag:","global.dsmUseSecretFlag",'
+        DSM_write_ini("Cosmetic","DSMSecretFlag",argument0)
+    ')
+    
+    menu_addedit_boolean("Write Console Log To File:","global.dsmWriteConsoleLog",'
+        DSM_write_ini("Settings","DSMWriteConsoleLog",argument0)
+    ')
+    
+    menu_addedit_boolean("Transparent skull on scoreboard:","global.dsmTransparentSkull",'
+        DSM_write_ini("Cosmetic","DSMTransparentSkull",argument0)
+    ')
+    
+    menu_addedit_boolean("Disable Corpse Tracking:","global.dsmDisableCorpseTracking",'
+        DSM_write_ini("Cosmetic","DSMDisableCorpseTracking",argument0)
+    ')
+    
+    if global.dsmChatLoaded==1{
+        menu_addlink("DSM Chat already loaded, cannot change setting")
+    }else{
+        menu_addedit_boolean("Use DSM Chat:","global.dsmUseDSMChat",'
+            DSM_write_ini("Settings","DSMUseDSMChat",argument0)
+        ')
+    }
+    
+    menu_addedit_num("Number of idle chat lines:","global.dsmChatLineNumber",'
+        DSM_write_ini("Settings","DSMChatLineNumber",argument0)
+    ',12)
+    
+    menu_addedit_boolean("Close Chat After Message:","global.dsmAutocloseChat",'
+        DSM_write_ini("Settings","DSMAutocloseChat",argument0)
+    ')
+    
+    //menu_addedit_boolean("Instant chat hide allowed:","global.dsmChatCloseAllowed",'
+     //   DSM_write_ini("Settings","DSMChatCloseAllowed",argument0)
+    //')
+    
+    menu_addedit_boolean("Countdown Theme During Setup:","global.dsmCountdownTheme",'
+        DSM_write_ini("Settings","DSMCountdownTheme",argument0)
+    ')
+    
+    /*var CrosshairFilename;
+    menu_addedit_text("Crosshair:","CrosshairFilename",'
+    if (file_exists(argument0)){
+        sprite_replace(CrosshairS,argument0,1,1,false,0,0);
+        sprite_set_offset(CrosshairS,sprite_get_width(CrosshairS)/2,sprite_get_height(CrosshairS)/2);
+    }
+    gg2_write_ini("Settings", "CrosshairFilename", argument0);
+    ')*/
+    
+    menu_addtablink("DSM 1", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController);
+    ');
+    menu_addtablink("DSM 2", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController2);
+    ');
+    menu_addtablink("DSM 3", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController3);
+    ');
+    menu_addtablink("DSM 4", '
+        instance_destroy();
+        instance_create(x,y,DSMOptionsController4);
+    ');
+    menu_addtablink("Controls", '
+        instance_destroy();
+        instance_create(x,y,DSMControlsController);
+    ');
+    
+    menu_addback("Back", '
+        instance_destroy();
+        if(room == DSMOptionsR)
+            room_goto_fix(Menu);
+        else
+            instance_create(0,0,InGameMenuController);
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

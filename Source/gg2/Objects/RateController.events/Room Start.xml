@@ -15,11 +15,13 @@
       <arguments>
         <argument kind="STRING">if(global.frameratekind == 1){
     global.game_fps = 60;
-}else if global.frameratekind == 2{ 
-    global.game_fps = 90;
-}else{
+}else if(global.frameratekind == 0){
     global.game_fps = 30;
-}
+}//else if(global.frameratekind==2){
+    //global.game_fps = 120
+//}else if(global.frameratekind==3){
+    //global.game_fps=1000
+//}
 </argument>
       </arguments>
     </action>

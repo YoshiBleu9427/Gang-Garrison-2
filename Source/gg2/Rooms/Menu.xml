@@ -9,9 +9,9 @@
   <speed>30</speed>
   <persistent>false</persistent>
   <creationCode>window_set_position(previous_window_x+previous_window_w/2-window_get_width()/2, previous_window_y);
-draw_menu_bg_map()
+
 </creationCode>
-  <backgroundColor>000000</backgroundColor>
+  <backgroundColor>C0C0C0</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>
   <backgrounds>
     <backgroundDef>
@@ -156,12 +156,6 @@ draw_menu_bg_map()
     <instance>
       <object>DevMessageChecker</object>
       <position x="32" y="528"/>
-      <creationCode/>
-      <locked>false</locked>
-    </instance>
-    <instance>
-      <object>ModController</object>
-      <position x="112" y="224"/>
       <creationCode/>
       <locked>false</locked>
     </instance>

@@ -5,6 +5,6 @@
   <visible>true</visible>
   <depth>0</depth>
   <persistent>false</persistent>
-  <parent>HatGibBase</parent>
+  <parent>Gib</parent>
   <mask/>
 </object>

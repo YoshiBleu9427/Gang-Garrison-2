@@ -13,12 +13,15 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">with(Console){
-    event_user(0)
+        <argument kind="STRING">with(DSM_PingDisplay){
+    instance_destroy()
+}
+with(DSM_FPSDisplay){
+    instance_destroy()
 }
 
-with(Ping_FPS_Indicator){
-    instance_destroy()
+with(Console){
+    event_user(0)
 }
 </argument>
       </arguments>

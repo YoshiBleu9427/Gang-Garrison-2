@@ -19,20 +19,8 @@
     }
     hostSeenMOTD = false;
     global.players = ds_list_create();
-    global.playerListExists=1
     global.tcpListener = -1;
     global.serverSocket = -1;
-    
-    global.privChatRedBuffer = buffer_create();
-    global.privChatBlueBuffer = buffer_create();
-    global.privChatSpecBuffer = buffer_create();
-    global.publicChatBuffer = buffer_create();
-    global.chatBanList=ds_list_create()
-    global.clientChatBanList=ds_list_create()
-    ds_list_clear(global.clientChatBanList)
-    //if global.defaultConfig!="" and global.currentConfig==""{
-    //    config_load(argument0)
-    //}
     
     global.banned_ips = ds_list_create();
     var text, str;
@@ -46,6 +34,8 @@
         }
         file_text_close(text);
     }
+    
+    //global.RCONList=ds_list_create()
     
     var i;
     serverId = buffer_create();
@@ -62,10 +52,7 @@
     // Player 0 is reserved for the Server.
     serverPlayer = instance_create(0,0,Player);
     serverPlayer.name = global.playerName;
-    serverPlayer.permID=global.permIDCounter
-    global.permIDCounter+=1
     ds_list_add(global.players, serverPlayer);
-    ds_map_add(rupPlayers,serverPlayer,0)
 
     for (a=0; a<10; a+=1)
     {
@@ -80,7 +67,7 @@
         instance_destroy();
         exit;
     }
-    global.serverSocket = tcp_connect("127.0.0.1", global.hostingPort);
+    global.serverSocket = tcp_connect("127.0.0.1", global.hostingPort);    
     if(socket_has_error(global.serverSocket))
     {
         show_message("Unable to connect to self. Epic fail, dude.");
@@ -116,22 +103,20 @@
 
     var map, i;
     if (global.shuffleRotation) {
-        if global.shuffleRotation==3{
-            with(ModController){
-                alarm[0]=20/global.delta_factor
-            }
+        if (global.shuffleRotation==3){
+            randomiseRotation()
         }else{
             ds_list_shuffle(global.map_rotation);
             map = ds_list_find_value(global.map_rotation, 0);
             // "Shuffle, don't make arena map first" chosen
             if (global.shuffleRotation == 1) {
                 // if first map is arena
-                if (string_copy(map, 0, 6) == 'arena') {
+                if (string_copy(map, 0, 6) == 'arena_') {
                     // try to find something else
                     for (i = 0; i < ds_list_size(global.map_rotation); i += 1) {
                         map = ds_list_find_value(global.map_rotation, i);
                         // swap with first map
-                        if (string_copy(map, 0, 6) != 'arena') {
+                        if (string_copy(map, 0, 6) != 'arena_') {
                             ds_list_replace(global.map_rotation, i, ds_list_find_value(global.map_rotation, 0));
                             ds_list_replace(global.map_rotation, 0, map);
                         }
@@ -140,32 +125,21 @@
             }
         }
     }
-    
-    var mapName
-    global.jumpMode=0
-    mapName = ds_list_find_value(global.map_rotation, 0);
-    if global.jumpMapMode==1{
-        global.jumpMode=1
-    }else if global.jumpMapMode==2{
-        prefixIndex[0]="rj"
-        prefixIndex[1]="dj"
-        prefixIndex[2]="rr"
-        prefixIndex[3]="sj"
-        prefixIndex[4]="ej"
-        prefixIndex[5]="qr"
-        prefixIndex[6]="pj"
-        prefixIndex[7]="jt"
-        prefixIndex[8]="surf"
-        prefixIndex[9]="jump"
-        for (i=0; i<10; i+=1){
-            if string_pos(prefixIndex[i],string_lower(mapName))==1{
-                global.jumpMode=1
-            }
-        }
-    }
 
     currentMapIndex = -1;
     global.currentMapArea = 1;
+    
+    var desiredMapName, desiredMapIndex, i, numberOfMaps;
+numberOfMaps = ds_list_size(global.map_rotation);
+
+for(i = 1; i <= numberOfMaps; i += 1)
+{
+    desiredMapIndex = (GameServer.currentMapIndex + i) mod numberOfMaps;
+    desiredMapName = ds_list_find_value(global.map_rotation, desiredMapIndex);
+    if(findInternalMapName(desiredMapName)=="" and !file_exists("Maps/" + desiredMapName + ".png")){
+        show_message(string(desiredMapName)+' is not a valid map name; this map will be skipped.')
+    }
+}
     
     if(global.launchMap == "")
         serverGotoMap(nextMapInRotation());
@@ -188,14 +162,28 @@
             game_end();
             exit;
         }
+
+        // Load plugins
+        if global.myCurrentPlugins!=""{
+            var pluginQuestion;
+            pluginQuestion=show_message_ext("Current Plugins: "+string(global.myCurrentPlugins)+"#Server's Plugins: "+string_replace_all(pluginList, ",", "#")+
+            "##If your plugins do not match the server's plugins please select restart or quit.","Continue","Restart","Quit")
+            if (pluginQuestion==2){
+                restartGG2()
+                exit;
+            }else if (pluginQuestion==3){
+                game_end()
+                exit;
+            }
+        }
         
-        if (string_length(pluginList) > 65535){
+        if (string_length(pluginList) > 65535)
+        {
             show_message("Error: you are requiring too many server-sent plugins.");
             game_end();
             exit;
         }
-
-        // Load plugins
+        
         if (!loadserverplugins(pluginList))
         {
             show_message("Error ocurred loading server-sent plugins.");
@@ -207,6 +195,10 @@
     else
     {
         pluginList = '';
+    }
+    
+    if global.isUsingChat==1{
+        loadDSMChatNew()
     }
     
     // Disable vsync to minimize framerate drops which would be noticed as lag issues by all players.

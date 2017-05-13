@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="ConsoleParts" type="GROUP"/>
+  <resource name="ConsoleS" type="RESOURCE"/>
+  <resource name="DSM_ConsoleFontS" type="RESOURCE"/>
+  <resource name="DSM_MenuBackgroundVersionS" type="RESOURCE"/>
+  <resource name="DSM_EUFlagS" type="RESOURCE"/>
+  <resource name="DSM_CanadaFlagS" type="RESOURCE"/>
+</resources>

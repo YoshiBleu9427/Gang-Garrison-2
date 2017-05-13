@@ -7,8 +7,6 @@
   <resource name="EngineerBlueLeanRS" type="RESOURCE"/>
   <resource name="EngineerBlueRunS" type="RESOURCE"/>
   <resource name="EngineerBlueS" type="RESOURCE"/>
-  <resource name="EngineerBlueDeadS" type="RESOURCE"/>
-  <resource name="EngineerBlueTauntS" type="RESOURCE"/>
   <resource name="EngineerBlueStandS" type="RESOURCE"/>
   <resource name="EngineerRedHS" type="RESOURCE"/>
   <resource name="EngineerRedIntelS" type="RESOURCE"/>
@@ -17,7 +15,6 @@
   <resource name="EngineerRedLeanRS" type="RESOURCE"/>
   <resource name="EngineerRedRunS" type="RESOURCE"/>
   <resource name="EngineerRedS" type="RESOURCE"/>
-  <resource name="EngineerRedDeadS" type="RESOURCE"/>
   <resource name="EngineerRedStandS" type="RESOURCE"/>
-  <resource name="EngineerRedTauntS" type="RESOURCE"/>
+  <resource name="EngiTauntS" type="RESOURCE"/>
 </resources>

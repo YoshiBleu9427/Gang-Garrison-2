@@ -17,6 +17,7 @@
 maxHp = 120;
 weapons[0] = Flamethrower;
 haxxyStatue = PyroHaxxyStatueS;
+tauntsprite = PyroTauntS;
 </argument>
       </arguments>
     </action>
@@ -48,13 +49,11 @@ haxxyStatue = PyroHaxxyStatueS;
         <argument kind="STRING">numFlames = 3;
 maxDuration = 10;
 
-if (player.team == TEAM_RED)
+// 'GW' reward - *G*olden *W*eapon
+if(hasClassReward(global.paramPlayer, 'GW'))
 {
-    sprite_index = PyroRedS;
-}
-else if (player.team == TEAM_BLUE)
-{
-    sprite_index = PyroBlueS;
+    // Prepend to the start of the overlay list, so that it gets drawn first (it's a full sprite replacement)
+    ds_list_insert(tauntOverlays, 0, PyroGoldWeaponTauntS);
 }
 </argument>
       </arguments>

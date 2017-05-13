@@ -24,7 +24,6 @@ write_binstring(authbuffer, answer);
 write_binstring(authbuffer, challenge);
 write_ubyte(authbuffer, ipCheck);
 write_string(authbuffer, rewardId);
-player.hrID=string(real(rewardId)*-1)
 
 // Enqueue the check
 item = ds_list_create();

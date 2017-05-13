@@ -13,12 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if (ds_list_size(kills)){
-    ds_map_destroy(ds_list_find_value(kills, 0))
-    ds_list_delete(kills, 0);
-}
-ds_list_destroy(kills);
-</argument>
+        <argument kind="STRING">ds_list_destroy(kills);</argument>
       </arguments>
     </action>
   </actions>

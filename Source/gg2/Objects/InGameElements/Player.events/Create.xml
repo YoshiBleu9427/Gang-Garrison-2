@@ -20,15 +20,11 @@
     socket = -1;
     name = "";
     kicked = false;
-    banned = false;
-    lastChatTime = current_time-798;
-    permID=-1
-    dcReason=-1
-    hrID=-1
-    isDerpduck=0
-    oldPing=-1
-    MGE_currentArena=-1
     
+    //if global.isHost{
+    //    alarm[6]=global.dsmMOTDTime*30*60
+    //}
+
     // client setting stuff; set to defaults
     queueJump = false;
     
@@ -72,9 +68,7 @@
     //Arena mode - used by server to check if the player can spawn
     canSpawn = 1;
     if instance_exists(ArenaHUD) {
-        if global.isLive==1{
-            if ArenaHUD.roundStart == 0 canSpawn = 0;
-        }
+        if ArenaHUD.roundStart == 0 canSpawn = 0;
     }
     
     //Sentries for Engies

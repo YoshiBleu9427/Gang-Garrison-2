@@ -47,8 +47,7 @@ with(ownerPlayer.object)
 }
 
 ownerPlayer.sentry = noone;
-explo=instance_create(x,y,Explosion);
-explo.blastSize=blastRadius
+instance_create(x,y,Explosion);
 playsound(x,y,ExplosionSnd);
 sentrygibs=instance_create(x,y,SentryGibs);
 sentrygibs.image_speed = 0;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if global.dsmPingDisplay!=1 exit;
+
+docol=c_red
+showping=string(ping)
+if (ping&lt;240) docol=c_yellow
+if (ping&lt;135) docol=c_green
+if (ping&lt;75) docol=c_aqua
+if (ping==-1) docol=c_gray
+
+draw_set_valign(fa_center)
+draw_set_halign(fa_middle)
+if (ping&lt;200){
+    draw_set_color(c_black)
+    draw_set_alpha(0.6)
+    draw_rectangle(view_xview+100,view_yview+540,view_xview+140,view_yview+570,false)
+}else if (ping&gt;=200){
+    draw_sprite_ext(DSM_EUFlagS,0,view_xview+100,view_yview+540,1,1,0,c_white,0.7)
+}
+
+draw_set_color(docol)
+draw_set_alpha(0.6)
+draw_text(view_xview[0]+120, view_yview[0]+555,showping)
+
+if !global.isHost and global.dsmPingGraph!=0{
+    if (global.dsmPingGraph==2 and instance_exists(ScoreTableController)) or global.dsmPingGraph==1{
+        for (i=0; i&lt;ds_list_size(pingGraphList); i+=1){
+            if ds_list_find_value(pingGraphList,i)&lt;240 linecol=c_yellow
+            if ds_list_find_value(pingGraphList,i)&lt;135 linecol=c_green
+            if ds_list_find_value(pingGraphList,i)&lt;75 linecol=c_aqua
+            if ds_list_find_value(pingGraphList,i)==-1 linecol=c_gray
+            if ds_list_find_value(pingGraphList,i)&gt;=240 linecol=c_red
+            if ds_list_find_value(pingGraphList,i)&gt;cooldownTime*(30/global.delta_factor) linecol=c_black
+            if global.dsmPingGraph==2{ //move it further over for scoreboard
+                depth=-115001
+                draw_line_color(view_xview+225+i,view_yview+570,view_xview+225+i,(view_yview+570)-(ds_list_find_value(pingGraphList,i))/6,linecol,linecol)
+            }else{
+                depth=-114000
+                draw_line_color(view_xview+145+i,view_yview+570,view_xview+145+i,(view_yview+570)-(min(400,ds_list_find_value(pingGraphList,i)))/6,linecol,linecol)
+            }
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

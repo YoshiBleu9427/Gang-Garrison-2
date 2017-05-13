@@ -16,7 +16,7 @@
         <argument kind="STRING">{
     player = global.paramPlayer;
     team = player.team;
-    
+
     // Default properties of Characters (those where defaults make sense)
     canDoublejump = 0;
     canCloak = 0;
@@ -38,70 +38,30 @@
     timeUnscathed = 0;
     syncWrongness = 0;
     
-    //Mod stuff
-    playerPing=0
-    alarm[8]=30/global.delta_factor
-    
-    //server side afk timeout
-    //sAfkTimeout=2*60*30/global.delta_factor //2 mins
-    sAfkTimeout=global.serverAfkTimeout*30/global.delta_factor
-    sAfkTimer=sAfkTimeout
-    oldAimDirection=0
-    
-    //TDM grace period
-    if instance_exists(TeamDeathmatchHUD){
-        tdmGrace=1
-        tdmGraceTimer=5*30
-    }else{
-        tdmGrace=0
-        tdmGraceTimer=0
-    }
-    graceAnimation=-1
-    
-    //Bhop
-    hopCounter=0
-    //
-    
     // animation state
     equipmentOffset = 0;
     onground = true;
     still = true;
     yoffset = 0;
-    sprite_special = global.xmas;
+    sprite_special = global.gg_birthday or global.xmas;
     
     // class sprite vars
-    if(player.class == CLASS_QUOTE)
-    {
-        spriteRun = sprite_index;
-        spriteJump = sprite_index;
-        spriteStand = sprite_index;
-        spriteLeanR = sprite_index;
-        spriteLeanL = sprite_index;
-        spriteIntel = sprite_index; // it's an underlay
-    }
-    else
-    {
-        spriteRun = getCharacterSpriteId(player.class, player.team, "Run");
-        spriteJump = getCharacterSpriteId(player.class, player.team, "Jump");
-        spriteStand = getCharacterSpriteId(player.class, player.team, "Stand");
-        spriteLeanR = getCharacterSpriteId(player.class, player.team, "LeanR");
-        spriteLeanL = getCharacterSpriteId(player.class, player.team, "LeanL");
-        spriteIntel = getCharacterSpriteId(player.class, player.team, "Intel");
-    }
-
-    spriteDead = getCharacterSpriteId(player.class, player.team, "Dead");
-    humiliationPoses = getCharacterSpriteId(player.class, player.team, "H");
-    tauntsprite = getCharacterSpriteId(player.class, player.team, "Taunt");
+    spriteRun = sprite_index;
+    spriteJump = sprite_index;
+    spriteStand = sprite_index;
+    spriteLeanR = sprite_index;
+    spriteLeanL = sprite_index;
+    spriteIntel = sprite_index; // it's an underlay
     
     //afterburn stuff
     burnIntensity = 0; // "heat"
     legIntensity = 7; // afterburn intensity after which additional intsity additions are halved.
                       // it's called a "leg" becauase of a similar concept in dynamic range compression.
-    maxIntensity = 12//13; //maximum afterburn intensity in DPS
+    maxIntensity = 13; //maximum afterburn intensity in DPS
     burnDuration = 0; // "fuel"
-    maxDuration = 170//210; //maximum afterburn length in duration ticks (see durationDecay)
+    maxDuration = 210; //maximum afterburn length in duration ticks (see durationDecay)
     decayDelay = 90; //time between last ignition and intensity lowering
-    decayDuration = 70; //time between intensity lowering and zeroing out
+    decayDuration = 90; //time between intensity lowering and zeroing out
     durationDecay = 1; //amount that duration lowers per step
     intensityDecay = burnIntensity / decayDuration;
     burnedBy = -1;
@@ -126,6 +86,7 @@
 
     image_speed = 0;
     tauntspeed = 3;
+    tauntlength = sprite_get_number(tauntsprite)/2;
     
     animationOffset = CHARACTER_ANIMATION_NORMAL;
     animationImage = 0;
@@ -144,7 +105,7 @@
     bubble = instance_create(0,0,SpeechBubbleO);
     bubble.owner = id;
 
-    //afk=false;
+    afk=false;
     
     // Cloak for Spies
     cloak = false;
@@ -165,15 +126,10 @@
     //sandvich
     omnomnomnom = false;
     canEat = true;
-    eatCooldown = 45*30; //45 sec cooldown
-    eatingDamage=0
+    eatCooldown = 1350; //45 sec cooldown
     
     //sniper zoom
     zoomed = 0;
-    
-    //bubble
-    canBubble=1
-    bubbleCooldown=1200
     
     //nuts n bolts for contructor
     nutsNBolts = 100;
@@ -204,7 +160,7 @@
     tauntOverlays = ds_list_create();
     crouchOverlays = ds_list_create();
     omnomnomnomOverlays = ds_list_create();
-    omnomnomnomSprite = getCharacterSpriteId(CLASS_HEAVY, player.team, "Omnomnomnom");
+    omnomnomnomSprite = OmnomnomnomS;
     demon = -1;
     demonX = 0;
     demonY = 0;
@@ -212,52 +168,49 @@
     demonDir = 0.5;
     demonFrame = 0;
 
-    gearList = ds_list_create();
-    
     // Let's spawn our weapon
     global.paramOwner = id;
     currentWeapon = instance_create(x,y,weapons[0]);
     global.paramOwner = noone;
     
-    // Gear that drops with gibs
-    has_partyhat     = false;
-    has_crown        = false;
-    has_navigatorhat = false;
-    
     // THIS IS A TRUCK LOAD OF GARBAGE CODE THAT SHOULD BE REPLACED ASAP
     
-    if(hasClassReward(player, 'Grey_Accessories_') and player.class != CLASS_QUOTE){
+    if(hasClassReward(player, 'Grey_Accessories_') and player.class != CLASS_QUOTE)
+    {
         ds_list_add(stillOverlays, global.SilverAttireOverlay[player.class]);
         ds_list_add(leanROverlays, global.SilverAttireLeanROverlay[player.class]);
         ds_list_add(leanLOverlays, global.SilverAttireLeanLOverlay[player.class]);
         ds_list_add(jumpOverlays, global.SilverAttireJumpOverlay[player.class]);
         ds_list_add(runOverlays, global.SilverAttireRunOverlay[player.class]);
         ds_list_add(tauntOverlays, global.SilverAttireTaunt[player.class]);
-        if (player.class == CLASS_HEAVY){
+        if (player.class == CLASS_HEAVY)
+        {
             ds_list_add(omnomnomnomOverlays, global.SilverSandwichOverlay[player.class]);
             ds_list_add(walkOverlays, global.SilverAttireOverlay[player.class]);
         }
-        if (player.class == CLASS_SNIPER){
+        if (player.class == CLASS_SNIPER)
             ds_list_add(crouchOverlays, global.SilverAttireOverlay[player.class]);
-        }
-    }else if(hasClassReward(player, 'Gold_Accessories_') and player.class != CLASS_QUOTE){
+    }
+    else if(hasClassReward(player, 'Gold_Accessories_') and player.class != CLASS_QUOTE)
+    {
         ds_list_add(stillOverlays, global.GoldenAttireOverlay[player.class]);
         ds_list_add(leanROverlays, global.GoldenAttireLeanROverlay[player.class]);
         ds_list_add(leanLOverlays, global.GoldenAttireLeanLOverlay[player.class]);
         ds_list_add(jumpOverlays, global.GoldenAttireJumpOverlay[player.class]);
         ds_list_add(runOverlays, global.GoldenAttireRunOverlay[player.class]);
         ds_list_add(tauntOverlays, global.GoldenAttireTaunt[player.class]);
-        if (player.class == CLASS_HEAVY){
+        if (player.class == CLASS_HEAVY)
+        {
             ds_list_add(omnomnomnomOverlays, global.GoldenSandwichOverlay[player.class]);
             ds_list_add(walkOverlays, global.GoldenAttireOverlay[player.class]);
         }
-        if (player.class == CLASS_SNIPER){
+        if (player.class == CLASS_SNIPER)
             ds_list_add(crouchOverlays, global.GoldenAttireOverlay[player.class]);
-        }
     }
     // You cannot wear more than one hat at once you dingdong
     // 'BH' reward - *B*obble *H*ead - not available for quote
-    if(hasClassReward(player, 'BH') and player.class != CLASS_QUOTE){
+    if(hasClassReward(player, 'BH') and player.class != CLASS_QUOTE)
+    {
         // hats use the same sprite for most animations 
         ds_list_add(stillOverlays, global.HatBobbleClassOverlay[player.class]);
         ds_list_add(leanROverlays, global.HatBobbleClassOverlay[player.class]);
@@ -265,24 +218,14 @@
         ds_list_add(jumpOverlays, global.HatBobbleClassOverlay[player.class]);
         ds_list_add(runOverlays, global.HatBobbleClassOverlay[player.class]);
             
+        ds_list_add(tauntOverlays, global.HatBobbleClassTaunt[player.class]);
         if (player.class == CLASS_HEAVY)
         {
             ds_list_add(walkOverlays, global.HatBobbleClassOverlay[player.class]);
             ds_list_add(omnomnomnomOverlays, global.HatBobbleSandwich[player.class]);
         }
         if (player.class == CLASS_SNIPER)
-        {
             ds_list_add(crouchOverlays, global.HatBobbleClassOverlay[player.class]);
-        }
-            
-        if (player.class == CLASS_SPY and player.team == TEAM_BLUE)
-        {
-            ds_list_add(tauntOverlays, HatBobbleSpyBlueTauntS);
-        }
-        else
-        {
-            ds_list_add(tauntOverlays, global.HatBobbleClassTaunt[player.class]);        
-        }
     }
     else if(hasClassReward(player, 'TopHatMonocle_'))
     {
@@ -292,24 +235,14 @@
         ds_list_add(jumpOverlays, global.TopHatMonocleOverlay[player.class]);
         ds_list_add(runOverlays, global.TopHatMonocleOverlay[player.class]);
             
+        ds_list_add(tauntOverlays, global.TopHatMonocleTaunt[player.class]);
         if (player.class == CLASS_HEAVY)
         {
             ds_list_add(walkOverlays, global.TopHatMonocleOverlay[player.class]);
             ds_list_add(omnomnomnomOverlays, global.TopHatMonocleSandwich[player.class]);
         }
         if (player.class == CLASS_SNIPER)
-        {
             ds_list_add(crouchOverlays, global.TopHatMonocleOverlay[player.class]);
-        }
-            
-        if (player.class == CLASS_QUOTE and player.team == TEAM_BLUE)
-        {
-            ds_list_add(tauntOverlays, QuerlyBlueMonocleHatTauntS);
-        }
-        else
-        {
-            ds_list_add(tauntOverlays, global.TopHatMonocleTaunt[player.class]);        
-        }
     }
     else if(hasClassReward(player, 'TopHat_'))
     {
@@ -319,64 +252,18 @@
         ds_list_add(jumpOverlays, global.TopHatOverlay[player.class]);
         ds_list_add(runOverlays, global.TopHatOverlay[player.class]);
             
+        ds_list_add(tauntOverlays, global.TopHatTaunt[player.class]);
         if (player.class == CLASS_HEAVY)
         {
             ds_list_add(walkOverlays, global.TopHatOverlay[player.class]);
             ds_list_add(omnomnomnomOverlays, global.TopHatSandwich[player.class]);
         }
         if (player.class == CLASS_SNIPER)
-        {
             ds_list_add(crouchOverlays, global.TopHatOverlay[player.class]);
-        }
-            
-        if (player.class == CLASS_QUOTE and player.team == TEAM_BLUE)
-        {
-            ds_list_add(tauntOverlays, QuerlyBlueTopHatTauntS);
-        }
-        else
-        {
-            ds_list_add(tauntOverlays, global.TopHatTaunt[player.class]);        
-        }
-    }
-    else if (hasReward(player, 'Crown'))
-    {
-        ds_list_add(gearList, GEAR_CROWN);
-        has_crown = true;
-    }
-    else if (hasReward(player, 'Navigator'))
-    {
-        ds_list_add(gearList, GEAR_NAVIGATORHAT);
-        has_navigatorhat = true;
-    }
-    else if (global.gg_birthday)
-    {
-        ds_list_add(gearList, GEAR_PARTY_HAT);
-        has_partyhat = true;
     }
     if (hasReward(player, 'WillOWisp'))
     {
         demon = WillOWispS;
-    }
-    if(hasClassReward(player, 'GW'))
-    {
-        // 'GW' reward - *G*olden *W*eapon
-        // Prepend to the start of the overlay list, so that it gets drawn first (it's a full sprite replacement)
-        switch(player.class)
-        {
-            case CLASS_SCOUT:
-            case CLASS_SOLDIER:
-            case CLASS_SNIPER:
-            case CLASS_DEMOMAN:
-            case CLASS_HEAVY:
-            case CLASS_PYRO:
-                ds_list_insert(tauntOverlays, 0, getCharacterSpriteId(player.class, player.team, "GoldWeaponTaunt"));
-                break;
-        }
-        
-        if(player.class == CLASS_HEAVY)
-        {
-            ds_list_insert(omnomnomnomOverlays, 0, getCharacterSpriteId(global.paramPlayer.class, global.paramPlayer.team, "OmnomnomnomGoldWeapon"));
-        }
     }
 }
 </argument>

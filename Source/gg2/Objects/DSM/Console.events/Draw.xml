@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">xoffset = view_xview[0];
+yoffset = view_yview[0];
+xsize = view_wview[0] + xoffset;
+ysize = view_hview[0] + yoffset;
+spacing = 16;
+
+// top left
+console_x1 = xoffset + 180;
+console_y1 = yoffset + 9;
+
+// bottom right
+console_x2 = xsize - 8;
+console_y2 = ysize - 3;
+
+// colors
+c_bordergrey = make_color_rgb(87, 87, 87);
+c_bggrey = make_color_rgb(128, 128, 128);
+c_boxgrey1 = make_color_rgb(192, 192, 192);
+c_boxgrey2 = make_color_rgb(64, 64, 64);
+
+// background (the grey thingy)
+draw_set_color(c_bordergrey);
+draw_rectangle(console_x1, console_y1, console_x2, console_y2, true);
+draw_set_color(c_bggrey);
+draw_rectangle(console_x1 + 1, console_y1 + 1, console_x2 - 1, console_y2 - 1, false);
+
+// big black box
+draw_set_color(c_black);
+draw_rectangle(console_x1 + 11, console_y1 + 21, console_x2 - 11, console_y2 - 36, false);
+
+// text box
+// allign from the bottom
+draw_set_color(c_black);
+draw_rectangle(console_x1 + 11, console_y2 - 31, console_x2 - 11, console_y2 - 11, false);
+
+// grey lines
+//main box
+draw_set_color(c_boxgrey1)
+draw_line(console_x1 + 11, console_y1 + 21, console_x2 - 10, console_y1 + 21)
+draw_line(console_x1 + 11, console_y1 + 21, console_x1 + 11, console_y2 - 35)
+draw_set_color(c_boxgrey2)
+draw_line(console_x1 + 12, console_y2 - 36, console_x2 - 10, console_y2 - 36)
+draw_line(console_x2 - 11, console_y1 + 22, console_x2 - 11, console_y2 - 35)
+//text box
+draw_set_color(c_boxgrey1)
+draw_line(console_x1 + 11, console_y2 - 31, console_x2 - 10, console_y2 - 31)
+draw_line(console_x1 + 11, console_y2 - 30, console_x1 + 11, console_y2 - 10)
+draw_set_color(c_boxgrey2)
+draw_line(console_x1 + 12, console_y2 - 11, console_x2 - 10, console_y2 - 11)
+draw_line(console_x2 - 11, console_y2 - 30, console_x2 - 11, console_y2 - 10)
+
+// Draw the console Title
+draw_set_alpha(1);
+draw_set_color(c_white);
+draw_set_font(global.gg2Font); //we want the title to stand out
+draw_set_halign(fa_left)
+draw_text(console_x1+15, console_y1+10, "Console - DSM "+string(DSM_VERSION_STRING));
+
+draw_set_halign(fa_left);
+draw_set_font(global.DSM_ConsoleFont);
+var offset;
+// Draw text in input field
+if cursor_moving or blink{
+    offset = string_width(string_copy(current_text, 0, cursor_position));
+    draw_text(console_x1 + 11 + offset, console_y2-20, cursor_character);
+}
+draw_text(console_x1+14, console_y2 - 20, sanitiseNewlines(current_text));
+
+// Draw the whole log
+var message;
+for(i=0; i&lt;ds_list_size(global.consoleLog); i+=1){
+    
+    message = ds_list_find_value(global.consoleLog, ds_list_size(global.consoleLog)-1-i)
+    switch string_copy(message, 0, 3){
+        case "/:/":// If a color-code was included.
+            draw_set_color(getColorCode(string_copy(message, 4, COLOR_RGB_LENGTH)))
+            draw_text(console_x1+22, (console_y2 - 57)-i*spacing, string_copy(sanitiseNewlines(message), 4+COLOR_RGB_LENGTH, string_length(message)-(4+COLOR_RGB_LENGTH-1)));
+            break
+
+        default:
+            draw_set_color(c_white);
+            draw_text(console_x1+17, (console_y2-57)-i*spacing, sanitiseNewlines(message));
+            break
+    }
+}
+
+draw_set_font(global.gg2Font);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

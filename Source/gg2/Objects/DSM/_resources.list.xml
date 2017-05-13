@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="InGameElements" type="GROUP"/>
+  <resource name="Overlays" type="GROUP"/>
+  <resource name="Map elements" type="GROUP"/>
+  <resource name="Menus" type="GROUP"/>
+  <resource name="Console" type="RESOURCE"/>
+  <resource name="DSM_Chatbox" type="RESOURCE"/>
+</resources>

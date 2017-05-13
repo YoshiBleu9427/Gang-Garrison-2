@@ -73,51 +73,9 @@ if (assistant)
     assistant.roundStats[POINTS] += .5;
 }
 
-with(ModController){
-    event_user(0)
-}
-if global.chatPBF_8==1 and global.isHost{
-    allSetSolids();
-    if (place_free(x,y+1) and place_free(x,y+55) and place_free(x,y+100))
-    or (victim.object.moveStatus!=0 and place_free(x,y+1) and place_free(x,y+55)){
-        if (damageSource==DAMAGE_SOURCE_RIFLE
-        or damageSource==DAMAGE_SOURCE_RIFLE_CHARGED
-        or damageSource==DAMAGE_SOURCE_MINEGUN
-        or damageSource==DAMAGE_SOURCE_ROCKETLAUNCHER
-        or damageSource==DAMAGE_SOURCE_REFLECTED_ROCKET
-        or damageSource==DAMAGE_SOURCE_REFLECTED_STICKY
-        or damageSource==DAMAGE_SOURCE_FLARE
-        or damageSource==DAMAGE_SOURCE_REFLECTED_FLARE){
-            if victim!=killer{
-                var message;
-                colorKiller = getPlayerColor(killer, true);
-                colorVictim = getPlayerColor(victim, true);
-                classKiller = classname(killer.class)
-                classVictim = classname(victim.class)
-                killerString = c_filter(killer.name)+" ("+classKiller+")"
-                victimString = c_filter(victim.name)+" ("+classVictim+")"
-                
-                reflectString=""
-                if damageSource==DAMAGE_SOURCE_REFLECTED_ROCKET or DAMAGE_SOURCE_REFLECTED_STICKY or DAMAGE_SOURCE_REFLECTED_FLARE{
-                    reflectString=""//" reflect"
-                }
-                
-                message = global.chatPrintPrefix+colorKiller+killerString+C_WHITE+reflectString+" airshot"+colorVictim+" "+victimString+C_WHITE+"!"
-                write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
-                write_ushort(global.publicChatBuffer, string_length(message));
-                write_string(global.publicChatBuffer, message);
-                write_byte(global.publicChatBuffer,-1)
-                print_to_chat(message);// For the host
-            }
-        }
-    }
-    allUnsetSolids();
-}
-
 //SPEC
-if (victim == global.myself){
+if (victim == global.myself)
     instance_create(victim.object.x, victim.object.y, Spectator);
-}
 
 //*************************************
 //*         Gibbing
@@ -250,7 +208,7 @@ with(victim.object) {
         var deadbody;
         if (player.class != CLASS_QUOTE)
             playsound(x,y,choose(DeathSnd1, DeathSnd2));
-            
+
         deadbody = instance_create(x,y-30,DeadGuy);
         // 'GS' reward - *G*olden *S*tatue
         if(hasReward(player, 'GS'))
@@ -260,14 +218,14 @@ with(victim.object) {
         }
         else
         { 
-            deadbody.sprite_index = spriteDead;
-            deadbody.image_index = 0;
+            deadbody.sprite_index = sprite_index;
+            deadbody.image_index = CHARACTER_ANIMATION_DEAD;
         }
         deadbody.hspeed=hspeed;
         deadbody.vspeed=vspeed;
         if(hspeed>0)
         {
-            deadbody.image_xscale = -1;
+            deadbody.image_xscale = -1;  
         }
         if(hasClassReward(victim, "DeathMoney_"))
             deadbody.hasMoney = true;
@@ -281,15 +239,7 @@ with(victim.object) {
     }
 }
 
-if (victim.object.has_crown) {
-    myHat = instance_create(victim.object.x,victim.object.y,CrownGib);
-    myHat.image_index = victim.team;
-}
-if (victim.object.has_navigatorhat) {
-    myHat = instance_create(victim.object.x,victim.object.y,NavigatorHatGib);
-    myHat.image_index = victim.team;
-}
-if (victim.object.has_partyhat){
+if (global.gg_birthday){
     myHat = instance_create(victim.object.x,victim.object.y,PartyHat);
     myHat.image_index = victim.team;
 }
@@ -305,8 +255,28 @@ if (hasReward(victim, 'Ghost') and victim.ghost == noone) {
     victim.ghost.vspeed = vspeed;
 }
 
-with(victim.object) {
+with(victim.object) {       
     instance_destroy();
+}
+
+//*************************************
+//*         Deathcam
+//*************************************
+if( global.killCam and victim == global.myself and killer and killer != victim and !(damageSource == DAMAGE_SOURCE_KILL_BOX || damageSource == DAMAGE_SOURCE_FRAG_BOX || damageSource == DAMAGE_SOURCE_FINISHED_OFF || damageSource == DAMAGE_SOURCE_FINISHED_OFF_GIB || damageSource == DAMAGE_SOURCE_GENERATOR_EXPLOSION)) {
+    instance_create(0,0,DeathCam);
+    DeathCam.killedby=killer;
+    DeathCam.name=killer.name;
+    DeathCam.oldxview=view_xview[0];
+    DeathCam.oldyview=view_yview[0];
+    DeathCam.lastDamageSource=damageSource;
+    DeathCam.team = global.myself.team;
+}
+if global.dsmKillerInfo==1 and !global.killCam and (victim==global.myself and killer and !(damageSource == DAMAGE_SOURCE_KILL_BOX || damageSource == DAMAGE_SOURCE_FRAG_BOX || damageSource == DAMAGE_SOURCE_FINISHED_OFF || damageSource == DAMAGE_SOURCE_FINISHED_OFF_GIB || damageSource == DAMAGE_SOURCE_GENERATOR_EXPLOSION)){
+    instance_create(view_xview[0]/2,view_yview[0]+500,DSM_KillerInfo)
+    DSM_KillerInfo.killedby=killer
+    DSM_KillerInfo.name=killer.name
+    DSM_KillerInfo.lastDamageSource=damageSource
+    DSM_KillerInfo.team=global.myself.team
 }
 
 // Gamemode considerations

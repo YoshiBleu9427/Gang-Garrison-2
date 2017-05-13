@@ -13,7 +13,12 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">var i, server;
+        <argument kind="STRING">if colour1==0 and colour2==0{
+    colour1=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+    colour2=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+}
+
+var i, server;
 draw_set_color(c_black);
 draw_set_alpha(0.5);
 
@@ -44,7 +49,19 @@ for(i=offset; i&lt;ds_list_size(servers) and i&lt;offset+items; i+=1)
     
     draw_set_alpha(1);
     if(i==virtualitem) {
-        draw_set_color(c_red);
+        if global.dsmTextColour==0{
+            draw_set_color(c_red)
+        }else if global.dsmTextColour==1{
+            draw_set_color(c_blue)
+        }else if global.dsmTextColour==2{
+            draw_set_color(c_green)
+        }else if global.dsmTextColour==3{
+            draw_set_color(c_yellow)
+        }else if global.dsmTextColour==4{
+            draw_set_color(c_purple)
+        }else if global.dsmTextColour==5{
+            draw_set_color(colour1)
+        }
     } else if(server.compatible) {
         draw_set_color(c_white);
     } else {
@@ -64,11 +81,21 @@ for(i=offset; i&lt;ds_list_size(servers) and i&lt;offset+items; i+=1)
     
     /* Draw latency and color indicators */
     if(server.pingFinished) {
+        docol = c_red;
         showping = string(server.ping);
+        if (server.ping &lt; 240) {
+            docol = c_yellow;
+        }
+        if (server.ping &lt; 135) {
+            docol = c_green;
+        }
+        if (server.ping &lt; 75) {
+            docol = c_aqua;
+        }
         if (server.ping == -1) {
+            docol = c_gray;
             showping = "TIMEOUT";
         }
-        docol=get_ping_color(server.ping)
 
         draw_text_color(xbegin+425, ybegin+pixeloffset,"#"+showping,docol,docol,docol,docol,1);
     }

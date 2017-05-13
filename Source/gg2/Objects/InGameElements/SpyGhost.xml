@@ -2,7 +2,7 @@
 <object id="813">
   <sprite>SpyGhostS</sprite>
   <solid>false</solid>
-  <visible>false</visible>
+  <visible>true</visible>
   <depth>1</depth>
   <persistent>false</persistent>
   <parent/>

@@ -13,11 +13,16 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">alpha = 1;
-done = false;
-nameLen = 0;
-showadmin = false;
-displayPing=0
+        <argument kind="STRING">{
+    if (global.fadeScoreboard)
+        alpha = 0.02;
+    else
+        alpha = 1;
+    done = false;
+    nameLen = 0;
+    showadmin = false;
+    instance_create(x,y+402,StatsBoard)
+}
 </argument>
       </arguments>
     </action>

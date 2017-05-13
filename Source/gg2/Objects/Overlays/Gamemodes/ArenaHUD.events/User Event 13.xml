@@ -14,7 +14,8 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">receiveCompleteMessage(global.serverSocket,8,global.deserializeBuffer);
-timeLimit = read_ubyte(global.deserializeBuffer)*1800
+global.timeLimitMins = read_ubyte(global.deserializeBuffer);
+timeLimit=global.timeLimitMins*30*60;
 timer=read_uint(global.deserializeBuffer);
 cpUnlock=read_ushort(global.deserializeBuffer);
 roundStart = read_ubyte(global.deserializeBuffer)*2;

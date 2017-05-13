@@ -19,6 +19,9 @@
 
 socket_destroy(lobbysocket);
 ds_list_destroy(servers);
+
+colour1=0
+colour2=0
 </argument>
       </arguments>
     </action>

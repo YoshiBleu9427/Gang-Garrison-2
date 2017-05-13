@@ -42,6 +42,8 @@ else // boot behaviour is normal or unknown
         AudioControlPlaySong(global.FaucetMusic);
     }
 }
+
+if global.dsmSkipFaucet==1 SplashController.alarm[1]=1
 </creationCode>
   <backgroundColor>000000</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>

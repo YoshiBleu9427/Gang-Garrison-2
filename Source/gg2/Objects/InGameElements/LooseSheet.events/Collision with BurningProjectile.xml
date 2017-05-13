@@ -13,11 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(!burning
-    and sprite_index != SheetFallingGold1
-    and sprite_index != SheetFallingGold2
-    and sprite_index != SheetFallingGold3)
-{
+        <argument kind="STRING">if(not burning) {
     sprite_index = SheetBurning;
     burning = true;
     image_index = 0;

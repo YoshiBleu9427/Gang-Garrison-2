@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="17">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//event7 : check if the player isn't spamming
+//this event can also be used by other plugins to read each message!
+if _player.lastChatTime &gt; current_time-500{
+    _player.chatCount += 1;
+    if _player.chatCount &gt; 10{
+        //mute player.            
+        _message = "O"+_player.name+" has been muted due to spamming.";
+        _team = 0;
+        event_user(2); //tell everyone someone got muted
+        event_user(4); //add to own chat
+
+        _player.hasChat = false;
+        ds_list_add(global.chatBanlist,socket_remote_ip(_player.socket));
+    }
+}else _player.chatCount = 1;
+_player.lastChatTime = current_time;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -13,11 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">with(Mine){
-    if ownerPlayer == other.ownerPlayer{
-        instance_destroy();
-    }
-}
+        <argument kind="STRING">with(Mine) {if ownerPlayer == other.ownerPlayer instance_destroy();}
 </argument>
       </arguments>
     </action>

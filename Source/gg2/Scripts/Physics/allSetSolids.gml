@@ -10,4 +10,3 @@ with(PlayerWall)
     solid = true;
 with(BulletWall)
     solid = !open;
-

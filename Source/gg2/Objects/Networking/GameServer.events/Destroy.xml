@@ -17,20 +17,10 @@
     sendLobbyUnreg();
 }
 
-if instance_exists(ReadyUpController){
-    with ReadyUpController{
-        event_user(0)
-    }
-}
-
 ds_list_destroy(global.players);
-global.playerListExists=0
 socket_destroy(global.tcpListener);
 socket_destroy(global.serverSocket);
 buffer_destroy(serverId);
-ds_list_destroy(global.banned_ips)
-ds_list_destroy(global.chatBanList)
-ds_list_destroy(global.clientChatBanList)
 
 with(Player)
     instance_destroy();
@@ -41,15 +31,8 @@ with(JoiningPlayer)
 with(PlayerControl)
     instance_destroy();
 
-with(Console){
-    event_user(0)
-    instance_destroy()
-}
-    
-with(ChatBox){
-    event_user(15)
-    instance_destroy()
-}
+with(Console)
+    instance_destroy();
     
 if (global.attemptPortForward and portForwarded)
     upnp_release_port(string(global.hostingPort), "TCP")
@@ -59,8 +42,11 @@ if (instance_exists(Builder))
 else
     room_goto_fix(Menu);
 
-if (global.serverPluginsInUse)
-    pluginscleanup();
+if (global.serverPluginsInUse){
+    //if show_message_ext("Clean up server plugins?","Yes","","No")==1{
+        pluginscleanup()
+    //}
+}
     
 set_synchronization(global.monitorSync);
 </argument>

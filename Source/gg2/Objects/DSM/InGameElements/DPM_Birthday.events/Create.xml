@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">currentLine=0
+lineColour=c_yellow
+
+line[0]="Put up the barriers shut down your senses"
+line[1]="Cover up with all of your pretences"
+line[2]="See no evil, your eyes are blunted"
+line[3]="We are the hunters, we are the hunted"
+line[4]="Place it in your memory"
+line[5]="Leave it in your past"
+line[6]="But don't forget"
+line[7]="Taking a tumble, I'm taking a dive"
+line[8]="Sometimes I stumble when my mind's made up"
+line[9]="Reaction levels seem strangely muted"
+line[10]="Ordinary acts of fun have been diluted"
+line[11]="Place it in your memory"
+line[12]="Leave it in your past"
+line[13]="But don't forget"
+line[14]=""
+line[15]=":D Happy Birthday, DPM! R.I.P."
+line[16]=""
+alarm[0]=50
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

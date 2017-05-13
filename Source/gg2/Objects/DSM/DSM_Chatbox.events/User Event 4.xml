@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="14">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//event4 : add messages to the chatwindow
+//make the window display the new message
+alarm[0]=idleTime;
+idle = false;
+    
+while(string_length(_message) != 0){
+    if string_length(_message) &gt; 46{
+        ds_list_add(global.chatLog,string_copy(_message,1,46));
+        pos = string_pos("#",_message);
+        
+        if pos==0{
+            color = string_copy(_message,1,1);
+        }else{
+            color = string_copy(_message,pos+1,1);
+        }
+        
+        _message = color+string_copy(_message,47,255);
+    }else{
+        ds_list_add(global.chatLog,string_copy(_message,1,46));
+        _message = "";
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

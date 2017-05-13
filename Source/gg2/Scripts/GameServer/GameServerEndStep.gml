@@ -3,6 +3,11 @@ with(Player)
     write_buffer(socket, global.sendBuffer);
     socket_send(socket);
 }
+if (global.recordingReplay){
+    write_ushort(global.replayBuffer, buffer_size(global.sendBuffer));
+    write_buffer(global.replayBuffer, global.sendBuffer);
+}
+
 buffer_clear(global.sendBuffer);
 
 global.runningMapDownloads = 0;
@@ -11,14 +16,6 @@ with(JoiningPlayer)
     if(state==STATE_CLIENT_DOWNLOADING)
         global.runningMapDownloads += 1;
 
-acceptJoiningPlayer();
-with(JoiningPlayer){
+acceptJoiningPlayer();        
+with(JoiningPlayer)
     serviceJoiningPlayer();
-}
-
-if(global.run_virtual_ticks){
-    if !global.isLive{
-        CheckRUPStatus()
-        ServerRUPStatus()
-    }
-}

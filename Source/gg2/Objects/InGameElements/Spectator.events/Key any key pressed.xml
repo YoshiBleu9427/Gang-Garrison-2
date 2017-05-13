@@ -13,7 +13,10 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(!instance_exists(MenuController) or global.isChatting==1 or instance_exists(Console))
+        <argument kind="STRING">afktimeout=9000;
+afktimer=afktimeout;
+
+if(!instance_exists(MenuController))
     exit;
 
 var i;

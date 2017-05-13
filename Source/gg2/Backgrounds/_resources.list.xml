@@ -2,6 +2,7 @@
 <resources>
   <resource name="GameElements" type="GROUP"/>
   <resource name="Updater" type="GROUP"/>
+  <resource name="DSM" type="GROUP"/>
   <resource name="BuilderWMB" type="RESOURCE"/>
   <resource name="BuilderBGB" type="RESOURCE"/>
   <resource name="CustomMapB" type="RESOURCE"/>

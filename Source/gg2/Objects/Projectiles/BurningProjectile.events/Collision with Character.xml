@@ -13,8 +13,11 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(other.id != ownerPlayer.object and other.team != team and other.ubered == 0  and other.hp &gt; 0) and (global.jumpMode==0 or (global.jumpMode==1 and global.jumpPlayerAttack=1))
+        <argument kind="STRING">if(other.id != ownerPlayer.object and other.team != team and other.ubered == 0  and other.hp &gt; 0)
 {
+    if (ds_list_find_index(enemiesHit,other.id) != -1)
+        exit;
+        
     damageCharacter(ownerPlayer, other.id, hitDamage);
         
     if (other.lastDamageDealer != ownerPlayer and other.lastDamageDealer != other.player)
@@ -22,7 +25,7 @@
         other.secondToLastDamageDealer = other.lastDamageDealer;
         other.alarm[4] = other.alarm[3];
     }
-    other.alarm[3] = ASSIST_TIME/global.delta_factor;
+    other.alarm[3] = ASSIST_TIME;
     other.lastDamageDealer = ownerPlayer;
     other.lastDamageSource = weapon;
     
@@ -37,7 +40,7 @@
         if(afterburnFalloff)
             falloffFactor = falloffAmount*0.65+0.35; // Reduce heat additions of "old"/distant flames -- 0.35 to 1.0 "curve"
         else
-            falloffFactor = 0.8;
+            falloffFactor = 1;
         
         if(other.burnIntensity &gt; other.legIntensity and afterburnFalloff) // reduce heat additions above the "leg" heat
             falloffFactor /= 2;
@@ -49,11 +52,14 @@
         
         other.burnedBy = ownerPlayer;
         other.afterburnSource = weapon;
-        other.alarm[0] = other.decayDelay/global.delta_factor;
+        other.alarm[0] = other.decayDelay;
     }
     dealFlicker(other.id);
     
-    instance_destroy();
+    if (ds_list_size(enemiesHit) &gt;= penetrateCap and !perseverant)
+        instance_destroy();
+    else
+        ds_list_add(enemiesHit, other.id);
 }
 </argument>
       </arguments>

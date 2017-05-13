@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">var xoffset, yoffset, xsize, ysize, index;
+
+xoffset = view_xview[0];
+yoffset = view_yview[0];
+xsize = sprite_width;
+ysize = sprite_height;
+
+draw_set_valign(fa_top);
+draw_set_halign(fa_left);
+draw_set_color(c_white);
+draw_set_alpha(1);
+draw_set_font(global.DSM_ConsoleFont)//global.consoleFont);
+
+if !hidden{
+    draw_sprite_ext(sprite_index,image_index,xoffset+5,yoffset+280,1,1,0,c_white,global.dsmChatBoxAlpha/100);
+}
+
+if !open{
+    sprite_index=Chat2S
+}else if open{
+    sprite_index=ChatS
+}
+
+//prevent too long strings
+if open{
+    keyboard_string = string_copy(keyboard_string,1,230); //limit messages
+    //make that the text doesnt go outside the chatwindow
+    if string_length(keyboard_string)-45&gt;0{
+        index  = string_length(keyboard_string)-44;
+    }else{
+        index = 0;
+    }
+    chatmessage = string_copy(keyboard_string,index,45);
+    if team == 1{
+        if global.myself.team==TEAM_BLUE{
+            message="B";
+        }else if global.myself.team==TEAM_SPECTATOR{
+            message="G";
+        }else{
+            message = "R";
+        }
+        event_user(5);
+    }
+    //chatmessage = string_replace_all(chatmessage,"#","\#");
+    draw_text(xoffset + 18, yoffset+274+ysize-15, sanitiseNewlines(chatmessage));
+    draw_set_color(c_ltgray)
+    if open and keyboard_string==""{
+        if team==false{
+            placeholderMsg=placeholderMsgGlobal
+        }else if team==true{
+            placeholderMsg=placeholderMsgTeam
+        }
+        draw_text(xoffset + 18, yoffset+274+ysize-15, placeholderMsg);
+    }
+    draw_set_color(c_white)
+}
+    
+// The drawing of the text
+var amount;
+draw_set_alpha(global.dsmChatTextAlpha/100)
+if !hidden{
+    amount = min(ds_list_size(global.chatLog),12); //number of lines to show when chat is open
+}else if !idle{
+    amount = min(ds_list_size(global.chatLog),global.dsmChatLineNumber); //number of lines to show when chat is closed
+}else{
+    amount = 0;
+}
+for(i=0;i&lt;amount;i+=1){
+    message = ds_list_find_value(global.chatLog, ds_list_size(global.chatLog)-amount+i-offset);
+    pos = string_pos("#",message);
+    if pos == 0{
+        event_user(5); //read the color code
+        draw_text(xoffset+20, yoffset+287+ysize-40-12*(amount-i),string_copy(message,2,255))
+    }else{
+        event_user(5); //read the color code
+        prefix = string_copy(message,2,pos-1);
+        draw_text(xoffset+20, yoffset+287+ysize-40-12*(amount-i),prefix)
+        message = string_copy(message,pos+1,255);
+        event_user(5); //read the next color code
+        draw_text(xoffset+20+string_width(prefix), yoffset+287+ysize-40-12*(amount-i),string_copy(message,2,255))
+    }       
+}
+draw_set_font(global.gg2Font);
+draw_set_alpha(1)
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -26,7 +26,7 @@
             {
                 tracking = true;
                 //if(!instance_exists(NoticeO))
-                //    instance_create(0,0,NoticeO);
+                    //instance_create(0,0,NoticeO);
                 //with(NoticeO)
                     //notice = NOTICE_PLAYERTRACKENABLE;
             }

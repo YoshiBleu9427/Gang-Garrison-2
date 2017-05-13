@@ -2,7 +2,7 @@
 <object id="483">
   <sprite/>
   <solid>false</solid>
-  <visible>false</visible>
+  <visible>true</visible>
   <depth>-110001</depth>
   <persistent>false</persistent>
   <parent/>

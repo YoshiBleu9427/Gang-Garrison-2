@@ -23,6 +23,8 @@ global.ticks_per_virtual = 1;
 global.frameskip = 1;
 ticks = 0;
 
+//Highly experimental dynamic fps
+global.unrealFPS=1000
 </argument>
       </arguments>
     </action>

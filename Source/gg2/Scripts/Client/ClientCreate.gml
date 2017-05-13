@@ -14,21 +14,30 @@
     noReloadPlugins = false;
     
     global.players = ds_list_create();
-    global.playerListExists=1
     global.deserializeBuffer = buffer_create();
     global.isHost = false;
     global.isRCON=0;
-    
-    global.clientChatBanList=ds_list_create()
-    ds_list_clear(global.clientChatBanList)
 
     global.myself = -1;
-    gotServerHello = false;
+    gotServerHello = false;  
     returnRoom = Menu;
     downloadingMap = false;
     downloadMapBuffer = -1;
     
+     var acceptor;
+     if global.isPlayingReplay{
+        acceptor = tcp_listen(global.serverPort);
+     }    
     global.serverSocket = tcp_connect(global.serverIP, global.serverPort);
+    
+    if (global.isPlayingReplay){
+        do{
+            global.replaySocket = socket_accept(acceptor);
+            io_handle();
+        }
+        until(global.replaySocket >= 0)
+        socket_destroy(acceptor)// Not needed anymore
+    }
     
     write_ubyte(global.serverSocket, HELLO);
     write_buffer(global.serverSocket, global.protocolUuid);

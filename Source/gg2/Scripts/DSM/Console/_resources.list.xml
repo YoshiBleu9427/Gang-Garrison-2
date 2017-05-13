@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Messages" type="GROUP"/>
+  <resource name="Built-InCommands" type="GROUP"/>
+  <resource name="console_init" type="RESOURCE"/>
+  <resource name="console_print" type="RESOURCE"/>
+  <resource name="console_parseInput" type="RESOURCE"/>
+  <resource name="console_parseInput_RCON" type="RESOURCE"/>
+  <resource name="console_defineCommands" type="RESOURCE"/>
+  <resource name="console_addCommand" type="RESOURCE"/>
+  <resource name="console_open" type="RESOURCE"/>
+  <resource name="console_close" type="RESOURCE"/>
+  <resource name="getColorCodeHex" type="RESOURCE"/>
+  <resource name="getColorCode" type="RESOURCE"/>
+  <resource name="read_binds_from_file" type="RESOURCE"/>
+  <resource name="write_binds_to_file" type="RESOURCE"/>
+</resources>

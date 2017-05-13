@@ -16,42 +16,83 @@
         <argument kind="STRING">{
     cursor_sprite = CrosshairS;
     global.levelchoice = 1
-    virnum=0
 
-    menu_create(48, 110, 500, 300, 32, 40, 104, 6)
+    instance_create(576,80,currentPlugins)
+
+    menu_create(40, 200, 200, 200, 32);
     menu_background(212, 24, 8, 12, 4);
     menu_setdimmed();
-    
-    menu_addlink("[0] Return to Game", '
+
+    menu_addlink("Return to Game", '
         instance_destroy();
     ');
-    menu_addlink("[1] Lobby", '
+    
+    switch global.consoleIsOpen{
+        case true:
+            instance_create(0, 0, Console);
+            menu_addlink("Close Console", '
+                console_close();
+            ');
+        break;
+            
+        case false:
+            menu_addlink("Open Console", '
+                console_open();
+            ');
+        break;
+    }
+    
+    if (global.isHost){
+        switch (global.recordingReplay){
+            case false:
+                menu_addlink("Record Replay", '
+                beginRecording();
+                instance_destroy() //recreate object to show player that they have pressed it
+                instance_create(x,y,InGameMenuController);
+                ');
+            break;
+
+            case true:
+                menu_addlink("End Recording", '
+                endRecording();
+                instance_destroy()
+                instance_create(x,y,InGameMenuController);
+                ');
+            break;
+        }
+    }
+    
+    menu_addlink("Options", '
+        instance_destroy();
+        instance_create(0,0,OptionsController);
+    ');
+    menu_addlink("DSM Options", '
+        instance_destroy();
+        instance_create(0,0,DSMOptionsController);
+    ');
+    menu_addlink("Stats", '
+        instance_destroy();
+        instance_create(0,0,StatsMenuController);
+    ');
+    menu_addlink("Lobby", '
         splash_set_main(false)
         splash_set_border(false)
         splash_set_interrupt(false)
         splash_set_size(800,600)
         splash_show_web("http://www.ganggarrison.com/lobby/status",0)
     ');
-    menu_addlink("[2] Options", '
-        instance_destroy();
-        instance_create(0,0,OptionsController);
-    ');
-    menu_addlink("[3] Mod Options", '
-        instance_destroy();
-        instance_create(0,0,ModHostOptionsController);
-    ');
-    menu_addlink("[4] Disconnect", '
-        if instance_exists(ReadyUpController){
-            with ReadyUpController{
-                event_user(0)
-            }
-        }
-        write_ubyte(global.serverSocket, DC_REASON_USER)
-        socket_send(global.serverSocket)
+    menu_addlink("Disconnect", '
+        if (global.recordingReplay)
+        endRecording();
+        
+        addStats()
         // Force dedicated mode to off so you can go to main menu instead of just restarting server
-        if (global.serverPluginsInUse){
+        if (global.serverPluginsInUse)
+        {
             pluginscleanup(true);
-        }else{
+        }
+        else
+        {
             global.dedicatedMode = 0;
             with(Client)
                 instance_destroy();
@@ -60,15 +101,10 @@
                 instance_destroy();
         }
     ');
-    menu_addlink("[5] Quit Game", '
-        write_ubyte(global.serverSocket, DC_REASON_USER)
-        socket_send(global.serverSocket)
+    menu_addlink("Quit Game", '
+        addStats()
         with(Console){
             event_user(0)
-        }
-        
-        with(ChatBox){
-            event_user(15)
         }
         game_end();
     ');

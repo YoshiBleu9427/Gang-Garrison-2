@@ -16,7 +16,13 @@
         <argument kind="STRING">if(instance_exists(owner))
     gun.bubbleCount -= 1;
 
-instance_create(x,y,Pop);
+if global.colouredProjectiles==1{
+    var popBubble;
+    popBubble=instance_create(x,y,Pop);
+    popBubble.team=team
+}else{
+    instance_create(x,y,Pop);
+}
 </argument>
       </arguments>
     </action>

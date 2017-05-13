@@ -13,12 +13,18 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">oldScoreKeyDown = false;
+        <argument kind="STRING">afktimeout = 180*30;
+afktimer = afktimeout;
+oldScoreKeyDown = false;
+global.dsmTyping=0
 
-instance_create(0,0,Ping_FPS_Indicator)
+//DSM
+alarm[11]=30/global.delta_factor
 
-global.isChatting=0
-instance_create(0,0,ChatBox)
+if global.dsmPingDisplay==1 instance_create(0,0,DSM_PingDisplay)
+if global.dsmFPSDisplay==1 instance_create(0,0,DSM_FPSDisplay)
+
+pluginKeybyte=0
 </argument>
       </arguments>
     </action>

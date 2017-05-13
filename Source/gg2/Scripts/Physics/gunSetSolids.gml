@@ -8,4 +8,3 @@ with(ControlPointSetupGate)
     event_user(0);
 with(BulletWall)
     solid = !open;
-

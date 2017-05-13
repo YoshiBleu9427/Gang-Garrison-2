@@ -1,14 +1,13 @@
-with(IntelGate){
+with(IntelGate)
     solid = true;
-}
-with(TeamGate){
+with(TeamGate)
     solid = true;
-}
-with(ControlPointSetupGate){
+with(ControlPointSetupGate)
+{
     solid = (global.setupTimer > 0);
     if(instance_exists(FauxCPHUD))
         solid = (FauxCPHUD.cpUnlock > 0);
 }
-with(PlayerWall){
+with(PlayerWall)
     solid = true;
-}
+

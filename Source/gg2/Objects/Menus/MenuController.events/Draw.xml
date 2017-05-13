@@ -13,60 +13,31 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if(!variable_local_exists("baseybegin")) // This needs to be duplicated because of code execution order issues
+        <argument kind="STRING">if colour1==0 and colour2==0{
+    colour1=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+    colour2=make_color_rgb(random_range(0,255),random_range(0,255),random_range(0,255))
+}
+
+if(!variable_local_exists("baseybegin")) // This needs to be duplicated because of code execution order issues
 {
     baseybegin = ybegin;
     mouse_samples = ds_list_create();
 }
-
-if room==CustomMapRoom{
-    if(view_hview[0] &lt; 600){
-        ds_list_add(mouse_samples, window_mouse_get_y());
-        while(ds_list_size(mouse_samples) &gt; 10)
-            ds_list_delete(mouse_samples, 0);
-        var des_y;
-        des_y = 0;
-        for(i = 0; i &lt; ds_list_size(mouse_samples); i += 1)
-            des_y += ds_list_find_value(mouse_samples, i);
-        des_y /= ds_list_size(mouse_samples);
-        
-        ybegin = round(baseybegin - min(1, max(0, des_y/view_hview[0]))*(600-view_hview[0]));
-    }
-}else{
-    if(view_hview[0] &lt; 720){
-        ds_list_add(mouse_samples, window_mouse_get_y());
-        while(ds_list_size(mouse_samples) &gt; 10)
-            ds_list_delete(mouse_samples, 0);
-        var des_y;
-        des_y = 0;
-        for(i = 0; i &lt; ds_list_size(mouse_samples); i += 1)
-            des_y += ds_list_find_value(mouse_samples, i);
-        des_y /= ds_list_size(mouse_samples);
-        
-        ybegin = round(baseybegin - min(1, max(0, des_y/view_hview[0]))*(720-view_hview[0]));
-    }
+if(view_hview[0] &lt; 600)
+{
+    ds_list_add(mouse_samples, window_mouse_get_y());
+    while(ds_list_size(mouse_samples) &gt; 10)
+        ds_list_delete(mouse_samples, 0);
+    var des_y;
+    des_y = 0;
+    for(i = 0; i &lt; ds_list_size(mouse_samples); i += 1)
+        des_y += ds_list_find_value(mouse_samples, i);
+    des_y /= ds_list_size(mouse_samples);
+    
+    ybegin = round(baseybegin
+                   - min(1, max(0, des_y/view_hview[0]))
+                     *(600-view_hview[0]));
 }
-
-if instance_exists(ModOptGFXBasic) or instance_exists(ModOptGFXAdv){
-    hPlus=60
-    if instance_exists(ModOptGFXAdv){
-        hPlus=220
-    }
-    if(view_hview[0] &lt; 720+hPlus){
-        ds_list_add(mouse_samples, window_mouse_get_y());
-        while(ds_list_size(mouse_samples) &gt; 10)
-            ds_list_delete(mouse_samples, 0);
-        var des_y;
-        des_y = 0;
-        for(i = 0; i &lt; ds_list_size(mouse_samples); i += 1)
-            des_y += ds_list_find_value(mouse_samples, i);
-        des_y /= ds_list_size(mouse_samples);
-        
-        ybegin = round(baseybegin - min(1, max(0, des_y/view_hview[0]))*(720+hPlus-view_hview[0]));
-    }
-}
-
-
 {
     var i, val, itemx, itemy, itemcount;
     menu_hack_backbutton();
@@ -114,10 +85,18 @@ if instance_exists(ModOptGFXBasic) or instance_exists(ModOptGFXAdv){
         }
         
         if(i == -2-virtualitem and !editing){
-            if global.textSelectCol==0{
-                draw_set_color(c_red);
-            }else if global.textSelectCol==1{
-                draw_set_color(c_aqua)
+            if global.dsmTextColour==0{
+                draw_set_color(c_red)
+            }else if global.dsmTextColour==1{
+                draw_set_color(c_blue)
+            }else if global.dsmTextColour==2{
+                draw_set_color(c_green)
+            }else if global.dsmTextColour==3{
+                draw_set_color(c_yellow)
+            }else if global.dsmTextColour==4{
+                draw_set_color(c_purple)
+            }else if global.dsmTextColour==5{
+                draw_set_color(colour1)
             }
         }else{
             draw_set_color(c_white);
@@ -141,12 +120,32 @@ if instance_exists(ModOptGFXBasic) or instance_exists(ModOptGFXAdv){
         }
     
         if (editing == i){
-                draw_set_color(c_orange);
-        }else if(i == virtualitem and getsHighlight){
-            if global.textSelectCol==0{
-                draw_set_color(c_red);
-            }else if global.textSelectCol==1{
+            if global.dsmTextColour==0{
+                draw_set_color(c_orange)
+            }else if global.dsmTextColour==1{
                 draw_set_color(c_aqua)
+            }else if global.dsmTextColour==2{
+                draw_set_color(c_lime)
+            }else if global.dsmTextColour==3{
+                draw_set_color(c_olive)
+            }else if global.dsmTextColour==4{
+                draw_set_color(c_fuchsia)
+            }else if global.dsmTextColour==5{
+                draw_set_color(colour2)
+            }
+        }else if(i == virtualitem and getsHighlight){
+            if global.dsmTextColour==0{
+                draw_set_color(c_red)
+            }else if global.dsmTextColour==1{
+                draw_set_color(c_blue)
+            }else if global.dsmTextColour==2{
+                draw_set_color(c_green)
+            }else if global.dsmTextColour==3{
+                draw_set_color(c_yellow)
+            }else if global.dsmTextColour==4{
+                draw_set_color(c_purple)
+            }else if global.dsmTextColour==5{
+                draw_set_color(colour1)
             }
         }else{
             draw_set_color(c_white);
@@ -224,9 +223,7 @@ if instance_exists(ModOptGFXBasic) or instance_exists(ModOptGFXAdv){
             case MOUSE_RIGHT:
                 val = "Right Mouse Button";
                 break;
-            case MOUSE_MIDDLE:
-                val = "Middle Mouse Button";
-                break;
+            //DSM: Function keys, MMB
             case vk_f1:
                 val = "F1"
                 break;
@@ -262,6 +259,9 @@ if instance_exists(ModOptGFXBasic) or instance_exists(ModOptGFXAdv){
                 break;
             case vk_f12:
                 val = "F12"
+                break;
+            case MOUSE_MIDDLE:
+                val = "Middle Mouse Button";
                 break;
             default:
                 val = chr(menu_get_var(i));

@@ -13,67 +13,43 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if instance_exists(MenuController){
+        <argument kind="STRING">if(instance_exists(MenuController) or instance_exists(Console))
     exit;
-}
-
-if !instance_exists(Console){
-    if keyboard_check_pressed(global.consoleKey){ //or keyboard_check_pressed(chr(223)){
-        instance_create(0,0,Console)
-    }
-}else{
-    if keyboard_check_pressed(global.consoleKey){ //or keyboard_check_pressed(chr(223)){
-        with(Console){
-            instance_destroy()
-        }
-    }
-}
-
-if instance_exists(Console) or global.isChatting==1{
-    exit;
-}
-
-//Character binds
-for (i=0; i&lt;ds_list_size(global.binds); i+=1){
-    if real(ds_list_find_value(global.binds,i))==real(keyboard_lastkey){
-        if keyboard_check_pressed(keyboard_lastkey){
-            console_parseInput(ds_list_find_value(global.bindCommands,i))
-        }
-    }
-}
-
-//Non-character binds
-for (i=0; i&lt;ds_list_size(global.bindsCtrl); i+=1){
-    if real(keyboard_lastkey)==ds_map_find_value(global.spBinds,keyboard_lastkey){
-        if real(ds_list_find_value(global.bindsCtrl,i))==real(keyboard_lastkey){
-            if keyboard_check_pressed(ds_map_find_value(global.spBinds,keyboard_lastkey)){
-                console_parseInput(ds_list_find_value(global.bindCommandsCtrl,i))
-            }
-        }
-    }
-}
-
-
+    
 var kickOpen;
 kickOpen = false
 if (instance_exists(ScoreTableController))
     if (ScoreTableController.showadmin)
         kickOpen = true;
     
-if(instance_exists(TeamSelectController) || instance_exists(ClassSelectController) || kickOpen || instance_exists(SmallTeamSelect) || instance_exists(SmallClassSelect)){
+if(instance_exists(TeamSelectController) || instance_exists(ClassSelectController) || kickOpen || instance_exists(Console)){
     menuOpen = true;
 }else{
     menuOpen = false;
 }
 
+for (i = 0; i &lt; ds_list_size(global.dsmBinds); i+=1){
+    if real(ds_list_find_value(global.dsmBinds,i))==real(keyboard_key){
+        if keyboard_check_pressed(keyboard_key){
+            console_parseInput(ds_list_find_value(global.dsmBindCommands,i))
+        }
+    }
+}
+
+if keyboard_check_pressed(global.dsmScreenshot) or mouse_check_button_pressed(global.dsmScreenshot){
+    takeScreenshot()
+}
+
 //Checking for input - Mapped Keys
-if(keyboard_check_pressed(global.changeTeam))
-    inputChangeTeam();
-if(keyboard_check_pressed(global.changeClass))
-    inputChangeClass();
+if !instance_exists(Console) and global.dsmTyping==0{
+    if(keyboard_check_pressed(global.changeTeam))
+        inputChangeTeam();
+    if(keyboard_check_pressed(global.changeClass))
+        inputChangeClass();
+}
 
 event_user(8);
-    
+
 var keybyte;
 keybyte = 0;
 
@@ -91,7 +67,8 @@ keybyte = 0;
 //character object exists
 if(global.myself.object != -1)
 {
-    if !menuOpen and global.isChatting==0{
+    if(!menuOpen)
+    {
         if(keyboard_check(global.left)) keybyte |= $40;
         if(keyboard_check(global.right)) keybyte |= $20;
         if(keyboard_check(global.jump)) keybyte |= $80;
@@ -102,16 +79,18 @@ if(global.myself.object != -1)
         if(keyboard_check_pressed(global.chat3)) inputChat3();
         if(keyboard_check_pressed(global.drop)) inputDrop();
         
-        if(keyboard_check_pressed(global.medic)){
-            inputCallMedic();
-        }
-        if keyboard_check_pressed(global.bubbleUber){
+        //DSM
+        if keyboard_check_pressed(global.dsmSuperburst){
             write_ubyte(global.serverSocket, CHAT_BUBBLE)
             write_ubyte(global.serverSocket, 46)
         }
-        if(keyboard_check_pressed(global.bubbleSpy)){
+        if(keyboard_check_pressed(global.dsmQuickX4)){
             write_ubyte(global.serverSocket, CHAT_BUBBLE)
             write_ubyte(global.serverSocket, 30)
+        }
+        
+        if(keyboard_check_pressed(global.medic)){
+            inputCallMedic();
         }
         
         if(!global.myself.humiliated)
@@ -120,78 +99,60 @@ if(global.myself.object != -1)
             if(keyboard_check(global.special)) keybyte |= $08;
             if(keyboard_check_pressed(global.special)) inputSpecial();
             if(keyboard_check_pressed(global.taunt)) inputTaunt();
-            if(mouse_check_button(mb_left)){
+            if(mouse_check_button(mb_left))
+            {
                 if(global.attack == MOUSE_LEFT) keybyte |= $10;
                 if(global.special == MOUSE_LEFT) keybyte |= $08;
             }
-            if(mouse_check_button_pressed(mb_left) and global.special == MOUSE_LEFT){
+            if(mouse_check_button_pressed(mb_left) and global.special == MOUSE_LEFT)
                 inputSpecial();
-            }
 
-            if(mouse_check_button(mb_right)){
+            if(mouse_check_button(mb_right))
+            {
                 if(global.attack == MOUSE_RIGHT) keybyte |= $10;
                 if(global.special == MOUSE_RIGHT) keybyte |= $08;
             }
-            if(mouse_check_button_pressed(mb_right) and global.special == MOUSE_RIGHT){
-                inputSpecial();
-            }
-            
-            if(mouse_check_button(mb_middle)){
+            if(mouse_check_button(mb_middle))
+            {
                 if(global.attack == MOUSE_MIDDLE) keybyte |= $10;
                 if(global.special == MOUSE_MIDDLE) keybyte |= $08;
             }
-            if(mouse_check_button_pressed(mb_middle) and global.special == MOUSE_MIDDLE){
+            if(mouse_check_button_pressed(mb_right) and global.special == MOUSE_RIGHT)
                 inputSpecial();
-            }
             
         }
     }
     
-    //toggle ready on pressing intel drop button, sends a custom bubble
-    if !instance_exists(Spectator){
-        if keyboard_check_pressed(global.drop) and global.isLive==0{
-            RUP_toggleready()
+    if global.pluginActivateThing==0{
+        if(global.run_virtual_ticks){
+            ClientInputstate(global.serverSocket, keybyte);
         }
-        
-        if global.chatReady==1{
-            RUP_ready()
-            global.chatReady=0
-        }
-        if global.chatUnready==1{
-            RUP_unready()
-            global.chatUnready=0
-        }
-        if global.chatToggleReady==1{
-            RUP_toggleready()
-            global.chatToggleReady=0
-        }
-    }
-    
-    if(global.run_virtual_ticks){
-        ClientInputstate(global.serverSocket, keybyte);
-    }
-    socket_send(global.serverSocket);
-}else if (instance_exists(Spectator)){ // spectator controls
-    if(!menuOpen){
-        if instance_exists(CasterHUD){
-            if CasterHUD.mouseMode!=2{
-                if(mouse_check_button_pressed(mb_left)){
-                    with (Spectator) event_user(7);
-                }
-                if(mouse_check_button_pressed(mb_right)){
-                    with (Spectator) event_user(8);
-                }
-            }
-        }else{
-            if(mouse_check_button_pressed(mb_left)){
-                with (Spectator) event_user(7);
-            }
-            if(mouse_check_button_pressed(mb_right)){
-                with (Spectator) event_user(8);
-            }
-        }
+        socket_send(global.serverSocket);
+    }else{
+        pluginKeybyte=keybyte
+        event_user(3)
     }
 }
+// spectator controls
+else if (instance_exists(Spectator))
+{
+    if(!menuOpen)
+    {
+        if(mouse_check_button_pressed(mb_left))
+            with (Spectator) event_user(7);
+        if(mouse_check_button_pressed(mb_right))
+            with (Spectator) event_user(8);
+    }
+}
+
+if(keybyte != 0
+        or keyboard_check(global.left)
+        or keyboard_check(global.right)
+        or keyboard_check(global.jump)
+        or keyboard_check(global.down)) {
+    afktimer = afktimeout;
+}
+
 </argument>
       </arguments>
     </action>

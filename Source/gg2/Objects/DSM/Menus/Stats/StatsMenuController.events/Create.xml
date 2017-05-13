@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">{
+    menu_create(40, 70, 200, 200, 32)
+    
+    s1=-1
+    s2=-1
+    
+    if (room != StatsR){
+        menu_setdimmed()
+    }else{
+        stats_init()
+    }
+    
+    menu_background(512, 24, 8, 12, 4);
+    
+    timeString()
+    calcKDR()
+    calcWLR()
+    
+    //menu_addlink("In-Game Time (Minutes): "+string(global.displayTime),"")
+    menu_addlink("Games: "+string(floor(global.statsGames)),"")
+    menu_addlink("Wins: "+string(floor(global.statsWins)),"")
+    menu_addlink("Losses: "+string(floor(global.statsLosses)),"")
+    menu_addlink("Wins/Losses: "+string(global.wlr),"")
+    menu_addlink("Points: "+string(floor(global.statsPoints)),"")
+    menu_addlink("Kills: "+string(floor(global.statsKills)),"")
+    menu_addlink("Deaths: "+string(floor(global.statsDeaths)),"")
+    menu_addlink("Kills/Deaths: "+string(global.kdr),"")
+    menu_addlink("Assists: "+string(floor(global.statsAssists)),"")
+    menu_addlink("Destruction: "+string(floor(global.statsDestruction)),"")
+    menu_addlink("Caps: "+string(floor(global.statsCaps)),"")
+    menu_addlink("Defences: "+string(floor(global.statsDefences)),"")
+    menu_addlink("Ubers: "+string(floor(global.statsInvulns)),"")
+    menu_addlink("Healing: "+string(floor(global.statsHealing)),"")
+    menu_addlink("Stabs: "+string(floor(global.statsStabs)),"")
+    //menu_addlink("Shots Hit:","")
+    //menu_addlink("Shots Missed:","")
+    //menu_addlink("Accuracy:","")
+    
+    value[0]=floor(global.statsGames)
+    value[1]=floor(global.statsWins)
+    value[2]=floor(global.statsLosses)
+    value[3]=real(global.wlr)
+    value[4]=floor(global.statsPoints)
+    value[5]=floor(global.statsKills)
+    value[6]=floor(global.statsDeaths)
+    value[7]=real(global.kdr)
+    value[8]=floor(global.statsAssists)
+    value[9]=floor(global.statsDestruction)
+    value[10]=floor(global.statsCaps)
+    value[11]=floor(global.statsDefences)
+    value[12]=floor(global.statsInvulns)
+    value[13]=floor(global.statsHealing)
+    value[14]=floor(global.statsStabs)
+    value[15]=1
+    
+    menu_addback("Back", '
+        instance_destroy();
+        if(room == StatsR)
+            room_goto_fix(Menu);
+        else
+            instance_create(0,0,InGameMenuController);
+    ');
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -12,5 +12,5 @@
   <resource name="Updater" type="GROUP"/>
   <resource name="DevMessagesCheckerS" type="RESOURCE"/>
   <resource name="pointS" type="RESOURCE"/>
-  <resource name="ES" type="GROUP"/>
+  <resource name="DSM" type="GROUP"/>
 </resources>
