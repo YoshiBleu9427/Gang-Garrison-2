@@ -21,7 +21,8 @@
     canDoublejump = 0;
     canCloak = 0;
     canBuild = 0;
-    jumpStrength = 8+(0.6/2); // reduce the part of the initial frame of gravity that we don't apply anymore (not framerate dependent, meant to match old 30fps arc)
+    baseJumpStrength = 8+(0.6/2); // reduce the part of the initial frame of gravity that we don't apply anymore (not framerate dependent, meant to match old 30fps arc)
+	jumpStrength = baseJumpStrength;
     capStrength = 1;
     
     // for true framerate-independent jumping arcs
@@ -164,7 +165,8 @@
     baseFriction = 1.15;
     controlFactor = baseControl;
     frictionFactor = baseFriction;
-    basemaxspeed = abs(runPower * baseControl / (baseFriction-1));
+    runPower = baseRunPower;
+	basemaxspeed = abs(baseRunPower * baseControl / (baseFriction-1));
     highestbasemaxspeed = 9.735; // approximation error &lt; 0.0017 of scout's base max speed
 
     // used for certain rewards
@@ -203,7 +205,7 @@
         if(player.deathmatch_respawn_bypass != 0)
             deathmatch_invulnerable = player.deathmatch_respawn_bypass;
         else
-            deathmatch_invulnerable = 30;
+            deathmatch_invulnerable = global.tdmInvulnerabilityTicks;
         deathmatch_invuln_decay = 0.2; // 5x the normal invuln period when you first spawn
     }
     else
