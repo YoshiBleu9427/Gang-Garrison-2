@@ -210,19 +210,9 @@ if(object_index == ArenaControlPoint and cappingTeam != -1)
     }
     
     if(cappingTeam == TEAM_BLUE)
-    {
-        if (reds == 0)
-            capTime = 0;
-        else
-            capTime = baseCapTime * livereds/reds;
-    }
+        capTime = baseCapTime * livereds/max(1,reds)
     else
-    {
-        if (blues == 0)
-            capTime = 0;
-        else
-            capTime = baseCapTime * liveblues/blues;
-    }
+        capTime = baseCapTime * liveblues/max(1,blues)
     if(capTime == 0)
         capTime = 1;
     if (variable_local_exists("lastCapTime"))
@@ -239,15 +229,12 @@ if(capping &lt;= 0) {
     } else if capping &gt;= capTime {
         pointCapture(cp);
         if instance_exists(ControlPointHUD) {
-            if ControlPointHUD.mode == 1 ControlPointHUD.timer += 9000;
+            if ControlPointHUD.mode == 1 ControlPointHUD.timer += 5400;
         }
         GameServer.syncTimer = 1; 
     }
 }
-//since CPs are not perfectly in sync,the client might be ahead of the server, so stall it
-else if floor(capping) == floor(capTime - capTime/4)-10 || floor(capping) == floor(capTime/4)-10 || floor(capping) == floor(capTime/10)-10{
-    capping -= 10;
-}
+
 </argument>
       </arguments>
     </action>

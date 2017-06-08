@@ -13,16 +13,10 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">runPower = 0.8;
+        <argument kind="STRING">baseRunPower = 0.8;
 maxHp = 200;
 weapons[0] = Minigun;
 haxxyStatue = HeavyHaxxyStatueS;
-
-// 'GW' reward - *G*olden *W*eapon
-if(hasClassReward(global.paramPlayer, 'GW'))
-    tauntsprite = HeavyGoldTauntS;
-else
-    tauntsprite = HeavyTauntS;
 </argument>
       </arguments>
     </action>
@@ -51,19 +45,16 @@ else
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">// 'BH' reward - *B*obble *H*ead
-if(hasClassReward(global.paramPlayer, 'BH'))
-{
-    omnomnomnomOverlay = HatBobbleOmnomnomnomS;
-}
+        <argument kind="STRING">numFlames = 5;
 
-// 'GW' reward - *G*olden *W*eapon
-if(hasClassReward(global.paramPlayer, 'GW'))
+if (player.team == TEAM_RED)
 {
-    omnomnomnomSprite = OmnomnomnomGoldS;
+    sprite_index = HeavyRedS;
 }
-
-numFlames = 5;
+else if (player.team == TEAM_BLUE)
+{
+    sprite_index = HeavyBlueS;
+}
 </argument>
       </arguments>
     </action>

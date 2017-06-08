@@ -1,5 +1,5 @@
 // auto balance, called on Character death
-if global.autobalance == 1 && !instance_exists(ArenaHUD) {
+if (global.autobalance == 1 && !instance_exists(ArenaHUD) && global.winners == -1) {
     // calculate team sizes
     redteam = 0;
     blueteam = 0;  
@@ -64,17 +64,18 @@ if global.autobalance == 1 && !instance_exists(ArenaHUD) {
         } else {
             balanceplayer.team = TEAM_RED;
         }
-        
+        balanceplayer.class = checkClasslimits(balanceplayer,balanceplayer.team,balanceplayer.class);
         if(balanceplayer.object != -1) {
             with(balanceplayer.object) {
                 instance_destroy();
             }
             balanceplayer.object = -1;
-            balanceplayer.alarm[5] = global.Server_Respawntime;
+            balanceplayer.alarm[5] = global.Server_Respawntime / global.delta_factor;
         }
         
         write_ubyte(global.sendBuffer, BALANCE);
         write_ubyte(global.sendBuffer, ds_list_find_index(global.players, balanceplayer));
+        write_ubyte(global.sendBuffer, balanceplayer.class);
         if !instance_exists(Balancer) instance_create(x,y,Balancer);
         Balancer.name=player.name;
         with (Balancer) notice=1;

@@ -1,8 +1,8 @@
 // ***
-// This function forms part of Faucet HTTP v1.0
+// This function forms part of Faucet HTTP v1.1.1
 // https://github.com/TazeTSchnitzel/Faucet-HTTP-Extension
 // 
-// Copyright (c) 2013-2014, Andrea Faulds <ajf@ajf.me>
+// Copyright (c) 2013-2015, Andrea Faulds <ajf@ajf.me>
 // 
 // Permission to use, copy, modify, and/or distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
@@ -279,7 +279,7 @@ with (client)
                     {
                         // Restart request
                         __http_client_destroy();
-                        __http_prepare_request(client, resolved, requestHeaders);
+                        __http_prepare_request(client, 'GET', resolved, requestHeaders);
                     }
                     else
                     {

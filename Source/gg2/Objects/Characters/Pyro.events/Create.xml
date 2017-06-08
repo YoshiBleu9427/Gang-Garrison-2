@@ -13,16 +13,10 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">runPower = 1.1;
+        <argument kind="STRING">baseRunPower = 1.1;
 maxHp = 120;
 weapons[0] = Flamethrower;
 haxxyStatue = PyroHaxxyStatueS;
-
-// 'GW' reward - *G*olden *W*eapon
-if(hasClassReward(global.paramPlayer, 'GW'))
-    tauntsprite = PyroGoldTauntS;
-else
-    tauntsprite = PyroTauntS;
 </argument>
       </arguments>
     </action>
@@ -53,6 +47,15 @@ else
       <arguments>
         <argument kind="STRING">numFlames = 3;
 maxDuration = 10;
+
+if (player.team == TEAM_RED)
+{
+    sprite_index = PyroRedS;
+}
+else if (player.team == TEAM_BLUE)
+{
+    sprite_index = PyroBlueS;
+}
 </argument>
       </arguments>
     </action>

@@ -57,8 +57,12 @@ if(vspeed == 0 and (!place_meeting(x, y+1, DropdownPlatform) or place_meeting(x,
 xprevious = x;
 yprevious = y;
 
-if(!place_free(x,y+1) and vspeed &gt;= 0)
-    moveStatus = 0;
+// things to do if we're on the ground (or a dropdown platform)
+if(!place_free(x,y+1) or (place_meeting(x, y+1, DropdownPlatform) and !place_meeting(x, y, DropdownPlatform)) and !(keyState &amp; $02))
+{
+    if(vspeed &gt;= 0) // only if we have no vertical inertia, reset to walking-type state
+        moveStatus = 0;
+}
 
 charUnsetSolids();
 
@@ -121,8 +125,13 @@ else if (!cloak and cloakAlpha &lt; 1)
 if (taunting)
 {
     tauntindex += tauntspeed*0.1 * global.delta_factor;
-    if (tauntindex &gt;= tauntend)
+    if (tauntindex &gt;= sprite_get_number(tauntsprite))
         taunting = false;
+    if (hasClassReward(player, "TauntMoney_"))
+    {
+        if (tauntindex == 0.30)
+            instance_create(x, y, Money);
+    }
 }
     
 //sandvich
@@ -151,7 +160,7 @@ player.lastKnowny=y;
 // Here the view is set
 if (player == global.myself)
 {
-    if (object_is_ancestor(object_index, Sniper) and zoomed)
+    if (global.myself.class == CLASS_SNIPER and zoomed)
     {
         var relxmouse, relymouse;
         relxmouse = min(max(window_views_mouse_get_x()-view_xview[0], 0), view_wview);
@@ -168,6 +177,13 @@ if (player == global.myself)
 }
 
 realnumflames = numFlames * burnDuration / maxDuration;
+
+// Decay deathmatch invulnerability if needed
+if(deathmatch_invulnerable &gt; 0)
+    deathmatch_invulnerable -= global.delta_factor * deathmatch_invuln_decay;
+if(deathmatch_invulnerable &lt;= 0)
+    deathmatch_invulnerable = 0;
+
 
 </argument>
       </arguments>

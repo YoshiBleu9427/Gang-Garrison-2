@@ -7,6 +7,9 @@ countdown = argument4;
 teamoffset = argument5;
 mode = argument6; // 0: normal, large; 1: normal, small; 2: outlined, small
 
+// note about "magic number" 1800, used below:
+// 1800=60*30, where 60 is the number of seconds in a minute, and 30 is tickrate
+
 if (mode == 0)
 {
     if (overtime)
@@ -18,39 +21,32 @@ if (mode == 0)
     else
     {
         draw_sprite_ext(TimerHudS,teamoffset,xoffset+xsize/2,yoffset+30,3,3,0,c_white,1);
-        draw_set_halign(fa_right);
-        draw_set_font(global.timerFont);
-        
-        if(global.setupTimer > 0 and instance_exists(ControlPointSetupGate))
+        var isControlPointSetup, ticks, ticklimit, timeYOff;
+        isControlPointSetup = global.setupTimer > 0 and instance_exists(ControlPointSetupGate);
+        if(isControlPointSetup)
         {
-            draw_sprite_ext(TimerS,floor(global.setupTimer/1800*12),xoffset+xsize/2+39,yoffset+30,3,3,0,c_white,1);
-            var seconds, secstring;
-            seconds = floor(global.setupTimer/30);
-            if (seconds >= 10)
-                secstring = string(seconds);
-            else
-                secstring = "0" + string(seconds);
-            draw_text_transformed(xoffset+xsize/2+20,yoffset+27,"0:" + secstring,1,1,0);
-            draw_set_font(global.gg2Font);
-            draw_set_halign(fa_center);
-            draw_text_transformed(xoffset+xsize/2-3, yoffset+40,"Setup",         1,1,0);
+            ticks = global.setupTimer;
+            ticklimit = 1800;
+            timeYOff = 27;
         }
         else
         {
-            draw_sprite_ext(TimerS,floor(countdown/timeLimit*12),xoffset+xsize/2+39,yoffset+30,3,3,0,c_white,1);
-            var time, minutes, secondcounter, seconds, secstring;
-            minutes = floor(countdown/1800);
-            secondcounter = countdown-minutes*1800;
-            seconds = floor(secondcounter/30);
-            
-            if (seconds >= 10)
-                secstring = string(seconds);
-            else
-                secstring = "0" + string(seconds);
-                
-            draw_text_transformed(xoffset+xsize/2+20,yoffset+32,string(minutes) + ":" + secstring,1,1,0);
+            ticks = countdown;
+            ticklimit = timeLimit;
+            timeYOff = 32;
         }
+        draw_sprite_ext(TimerS,floor(12*ticks/ticklimit),xoffset+xsize/2+39,yoffset+30,3,3,0,c_white,1);
+        
+        draw_set_halign(fa_right);
+        draw_set_font(global.timerFont);
+        draw_text_transformed(xoffset+xsize/2+20, yoffset+timeYOff, format_timer_value(ticks), 1, 1, 0);
         draw_set_font(global.gg2Font);
+        
+        if(isControlPointSetup)
+        {
+            draw_set_halign(fa_center);
+            draw_text_transformed(xoffset+xsize/2-3, yoffset+40,"Setup",1,1,0);
+        }
     }
 }
 else
@@ -66,19 +62,8 @@ else
     else
     {
         draw_set_halign(fa_right);
-        var time, minutes, secondcounter, seconds, secstring;
-        minutes = floor(countdown/1800);
-        secondcounter = countdown-minutes*1800;
-        seconds = floor(secondcounter/30);
         draw_set_font(global.timerFont);
-        
-        if (seconds >= 10)
-            secstring = string(seconds);
-        else
-            secstring = "0" + string(seconds);
-            
-        draw_text_transformed(xoffset+xsize/2+24, yoffset+2, string(minutes) + ":" + secstring, 1, 1, 0);
+        draw_text_transformed(xoffset+xsize/2+24, yoffset+2, format_timer_value(countdown), 1, 1, 0);
         draw_set_font(global.gg2Font);
     }
-    
 }

@@ -1,5 +1,9 @@
 // Returns true if the game is successfully initialized, false if there was an error and we should quit.
 {
+    initCharacterSpritePrefixes();
+    initAllHeadPoses();
+    initGear();
+    
     instance_create(0,0,RoomChangeObserver);
     set_little_endian_global(true);
     if file_exists("game_errors.log") file_delete("game_errors.log");
@@ -42,7 +46,6 @@
     
     ini_open("gg2.ini");
     global.playerName = ini_read_string("Settings", "PlayerName", "Player");
-    if string_count("#",global.playerName) > 0 global.playerName = "Player";
     global.playerName = string_copy(global.playerName, 0, min(string_length(global.playerName), MAX_PLAYERNAME_LENGTH));
     global.fullscreen = ini_read_real("Settings", "Fullscreen", 0);
     global.useLobbyServer = ini_read_real("Settings", "UseLobby", 1);
@@ -67,6 +70,7 @@
     global.timerPos=ini_read_real("Settings","Timer Position", 0)
     global.killLogPos=ini_read_real("Settings","Kill Log Position", 0)
     global.kothHudPos=ini_read_real("Settings","KoTH HUD Position", 0)
+    global.fadeScoreboard = ini_read_real("Settings", "Fade Scoreboard", 1);
     global.clientPassword = "";
     // for admin menu
     customMapRotationFile = ini_read_string("Server", "MapRotation", "");
@@ -80,6 +84,7 @@
     global.caplimit = max(1, min(255, ini_read_real("Server", "CapLimit", 5)));
     global.caplimitBkup = global.caplimit;
     global.killLimit = max(1, min(65535, ini_read_real("Server", "Deathmatch Kill Limit", 30)));
+    global.tdmInvulnerabilitySeconds = max(0, min(3600, ini_read_real("Server", "Team Deathmatch Invulnerability Seconds", 5)));
     global.autobalance = ini_read_real("Server", "AutoBalance",1);
     global.Server_RespawntimeSec = ini_read_real("Server", "Respawn Time", 5);
     global.rewardKey = unhex(ini_read_string("Haxxy", "RewardKey", ""));
@@ -153,11 +158,13 @@
     ini_write_real("Settings", "Timer Position", global.timerPos);
     ini_write_real("Settings", "Kill Log Position", global.killLogPos);
     ini_write_real("Settings", "KoTH HUD Position", global.kothHudPos);
+    ini_write_real("Settings", "Fade Scoreboard", global.fadeScoreboard);
     ini_write_real("Settings", "ServerPluginsPrompt", global.serverPluginsPrompt);
     ini_write_real("Settings", "RestartPrompt", global.restartPrompt);
     ini_write_string("Server", "ServerName", global.serverName);
     ini_write_real("Server", "CapLimit", global.caplimit);
     ini_write_real("Server", "Deathmatch Kill Limit", global.killLimit);
+    ini_write_real("Server", "Team Deathmatch Invulnerability Seconds", global.tdmInvulnerabilitySeconds);
     ini_write_real("Server", "AutoBalance", global.autobalance);
     ini_write_real("Server", "Respawn Time", global.Server_RespawntimeSec);
     ini_write_real("Server", "Total bandwidth limit for map downloads in bytes per second", global.mapdownloadLimitBps);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="27400"/>
+  <constant name="VERSION" value="28500"/>
+  <constant name="GAME_VERSION_STRING" value="&quot;v2.8.5&quot;"/>
   <constant name="TRAINING_VERSION" value="04000"/>
-  <constant name="GAME_VERSION_STRING" value="&quot;v2.7.4&quot;"/>
   <constant name="TRAINING_VERSION_STRING" value="&quot;v0.4&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Gang Garrison 2&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com&quot;"/>
@@ -96,7 +96,6 @@
   <constant name="CHARACTER_ANIMATION_NORMAL" value="0"/>
   <constant name="CHARACTER_ANIMATION_INTEL" value="2"/>
   <constant name="CHARACTER_ANIMATION_LEN" value="4"/>
-  <constant name="CHARACTER_ANIMATION_DEAD" value="5"/>
   <constant name="MAX_PLAYERNAME_LENGTH" value="20"/>
   <constant name="STATE_UPDATE" value="8"/>
   <constant name="KILLS" value="0"/>
@@ -165,4 +164,7 @@
   <constant name="REAL" value="1"/>
   <constant name="BOOL" value="2"/>
   <constant name="HEX" value="3"/>
+  <constant name="GEAR_PARTY_HAT" value="&quot;PartyHat&quot;"/>
+  <constant name="GEAR_CROWN" value="&quot;Crown&quot;"/>
+  <constant name="GEAR_NAVIGATORHAT" value="&quot;NavigatorHat&quot;"/>
 </constants>

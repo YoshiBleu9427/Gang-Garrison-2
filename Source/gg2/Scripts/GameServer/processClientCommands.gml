@@ -75,7 +75,7 @@ while(commandLimitRemaining > 0) {
         case PLAYER_CHANGECLASS:
             var class;
             class = read_ubyte(socket);
-            if(getCharacterObject(player.team, class) != -1)
+            if(getCharacterObject(class) != -1)
             {
                 if(player.object != -1)
                 {
@@ -116,13 +116,20 @@ while(commandLimitRemaining > 0) {
             var newTeam, balance, redSuperiority;
             newTeam = read_ubyte(socket);
             
+            // Invalid team was requested, treat it as a random team
+            if(newTeam != TEAM_RED and newTeam != TEAM_BLUE and newTeam != TEAM_SPECTATOR)
+                newTeam = TEAM_ANY;
+
             redSuperiority = 0   //calculate which team is bigger
             with(Player)
             {
-                if(team == TEAM_RED)
-                    redSuperiority += 1;
-                else if(team == TEAM_BLUE)
-                    redSuperiority -= 1;
+                if(id != player)
+                {
+                    if(team == TEAM_RED)
+                        redSuperiority += 1;
+                    else if(team == TEAM_BLUE)
+                        redSuperiority -= 1;
+                }
             }
             if(redSuperiority > 0)
                 balance = TEAM_RED;
@@ -131,9 +138,19 @@ while(commandLimitRemaining > 0) {
             else
                 balance = -1;
             
-            if(balance != newTeam)
+            if(newTeam == TEAM_ANY)
             {
-                if(getCharacterObject(newTeam, player.class) != -1 or newTeam==TEAM_SPECTATOR)
+                if(balance == TEAM_RED)
+                    newTeam = TEAM_BLUE;
+                else if(balance == TEAM_BLUE)
+                    newTeam = TEAM_RED;
+                else
+                    newTeam = choose(TEAM_RED, TEAM_BLUE);
+            }
+                
+            if(balance != newTeam and newTeam != player.team)
+            {
+                if(getCharacterObject(player.class) != -1 or newTeam==TEAM_SPECTATOR)
                 {  
                     if(player.object != -1)
                     {
@@ -155,7 +172,7 @@ while(commandLimitRemaining > 0) {
                                 doEventPlayerDeath(player, lastDamageDealer, assistant, DAMAGE_SOURCE_FINISHED_OFF);
                             }
                         }
-                        player.alarm[5] = global.Server_Respawntime;
+                        player.alarm[5] = global.Server_Respawntime / global.delta_factor;
                     }
                     else if(player.alarm[5]<=0)
                         player.alarm[5] = 1;                    
@@ -176,7 +193,8 @@ while(commandLimitRemaining > 0) {
         case CHAT_BUBBLE:
             var bubbleImage;
             bubbleImage = read_ubyte(socket);
-            if(global.aFirst) {
+            if(global.aFirst and bubbleImage != 45)
+            {
                 bubbleImage = 0;
             }
             write_ubyte(global.sendBuffer, CHAT_BUBBLE);
@@ -235,13 +253,8 @@ while(commandLimitRemaining > 0) {
                     with(player.object)
                     {
                         omnomnomnom = true;
-                        if player.team == TEAM_RED {
-                            omnomnomnomindex=0;
-                            omnomnomnomend=31;
-                        } else if player.team==TEAM_BLUE {
-                            omnomnomnomindex=32;
-                            omnomnomnomend=63;
-                        } 
+                        omnomnomnomindex=0;
+                        omnomnomnomend=32;
                         xscale=image_xscale;
                     }             
                 }
@@ -277,10 +290,6 @@ while(commandLimitRemaining > 0) {
                             break;
                     lastNamechange = current_time;
                     name = read_string(socket, nameLength);
-                    if(string_count("#",name) > 0)
-                    {
-                        name = "I <3 Bacon";
-                    }
                     write_ubyte(global.sendBuffer, PLAYER_CHANGENAME);
                     write_ubyte(global.sendBuffer, playerId);
                     write_ubyte(global.sendBuffer, string_length(name));

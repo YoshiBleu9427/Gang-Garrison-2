@@ -47,7 +47,7 @@ do {
             advertisedMapMd5 = receivestring(global.serverSocket, 1);
             receiveCompleteMessage(global.serverSocket, 1, global.tempBuffer);
             pluginsRequired = read_ubyte(global.tempBuffer);
-            plugins = receivestring(global.serverSocket, 1);
+            plugins = receivestring(global.serverSocket, 2);
             if(string_pos("/", downloadMapName) != 0 or string_pos("\", downloadMapName) != 0)
             {
                 show_message("Server sent illegal map name: "+downloadMapName);
@@ -246,7 +246,9 @@ do {
                 if !instance_exists(Balancer) instance_create(x,y,Balancer);
                 with(Balancer) notice=0;
             } else {
+                receiveCompleteMessage(global.serverSocket,1,global.tempBuffer);
                 player = ds_list_find_value(global.players, balanceplayer);
+                player.class = read_ubyte(global.tempBuffer);
                 if(player.object != -1) {
                     with(player.object) {
                         instance_destroy();
@@ -387,15 +389,10 @@ do {
                     if(hp < 200)
                     {
                         canEat = false;
-                        alarm[6] = eatCooldown; //10 second cooldown
+                        alarm[6] = eatCooldown / global.delta_factor; //10 second cooldown
                     }
-                    if(player.team == TEAM_RED) {
-                        omnomnomnomindex=0;
-                        omnomnomnomend=31;
-                    } else if(player.team==TEAM_BLUE) {
-                        omnomnomnomindex=32;
-                        omnomnomnomend=63;
-                    }
+                    omnomnomnomindex=0;
+                    omnomnomnomend=32;
                     xscale=image_xscale; 
                 } 
             }

@@ -18,8 +18,10 @@ with(StabAnim)
     if(id != other.id and owner == other.owner)
         exit;
 
-owner.runPower = 1.07;
-owner.jumpStrength = 8;
+ds_list_destroy(overlays);
+        
+owner.runPower = owner.baseRunPower;
+owner.jumpStrength = owner.baseJumpStrength;
 owner.stabbing = 0;
 </argument>
       </arguments>
