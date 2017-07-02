@@ -10,4 +10,5 @@
   <resource name="Bots" type="GROUP"/>
   <resource name="Networking" type="GROUP"/>
   <resource name="Maps" type="GROUP"/>
+  <resource name="trainingRestart" type="RESOURCE"/>
 </resources>

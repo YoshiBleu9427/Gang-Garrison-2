@@ -10,6 +10,15 @@ team = argument0;
 global.team = team;
 global.myself.team = team;
 if (global.myself.object != -1) {
-    doEventSpawnPos(global.myself, global.myself.object.x, global.myself.object.y);
+    var group, spawnpointID, numSpawnPoints;
+    group = selectSpawnGroup(team);
+    if(team == TEAM_RED) {
+        numSpawnPoints = ds_list_size(global.spawnPointsRed[0,group]);
+    } else {
+        numSpawnPoints = ds_list_size(global.spawnPointsBlue[0,group]);
+    }
+    spawnpointID = floor(random(numSpawnPoints));
+    sendEventSpawn(global.myself, spawnpointID, group);
+    doEventSpawn(global.myself, spawnpointID, group);
+    global.myself.alarm[5] = -1;
 }
-global.myself.alarm[5] = 1;

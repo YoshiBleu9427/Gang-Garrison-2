@@ -66,6 +66,7 @@ if (global.myself != -1)
 {
     if (global.myself.object == -1 and !roundStart and winners == TEAM_SPECTATOR
         and global.winners == -1 and endCount == 0 and !instance_exists(DeathCam)
+        and !instance_exists(GameOverController)
         and global.myself.team != TEAM_SPECTATOR)
         draw_text(xoffset+xsize/2,yoffset+ysize/2,"You can spawn when the next round starts")
     

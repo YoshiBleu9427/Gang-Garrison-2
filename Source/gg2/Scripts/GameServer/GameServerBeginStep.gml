@@ -32,7 +32,6 @@ for(i=0; i < ds_list_size(global.players); i+=1)
         {
             removePlayer(player);
             ServerPlayerLeave(i, global.sendBuffer);
-            ServerBalanceTeams();
             i -= 1;
         }
         else
@@ -125,10 +124,7 @@ if(impendingMapChange == 0)
     }
     
     if(global.restart) {
-        ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
-        serverGotoMap(global.currentMap);
-        // message lobby to update map name
-        sendLobbyRegistration();
+        trainingRestart();
     } else {
         if (global.serverPluginsInUse)
         {

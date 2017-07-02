@@ -13,7 +13,18 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">instance_destroy();
+        <argument kind="STRING">if (abs(mouse_y - yButtons) &lt; 40) {
+    if (abs(mouse_x - xRestart) &lt; 80) {
+        global.restart = true;
+        instance_destroy();
+    }
+
+    if (abs(mouse_x - xQuit) &lt; 80) {
+        global.restart = false;
+        instance_destroy();
+    }
+}
+
 </argument>
       </arguments>
     </action>

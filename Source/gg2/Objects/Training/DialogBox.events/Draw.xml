@@ -20,13 +20,13 @@ var xoffsetSprite, yoffsetSprite;
 var xsizeSprite, ysizeSprite;
 var boxw, boxh;
 
-xoffset = view_xview[0] + 60;
+xoffset = view_xview[0] + 80;
 yoffset = view_yview[0] + view_hview[0] - 164;
 boxw = 64;
 boxh = 64;
-xoffsetFace = view_xview[0] + 60 + boxw/2;
+xoffsetFace = view_xview[0] + 80 + boxw/2;
 yoffsetFace = view_yview[0] + view_hview[0] - 164 + boxh/2;
-xoffsetTxt = view_xview[0] + 60 + boxw + 10;
+xoffsetTxt = view_xview[0] + 80 + boxw + 10;
 yoffsetTxt = view_yview[0] + view_hview[0] - 144;
 
 

@@ -45,7 +45,7 @@ if(class == CLASS_MEDIC) {
         if(team == other.team) {
             if(collision_line(x,y, other.object.x, other.object.y, Obstacle, true, false) <= 0) {
                 var dist, hpRate;
-                dist = sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
+                dist = 500 + sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
                 hpRate = hp / maxHp;
                 if(dist * hpRate < allyDist * allyHpRate) {
                     allyDist = dist;

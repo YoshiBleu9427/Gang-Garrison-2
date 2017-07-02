@@ -76,9 +76,6 @@ if(global.isHost &amp;&amp; hp&lt;=0) {
                 
     sendEventPlayerDeath(player, lastDamageDealer, assistant, lastDamageSource);
     doEventPlayerDeath(player, lastDamageDealer, assistant, lastDamageSource);
-    with(GameServer) {
-        ServerBalanceTeams();
-    }
     exit;
 }
     

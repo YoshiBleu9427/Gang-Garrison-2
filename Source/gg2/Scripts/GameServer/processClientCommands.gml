@@ -185,7 +185,6 @@ while(commandLimitRemaining > 0) {
                     }
                     player.team = newTeam;
                     ServerPlayerChangeteam(playerId, player.team, global.sendBuffer);
-                    ServerBalanceTeams();
                 }
             }
             break;                   

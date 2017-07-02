@@ -13,8 +13,8 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">alarm[0] = 45;
-alarm[1] = 105;
+        <argument kind="STRING">alarm[0] = 45 / global.delta_factor;
+alarm[1] = 105 / global.delta_factor;
 
 AudioControlPlaySong(-1);
 if(sound_exists(global.playerDeathSound)) {
@@ -25,6 +25,10 @@ global.respawnTime = 9001;
 text = "GAME OVER#You are dead."; // default text.
 fadeAlpha = 0;
 fading = false;
+
+xRestart = view_xview[0] + (view_wview[0] / 2) - 100;
+xQuit    = view_xview[0] + (view_wview[0] / 2) + 100;
+yButtons = view_yview[0] + view_hview[0] - 240;
 
 with(Player) {
     canSpawn = 0;

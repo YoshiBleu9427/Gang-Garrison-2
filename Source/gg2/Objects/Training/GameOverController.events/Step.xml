@@ -16,6 +16,10 @@
         <argument kind="STRING">if(fading) {
     fadeAlpha = min(0.8, fadeAlpha + 0.02);
 }
+
+xRestart = view_xview[0] + (view_wview[0] / 2) - 100;
+xQuit    = view_xview[0] + (view_wview[0] / 2) + 100;
+yButtons = view_yview[0] + view_hview[0] - 160 + ((0.8 - fadeAlpha) * 240);
 </argument>
       </arguments>
     </action>

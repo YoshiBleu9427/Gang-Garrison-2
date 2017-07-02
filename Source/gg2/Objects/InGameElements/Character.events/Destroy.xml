@@ -98,7 +98,7 @@
             killed = noone;
         }
     }
-	
+
     // destroy overlay lists
     ds_list_destroy(stillOverlays);
     ds_list_destroy(leanROverlays);
