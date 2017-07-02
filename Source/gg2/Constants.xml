@@ -4,8 +4,8 @@
   <constant name="GAME_VERSION_STRING" value="&quot;v2.8.5&quot;"/>
   <constant name="TRAINING_VERSION" value="04000"/>
   <constant name="TRAINING_VERSION_STRING" value="&quot;v0.4&quot;"/>
-  <constant name="GAME_NAME_STRING" value="&quot;Gang Garrison 2&quot;"/>
-  <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com&quot;"/>
+  <constant name="GAME_NAME_STRING" value="&quot;Solo Training Mod&quot;"/>
+  <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/forums/index.php?topic=34370.0&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
   <constant name="PLUGIN_SOURCE_NOTICE" value="&quot;While these plugins have been screened by the Gang Garrison 2 community, they cannot guarantee they are safe.&quot;"/>
   <constant name="BACKGROUND_SOURCE" value="&quot;http://www.ganggarrison.com/background.png&quot;"/>
@@ -17,7 +17,7 @@
   <constant name="LOBBY_SERVER_PORT" value="29944"/>
   <constant name="AUTH_SERVER_HOST" value="&quot;ganggarrison.com&quot;"/>
   <constant name="AUTH_SERVER_PORT" value="45022"/>
-  <constant name="PROTOCOL_UUID" value="&quot;43606687-4a6a-b1ea-b2f9-11b8ea8b95ed&quot;"/>
+  <constant name="PROTOCOL_UUID" value="&quot;00606687-4a6a-b1ea-b2f9-11b8ea8b95ed&quot;"/>
   <constant name="GG2_LOBBY_UUID" value="&quot;1ccf16b1-436d-856f-504d-cc1af306aaa7&quot;"/>
   <constant name="HELLO" value="0"/>
   <constant name="PLAYER_JOIN" value="1"/>

@@ -95,7 +95,6 @@ else
     instance_create(0, 0, TeamDeathmatchHUD);
 }
 
-instance_create(0,0,TeamSelectController);
 if (!instance_exists(KillLog))
     instance_create(0,0,KillLog);
 

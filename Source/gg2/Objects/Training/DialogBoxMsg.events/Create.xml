@@ -16,6 +16,7 @@
         <argument kind="STRING">text = "";
 face = noone; // a sprite_index
 subFace = 0; // subimg index
+color = c_white;
 </argument>
       </arguments>
     </action>

@@ -16,7 +16,7 @@
         <argument kind="STRING">dialogMsg = noone;
 alpha = 0;
 fadeOut = false;
-alarm[0] = 100;
+alarm[0] = 100 / global.delta_factor;
 
 color = -1;
 switch(global.myself.team) {

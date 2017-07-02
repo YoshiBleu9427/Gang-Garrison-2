@@ -16,7 +16,7 @@
         <argument kind="STRING">if(sound_exists(global.gameOverSound)) {
     sound_play(global.gameOverSound);
 }
-addPriorDialog(text, noone, 0);
+addDialogForce(text, noone, 0);
 </argument>
       </arguments>
     </action>

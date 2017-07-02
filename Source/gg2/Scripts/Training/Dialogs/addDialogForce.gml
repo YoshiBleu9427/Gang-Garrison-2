@@ -1,15 +1,21 @@
-// Adds the dialog even if the npc has just talked. Useful for briefings, etc
-    var text, face, subFace, nextMsg;
-    text = argument0;
-    face = argument1;
-    subFace = argument2;
+var text, face, subFace, color, nextMsg, i;
+text = argument0;
+face = argument1;
+subFace = argument2;
+color = argument3;
 
-    nextMsg = instance_create(0,0,DialogBoxMsg);
-    nextMsg.text = text;
-    nextMsg.face = face;
-    nextMsg.subFace = subFace;
+ds_list_clear(global.dialogList);
+with(DialogBoxMsg) instance_destroy();
+with(DialogBox) instance_destroy();
 
-    ds_list_add(global.dialogList, nextMsg);
+nextMsg = instance_create(0,0,DialogBoxMsg);
+nextMsg.text = text;
+nextMsg.face = face;
+nextMsg.subFace = subFace;
+nextMsg.color = color;
 
-    justTalked = true;
-    alarm[1] = 120;
+ds_list_add(global.dialogList, nextMsg);
+
+with(NPC) {
+    alarm[1] = 1;
+}

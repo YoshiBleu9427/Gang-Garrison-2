@@ -85,14 +85,6 @@ if(global.winners != -1 and !global.mapchanging)
 // if map change timer hits 0, do a map change
 if(impendingMapChange == 0)
 {
-    if(global.restart) {
-        ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
-        serverGotoMap(global.currentMap);
-    } else {
-        sendSetupRoom();
-        doSetupRoom();
-    }
-    
     global.mapchanging = false;
     impendingMapChange = -1;
     
@@ -131,6 +123,21 @@ if(impendingMapChange == 0)
         timesChangedCapLimit = 0;
         alarm[5] = 1;
     }
-    // message lobby to update map name
-    sendLobbyRegistration();
+    
+    if(global.restart) {
+        ServerChangeMap(global.currentMap, global.currentMapMD5, global.sendBuffer);
+        serverGotoMap(global.currentMap);
+        // message lobby to update map name
+        sendLobbyRegistration();
+    } else {
+        if (global.serverPluginsInUse)
+        {
+            pluginscleanup(true);
+        }
+        else
+        {
+            global.dedicatedMode = 0;
+            instance_destroy();
+        }
+    }
 }

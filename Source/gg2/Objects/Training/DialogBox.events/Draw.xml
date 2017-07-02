@@ -18,20 +18,24 @@ var xoffsetFace, yoffsetFace;
 var xoffsetTxt, yoffsetTxt;
 var xoffsetSprite, yoffsetSprite;
 var xsizeSprite, ysizeSprite;
+var boxw, boxh;
 
-xoffset = view_xview[0] + 24;
-yoffset = view_yview[0] + 404;
-xoffsetFace = view_xview[0] + 78;
-yoffsetFace = view_yview[0] + 464;
-xoffsetTxt = view_xview[0] + 120;
-yoffsetTxt = view_yview[0] + 440;
+xoffset = view_xview[0] + 60;
+yoffset = view_yview[0] + view_hview[0] - 164;
+boxw = 64;
+boxh = 64;
+xoffsetFace = view_xview[0] + 60 + boxw/2;
+yoffsetFace = view_yview[0] + view_hview[0] - 164 + boxh/2;
+xoffsetTxt = view_xview[0] + 60 + boxw + 10;
+yoffsetTxt = view_yview[0] + view_hview[0] - 144;
+
 
 draw_set_alpha(alpha);
 draw_set_color(c_white);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-draw_sprite_ext(sprite_index, 0, xoffset, yoffset, 6, 6, 0, color, alpha * 0.8);
+draw_sprite_ext(sprite_index, 0, xoffset, yoffset, 4, 4, 0, dialogMsg.color, alpha * 0.7);
 
 if(dialogMsg.face != noone) {
     xoffsetSprite   = sprite_get_xoffset(dialogMsg.face);
@@ -39,9 +43,11 @@ if(dialogMsg.face != noone) {
     xsizeSprite     = sprite_get_width(dialogMsg.face);
     ysizeSprite     = sprite_get_height(dialogMsg.face);
     
+    maxScale = min(boxw / xsizeSprite, boxh / ysizeSprite);
+    
     draw_sprite_ext(dialogMsg.face, dialogMsg.subFace,
         xoffsetFace + xoffsetSprite - xsizeSprite / 2, yoffsetFace + yoffsetSprite - ysizeSprite / 2,
-        2, 2, 0, c_white, alpha * 0.8);
+        maxScale, maxScale, 0, c_white, alpha * 0.9);
 }
 
 draw_text_transformed(xoffsetTxt, yoffsetTxt, dialogMsg.text, 1, 1, 0);

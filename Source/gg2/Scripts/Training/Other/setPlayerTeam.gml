@@ -9,8 +9,7 @@ team = argument0;
 
 global.team = team;
 global.myself.team = team;
-if(global.myself.object != -1) {
-    with(global.myself.object)
-        instance_destroy();
+if (global.myself.object != -1) {
+    doEventSpawnPos(global.myself, global.myself.object.x, global.myself.object.y);
 }
 global.myself.alarm[5] = 1;

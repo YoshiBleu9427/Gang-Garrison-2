@@ -23,6 +23,7 @@ socket_destroy(global.tcpListener);
 socket_destroy(global.serverSocket);
 buffer_destroy(serverId);
 
+npcClear();
 with(Player)
     instance_destroy();
 
@@ -30,6 +31,9 @@ with(JoiningPlayer)
     instance_destroy();
     
 with(PlayerControl)
+    instance_destroy();
+    
+with(CheatController)
     instance_destroy();
     
 if (global.attemptPortForward and portForwarded)

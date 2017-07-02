@@ -8,6 +8,9 @@
 var jumpLength, xyshiftRatio;
 jumpLength = object.hspeed * object.jumpStrength;
 
+var spriteWidth;
+spriteWidth = sprite_get_width(object.sprite_index);
+
 if(pathPoint != noone) {
     if(instance_exists(pathPoint)) {
         xyshiftRatio = abs(pathPoint.x - object.x) / max(1, (object.y - pathPoint.y));
@@ -66,7 +69,7 @@ else
     stuckTimer = 0
 }
 
-if((abs(stuckTimer) mod 10 == 0) and stuckTimer < -150) {
+if((abs(stuckTimer) mod 10 == 0) and stuckTimer < -60) {
     jump = 1;
 } 
 if(stuckTimer == -300) {

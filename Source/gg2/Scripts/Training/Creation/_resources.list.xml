@@ -8,6 +8,8 @@
   <resource name="createEnemyMedic" type="RESOURCE"/>
   <resource name="createEnemyEngi" type="RESOURCE"/>
   <resource name="createEnemySniper" type="RESOURCE"/>
+  <resource name="createEnemySpy" type="RESOURCE"/>
+  <resource name="createEnemyQuote" type="RESOURCE"/>
   <resource name="createAllyScout" type="RESOURCE"/>
   <resource name="createAllyPyro" type="RESOURCE"/>
   <resource name="createAllySoldier" type="RESOURCE"/>

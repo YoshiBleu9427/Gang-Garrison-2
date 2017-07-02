@@ -2,6 +2,6 @@
 <resources>
   <resource name="runDialogs" type="RESOURCE"/>
   <resource name="addDialog" type="RESOURCE"/>
+  <resource name="addDialogQueue" type="RESOURCE"/>
   <resource name="addDialogForce" type="RESOURCE"/>
-  <resource name="addPriorDialog" type="RESOURCE"/>
 </resources>

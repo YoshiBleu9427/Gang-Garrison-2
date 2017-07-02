@@ -1,3 +1,12 @@
+if (forceAim) {
+    if (aimObject != noone) {
+        if (instance_exists(aimObject)) {
+            aimDirection = point_direction(object.x, object.y, aimObject.x, aimObject.y);
+            exit;
+        }
+    }
+}
+
 var bestTarget, enemyDist;
 bestTarget = noone;
 enemyDist = seeRange;
@@ -55,6 +64,19 @@ if(class == CLASS_MEDIC) {
     if(bestTarget != noone) {
         if(instance_exists(bestTarget)) {
             aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
+            if (object.currentWeapon.uberReady) {
+                if (bestTarget.hp < 50) {
+                    LMB = 1;
+                    RMB = 1;
+                }
+            }
+        }
+    }
+    
+    if (object.currentWeapon.uberReady) {
+        if (object.hp < 40) {
+            LMB = 1;
+            RMB = 1;
         }
     }
     
@@ -160,7 +182,7 @@ if(reloadCounter > 0) {
     } else {
         LMB = 0;
     }
-    reloadCounter -= 1;
+    reloadCounter -= 1 * global.delta_factor;
     if(variable_local_exists("ammoCount")) {
         if(ammoCount >= maxAmmo) {
             reloadCounter = 0;
@@ -172,9 +194,10 @@ if(reloadCounter > 0) {
         if(variable_local_exists("ammoCount") and object_index != Rifle) {
             if(ammoCount <= 0) {
                 if(variable_local_exists("reloadTime")) {
-                    other.reloadCounter = 4 * reloadTime;
-                } else if(variable_local_exists("reloadBuffer")) {
-                    other.reloadCounter = 4 * reloadBuffer;
+                    other.reloadCounter = 3 * reloadTime;
+                }
+                if(variable_local_exists("reloadBuffer")) {
+                    other.reloadCounter += reloadBuffer;
                 }
             } else if(object_index == Minigun or object_index == Flamethrower) {
                 if(ammoCount < 5) {

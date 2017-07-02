@@ -26,7 +26,7 @@ else
 write_ushort(lobbyBuffer, 7); // Number of Key/Value pairs that follow
 writeKeyValue(lobbyBuffer, "name", global.serverName);
 writeKeyValue(lobbyBuffer, "game", GAME_NAME_STRING);
-writeKeyValue(lobbyBuffer, "game_short", "gg2");
+writeKeyValue(lobbyBuffer, "game_short", "gg2 stm");
 writeKeyValue(lobbyBuffer, "game_ver", GAME_VERSION_STRING);
 writeKeyValue(lobbyBuffer, "game_url", GAME_URL_STRING);
 writeKeyValue(lobbyBuffer, "map", global.currentMap);
@@ -37,3 +37,4 @@ write_buffer(lobbyBuffer, global.protocolUuid);
 
 udp_send(lobbyBuffer, LOBBY_SERVER_HOST, LOBBY_SERVER_PORT);
 buffer_destroy(lobbyBuffer);
+

@@ -1,4 +1,4 @@
-team = global.myself.team;
+team = getPlayerOppositeTeam();
 class = CLASS_QUOTE;
 if(team == TEAM_RED) {
     name = "Quote";
