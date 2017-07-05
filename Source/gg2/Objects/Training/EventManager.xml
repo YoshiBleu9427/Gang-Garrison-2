@@ -2,8 +2,8 @@
 <object id="841">
   <sprite/>
   <solid>false</solid>
-  <visible>false</visible>
-  <depth>0</depth>
+  <visible>true</visible>
+  <depth>-110000</depth>
   <persistent>true</persistent>
   <parent/>
   <mask/>

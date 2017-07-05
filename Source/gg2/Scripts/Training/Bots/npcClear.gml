@@ -43,6 +43,10 @@ with(EventManager) {
     object_event_clear(object_index, ev_other, ev_user13);
     object_event_clear(object_index, ev_other, ev_user14);
     object_event_clear(object_index, ev_other, ev_user15);
+    object_event_clear(object_index, ev_step, ev_step_begin);
+    object_event_clear(object_index, ev_step, ev_step_normal);
+    object_event_clear(object_index, ev_step, ev_step_end);
+    object_event_clear(object_index, ev_draw, 0);
 }
 
 with(NPCManager) {
