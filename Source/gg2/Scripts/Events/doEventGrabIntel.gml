@@ -17,14 +17,14 @@ if (isMe)
         notice = NOTICE_HAVEINTEL;
 }
 if(object_get_parent(argument0.object_index) == NPC) {
+    with(argument0) {
+        event_user(5); // fire event NPC_EVENT_INTEL_GRAB
+    }
+} else {
     with(EventManager) {
         grabber = argument0;
         event_user(0); // fire event PLAYER_EVENT_INTEL_GRAB
         grabber = noone;
-    }
-} else {
-    with(argument0) { 
-        event_user(5); // fire event NPC_EVENT_INTEL_GRAB
     }
 }
 
