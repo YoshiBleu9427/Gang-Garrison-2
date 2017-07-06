@@ -17,6 +17,7 @@
     justJumped = max(0, justJumped - 1);
     keybyte = 0;
     aimDirection = 0;
+    aimDistance = 60;
     
     jump = 0;
     LMB = 0;
@@ -39,6 +40,7 @@
     
     object.keyState = keybyte;
     object.aimDirection = aimDirection;
+    object.aimDistance = aimDistance;
 }
 </argument>
       </arguments>

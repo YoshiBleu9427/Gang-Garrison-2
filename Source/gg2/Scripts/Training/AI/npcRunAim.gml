@@ -2,6 +2,7 @@ if (forceAim) {
     if (aimObject != noone) {
         if (instance_exists(aimObject)) {
             aimDirection = point_direction(object.x, object.y, aimObject.x, aimObject.y);
+            aimDistance = point_distance(object.x, object.y, aimObject.x, aimObject.y);
             exit;
         }
     }
@@ -64,6 +65,7 @@ if(class == CLASS_MEDIC) {
     if(bestTarget != noone) {
         if(instance_exists(bestTarget)) {
             aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
+            aimDistance = allyDist;
             if (object.currentWeapon.uberReady) {
                 if (bestTarget.hp < 50) {
                     LMB = 1;
@@ -79,8 +81,8 @@ if(class == CLASS_MEDIC) {
             RMB = 1;
         }
     }
-    
 }
+    
 if(aimDirection == 9001) {
     
     with(Character) {
@@ -125,11 +127,13 @@ if(aimDirection == 9001) {
             aimDirection = defaultDir;
         }
     } else {
-        if(class == CLASS_MEDIC)
+        if(class == CLASS_MEDIC) {
             RMB = 1;
-        else
+            LMB = 0;
+        } else
             LMB = 1;
         aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
+        aimDistance = enemyDist;
         if(bestTarget == global.myself.object) {
             event_user(1); // fire event
             alreadySeen = true;
@@ -172,6 +176,19 @@ if(bestTarget != noone) {
     // if aiming right, aimDirection must be increased
     else {
         aimDirection += modifier;
+    }
+
+    // if you're a rocketman about to shoot, and you're too close to your target to hit it, jump just before firing
+    // and move slightly to the side, to make sure to increase the distance between the two of you
+    if (class == CLASS_SOLDIER)
+    if ((reloadCounter < 5) and (object.currentWeapon.alarm[0] < (5 / global.delta_factor)))
+    if (LMB and (enemyDist < 30)) {
+        jump = 1;
+        if(object.x > bestTarget.x) {
+            dir = -1;
+        } else {
+            dir = 1;
+        }
     }
 }
 
