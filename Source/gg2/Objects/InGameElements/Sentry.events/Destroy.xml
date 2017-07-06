@@ -45,6 +45,11 @@ with(ownerPlayer.object)
         motion_add(rdir, min(15, other.knockback-other.knockback*(distance_to_object(other)/other.blastRadius)) * vectorfactor);
     } 
 }
+if(object_get_parent(ownerPlayer.object_index) == NPC) {
+    with(ownerPlayer) {
+        event_user(2);
+    }
+}
 
 ownerPlayer.sentry = noone;
 instance_create(x,y,Explosion);
