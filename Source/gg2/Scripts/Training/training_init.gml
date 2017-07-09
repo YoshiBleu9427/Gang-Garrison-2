@@ -13,4 +13,24 @@
     global.respawntime = 15 * 30;
     global.restart = false; // restart the map, ingamemenucontroller
     
+    global.npcNames[CLASS_SCOUT]    = "Pal";
+    global.npcNames[CLASS_PYRO]     = "Mmph";
+    global.npcNames[CLASS_SOLDIER]  = "Sergeant";
+    global.npcNames[CLASS_HEAVY]    = "Friend";
+    global.npcNames[CLASS_DEMOMAN]  = "Lad";
+    global.npcNames[CLASS_MEDIC]    = "Dummkopf";
+    global.npcNames[CLASS_ENGINEER] = "Partner";
+    global.npcNames[CLASS_SPY]      = "Ami";
+    global.npcNames[CLASS_SNIPER]   = "Mate";
+    
+    global.npcPortraitOffsets[CLASS_SCOUT]    = 0;
+    global.npcPortraitOffsets[CLASS_PYRO]     = 1;
+    global.npcPortraitOffsets[CLASS_SOLDIER]  = 2;
+    global.npcPortraitOffsets[CLASS_HEAVY]    = 3;
+    global.npcPortraitOffsets[CLASS_DEMOMAN]  = 4;
+    global.npcPortraitOffsets[CLASS_MEDIC]    = 5;
+    global.npcPortraitOffsets[CLASS_ENGINEER] = 6;
+    global.npcPortraitOffsets[CLASS_SPY]      = 7;
+    global.npcPortraitOffsets[CLASS_SNIPER]   = 8;
+    
     instance_create(0,0, NPCManager);

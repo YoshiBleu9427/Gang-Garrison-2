@@ -3,4 +3,5 @@
   <resource name="npcNext" type="RESOURCE"/>
   <resource name="npcClear" type="RESOURCE"/>
   <resource name="npcEventAdd" type="RESOURCE"/>
+  <resource name="npcCreateObject" type="RESOURCE"/>
 </resources>

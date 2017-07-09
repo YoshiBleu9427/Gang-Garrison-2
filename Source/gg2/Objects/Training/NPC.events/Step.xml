@@ -41,6 +41,8 @@
     object.keyState = keybyte;
     object.aimDirection = aimDirection;
     object.aimDistance = aimDistance;
+} else {
+    reloadCounter = 0;
 }
 </argument>
       </arguments>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="gameOver" type="RESOURCE"/>
-  <resource name="fireEventCustom" type="RESOURCE"/>
+  <resource name="fireCustomEvent" type="RESOURCE"/>
   <resource name="clearCustomEvents" type="RESOURCE"/>
 </resources>
