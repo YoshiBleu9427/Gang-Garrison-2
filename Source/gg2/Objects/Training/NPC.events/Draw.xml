@@ -13,11 +13,18 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">/*
-draw_set_alpha(1);
-draw_set_color(c_red);
+        <argument kind="STRING">draw_set_alpha(1);
 if(object != -1) {
-    var yOffset, jumpLength;
+    /*var dirx, diry;
+    dirx = lengthdir_x(aimDistance, aimDirection);
+    diry = lengthdir_y(aimDistance, aimDirection);
+    draw_set_color(c_red);
+    draw_line(object.x, object.y, object.x + dirx, object.y + diry);
+    draw_circle(object.x + dirx, object.y + diry, 4, true);
+    draw_set_color(c_blue);
+    draw_circle(object.x + dirx, object.y + diry, 4, true);*/
+}
+    /*var yOffset, jumpLength;
     yOffset = object.sprite_height-object.sprite_yoffset;
     jumpLength = object.hspeed * object.jumpStrength;
     /*draw_set_color(c_white);
@@ -37,7 +44,7 @@ if(object != -1) {
         draw_circle(pathPoint.x, pathPoint.y, 4, true);
     }
     
-}*/
+}
 </argument>
       </arguments>
     </action>

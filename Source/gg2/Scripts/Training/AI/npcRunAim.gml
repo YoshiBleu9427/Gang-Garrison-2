@@ -46,9 +46,9 @@ if(class == CLASS_MEDIC) {
         if(team == other.team) {
             if(collision_line(x,y, other.object.x, other.object.y, Obstacle, true, false) <= 0) {
                 var dist, hpRate;
-                dist = 500 + sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
+                dist = sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
                 hpRate = hp / maxHp;
-                if(dist * hpRate < allyDist * allyHpRate) {
+                if((dist/1000) + hpRate < (allyDist/1000) + allyHpRate) {
                     allyDist = dist;
                     allyHpRate = hpRate;
                     bestTarget = id;
@@ -200,9 +200,11 @@ if(reloadCounter > 0) {
         LMB = 0;
     }
     reloadCounter -= 1 * global.delta_factor;
-    if(variable_local_exists("ammoCount")) {
-        if(ammoCount >= maxAmmo) {
-            reloadCounter = 0;
+    with(object.currentWeapon) {
+        if(variable_local_exists("ammoCount")) {
+            if(ammoCount >= maxAmmo) {
+                reloadCounter = 0;
+            }
         }
     }
 } else {
