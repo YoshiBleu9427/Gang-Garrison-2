@@ -1,22 +1,6 @@
 {
     with(Client)
         instance_destroy();
-    portForwarded = true;
-    if (global.attemptPortForward) {
-        upnp_set_description("GG2 (TCP)")
-        var discovery_error, forwarding_error;
-        discovery_error = upnp_discover(2000);
-        if (upnp_error_string(discovery_error) != "") {
-            show_message(upnp_error_string(discovery_error))
-            portForwarded = false;
-        }else{
-        forwarding_error = upnp_forward_port(string(global.hostingPort), string(global.hostingPort), "TCP", "0")
-            if (upnp_error_string(forwarding_error) != "") {
-                show_message(upnp_error_string(forwarding_error))
-                portForwarded = false;
-            }
-        }
-    }
     hostSeenMOTD = false;
     global.players = ds_list_create();
     global.tcpListener = -1;
@@ -45,7 +29,8 @@
             global.classlimits[a] = 255;
     }
     
-    global.tcpListener = tcp_listen(global.hostingPort);
+    global.tcpListener = tcp_listen(0);
+    global.hostingPort = socket_local_port(global.tcpListener);
     if(socket_has_error(global.tcpListener))
     {
         show_message("Unable to host: " + socket_error(global.tcpListener));

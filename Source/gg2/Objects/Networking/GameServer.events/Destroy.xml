@@ -35,9 +35,6 @@ with(PlayerControl)
     
 with(CheatController)
     instance_destroy();
-    
-if (global.attemptPortForward and portForwarded)
-    upnp_release_port(string(global.hostingPort), "TCP")
 
 if (instance_exists(Builder))
     room_goto_fix(BuilderRoom);

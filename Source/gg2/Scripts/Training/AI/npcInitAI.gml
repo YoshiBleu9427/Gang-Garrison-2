@@ -39,3 +39,4 @@ reloadCounter = 0
 
 keybyte = 0;
 aimDirection = 0;
+aimDistance = 0;

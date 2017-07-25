@@ -1,3 +1,18 @@
+if (forcePath) {
+    if (pathPoint != noone) {
+        if (instance_exists(pathPoint)) {
+            aimDirection = point_direction(object.x, object.y, pathPoint.x, pathPoint.y);
+            aimDistance = point_distance(object.x, object.y, pathPoint.x, pathPoint.y);
+        } else {
+            pathPoint = noone;
+            forcePath = false;
+        }
+    } else {
+        forcePath = false;
+    }
+}
+
+
 if(!forcePath) {
 
 switch(task) {

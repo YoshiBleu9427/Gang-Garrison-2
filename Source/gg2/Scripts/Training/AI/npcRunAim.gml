@@ -1,21 +1,26 @@
-if (forceAim) {
-    if (aimObject != noone) {
-        if (instance_exists(aimObject)) {
-            aimDirection = point_direction(object.x, object.y, aimObject.x, aimObject.y);
-            aimDistance = point_distance(object.x, object.y, aimObject.x, aimObject.y);
-            exit;
-        }
-    }
-}
-
 var bestTarget, enemyDist;
 bestTarget = noone;
 enemyDist = seeRange;
-    
-aimModifier += abs(sin(degtorad(180 - (current_time mod 360)))) * maxModifier;
-aimModifier = aimModifier mod maxModifier;
+
+aimDirection = 9001;
+
+if (forceAim) {
+    if (aimObject != noone) {
+        if (instance_exists(aimObject)) {
+            bestTarget = aimObject;
+            aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
+            aimDistance = point_distance(object.x, object.y, bestTarget.x, bestTarget.y);
+        } else {
+            aimObject = noone;
+            forceAim = false;
+        }
+    } else {
+        forceAim = false;
+    }
+}
 
 if(task == NPC_TASK_IDLE) {
+    if (forceAim) exit;
     var isLeft;
     if(global.myself.object != -1) {
         isLeft = (global.myself.object.x < object.x);
@@ -27,45 +32,61 @@ if(task == NPC_TASK_IDLE) {
     exit;
 }
 if(task == NPC_TASK_SPYCHECK) {
+    LMB = 1;
+    if (forceAim) exit;
+    
     if(dir == 1) aimDirection = 0;
     else        aimDirection = 1;
-    
-    LMB = 1;
     exit;
 }
 
-aimDirection = 9001;
+// compute aimModifier based on time following a sine wave (modifierIntensity = a*sin(b*time))
+timeRatio = current_time mod 1000;
+timeToDeg = timeRatio / 1000 * 360;
+positiveTimeModifier = (1 + sin(degtorad(timeToDeg))) / 2;
+aimModifier += positiveTimeModifier * maxModifier;
+aimModifier = aimModifier mod maxModifier;
 
-if(class == CLASS_MEDIC) {
+// find a target to heal
+if (class == CLASS_MEDIC) {
     var allyDist, allyHpRate;
     allyDist = 9001;
     allyHpRate = 1;
     
-    with(Character) {
-        if(id != other.object)
-        if(team == other.team) {
-            if(collision_line(x,y, other.object.x, other.object.y, Obstacle, true, false) <= 0) {
-                var dist, hpRate;
-                dist = sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
-                hpRate = hp / maxHp;
-                if((dist/1000) + hpRate < (allyDist/1000) + allyHpRate) {
-                    allyDist = dist;
-                    allyHpRate = hpRate;
-                    bestTarget = id;
+    // if your target hasn't been previously forced,
+    // find the best ally to heal around you
+    if (bestTarget == noone) {
+        with(Character) {
+            if(id != other.object)
+            if(team == other.team) {
+                if(collision_line(x,y, other.object.x, other.object.y, Obstacle, true, false) <= 0) {
+                    var dist, hpRate;
+                    dist = sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
+                    hpRate = hp / maxHp;
+                    if((dist/1000) + hpRate*3 < (allyDist/1000) + allyHpRate*3) {
+                        allyDist = dist;
+                        allyHpRate = hpRate;
+                        bestTarget = id;
+                    }
                 }
             }
         }
     }
     
+    // always healing
     LMB = 1;
     if(bestTarget != noone)
     if(bestTarget.player != object.currentWeapon.healTarget and object.currentWeapon.healTarget != noone) {
+        // unless you're healing the wrong person
         LMB = 0;
     }
+    
+    // set direction
+    // trigger uber if target needs it
     if(bestTarget != noone) {
         if(instance_exists(bestTarget)) {
             aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
-            aimDistance = allyDist;
+            aimDistance = point_distance(object.x, object.y, bestTarget.x, bestTarget.y);
             if (object.currentWeapon.uberReady) {
                 if (bestTarget.hp < 50) {
                     LMB = 1;
@@ -77,12 +98,20 @@ if(class == CLASS_MEDIC) {
     
     if (object.currentWeapon.uberReady) {
         if (object.hp < 40) {
+            // UBER NOW
             LMB = 1;
             RMB = 1;
+            exit;
         }
     }
-}
     
+    if(bestTarget != noone) {
+        // got it all figured out already
+        exit;
+    }
+}
+
+// if you still don't have a target, aim for an enemy
 if(aimDirection == 9001) {
     
     with(Character) {
@@ -116,66 +145,70 @@ if(aimDirection == 9001) {
         }
     }
     
-    if(bestTarget == noone) {
-        if(class == CLASS_MEDIC)
-            RMB = 0;
-        else
-            LMB = 0;
-        if(defaultDir == -1) {
-            aimDirection = (current_time / 1000 * 360) mod 360; // gunspin
-        } else {
-            aimDirection = defaultDir;
-        }
+}
+
+// got nothing to shoot? Don't fire
+if(bestTarget == noone) {
+    RMB = 0;
+    LMB = 0;
+    if(defaultDir == -1) {
+        aimDirection = (current_time / 1000 * 360) mod 360; // gunspin
     } else {
-        if(class == CLASS_MEDIC) {
-            RMB = 1;
-            LMB = 0;
-        } else
-            LMB = 1;
-        aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
-        aimDistance = enemyDist;
-        if(bestTarget == global.myself.object) {
-            event_user(1); // fire event
-            alreadySeen = true;
-            justSeen = 30;
-        } else {
-            justSeen = max(0, justSeen - 1);
-        }
+        aimDirection = defaultDir;
+    }
+// got your target? Good! Now press your mouse buttons to fire
+} else {
+    if(class == CLASS_MEDIC) {
+        RMB = 1;
+        LMB = 0;
+    } else {
+        LMB = 1;
+    }
+    aimDirection = point_direction(object.x, object.y, bestTarget.x, bestTarget.y);
+    aimDistance = point_distance(object.x, object.y, bestTarget.x, bestTarget.y);
+    if(bestTarget == global.myself.object) {
+        event_user(1); // fire event
+        alreadySeen = true;
+        justSeen = 30;
+    } else {
+        justSeen = max(0, justSeen - 1);
     }
 }
 
+// aim randomizer
 aimDirection += aimModifier - (maxModifier / 2); // if ang = 240 & mod = 30, go from 225 to 255
 
-if(bestTarget != noone) {
-    // to curved projectiles: aim a little higher
-    var xshift, modifier;
+
+// aim compensation for curved projectiles
+if (bestTarget != noone) {
+    var xshift, compensationModifier;
     xshift = abs(bestTarget.x - object.x);
-    modifier = 0;
+    compensationModifier = 0;
     switch(class) {
         case CLASS_SCOUT:
         case CLASS_ENGINEER:
         case CLASS_HEAVY:
         case CLASS_DEMOMAN:
-            modifier = 2 * sqrt(xshift / 8);
+            compensationModifier = 2 * sqrt(xshift / 8);
             break;
         case CLASS_SPY:
-            modifier = sqrt(xshift / 8);
+            compensationModifier = sqrt(xshift / 8);
             break;
         case CLASS_SOLDIER:
         case CLASS_SNIPER:
         case CLASS_MEDIC:
         case CLASS_PYRO:
         case CLASS_QUOTE:
-            modifier = 0;
+            compensationModifier = 0;
             break;
     }
     // if aiming left, aimDirection must be decreased
     if(90 < aimDirection and aimDirection < 270) {
-        aimDirection -= modifier;
+        aimDirection -= compensationModifier;
     }
     // if aiming right, aimDirection must be increased
     else {
-        aimDirection += modifier;
+        aimDirection += compensationModifier;
     }
 
     // if you're a rocketman about to shoot, and you're too close to your target to hit it, jump just before firing

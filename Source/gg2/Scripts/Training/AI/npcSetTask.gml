@@ -20,6 +20,9 @@ if(arg == 0) arg = noone;
 forcePath = false;
 forceAim  = false;
 
+var argIsntNoone;
+argIsntNoone = (arg != noone);
+
 switch(task) {
     case NPC_TASK_IDLE:
         pathPoint = noone;
@@ -34,22 +37,18 @@ switch(task) {
     case NPC_TASK_CHASE:
         pathPoint = arg;
         aimObject = arg;
-        var argIsntNoone;
-        argIsntNoone = (arg != noone);
+        forcePath = argIsntNoone;
         forceAim  = argIsntNoone;
         break;
     case NPC_TASK_CAMP:
         pathPoint = instance_nearest(x,y,NPCSniperSpot);
         aimObject = arg;
-        if(arg != noone) {
-            forceAim  = true;
-        }
+        forceAim  = argIsntNoone;
         break;
     case NPC_TASK_PET:
         pathPoint = arg;
         aimObject = noone;
-        if(arg != noone)
-            forcePath = true;
+        forcePath = argIsntNoone;
         break;
     case NPC_TASK_SENTRY:
         pathPoint = instance_nearest(x,y,NPCSentrySpot);
