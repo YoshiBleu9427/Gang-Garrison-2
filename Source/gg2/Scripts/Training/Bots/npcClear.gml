@@ -24,6 +24,15 @@ with(NPC) {
     object_event_clear(object_index, ev_step, ev_step_begin);
     object_event_clear(object_index, ev_step, ev_step_end);
     object_event_clear(object_index, ev_draw, 0);
+    object_event_clear(object_index, ev_alarm, 2);
+    object_event_clear(object_index, ev_alarm, 3);
+    object_event_clear(object_index, ev_alarm, 4);
+    object_event_clear(object_index, ev_alarm, 6);
+    object_event_clear(object_index, ev_alarm, 7);
+    object_event_clear(object_index, ev_alarm, 8);
+    object_event_clear(object_index, ev_alarm, 9);
+    object_event_clear(object_index, ev_alarm, 10);
+    object_event_clear(object_index, ev_alarm, 11);
     instance_destroy();
 }
 with(EventManager) {
@@ -47,6 +56,18 @@ with(EventManager) {
     object_event_clear(object_index, ev_step, ev_step_normal);
     object_event_clear(object_index, ev_step, ev_step_end);
     object_event_clear(object_index, ev_draw, 0);
+    object_event_clear(object_index, ev_alarm, 0);
+    object_event_clear(object_index, ev_alarm, 1);
+    object_event_clear(object_index, ev_alarm, 2);
+    object_event_clear(object_index, ev_alarm, 3);
+    object_event_clear(object_index, ev_alarm, 4);
+    object_event_clear(object_index, ev_alarm, 5);
+    object_event_clear(object_index, ev_alarm, 6);
+    object_event_clear(object_index, ev_alarm, 7);
+    object_event_clear(object_index, ev_alarm, 8);
+    object_event_clear(object_index, ev_alarm, 9);
+    object_event_clear(object_index, ev_alarm, 10);
+    object_event_clear(object_index, ev_alarm, 11);
 }
 
 with(NPCManager) {
