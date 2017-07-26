@@ -19,6 +19,7 @@
     aimDirection = 0;
     aimDistance = 60;
     
+    dir = 0;
     jump = 0;
     LMB = 0;
     RMB = 0;

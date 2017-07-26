@@ -63,7 +63,7 @@ if (class == CLASS_MEDIC) {
                     var dist, hpRate;
                     dist = sqrt(sqr(x - other.object.x) + sqr(y - other.object.y));
                     hpRate = hp / maxHp;
-                    if((dist/1000) + hpRate*3 < (allyDist/1000) + allyHpRate*3) {
+                    if((dist/1000) + hpRate*2 < (allyDist/1000) + allyHpRate*2) {
                         allyDist = dist;
                         allyHpRate = hpRate;
                         bestTarget = id;

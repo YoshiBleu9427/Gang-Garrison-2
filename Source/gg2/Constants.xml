@@ -149,10 +149,13 @@
   <constant name="NPC_EVENT_KILL" value="ev_user3"/>
   <constant name="NPC_EVENT_PLAYER_SEEN" value="ev_user1"/>
   <constant name="NPC_EVENT_SENTRY_DOWN" value="ev_user2"/>
+  <constant name="NPC_EVENT_SENTRY_BUILT" value="ev_user6"/>
   <constant name="NPC_EVENT_INTEL_GRAB" value="ev_user5"/>
   <constant name="PLAYER_EVENT_DEATH" value="ev_user2"/>
   <constant name="PLAYER_EVENT_INTEL_GRAB" value="ev_user0"/>
   <constant name="PLAYER_EVENT_INTEL_SCORE" value="ev_user1"/>
+  <constant name="PLAYER_EVENT_SENTRY_BUILT" value="ev_user3"/>
+  <constant name="PLAYER_EVENT_SENTRY_DOWN" value="ev_user4"/>
   <constant name="EVENT_CUSTOM_1" value="ev_user15"/>
   <constant name="EVENT_CUSTOM_2" value="ev_user14"/>
   <constant name="EVENT_CUSTOM_3" value="ev_user13"/>

@@ -20,3 +20,13 @@ else
 player.sentry.startDirection = startDirection;
 player.sentry.image_xscale = startDirection;
 player.object.nutsNBolts -= 100;
+
+if (player.object_index == Player) {
+    with (EventManager) {
+        event_user(3) // PLAYER_EVENT_SENTRY_BUILT
+    }
+} else {
+    with (player) {
+        event_user(6) // NPC_EVENT_SENTRY_BUILT
+    }
+}

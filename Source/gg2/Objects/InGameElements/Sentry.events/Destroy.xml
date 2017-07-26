@@ -49,6 +49,10 @@ if(object_get_parent(ownerPlayer.object_index) == NPC) {
     with(ownerPlayer) {
         event_user(2);
     }
+} else {
+    with(EventManager) {
+        event_user(4); // PLAYER_EVENT_SENTRY_DOWN
+    }
 }
 
 ownerPlayer.sentry = noone;

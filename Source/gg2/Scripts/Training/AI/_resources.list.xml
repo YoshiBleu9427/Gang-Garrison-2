@@ -3,6 +3,7 @@
   <resource name="npcInitAI" type="RESOURCE"/>
   <resource name="npcSetTask" type="RESOURCE"/>
   <resource name="npcRunAI" type="RESOURCE"/>
+  <resource name="npcFindPathPoint" type="RESOURCE"/>
   <resource name="npcAvoidObstacle" type="RESOURCE"/>
   <resource name="npcGetObjective" type="RESOURCE"/>
   <resource name="npcRunAim" type="RESOURCE"/>

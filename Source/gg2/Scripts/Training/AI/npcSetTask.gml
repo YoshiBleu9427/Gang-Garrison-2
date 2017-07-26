@@ -33,6 +33,8 @@ switch(task) {
     case NPC_TASK_SPYCHECK:
         pathPoint = noone;
         aimObject = noone;
+        forcePath = false;
+        forceAim  = false;
         break;
     case NPC_TASK_CHASE:
         pathPoint = arg;
@@ -44,18 +46,24 @@ switch(task) {
         pathPoint = instance_nearest(x,y,NPCSniperSpot);
         aimObject = arg;
         forceAim  = argIsntNoone;
+        forcePath = true;
         break;
     case NPC_TASK_PET:
         pathPoint = arg;
         aimObject = noone;
         forcePath = argIsntNoone;
+        forceAim  = false;
         break;
     case NPC_TASK_SENTRY:
         pathPoint = instance_nearest(x,y,NPCSentrySpot);
         aimObject = noone;
+        forceAim  = false;
+        forcePath = true;
         break;
     case NPC_TASK_STAY:
-        pathPoint = noone;
+        pathPoint = arg;
         aimObject = noone;
+        forcePath = argIsntNoone;
+        forceAim  = false;
         break;
 }
