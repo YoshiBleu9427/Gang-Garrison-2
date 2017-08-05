@@ -72,6 +72,10 @@ if(global.winners != -1 and !global.mapchanging)
     global.mapchanging = true;
     impendingMapChange = 300; // in 300 ticks (ten seconds), we'll do a map change
     
+    with (EventManager) {
+        event_user(6); // EVENT_ROUND_END
+    }
+    
     write_ubyte(global.sendBuffer, MAP_END);
     // IMPORTANT NETWORKING CHANGE: REMOVED A STRING (global.nextMap being sent)
     write_ubyte(global.sendBuffer, global.winners);

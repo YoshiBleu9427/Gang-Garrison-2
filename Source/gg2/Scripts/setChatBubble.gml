@@ -5,5 +5,11 @@ if(instance_exists(argument0)) {
         argument0.object.bubble.visible = true;
         argument0.object.bubble.bubbleAlpha = 1;
         argument0.object.bubble.fadeout = false;
+        
+        if (argument0 == global.myself) {
+            with(EventManager) {
+                event_user(5); // PLAYER_EVENT_BUBBLE
+            }
+        }
     }
 }

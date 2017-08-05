@@ -45,6 +45,9 @@ with(Player) {
 with(NPC) {
     npcSetTask(NPC_TASK_IDLE);
 }
+with (EventManager) {
+    event_user(6); // EVENT_ROUND_END
+}
 </argument>
       </arguments>
     </action>

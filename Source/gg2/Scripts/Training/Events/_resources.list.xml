@@ -3,4 +3,5 @@
   <resource name="gameOver" type="RESOURCE"/>
   <resource name="fireCustomEvent" type="RESOURCE"/>
   <resource name="clearCustomEvents" type="RESOURCE"/>
+  <resource name="win" type="RESOURCE"/>
 </resources>

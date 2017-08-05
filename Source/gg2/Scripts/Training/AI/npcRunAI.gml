@@ -73,10 +73,16 @@ switch(task) {
 
 if(pathPoint != noone) {
     if(object.x - 18 > pathPoint.x) {
+        reachedDestination = false;
         dir = -1;
     } else if(object.x + 18 < pathPoint.x) {
+        reachedDestination = false;
         dir = 1;
     } else {
+        if (not reachedDestination) {
+            event_user(7); // NPC_EVENT_REACH_DEST
+        }
+        reachedDestination = true;
         dir = 0;
     }
 }

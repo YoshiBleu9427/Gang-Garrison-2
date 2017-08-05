@@ -50,6 +50,7 @@ justJumped = 10;
 // events
 justSeen = 0;       // has the player always been in npc's sight since last time seen? (a 30-frame-long, decreasing timer)
 alreadySeen = false; // has the player already be seen by this bot?
+reachedDestination = false; // is the player close (&lt;18 px) to their pathPoint (defined, or computed by npcFindPathPoint) ?
 </argument>
       </arguments>
     </action>
