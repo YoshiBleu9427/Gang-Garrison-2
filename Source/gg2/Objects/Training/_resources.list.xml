@@ -15,4 +15,5 @@
   <resource name="NPCManager" type="RESOURCE"/>
   <resource name="SetupPlayer" type="RESOURCE"/>
   <resource name="PathPoint" type="RESOURCE"/>
+  <resource name="ScenarioContext" type="RESOURCE"/>
 </resources>
