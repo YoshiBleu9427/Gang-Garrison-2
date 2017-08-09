@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">// reset menu
+menu_text_back = ""
+items = 0
+
+var mapName;
+
+// add new maps
+for (i = (page * items_per_page); i &lt; ds_list_size(goodMapList); i += 1)
+{
+    mapName = ds_list_find_value(goodMapList, i);
+    menu_addmap(mapName);
+}
+
+menu_addback("Back", '
+    instance_create(x,y,CharacterMenuController);
+    instance_destroy();
+');
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>
