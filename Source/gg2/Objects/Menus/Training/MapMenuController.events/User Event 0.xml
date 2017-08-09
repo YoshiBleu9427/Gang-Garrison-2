@@ -17,13 +17,14 @@
 menu_text_back = ""
 items = 0
 
-var mapName;
+var mapName, completed;
 
 // add new maps
 for (i = (page * items_per_page); i &lt; ds_list_size(goodMapList); i += 1)
 {
     mapName = ds_list_find_value(goodMapList, i);
-    menu_addmap(mapName);
+    completed = ds_list_find_value(mapCompletedList, i);
+    menu_addmap(mapName, completed);
 }
 
 menu_addback("Back", '

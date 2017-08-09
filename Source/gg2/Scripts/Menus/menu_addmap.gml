@@ -1,6 +1,13 @@
-var mapName;
+var mapName, completed, shownName;
 mapName = argument0;
-menu_addlink(mapName, '
+completed = argument1;
+
+if (completed) {
+    shownName = "[X] " + mapName
+} else {
+    shownName = "[ ] " + mapName
+}
+menu_addlink(shownName, '
     global.currentMap = "' + mapName + '";
     global.gameServer = instance_create(0,0,GameServer);
 ');

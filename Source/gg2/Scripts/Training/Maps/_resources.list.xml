@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="TrainingMapInit" type="RESOURCE"/>
+  <resource name="TrainingMapSaveHiscore" type="RESOURCE"/>
+  <resource name="TrainingMapGetHiscore" type="RESOURCE"/>
+  <resource name="TrainingMapGetHiscoreClass" type="RESOURCE"/>
+  <resource name="TrainingMapHasHiscore" type="RESOURCE"/>
 </resources>
