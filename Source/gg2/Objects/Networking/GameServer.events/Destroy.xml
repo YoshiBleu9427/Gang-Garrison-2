@@ -35,6 +35,12 @@ with(PlayerControl)
     
 with(CheatController)
     instance_destroy();
+    
+with(EventManager)
+    instance_destroy();
+    
+with(ScenarioContext)
+    instance_destroy();
 
 if (instance_exists(Builder))
     room_goto_fix(BuilderRoom);

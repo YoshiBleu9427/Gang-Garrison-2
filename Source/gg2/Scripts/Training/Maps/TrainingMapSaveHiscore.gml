@@ -1,9 +1,9 @@
 var map, time, class, prevScore;
 map = global.currentMap;
-time = GameServer.frame / 30;
+time = GameServer.frame;
 class = classname(global.myself.class);
 
-prevScore = TrainingMapGetHiscore(map, class);
+prevScore = TrainingMapGetHiscore(map, global.myself.class);
 if (prevScore == noone) {
     prevScore = time + 1;
 }
