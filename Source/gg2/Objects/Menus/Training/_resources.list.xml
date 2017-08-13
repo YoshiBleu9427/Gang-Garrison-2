@@ -3,4 +3,6 @@
   <resource name="CharacterMenuController" type="RESOURCE"/>
   <resource name="CheatMenu" type="RESOURCE"/>
   <resource name="MapMenuController" type="RESOURCE"/>
+  <resource name="MapHiscoreMenuController" type="RESOURCE"/>
+  <resource name="HiscoreMenuController" type="RESOURCE"/>
 </resources>

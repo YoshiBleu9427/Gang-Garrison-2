@@ -21,6 +21,32 @@ with(npcNext(120*6, 200*6)) {
 The code above will put the player in the blue team, and create a red runner bot, at position 720;1200 in game (120;200 on the png file).
 It will chase after the closest enemy, and when it dies, it will create a blue dialog box with its sprite, saying "I died", and trigger the Game Over animation. 
 
+## Importing resources
+
+Before executing the npc file for a given map, the mod will import resources from `\Maps\stm\(map name)\sprites\` and `\Maps\stm\(map name)\sounds\`.
+These two folders should contain respectively gif files, and wav or mp3 files.
+
+To access the automatically imported resources, use the ScenarioContext.sprites and ScenarioContext.sounds maps, using the filename as the map key:
+```
+// if your sprite filename is 'example.gif'
+sprite = ds_map_find_value(ScenarioContext.sprites, 'example.gif');
+
+// if your sound filename is 'music.wav'
+music = ds_map_find_value(ScenarioContext.sounds, 'music.wav');
+```
+
+If you want to import png files to build your sprites, you will need to import them manually. Use the following:
+
+```my_sprite = sprite_add(working_directory + "\Maps\stm\(map_name)\(sprite_filename).png", (nb of frames), (transparency), 0, (sprite width), (sprite_height));```
+
+Note that the offset of the sprite defaults to the bottom middle of the image. If you want to change the offset, remember to use sprite_set_offset.
+```
+var sprite;
+sprite = ds_map_find_value(ScenarioContext.sprites, "sprite.gif");
+sprite_set_offset(sprite, sprite_get_width(sprite)/2, sprite_get_height(sprite)/2); // sets offset to the middle of the sprite
+```
+
+
 ## More specifics
 
 

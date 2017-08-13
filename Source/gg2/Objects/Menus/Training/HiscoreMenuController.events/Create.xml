@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">menu_create(48, 172, 500, 260, 32, 40, 104, 6);
+menu_background(512, 24, 8, 12, 4);
+bgtabs = true;
+
+
+var i, time, timeStr, minStr, secStr, millisStr;
+for (i = 0; i &lt; 10; i+=1) {
+    time = TrainingMapGetHiscore(global.currentMap, i);
+    if (time == noone) {
+        timeStr = "--:--:--";
+    } else {
+        minStr = string(floor(time / (30 * 60)));
+        secStr = string(floor((time / 30) mod 60));
+        millisStr = string(floor((time) mod (30 * 60)));
+        if (string_length(secStr) &lt; 2) {
+            secStr = "0" + secStr;
+        }
+        if (string_length(millisStr) &lt; 2) {
+            millisStr = "0" + millisStr;
+        }
+        secStr = string_copy(secStr, 1, 2);
+        millisStr = string_copy(millisStr, 1, 2);
+        timeStr = minStr + ":" + secStr + ":" + millisStr;
+    }
+    menu_addlink(classname(i) + " : " + timeStr, '');
+}
+
+menu_addback("Back", '
+    instance_create(x,y,MapHiscoreMenuController);
+    instance_destroy();
+');
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

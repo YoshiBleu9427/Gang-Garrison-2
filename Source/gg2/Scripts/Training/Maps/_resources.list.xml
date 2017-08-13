@@ -5,4 +5,5 @@
   <resource name="TrainingMapGetHiscore" type="RESOURCE"/>
   <resource name="TrainingMapGetHiscoreClass" type="RESOURCE"/>
   <resource name="TrainingMapHasHiscore" type="RESOURCE"/>
+  <resource name="TrainingMapImportResources" type="RESOURCE"/>
 </resources>

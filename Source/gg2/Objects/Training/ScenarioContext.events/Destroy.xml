@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DESTROY" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">
+_sprites_index_list = ds_list_create();
+_sounds_index_list = ds_list_create();
+
+var i, sprite, sound;
+
+for(i = 0; i &lt; ds_list_size(_sprites_index_list); i+=1) {
+    sprite = ds_list_find_value(_sprites_index_list, i);
+    sprite_delete(sprite);
+}
+for(i = 0; i &lt; ds_list_size(_sounds_index_list); i+=1) {
+    sound = ds_list_find_value(_sounds_index_list, i);
+    sound_delete(sound);
+}
+
+ds_list_destroy(_sprites_index_list);
+ds_list_destroy(_sounds_index_list);
+
+ds_map_destroy(sprites);
+ds_map_destroy(sounds);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>
