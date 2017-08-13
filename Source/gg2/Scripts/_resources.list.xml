@@ -30,4 +30,5 @@
   <resource name="scripts2" type="GROUP"/>
   <resource name="Faucet HTTP" type="GROUP"/>
   <resource name="Gear" type="GROUP"/>
+  <resource name="script370" type="RESOURCE"/>
 </resources>

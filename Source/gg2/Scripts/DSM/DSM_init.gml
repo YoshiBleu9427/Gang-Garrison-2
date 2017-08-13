@@ -153,6 +153,9 @@ ini_open("DSM.ini")
     
     global.medicTargeting=ini_read_real("Settings","MedicTargeting",0)
     ini_write_real("Settings","MedicTargeting",global.medicTargeting)
+    
+    global.chatFontBold=ini_read_real("Cosmetic","ChatFontBold",0)
+    ini_write_real("Cosmetic","ChatFontBold",global.chatFontBold)
 ini_close()
 
 //DSM Controls
@@ -194,9 +197,7 @@ spriteLoader()
 soundLoader()
 stats_init()
 //Plugin Fixes and Mods
-chatFix_miku()
 chat_paste()
-//chat_hide()
 global.cheatycheat=-1
 
 if(!directory_exists(working_directory+"\Custom")) directory_create(working_directory+"\Custom")

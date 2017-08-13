@@ -40,6 +40,21 @@ if input[1]='add'{
             write_ubyte(player.socket,DSM_RCON_LOGIN)
             write_ubyte(player.socket,DSM_RCON_LOGIN_SUCCESSFUL)
             ds_list_add(global.RCONList,player)
+            
+            //Write to file
+            if ds_list_find_index(global.rcon_ips,socket_remote_ip(player.socket))==-1{
+                ds_list_add(global.rcon_ips,socket_remote_ip(player.socket))
+                
+                var rcon_text, rcon_str, i;
+                rcon_str=''
+                for (i=0; i<ds_list_size(global.rcon_ips); i+=1){
+                    rcon_str+=ds_list_find_value(global.rcon_ips,i)+chr(10)
+                }
+                rcon_text=file_text_open_write('RCON_IPs.txt')
+                file_text_write_string(rcon_text,rcon_str)
+                file_text_close(rcon_text)
+            }
+            
             console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' is now a RCON.')
             exit;
         }else if floor(real(string_digits(input[2]))) == 0{
@@ -59,6 +74,21 @@ if input[1]='add'{
             write_ubyte(socket,DSM_RCON_LOGIN)
             write_ubyte(socket,DSM_RCON_LOGIN_SUCCESSFUL)
             ds_list_add(global.RCONList,Player)
+            
+            //Write to file
+            if ds_list_find_index(global.rcon_ips,socket_remote_ip(socket))==-1{
+                ds_list_add(global.rcon_ips,socket_remote_ip(socket))
+                
+                var rcon_text, rcon_str, i;
+                rcon_str=''
+                for (i=0; i<ds_list_size(global.rcon_ips); i+=1){
+                    rcon_str+=ds_list_find_value(global.rcon_ips,i)+chr(10)
+                }
+                rcon_text=file_text_open_write('RCON_IPs.txt')
+                file_text_write_string(rcon_text,rcon_str)
+                file_text_close(rcon_text)
+            }
+            
             console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+name+' is now a RCON.')
             exit;
         }
@@ -85,6 +115,21 @@ if input[1]='remove'{
                 write_ubyte(player.socket,DSM_RCON_LOGIN)
                 write_ubyte(player.socket,DSM_RCON_LOGIN_FAILED)
                 ds_list_delete(global.RCONList,ds_list_find_index(global.RCONList,player))
+                
+                //Write to file
+                if ds_list_find_index(global.rcon_ips,socket_remote_ip(player.socket))!=-1{
+                    ds_list_delete(global.rcon_ips,ds_list_find_index(global.rcon_ips,socket_remote_ip(player.socket)))
+                    
+                    var rcon_text, rcon_str, i;
+                    rcon_str=''
+                    for (i=0; i<ds_list_size(global.rcon_ips); i+=1){
+                        rcon_str+=ds_list_find_value(global.rcon_ips,i)+chr(10)
+                    }
+                    rcon_text=file_text_open_write('RCON_IPs.txt')
+                    file_text_write_string(rcon_text,rcon_str)
+                    file_text_close(rcon_text)
+                }
+                
                 console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' is no longer a RCON.')
                 exit;
             }
@@ -105,6 +150,21 @@ if input[1]='remove'{
                 write_ubyte(socket,DSM_RCON_LOGIN)
                 write_ubyte(socket,DSM_RCON_LOGIN_FAILED)
                 ds_list_delete(global.RCONList,ds_list_find_index(global.RCONList,Player))
+                
+                //Write to file
+                if ds_list_find_index(global.rcon_ips,socket_remote_ip(socket))!=-1{
+                    ds_list_delete(global.rcon_ips,ds_list_find_index(global.rcon_ips,socket_remote_ip(socket)))
+                    
+                    var rcon_text, rcon_str, i;
+                    rcon_str=''
+                    for (i=0; i<ds_list_size(global.rcon_ips); i+=1){
+                        rcon_str+=ds_list_find_value(global.rcon_ips,i)+chr(10)
+                    }
+                    rcon_text=file_text_open_write('RCON_IPs.txt')
+                    file_text_write_string(rcon_text,rcon_str)
+                    file_text_close(rcon_text)
+                }
+                
                 console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+name+' is no longer a RCON.')
                 exit;
             }

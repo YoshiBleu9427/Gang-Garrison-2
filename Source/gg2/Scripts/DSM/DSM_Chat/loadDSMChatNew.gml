@@ -107,6 +107,10 @@ if keyboard_check_released(vk_escape){
 if global.isHost{
     event_user(0); //forward messages as a host
 }else event_user(6); //read messages as a client
+
+if keyboard_check_direct(vk_control) { 
+    if keyboard_check_pressed(ord("V")) keyboard_string += clipboard_get_text();
+}
 ')
 
 object_event_clear(global.chatWindow,ev_draw,0)
@@ -122,7 +126,11 @@ draw_set_valign(fa_top);
 draw_set_halign(fa_left);
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_set_font(global.DSM_ConsoleFont)//global.consoleFont);
+if global.chatFontBold==0{
+    draw_set_font(global.DSM_ConsoleFont)
+}else{
+    draw_set_font(global.gg2Font)
+}
 
 if !hidden{
     draw_sprite_ext(sprite_index,image_index,xoffset+5,yoffset+280,1,1,0,c_white,global.dsmChatBoxAlpha/100);

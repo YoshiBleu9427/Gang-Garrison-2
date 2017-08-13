@@ -84,7 +84,7 @@ if (global.isHost){
         }
     }else{
         //Only remove the password if it was set by this plugin
-        if global.serverPassword=global.dsmServerPasswordString{
+        if global.serverPassword==global.dsmServerPasswordString{
             global.serverPassword=""
         }
     }

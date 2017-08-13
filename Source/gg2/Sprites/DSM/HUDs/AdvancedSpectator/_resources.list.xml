@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="AdvSpecS" type="RESOURCE"/>
+  <resource name="CasterHUD_PlayersS" type="RESOURCE"/>
+  <resource name="CasterHUD_StatsS" type="RESOURCE"/>
+  <resource name="MoveCursorS" type="RESOURCE"/>
 </resources>

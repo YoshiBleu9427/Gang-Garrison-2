@@ -14,6 +14,10 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">{
+    xoffset=view_xview[0]
+    yoffset=view_yview[0]
+    xsize=view_wview[0]
+    ysize=view_hview[0]
     var size, namelength, server;
     
     if(lobbysocket != -1) {
@@ -102,8 +106,8 @@
         }                    
     }
     
-    if(mouse_x &gt; xbegin and mouse_x &lt; xbegin+width) {
-        virtualitem = round((mouse_y-ybegin+12)/spacing-0.5);
+    if(mouse_x &gt; xbegin+xoffset and mouse_x &lt; xbegin+width+xoffset) {
+        virtualitem = round((mouse_y-(ybegin+yoffset)+12)/spacing-0.5);
         if(virtualitem&lt;0 or virtualitem&gt;items) {
             virtualitem = -1;
         } else {

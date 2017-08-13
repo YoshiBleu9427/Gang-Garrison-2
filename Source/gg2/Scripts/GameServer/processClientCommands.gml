@@ -411,11 +411,27 @@ while(commandLimitRemaining > 0) {
             rconCommand=read_string(player.socket,commandLength)
             
             if global.dsmRCONAllowed==0 break;
+            if global.dsmRCONPassword=="" break;
             
             if string(rconCommand)==string(global.dsmRCONPassword){
                 write_ubyte(player.socket,DSM_RCON_LOGIN)
                 write_ubyte(player.socket,DSM_RCON_LOGIN_SUCCESSFUL) //valid password
                 ds_list_add(global.RCONList,player)
+                
+                //Write to file
+                if ds_list_find_index(global.rcon_ips,socket_remote_ip(player.socket))==-1{
+                    ds_list_add(global.rcon_ips,socket_remote_ip(player.socket))
+                    
+                    var rcon_text, rcon_str, i;
+                    rcon_str=''
+                    for (i=0; i<ds_list_size(global.rcon_ips); i+=1){
+                        rcon_str+=ds_list_find_value(global.rcon_ips,i)+chr(10)
+                    }
+                    rcon_text=file_text_open_write('RCON_IPs.txt')
+                    file_text_write_string(rcon_text,rcon_str)
+                    file_text_close(rcon_text)
+                }
+    
                 console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' is now identified as a RCON.')
             }else{
                 write_ubyte(player.socket,DSM_RCON_LOGIN)

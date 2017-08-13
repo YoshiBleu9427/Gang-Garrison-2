@@ -67,6 +67,7 @@ draw_line(console_x2 - 11, console_y2 - 30, console_x2 - 11, console_y2 - 10)
 // Draw the console Title
 draw_set_alpha(1);
 draw_set_color(c_white);
+draw_set_valign(fa_middle)
 draw_set_font(global.gg2Font); //we want the title to stand out
 draw_set_halign(fa_left)
 draw_text(console_x1+15, console_y1+10, "Console - DSM "+string(DSM_VERSION_STRING));
@@ -88,7 +89,7 @@ for(i=0; i&lt;ds_list_size(global.consoleLog); i+=1){
     message = ds_list_find_value(global.consoleLog, ds_list_size(global.consoleLog)-1-i)
     switch string_copy(message, 0, 3){
         case "/:/":// If a color-code was included.
-            draw_set_color(getColorCode(string_copy(message, 4, COLOR_RGB_LENGTH)))
+            draw_set_color(DSM_getColorCode(string_copy(message, 4, COLOR_RGB_LENGTH)))
             draw_text(console_x1+22, (console_y2 - 57)-i*spacing, string_copy(sanitiseNewlines(message), 4+COLOR_RGB_LENGTH, string_length(message)-(4+COLOR_RGB_LENGTH-1)));
             break
 

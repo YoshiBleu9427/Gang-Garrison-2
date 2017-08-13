@@ -26,7 +26,7 @@ if !global.isHost{
 }
 //arctic a shit
 with(Player){
-    if (ds_list_find_value(global.chatBanlist,socket_remote_ip(socket))){
+    if ds_list_find_value(global.chatBanlist,socket_remote_ip(socket))!=-1{
         hasChat=true
     }
 }

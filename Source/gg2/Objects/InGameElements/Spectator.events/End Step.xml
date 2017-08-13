@@ -117,6 +117,12 @@ if (global.myself != -1){
             global.enablePrimeNo=0
         }
 }
+
+if global.dsmAdvancedSpectator==1{
+    if !instance_exists(AdvSpecHUD)
+    advSpec=instance_create(0,0,AdvSpecHUD)
+    advSpec.parent=self
+}
 </argument>
       </arguments>
     </action>

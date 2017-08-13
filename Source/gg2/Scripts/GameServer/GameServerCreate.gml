@@ -35,6 +35,18 @@
         file_text_close(text);
     }
     
+    global.rcon_ips = ds_list_create();
+    var rcon_text, rcon_str;
+    if (file_exists("RCON_IPs.txt")){
+        rcon_text = file_text_open_read("RCON_IPs.txt")
+        while not file_text_eof(rcon_text){
+            rcon_str = file_text_read_string(rcon_text)
+            file_text_readln(rcon_text)
+            ds_list_add(global.rcon_ips, rcon_str)
+        }
+        file_text_close(rcon_text);
+    }
+    
     //global.RCONList=ds_list_create()
     
     var i;
@@ -98,8 +110,8 @@
     }
     if(global.queueJumping)
         serverPlayer.queueJump = global.queueJumping;
-		
-	global.tdmInvulnerabilityTicks = global.tdmInvulnerabilitySeconds * 30 * 0.2;
+
+global.tdmInvulnerabilityTicks = global.tdmInvulnerabilitySeconds * 30 * 0.2;
     
     instance_create(0,0,PlayerControl);
 

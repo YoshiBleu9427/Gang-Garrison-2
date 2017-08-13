@@ -13,11 +13,14 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if time&lt;=global.Server_Respawntime{
+        <argument kind="STRING">if !instance_exists(Spectator){
+    instance_destroy()
+}/*
+if time&lt;=global.Server_Respawntime{
     time+=1*global.delta_factor
 }else{
     instance_destroy()
-}
+}*/
 
 if instance_exists(global.myself){
     if global.myself.object!=-1{

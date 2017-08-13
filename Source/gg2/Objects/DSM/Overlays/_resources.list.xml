@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="StatsBoard" type="RESOURCE"/>
+  <resource name="old_AdvSpecHUD" type="RESOURCE"/>
   <resource name="AdvSpecHUD" type="RESOURCE"/>
 </resources>

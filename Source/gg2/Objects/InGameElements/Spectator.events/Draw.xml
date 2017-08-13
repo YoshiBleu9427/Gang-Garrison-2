@@ -23,9 +23,12 @@ ysize = view_hview[0];
 // special thanks to wareya for the warhud HP cross code &amp; images
 var sprite_xpos, sprite_ypos, icon_xpos, icon_ypos, hppixels;
 draw_set_alpha(1);
-if global.fullSpec==0{
-    draw_rectangle_color(view_xview,view_yview,view_xview+xsize,view_yview+20,c_black,c_black,c_black,c_black,0);
-    draw_rectangle_color(view_xview,view_yview+ysize-20,view_xview+xsize,view_yview+ysize,c_black,c_black,c_black,c_black,0);
+//if global.fullSpec==0{
+if tracking{
+    if !instance_exists(AdvSpecHUD){
+        draw_rectangle_color(view_xview,view_yview,view_xview+xsize,view_yview+20,c_black,c_black,c_black,c_black,0);
+        draw_rectangle_color(view_xview,view_yview+ysize-20,view_xview+xsize,view_yview+ysize,c_black,c_black,c_black,c_black,0);
+    }
 }
 
 draw_set_color(c_white);
