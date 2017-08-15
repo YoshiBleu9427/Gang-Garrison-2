@@ -18,19 +18,17 @@
 
 if (object_get_parent(player.object_index) == NPC) {
     if(other.id == global.myself.object) {
-        if(team == global.myself.team) {
-            var npc, otherContact;
-            npc = player;
-            otherContact = other.player;
-            if(not npc.justTalked) {
-                with(npc) {
-                    metPlayer = otherContact;
-                    event_user(4);
-                    metPlayer = noone;
-                }
-                npc.justTalked = true;
-                npc.alarm[1] = 180;
+        var npc, otherContact;
+        npc = player;
+        otherContact = other.player;
+        if(not npc.justTalked) {
+            with(npc) {
+                metPlayer = otherContact;
+                event_user(4);
+                metPlayer = noone;
             }
+            npc.justTalked = true;
+            npc.alarm[1] = 180;
         }
     }
 }
