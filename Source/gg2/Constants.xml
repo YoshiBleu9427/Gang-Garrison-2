@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="28500"/>
-  <constant name="GAME_VERSION_STRING" value="&quot;v2.8.5&quot;"/>
+  <constant name="VERSION" value="28600"/>
+  <constant name="GAME_VERSION_STRING" value="&quot;v2.8.6&quot;"/>
   <constant name="TRAINING_VERSION" value="04000"/>
   <constant name="TRAINING_VERSION_STRING" value="&quot;v0.4&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Solo Training Mod&quot;"/>
