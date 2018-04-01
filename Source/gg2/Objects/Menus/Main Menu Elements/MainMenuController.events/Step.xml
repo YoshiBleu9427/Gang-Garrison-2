@@ -28,7 +28,7 @@
       <arguments>
         <argument kind="STRING">if global.dsmBackground!=0 exit;
 
-fade -= 1/90;
+fade -= 1/90 * global.delta_factor;
 if (fade &lt; 0)
 {
     fade = 0;

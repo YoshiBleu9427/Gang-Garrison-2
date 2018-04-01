@@ -1,4 +1,4 @@
-if(socket_has_error(socket) or (current_time-lastContact > 30000))
+if(socket_has_error(socket) or (current_time-lastContact > 30000) or kicked)
 {   // Connection closed unexpectedly or timed out, remove client
     socket_destroy(socket);
     instance_destroy();
@@ -112,9 +112,43 @@ case STATE_EXPECT_COMMAND:
         break;
 
     case PLAYER_JOIN:
-        newState = STATE_EXPECT_MESSAGELEN;
-        messageState = STATE_EXPECT_NAME;
-        expectedBytes = 1;
+        if(!occupiesSlot)
+        {
+            // RESERVE_SLOT is required first
+            break;
+        }
+        
+        ServerJoinUpdate(socket);
+    
+        player = instance_create(0,0,Player);
+        player.socket = socket;
+        socket = -1; // Prevent the socket from being destroyed with the JoiningPlayer - it belongs to the Player now.
+        
+        player.name = name;
+        
+        ds_list_add(global.players, player);
+        ServerPlayerJoin(player.name, global.sendBuffer);
+        console_print(player.name+" has joined the server.")
+        
+        if ds_list_find_index(global.rcon_ips, socket_remote_ip(player.socket)) != -1{
+            write_ubyte(player.socket,DSM_RCON_LOGIN)
+            write_ubyte(player.socket,DSM_RCON_LOGIN_SUCCESSFUL)
+            ds_list_add(global.RCONList,player)
+            
+            console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' given RCON access.')
+            /*var message, color;
+            color=getPlayerColor(player, true);
+            message = global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' given '+C_PINK+'RCON'+C_WHITE+' access.'
+            write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
+            write_ushort(global.publicChatBuffer, string_length(message));
+            write_string(global.publicChatBuffer, message);
+            write_byte(global.publicChatBuffer,-1)
+            print_to_chat(message);// For the hostconsole_sendmsg*/
+        }
+
+        if(global.welcomeMessage != "")
+            ServerMessageString(global.welcomeMessage, player.socket);
+    
         break;
         
     case DOWNLOAD_MAP:
@@ -131,58 +165,44 @@ case STATE_EXPECT_COMMAND:
             newState = STATE_CLIENT_DOWNLOADING;
         }
         break;
+        
+    // Indicate that we want to join, but we still have to download the map / apply plugins / whatever
+    // and we don't want to do that just to be greeted with a "Server is full" message.
+    // RESERVE_SLOT is required before you can use PLAYER_JOIN, but PING and DOWNLOAD_MAP don't require it.
+    case RESERVE_SLOT:
+        newState = STATE_EXPECT_MESSAGELEN;
+        messageState = STATE_EXPECT_NAME;
+        expectedBytes = 1;
+        break;
+        
     // Other stuff like RCON_LOGIN can branch off here.
     }
     break;
 
 case STATE_EXPECT_NAME:
-    var noOfPlayers, player;
-    noOfPlayers = ds_list_size(global.players);
-    if(global.dedicatedMode)
-        noOfPlayers -= 1;
+    var noOfOccupiedSlots, player;
+    noOfOccupiedSlots = getNumberOfOccupiedSlots();
         
-    if(noOfPlayers >= global.playerLimit)
+    if(noOfOccupiedSlots >= global.playerLimit)
     {
         write_ubyte(socket, SERVER_FULL);
         break;
     }
-    
-    ServerJoinUpdate(socket);
-    
-    player = instance_create(0,0,Player);
-    player.socket = socket;
-    socket = -1; // Prevent the socket from being destroyed with the JoiningPlayer - it belongs to the Player now.
-    
-    player.name = read_string(player.socket, expectedBytes);
-    player.name = string_copy(player.name, 0, MAX_PLAYERNAME_LENGTH);
-    
-    ds_list_add(global.players, player);
-    ServerPlayerJoin(player.name, global.sendBuffer);
-    console_print(player.name+" has joined the server.")
-    
-    if ds_list_find_index(global.rcon_ips, socket_remote_ip(player.socket)) != -1{
-        write_ubyte(player.socket,DSM_RCON_LOGIN)
-        write_ubyte(player.socket,DSM_RCON_LOGIN_SUCCESSFUL)
-        ds_list_add(global.RCONList,player)
-        
-        console_print('/:/'+COLOR_LIGHTBLUE+'RCON: '+player.name+' given RCON access.')
-        /*var message, color;
-        color=getPlayerColor(player, true);
-        message = global.chatPrintPrefix+color+c_filter(player.name)+C_WHITE+' given '+C_PINK+'RCON'+C_WHITE+' access.'
-        write_ubyte(global.publicChatBuffer, CHAT_PUBLIC_MESSAGE);
-        write_ushort(global.publicChatBuffer, string_length(message));
-        write_string(global.publicChatBuffer, message);
-        write_byte(global.publicChatBuffer,-1)
-        print_to_chat(message);// For the hostconsole_sendmsg*/
-        }
+
 
     // message lobby to update playercount if we became full
-    if(noOfPlayers+1 == global.playerLimit)
+    if(noOfOccupiedSlots+1 == global.playerLimit)
         sendLobbyRegistration();
+        
+    occupiesSlot = true;
+
+    name = read_string(socket, expectedBytes);
+    name = string_copy(name, 0, MAX_PLAYERNAME_LENGTH);
     
-    if(global.welcomeMessage != "")
-        ServerMessageString(global.welcomeMessage, player.socket);
+    write_ubyte(socket, RESERVE_SLOT);
     
+    newState = STATE_EXPECT_COMMAND;
+    expectedBytes = 1;
     break;
 }
 

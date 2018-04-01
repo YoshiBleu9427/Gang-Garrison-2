@@ -1,8 +1,5 @@
-move_all_bullets();
-move_all_gore();
-
 // receive and interpret the server's message(s)
-var i, playerObject, playerID, player, otherPlayerID, otherPlayer, sameVersion, buffer, plugins, pluginsRequired, usePlugins;
+var i, playerObject, playerID, player, otherPlayerID, otherPlayer, sameVersion, buffer, usePlugins;
 
 if(tcp_eof(global.serverSocket)) {
     if(gotServerHello)
@@ -65,13 +62,18 @@ do {
             receiveCompleteMessage(global.serverSocket, 1, global.tempBuffer);
             pluginsRequired = read_ubyte(global.tempBuffer);
             plugins = receivestring(global.serverSocket, 2);
+
             if(string_pos("/", downloadMapName) != 0 or string_pos("\", downloadMapName) != 0)
             {
                 show_message("Server sent illegal map name: "+downloadMapName);
                 instance_destroy();
                 exit;
             }
+            ClientReserveSlot(global.serverSocket)
+            socket_send(global.serverSocket);
+            break;
 
+        case RESERVE_SLOT:
             if (!noReloadPlugins && string_length(plugins))
             {
                 usePlugins = pluginsRequired || !global.serverPluginsPrompt;

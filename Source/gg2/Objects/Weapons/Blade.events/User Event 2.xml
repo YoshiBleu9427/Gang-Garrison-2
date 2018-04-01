@@ -31,6 +31,9 @@
             }
         }
 
+        if(golden)
+            shot.sprite_index = BladeProjectileGoldS;
+
         if(ammoCount &gt; highAmmoThreshold)
             shot.hitDamage = bladeDamage;
         else if(ammoCount &lt; lowAmmoThreshold)

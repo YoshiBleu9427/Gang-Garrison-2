@@ -122,9 +122,7 @@
 
     // use default background if ini says we should
     if (global.backgroundHash == "default")
-    {
-        menuimage = choose(MenuBackground1, MenuBackground2);
-    }
+        menuimage = global.defaultBackground;
     
     if global.dsmBackground==1{
         if global.dsmTextColour==0{

@@ -1,6 +1,3 @@
-move_all_bullets();
-move_all_gore();
-
 if(serverbalance != 0)
     balancecounter += 1;
 
@@ -15,16 +12,25 @@ if(global.run_virtual_ticks)
 var i;
 for(i=0; i < ds_list_size(global.players); i+=1)
 {
-    var player;
+    var player, noOfPlayers;
     player = ds_list_find_value(global.players, i);
     
     if(socket_has_error(player.socket) or player.kicked)
     {
         console_print(player.name+" has left the server.")
+        var noOfOccupiedSlots, player;
+        noOfOccupiedSlots = getNumberOfOccupiedSlots();
+        
         removePlayer(player);
         ServerPlayerLeave(i, global.sendBuffer);
         ServerBalanceTeams();
         i -= 1;
+        
+        // message lobby to update playercount if we were full before
+        if(noOfOccupiedSlots == global.playerLimit)
+        {
+            sendLobbyRegistration();
+        }
     }
     else
         processClientCommands(player, i);
@@ -140,7 +146,7 @@ if(impendingMapChange == 0)
             team = TEAM_SPECTATOR;
         }
         timesChangedCapLimit = 0;
-        alarm[5] = 1;
+        alarm[5] = 1; // Will spawn in the same step (between Begin Step and Step)
     }
     // message lobby to update map name
     sendLobbyRegistration();

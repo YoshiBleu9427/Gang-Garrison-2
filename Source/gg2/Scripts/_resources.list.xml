@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+  <resource name="Game" type="GROUP"/>
   <resource name="DSM" type="GROUP"/>
-  <resource name="game_init" type="RESOURCE"/>
-  <resource name="scripts1" type="GROUP"/>
   <resource name="Unit tests" type="GROUP"/>
   <resource name="Message Builders" type="GROUP"/>
   <resource name="Sound" type="GROUP"/>
@@ -11,24 +10,26 @@
   <resource name="GameServer" type="GROUP"/>
   <resource name="AudioControl" type="GROUP"/>
   <resource name="Events" type="GROUP"/>
-  <resource name="TeamSelectController" type="GROUP"/>
+  <resource name="Team Balance" type="GROUP"/>
   <resource name="Input" type="GROUP"/>
-  <resource name="Graphics" type="GROUP"/>
   <resource name="Lobby" type="GROUP"/>
   <resource name="Classlimits" type="GROUP"/>
   <resource name="Menus" type="GROUP"/>
   <resource name="Holidays" type="GROUP"/>
-  <resource name="Macro" type="GROUP"/>
   <resource name="Bytes" type="GROUP"/>
   <resource name="Rewards" type="GROUP"/>
   <resource name="Plugins" type="GROUP"/>
   <resource name="Maps" type="GROUP"/>
-  <resource name="Math" type="GROUP"/>
   <resource name="Physics" type="GROUP"/>
   <resource name="Damage API" type="GROUP"/>
   <resource name="Kill Log" type="GROUP"/>
-  <resource name="scripts2" type="GROUP"/>
-  <resource name="Faucet HTTP" type="GROUP"/>
   <resource name="Gear" type="GROUP"/>
-  <resource name="script370" type="RESOURCE"/>
+  <resource name="Object Creation" type="GROUP"/>
+  <resource name="Versioning" type="GROUP"/>
+  <resource name="Spawning" type="GROUP"/>
+  <resource name="Serialization" type="GROUP"/>
+  <resource name="Drawing" type="GROUP"/>
+  <resource name="Faucet HTTP" type="GROUP"/>
+  <resource name="Misc" type="GROUP"/>
+  <resource name="ggon" type="GROUP"/>
 </resources>
