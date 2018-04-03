@@ -53,6 +53,10 @@ case "medic_lumberyard":
     return "medic_lumberyard.png";
 case "heavy_dirtbowl":
     return "heavy_dirtbowl.png";
+case "koth_gallery":
+    return "koth_gallery.png";
+case "ctf_eiger":
+    return "ctf_eiger.png";
 default:
     return "";
 }

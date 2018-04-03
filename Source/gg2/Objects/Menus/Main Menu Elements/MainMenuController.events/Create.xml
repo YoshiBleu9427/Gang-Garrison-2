@@ -20,36 +20,36 @@
     } else {    
         global.levelchoice = 1
         menu_create(40, 300, 200, 200, 32);
-    
+
         menu_background(208, 24, 8, 12, 4);
-    
-    menu_addlink("Start Game", 'event_user(0);');
-    menu_addlink("Garrison Builder", '
-        room_goto_fix(BuilderOptions);
-    ');
-    menu_addlink("Options", '
-        room_goto_fix(Options);
-    ');
-    if (global.rewardId != '')
-    {
-        menu_addlink("Manage Haxxy Rewards", '
-            splash_set_main(false);
-            splash_set_interrupt(false);
-            splash_show_web("http://www.ganggarrison.com/forums/rewards/frame.php?gg2_login=yes&amp;reward_id=" + global.rewardId + "&amp;reward_key=" + hex(global.rewardKey), 0);
+
+        menu_addlink("Start Game", 'event_user(0);');
+        menu_addlink("Garrison Builder", '
+            room_goto_fix(BuilderOptions);
         ');
-    }
-    menu_addlink("Hi Scores", '
-        room_goto_fix(Hiscores);
-    ');
-    menu_addlink("Credits", '
-        room_goto_fix(Credits);
-    ');
-    menu_addlink("Visit The Forums",'
-        action_splash_web("http://www.ganggarrison.com/forums/index.php", 1)
-    ');
-    menu_addback("Quit", '
-        game_end();
-    ');
+        menu_addlink("Options", '
+            room_goto_fix(Options);
+        ');
+        if (global.rewardId != '')
+        {
+            menu_addlink("Manage Haxxy Rewards", '
+                splash_set_main(false);
+                splash_set_interrupt(false);
+                splash_show_web("http://www.ganggarrison.com/forums/rewards/frame.php?gg2_login=yes&amp;reward_id=" + global.rewardId + "&amp;reward_key=" + hex(global.rewardKey), 0);
+            ');
+        }
+        menu_addlink("Hi Scores", '
+            room_goto_fix(Hiscores);
+        ');
+        menu_addlink("Credits", '
+            room_goto_fix(Credits);
+        ');
+		menu_addlink("Visit The Forums",'
+			action_splash_web("http://www.ganggarrison.com/forums/index.php", 1)
+		');
+		menu_addback("Quit", '
+			game_end();
+		');
 
         // Music setting set to "Menu Only" or "Menu and In-Game"
         if (!sound_isplaying(global.MenuMusic)
@@ -105,6 +105,10 @@
         {
             menuimage = choose(MenuBackground1, MenuBackground2);
         }
+
+        // use default background if ini says we should
+        if (global.backgroundHash == "default")
+            menuimage = global.defaultBackground;
 
         if(global.dedicatedMode == 1)
             event_user(0);

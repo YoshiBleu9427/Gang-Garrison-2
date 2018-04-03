@@ -38,7 +38,7 @@ with(ownerPlayer.object)
         and !place_meeting(x, y+1, Obstacle))
     {
         var rdir, vectorfactor;
-        rdir = point_direction(other.x, other.y, (bbox_left+bbox_right)/2, (bbox_top+bbox_bottom)/2);
+        rdir = point_direction(other.x, other.y, x+(left_bound_offset+right_bound_offset)/2, y+(top_bound_offset+bottom_bound_offset)/2);
         vectorfactor = point_distance(0, 0, power(sin(degtorad(rdir)), 2), power(cos(degtorad(rdir)), 2));
         if (1 - distance_to_object(other)/other.blastRadius &lt;= 0.25)
             continue;
@@ -56,7 +56,9 @@ if(object_get_parent(ownerPlayer.object_index) == NPC) {
 }
 
 ownerPlayer.sentry = noone;
-instance_create(x,y,Explosion);
+var explosion;
+explosion = instance_create(x,y,Explosion);
+explosion.sprite_index = ExplosionSmallS;
 playsound(x,y,ExplosionSnd);
 sentrygibs=instance_create(x,y,SentryGibs);
 sentrygibs.image_speed = 0;

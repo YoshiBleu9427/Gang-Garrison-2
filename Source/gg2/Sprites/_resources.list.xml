@@ -13,4 +13,5 @@
   <resource name="DevMessagesCheckerS" type="RESOURCE"/>
   <resource name="pointS" type="RESOURCE"/>
   <resource name="DialogBoxS" type="RESOURCE"/>
+  <resource name="emptyMaskS" type="RESOURCE"/>
 </resources>

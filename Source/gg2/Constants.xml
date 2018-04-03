@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="28600"/>
-  <constant name="GAME_VERSION_STRING" value="&quot;v2.8.6&quot;"/>
+  <constant name="VERSION" value="29000"/>
+  <constant name="GAME_VERSION_STRING" value="&quot;v2.9.0&quot;"/>
   <constant name="TRAINING_VERSION" value="04200"/>
   <constant name="TRAINING_VERSION_STRING" value="&quot;v0.4.2&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Solo Training Mod&quot;"/>
@@ -17,7 +17,7 @@
   <constant name="LOBBY_SERVER_PORT" value="29944"/>
   <constant name="AUTH_SERVER_HOST" value="&quot;ganggarrison.com&quot;"/>
   <constant name="AUTH_SERVER_PORT" value="45022"/>
-  <constant name="PROTOCOL_UUID" value="&quot;00606687-4a6a-b1ea-b2f9-11b8ea8b95ed&quot;"/>
+  <constant name="PROTOCOL_UUID" value="&quot;00606687-4a6a-b1ea-b2f9-11b8ea8b9537&quot;"/>
   <constant name="GG2_LOBBY_UUID" value="&quot;1ccf16b1-436d-856f-504d-cc1af306aaa7&quot;"/>
   <constant name="HELLO" value="0"/>
   <constant name="PLAYER_JOIN" value="1"/>
@@ -74,11 +74,7 @@
   <constant name="PING" value="57"/>
   <constant name="CLIENT_SETTINGS" value="58"/>
   <constant name="KICK_MULTI_CLIENT" value="59"/>
-  <constant name="PLAYER_READY" value="100"/>
-  <constant name="GAME_OVER" value="101"/>
-  <constant name="GAME_PAUSE" value="102"/>
-  <constant name="GAME_RESUME" value="103"/>
-  <constant name="CHAT_ENTRY" value="104"/>
+  <constant name="RESERVE_SLOT" value="60"/>
   <constant name="TEAM_RED" value="0"/>
   <constant name="TEAM_BLUE" value="1"/>
   <constant name="TEAM_SPECTATOR" value="2"/>
@@ -118,8 +114,6 @@
   <constant name="NOTICE_HAVEINTEL" value="4"/>
   <constant name="NOTICE_SETCHECKPOINT" value="5"/>
   <constant name="NOTICE_DESTROYCHECKPOINT" value="6"/>
-  <constant name="NOTICE_PLAYERTRACKENABLE" value="7"/>
-  <constant name="NOTICE_PLAYERTRACKDISABLE" value="8"/>
   <constant name="NOTICE_CUSTOM" value="9"/>
   <constant name="PARTICLES_NORMAL" value="0"/>
   <constant name="PARTICLES_OFF" value="1"/>
@@ -173,4 +167,6 @@
   <constant name="GEAR_PARTY_HAT" value="&quot;PartyHat&quot;"/>
   <constant name="GEAR_CROWN" value="&quot;Crown&quot;"/>
   <constant name="GEAR_NAVIGATORHAT" value="&quot;NavigatorHat&quot;"/>
+  <constant name="GEAR_RAYBANN_CAPE" value="&quot;RaybannCape&quot;"/>
+  <constant name="GEAR_HAXXY_CAPE" value="&quot;HaxxyCape&quot;"/>
 </constants>

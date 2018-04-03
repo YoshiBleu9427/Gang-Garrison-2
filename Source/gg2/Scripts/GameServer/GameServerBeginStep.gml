@@ -1,6 +1,3 @@
-move_all_bullets();
-move_all_gore();
-
 if(serverbalance != 0)
     balancecounter += 1;
 
@@ -18,7 +15,7 @@ runDialogs();
 var i;
 for(i=0; i < ds_list_size(global.players); i+=1)
 {
-    var player;
+    var player, noOfPlayers;
     player = ds_list_find_value(global.players, i);
     
     if(player.object_index != Player) { // TODO: fix is_ancestor
@@ -125,7 +122,7 @@ if(impendingMapChange == 0)
             team = TEAM_SPECTATOR;
         }
         timesChangedCapLimit = 0;
-        alarm[5] = 1;
+        alarm[5] = 1; // Will spawn in the same step (between Begin Step and Step)
     }
     
     if(global.restart) {
