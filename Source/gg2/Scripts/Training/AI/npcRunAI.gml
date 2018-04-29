@@ -50,20 +50,24 @@ switch(task) {
         
         
     case NPC_TASK_CAMP:
-        with(object) {
-            if(distance_to_object(other.pathPoint) < 40) {
-                if(not zoomed) {
-                    toggleZoom(id);
+        if (class == CLASS_SNIPER) {
+            with(object) {
+                if(distance_to_object(other.pathPoint) < 40) {
+                    if(not zoomed) {
+                        toggleZoom(id);
+                    }
                 }
             }
         }
         break;
         
     case NPC_TASK_SENTRY:
-        with(object) {
-            if(distance_to_object(other.pathPoint) < 40) {
-                if(player.sentry == noone) {
-                    doEventBuildSentry(player);
+        if (class == CLASS_ENGINEER) {
+            with(object) {
+                if(distance_to_object(other.pathPoint) < 40) {
+                    if(player.sentry == noone) {
+                        doEventBuildSentry(player);
+                    }
                 }
             }
         }
