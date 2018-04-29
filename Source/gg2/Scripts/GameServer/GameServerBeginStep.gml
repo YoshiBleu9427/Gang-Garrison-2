@@ -69,7 +69,9 @@ if(global.winners != -1 and !global.mapchanging)
     global.mapchanging = true;
     impendingMapChange = 300; // in 300 ticks (ten seconds), we'll do a map change
     
-    TrainingMapSaveHiscore();
+    if (global.winners == global.myself.team) {
+        TrainingMapSaveHiscore();
+    }
     with (EventManager) {
         event_user(6); // EVENT_ROUND_END
     }
