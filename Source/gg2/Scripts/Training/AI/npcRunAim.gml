@@ -189,14 +189,14 @@ if (bestTarget != noone) {
         case CLASS_ENGINEER:
         case CLASS_HEAVY:
         case CLASS_DEMOMAN:
+        case CLASS_MEDIC:
             compensationModifier = 2 * sqrt(xshift / 8);
             break;
         case CLASS_SPY:
-            compensationModifier = sqrt(xshift / 8);
+            compensationModifier = 0.8 * sqrt(xshift / 8);
             break;
         case CLASS_SOLDIER:
         case CLASS_SNIPER:
-        case CLASS_MEDIC:
         case CLASS_PYRO:
         case CLASS_QUOTE:
             compensationModifier = 0;
@@ -251,9 +251,13 @@ if(reloadCounter > 0) {
                 if(variable_local_exists("reloadBuffer")) {
                     other.reloadCounter += reloadBuffer;
                 }
-            } else if(object_index == Minigun or object_index == Flamethrower) {
+            } else if(object_index == Flamethrower) {
                 if(ammoCount < 5) {
                     other.reloadCounter = 4 * reloadBuffer;
+                }
+            } else if(object_index == Minigun) {
+                if(ammoCount < 5) {
+                    other.reloadCounter = 6 * reloadBuffer;
                 }
             }
         }
