@@ -4,6 +4,9 @@ defending = argument0;
 if(instance_exists(ArenaControlPoint)) {
     return instance_nearest(object.x, object.y, ArenaControlPoint);
 }
+if(instance_exists(KothControlPoint)) {
+    return instance_nearest(object.x, object.y, KothControlPoint);
+}
 
 if(instance_exists(IntelligenceBase)) {
     var intelObj;
