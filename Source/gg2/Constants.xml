@@ -2,8 +2,8 @@
 <constants>
   <constant name="VERSION" value="29000"/>
   <constant name="GAME_VERSION_STRING" value="&quot;v2.9.0&quot;"/>
-  <constant name="TRAINING_VERSION" value="04300"/>
-  <constant name="TRAINING_VERSION_STRING" value="&quot;v0.4.3&quot;"/>
+  <constant name="TRAINING_VERSION" value="04310"/>
+  <constant name="TRAINING_VERSION_STRING" value="&quot;v0.4.3.1&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Solo Training Mod&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/forums/index.php?topic=34370.0&quot;"/>
   <constant name="PLUGIN_SOURCE" value="&quot;http://www.ganggarrison.com/plugins/&quot;"/>
