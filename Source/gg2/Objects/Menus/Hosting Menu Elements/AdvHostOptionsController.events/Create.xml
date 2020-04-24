@@ -22,8 +22,24 @@ bgtabs = true;
 menu_addedit_num("Hosting Port:", "global.hostingPort", '
     gg2_write_ini("Settings", "HostingPort", argument0);
 ', 65535);
-var apos; // dumb workaround
-apos = "'";
+
+menu_addedit_script("Map Rotation:", menu_format_maprotation_filepath(global.mapRotationFile), '
+    var absPath;
+
+    absPath = get_open_filename("Map Rotation|*.txt", "");
+
+    if (absPath == "") {
+        global.mapRotationFile = absPath;
+    } else {
+        global.mapRotationFile = getRelativePathIfDescendand(working_directory + "\", absPath);
+    }
+    
+    gg2_write_ini("Server", "MapRotation", global.mapRotationFile);
+    
+    load_map_rotation();
+    return menu_format_maprotation_filepath(global.mapRotationFile);
+');
+
 menu_addedit_select("Shuffle map rotation:", "global.shuffleRotation", '
     gg2_write_ini("Server", "ShuffleRotation", argument0);
 ');
@@ -63,13 +79,7 @@ menu_addedit_boolean("RCON Allowed:", "global.dsmRCONAllowed", '
 //');
 
 menu_addlink("Start Game", '
-    //Server respawn time calculator. Converts each second to a frame. (read: multiply by 30 :hehe:)
-    if (global.Server_RespawntimeSec == 0)
-        global.Server_Respawntime = 1;
-    else
-        global.Server_Respawntime = global.Server_RespawntimeSec * 30;
-    
-    global.gameServer = instance_create(0,0,GameServer);
+    start_server();
 ');
 
 menu_addtablink("Main", '

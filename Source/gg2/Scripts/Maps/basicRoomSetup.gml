@@ -35,7 +35,6 @@ with(ParallaxController)
 
 offloadSpawnPoints();
 with(Player) {
-    canSpawn = 1;
     humiliated = 0;
 }
 
@@ -54,11 +53,6 @@ else if(instance_exists(Generator))
 else if(instance_exists(ArenaControlPoint))
 {
     instance_create(0, 0, ArenaHUD);
-    if (ArenaHUD.roundStart == 0)
-    {
-        with (Player)
-            canSpawn = 0;
-    }
 }
 else if(instance_exists(KothControlPoint))
 {

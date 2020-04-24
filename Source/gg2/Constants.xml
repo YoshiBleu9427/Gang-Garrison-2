@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="VERSION" value="29000"/>
-  <constant name="GAME_VERSION_STRING" value="&quot;v2.9.0&quot;"/>
+  <constant name="VERSION" value="29200"/>
+  <constant name="GAME_VERSION_STRING" value="&quot;v2.9.2&quot;"/>
   <constant name="GAME_NAME_STRING" value="&quot;Derpduck's Server Mod&quot;"/>
   <constant name="GAME_URL_STRING" value="&quot;http://www.ganggarrison.com/forums/index.php?topic=34847.0&quot;"/>
   <constant name="DSM_VERSION" value="221"/>
@@ -17,7 +17,7 @@
   <constant name="LOBBY_SERVER_PORT" value="29944"/>
   <constant name="AUTH_SERVER_HOST" value="&quot;ganggarrison.com&quot;"/>
   <constant name="AUTH_SERVER_PORT" value="45022"/>
-  <constant name="PROTOCOL_UUID" value="&quot;6d20cbb6-4ead-8221-25a1-2ec1ca982037&quot;"/>
+  <constant name="PROTOCOL_UUID" value="&quot;b31c2209-4256-9a19-d0ef-c71c5373bd75&quot;"/>
   <constant name="GG2_LOBBY_UUID" value="&quot;1ccf16b1-436d-856f-504d-cc1af306aaa7&quot;"/>
   <constant name="HELLO" value="0"/>
   <constant name="PLAYER_JOIN" value="1"/>
@@ -50,20 +50,21 @@
   <constant name="CP_CAPTURED" value="30"/>
   <constant name="PLAYER_CHANGENAME" value="31"/>
   <constant name="GENERATOR_DESTROY" value="32"/>
-  <constant name="ARENA_ENDROUND" value="33"/>
-  <constant name="ARENA_RESTART" value="34"/>
-  <constant name="UNLOCKCP" value="35"/>
-  <constant name="SERVER_KICK" value="36"/>
-  <constant name="KICK" value="37"/>
-  <constant name="KICK_NAME" value="38"/>
-  <constant name="ARENA_STARTROUND" value="39"/>
-  <constant name="TOGGLE_ZOOM" value="40"/>
-  <constant name="RETURN_INTEL" value="41"/>
-  <constant name="INCOMPATIBLE_PROTOCOL" value="42"/>
-  <constant name="JOIN_UPDATE" value="43"/>
-  <constant name="DOWNLOAD_MAP" value="44"/>
-  <constant name="SENTRY_POSITION" value="45"/>
-  <constant name="REWARD_UPDATE" value="49"/>
+  <constant name="ARENA_WAIT_FOR_PLAYERS" value="33"/>
+  <constant name="ARENA_ENDROUND" value="34"/>
+  <constant name="ARENA_RESTART" value="35"/>
+  <constant name="UNLOCKCP" value="36"/>
+  <constant name="SERVER_KICK" value="37"/>
+  <constant name="KICK" value="38"/>
+  <constant name="KICK_NAME" value="39"/>
+  <constant name="ARENA_STARTROUND" value="40"/>
+  <constant name="TOGGLE_ZOOM" value="41"/>
+  <constant name="RETURN_INTEL" value="42"/>
+  <constant name="INCOMPATIBLE_PROTOCOL" value="43"/>
+  <constant name="JOIN_UPDATE" value="44"/>
+  <constant name="DOWNLOAD_MAP" value="45"/>
+  <constant name="SENTRY_POSITION" value="46"/>
+  <constant name="REWARD_UPDATE" value="47"/>
   <constant name="REWARD_REQUEST" value="50"/>
   <constant name="REWARD_CHALLENGE_CODE" value="51"/>
   <constant name="REWARD_CHALLENGE_RESPONSE" value="52"/>

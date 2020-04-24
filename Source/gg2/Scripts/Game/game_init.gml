@@ -19,7 +19,7 @@
     }
     file_find_close();
     
-    var customMapRotationFile, restart;
+    var restart;
     restart = false;
 
     initializeDamageSources();
@@ -38,11 +38,11 @@
     global.sendBuffer = buffer_create();
     global.tempBuffer = buffer_create();
     global.HudCheck = false;
-    global.map_rotation = ds_list_create();
-    global.ini_map_rotation = ds_list_create();
-
+    global.map_rotation = ds_list_create(); // Map rotation that is actually used by the server
+    global.ini_map_rotation = ds_list_create(); // Always holds the priority-based map rotation from the gg2.ini
+    
     global.CustomMapCollisionSprite = -1;
-	
+
     global.defaultBackground = choose(MenuBackground1, MenuBackground2);
     
     window_set_region_scale(-1, false);
@@ -74,21 +74,19 @@
     global.killLogPos = ini_read_real("Settings","Kill Log Position", 0);
     global.kothHudPos = ini_read_real("Settings","KoTH HUD Position", 0);
     global.fadeScoreboard = ini_read_real("Settings", "Fade Scoreboard", 1);
-    global.corpseTrack = ini_read_real("Settings", "Corpse Tracking", 1);
     global.clientPassword = "";
     // for admin menu
-    customMapRotationFile = ini_read_string("Server", "MapRotation", "");
+    global.mapRotationFile = ini_read_string("Server", "MapRotation", "");
     global.shuffleRotation = ini_read_real("Server", "ShuffleRotation", 1);
     global.timeLimitMins = max(1, min(255, ini_read_real("Server", "Time Limit", 15)));
     global.serverPassword = ini_read_string("Server", "Password", "");
-    global.mapRotationFile = customMapRotationFile;
     global.dedicatedMode = ini_read_real("Server", "Dedicated", 0);
     global.serverName = ini_read_string("Server", "ServerName", "My Server");
     global.welcomeMessage = ini_read_string("Server", "WelcomeMessage", "Welcome! This server is running on DSM: ganggarrison.com/forums/index.php?topic=34847");
     global.caplimit = max(1, min(255, ini_read_real("Server", "CapLimit", 5)));
     global.caplimitBkup = global.caplimit;
     global.killLimit = max(1, min(65535, ini_read_real("Server", "Deathmatch Kill Limit", 30)));
-	global.tdmInvulnerabilitySeconds = max(0, min(3600, ini_read_real("Server", "Team Deathmatch Invulnerability Seconds", 5)));
+    global.tdmInvulnerabilitySeconds = max(0, min(3600, ini_read_real("Server", "Team Deathmatch Invulnerability Seconds", 5)));
     global.autobalance = ini_read_real("Server", "AutoBalance",1);
     global.Server_RespawntimeSec = ini_read_real("Server", "Respawn Time", 5);
     global.rewardKey = unhex(ini_read_string("Haxxy", "RewardKey", ""));
@@ -117,16 +115,10 @@
     
     global.resolutionkind = ini_read_real("Settings", "Resolution", 1);
     global.frameratekind = ini_read_real("Settings", "Framerate", 0);
-    if(global.frameratekind == 1){
+    if(global.frameratekind == 1)
         global.game_fps = 60;
-    }else if(global.frameratekind == 0){
+    else
         global.game_fps = 30;
-    }//else if(global.frameratekind==2){
-        //global.game_fps=120
-    //}//else if(global.frameratekind == 3){
-        //global.game_fps = 1000
-    //}
-    
     
     readClasslimitsFromIni();
 
@@ -170,7 +162,7 @@
     ini_write_real("Settings", "Fade Scoreboard", global.fadeScoreboard);
     ini_write_real("Settings", "ServerPluginsPrompt", global.serverPluginsPrompt);
     ini_write_real("Settings", "RestartPrompt", global.restartPrompt);
-    ini_write_string("Server", "MapRotation", customMapRotationFile);
+    ini_write_string("Server", "MapRotation", global.mapRotationFile);
     ini_write_real("Server", "ShuffleRotation", global.shuffleRotation);
     ini_write_real("Server", "Dedicated", global.dedicatedMode);
     ini_write_string("Server", "ServerName", global.serverName);
@@ -191,7 +183,6 @@
     ini_write_real("Settings", "CrosshairRemoveBG", CrosshairRemoveBG);
     ini_write_real("Settings", "Queued Jumping", global.queueJumping);
     ini_write_real("Settings", "Hide Spy Ghosts", global.hideSpyGhosts);
-    ini_write_real("Settings", "Corpse Tracking", global.corpseTrack);
 
     ini_write_string("Background", "BackgroundHash", global.backgroundHash);
     ini_write_string("Background", "BackgroundTitle", global.backgroundTitle);
@@ -215,10 +206,10 @@
     rooms_fix_views();
     global.changed_resolution = false;
     
-    var iniMapRotation, mapsInDefaultOrderStr, mapsInDefaultOrder, mapIndex, mapName, mapDefaultPriority, mapPriority;
+    var iniMapRotationPrio, mapsInDefaultOrderStr, mapsInDefaultOrder, mapIndex, mapName, mapDefaultPriority, mapPriority;
     mapsInDefaultOrderStr = "ctf_truefort,ctf_2dfort,ctf_conflict,ctf_classicwell,ctf_waterway,ctf_orange,cp_dirtbowl,cp_egypt,arena_montane,arena_lumberyard,gen_destroy,koth_valley,koth_corinth,koth_harvest,dkoth_atalia,dkoth_sixties,tdm_mantic,ctf_avanti,koth_gallery,ctf_eiger";
     mapsInDefaultOrder = split(mapsInDefaultOrderStr, ",");
-    iniMapRotation = ds_priority_create();
+    iniMapRotationPrio = ds_priority_create();
 
     for(mapIndex = 0; mapIndex < ds_list_size(mapsInDefaultOrder); mapIndex += 1)
     {
@@ -227,16 +218,16 @@
         mapPriority = ini_read_real("Maps", mapName, mapDefaultPriority);
         ini_write_real("Maps", mapName, mapPriority);
         if(mapPriority != 0)
-            ds_priority_add(iniMapRotation, mapName, mapPriority);
+            ds_priority_add(iniMapRotationPrio, mapName, mapPriority);
     }
 
     ds_list_destroy(mapsInDefaultOrder);
     ini_close();
     
-    while(!ds_priority_empty(iniMapRotation))
-        ds_list_add(global.ini_map_rotation, ds_priority_delete_min(iniMapRotation));
+    while(!ds_priority_empty(iniMapRotationPrio))
+        ds_list_add(global.ini_map_rotation, ds_priority_delete_min(iniMapRotationPrio));
         
-    ds_priority_destroy(iniMapRotation);
+    ds_priority_destroy(iniMapRotationPrio);
 
     //Server respawn time calculator. Converts each second to a frame. (read: multiply by 30 :hehe:)
     if (global.Server_RespawntimeSec == 0)
@@ -313,8 +304,12 @@ global.launchMap = "";
         global.isHost = false;
         instance_create(0,0,Client);
     }   
-
-    load_map_rotation()
+    
+    // if the user defined a valid map rotation file, then override the gg2.ini map rotation and load from there
+    if ((global.launchMap != "") and (global.dedicatedMode == 1))
+        ds_list_add(global.map_rotation, global.launchMap);
+    else
+        load_map_rotation();
     
     window_set_fullscreen(global.fullscreen);
     
@@ -378,6 +373,10 @@ character_init();
      ***/
     registry_set_root(1); // HKLM
     global.NTKernelVersion = real(registry_read_string_ext("\SOFTWARE\Microsoft\Windows NT\CurrentVersion\", "CurrentVersion")); // SIC
+    if(!registry_exists_ext("\SOFTWARE\Microsoft\Windows NT\CurrentVersion\", "CurrentMajorVersionNumber"))
+        global.CurrentMajorVersionNumber = -1;
+    else
+        global.CurrentMajorVersionNumber = registry_read_real_ext("\SOFTWARE\Microsoft\Windows NT\CurrentVersion\", "CurrentMajorVersionNumber");
     
     globalvar previous_window_x, previous_window_y, previous_window_w;
     previous_window_x = window_get_x();
