@@ -4,4 +4,5 @@
   <resource name="dsmBirthdayTime" type="RESOURCE"/>
   <resource name="dpmBirthdayTime" type="RESOURCE"/>
   <resource name="calculateMonthAndDay" type="RESOURCE"/>
+  <resource name="calculateAprilFools" type="RESOURCE"/>
 </resources>

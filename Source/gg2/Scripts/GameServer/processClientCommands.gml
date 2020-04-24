@@ -164,7 +164,8 @@ while(commandLimitRemaining > 0) {
             redSuperiority = 0   //calculate which team is bigger
             with(Player)
             {
-                if(id != player){
+                if(id != player)
+                {
                     if(team == TEAM_RED)
                         redSuperiority += 1;
                     else if(team == TEAM_BLUE)
@@ -225,6 +226,7 @@ while(commandLimitRemaining > 0) {
                     }
                     player.team = newTeam;
                     ServerPlayerChangeteam(playerId, player.team, global.sendBuffer);
+                    clearPlayerDominations(player);
                     ServerBalanceTeams();
                 }
             }
@@ -233,8 +235,9 @@ while(commandLimitRemaining > 0) {
         case CHAT_BUBBLE:
             var bubbleImage;
             bubbleImage = read_ubyte(socket);
-            if(global.aFirst and bubbleImage != 45){
-                bubbleImage = 0;
+            if(global.aFirst and bubbleImage != 45)
+            {
+                bubbleImage = 61;
             }
             write_ubyte(global.sendBuffer, CHAT_BUBBLE);
             write_ubyte(global.sendBuffer, playerId);
