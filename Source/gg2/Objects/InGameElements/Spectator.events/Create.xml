@@ -54,7 +54,7 @@ if (myTeam == TEAM_SPECTATOR)
 {
     event_user(7);
 }
-else if (global.corpseTrack)
+else
 {
     tracking=true;
     player = global.myself;
