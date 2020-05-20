@@ -28,10 +28,30 @@ if(instance_exists(TeamSelectController) || instance_exists(ClassSelectControlle
     menuOpen = false;
 }
 
-for (i = 0; i &lt; ds_list_size(global.dsmBinds); i+=1){
+/*for (i = 0; i &lt; ds_list_size(global.dsmBinds); i+=1){
     if real(ds_list_find_value(global.dsmBinds,i))==real(keyboard_key){
         if keyboard_check_pressed(keyboard_key){
             console_parseInput(ds_list_find_value(global.dsmBindCommands,i))
+        }
+    }
+}*/
+          
+//Character binds
+for (i=0; i &lt; ds_list_size(global.binds); i+=1){
+    if real(ds_list_find_value(global.binds,i))==real(keyboard_lastkey){
+        if keyboard_check_pressed(keyboard_lastkey){
+            console_parseInput(ds_list_find_value(global.bindCommands,i))
+        }
+    }
+}
+
+//Non-character binds
+for (i=0; i &lt; ds_list_size(global.bindsCtrl); i+=1){
+    if real(keyboard_lastkey)==ds_map_find_value(global.spBinds,keyboard_lastkey){
+        if real(ds_list_find_value(global.bindsCtrl,i))==real(keyboard_lastkey){
+            if keyboard_check_pressed(ds_map_find_value(global.spBinds,keyboard_lastkey)){
+                console_parseInput(ds_list_find_value(global.bindCommandsCtrl,i))
+            }
         }
     }
 }
