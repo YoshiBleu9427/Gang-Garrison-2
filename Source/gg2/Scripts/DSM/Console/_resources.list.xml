@@ -2,6 +2,7 @@
 <resources>
   <resource name="Messages" type="GROUP"/>
   <resource name="Built-InCommands" type="GROUP"/>
+  <resource name="Binds" type="GROUP"/>
   <resource name="console_init" type="RESOURCE"/>
   <resource name="console_print" type="RESOURCE"/>
   <resource name="console_parseInput" type="RESOURCE"/>
@@ -12,6 +13,6 @@
   <resource name="console_close" type="RESOURCE"/>
   <resource name="DSM_getColorCodeHex" type="RESOURCE"/>
   <resource name="DSM_getColorCode" type="RESOURCE"/>
-  <resource name="read_binds_from_file" type="RESOURCE"/>
-  <resource name="write_binds_to_file" type="RESOURCE"/>
+  <resource name="old_read_binds_from_file" type="RESOURCE"/>
+  <resource name="old_write_binds_to_file" type="RESOURCE"/>
 </resources>
