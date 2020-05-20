@@ -179,9 +179,9 @@ global.myCurrentPlugins=""
 global.totalCurrentPlugins=""
 globalvar colour1, colour2;
 global.dsmMapChange=0
-global.dsmBinds=ds_list_create()
-global.dsmBindCommands=ds_list_create()
-read_binds_from_file()
+//global.dsmBinds=ds_list_create()
+//global.dsmBindCommands=ds_list_create()
+//read_binds_from_file()
 global.isRCON=0
 global.enablePrimeNo=0
 global.isUsingChat=0
