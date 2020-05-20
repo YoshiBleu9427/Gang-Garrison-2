@@ -15,6 +15,14 @@ global.RCONCommand_out=""
 global.RCONCustomMessage=""
 global.RCONUseCustomMessage=0
 
+global.binds=ds_list_create()
+global.bindCommands=ds_list_create()
+read_binds_from_file()
+global.bindsCtrl=ds_list_create()
+global.bindCommandsCtrl=ds_list_create()
+read_binds_from_file_special()
+define_special_binds()
+
 //For locking teams/classes
 //Team
 global.locked_red=0
